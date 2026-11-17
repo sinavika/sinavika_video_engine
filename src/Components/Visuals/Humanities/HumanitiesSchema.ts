@@ -4,6 +4,9 @@ import {plainText, richText} from '../../../Schemas/RichText';
 import {Point2} from '../VisualSchemaPart';
 
 /** Reference lines a map can draw (see the map visual). */
+/** Said to a model writing a map (the schema's description): a name the layer does not have leaves the map blank. */
+const AREA_NAME = 'An area name exactly as the map layer has it, in Turkish (Türkiye, Azerbaycan, Çin Halk Cumhuriyeti, Rize), never in English; an unknown name is refused when the figure is drawn.';
+
 export const MAP_LINES = ['equator', 'tropics', 'polarCircles', 'primeMeridian', 'graticule'] as const;
 
 /** History: the battle field's grid, north up. */
@@ -249,7 +252,7 @@ export const HUMANITIES_VISUALS = [
 			.array(
 				z.object({
 					label: plainText(30),
-					names: z.array(z.string().min(1).max(60)).min(1).max(40),
+					names: z.array(z.string().min(1).max(60).describe(AREA_NAME)).min(1).max(40),
 					/** A natural colour that says something (SHADE_COLORS): a soil's own colour. Without it, `shadeStyle` colours the class. */
 					color: z.enum(Object.keys(SHADE_COLORS) as [keyof typeof SHADE_COLORS, ...(keyof typeof SHADE_COLORS)[]]).optional(),
 				}),
@@ -260,11 +263,11 @@ export const HUMANITIES_VISUALS = [
 		shadeStyle: z.enum(['scale', 'contrast']).default('scale'),
 		/** Areas drawn in the lesson colour, by name. */
 		highlights: z
-			.array(z.object({name: z.string().min(1).max(60), label: plainText(30).optional()}))
+			.array(z.object({name: z.string().min(1).max(60).describe(AREA_NAME), label: plainText(30).optional()}))
 			.max(12)
 			.default([]),
 		/** The map is framed on these areas. Without them a world map frames its highlights, other maps show their whole base. */
-		focus: z.array(z.string().min(1).max(60)).max(12).default([]),
+		focus: z.array(z.string().min(1).max(60).describe(AREA_NAME)).max(12).default([]),
 		markers: z
 			.array(z.object({at: Point2, label: plainText(30)}))
 			.max(10)

@@ -9,6 +9,7 @@ import * as Insights from './Screens/Mobile/Insights';
 import {HubDayDoneScreen, HubExpiredScreen, HubNoPlanScreen, HubScreen, HubScrolledScreen, HubTipScreen} from './Screens/Mobile/Hub';
 import * as Tests from './Screens/Mobile/Learn';
 import * as Lessons from './Screens/Mobile/Lessons';
+import * as Notif from './Screens/Mobile/Notifications';
 import * as Steps from './Screens/Mobile/LessonSteps';
 import * as States from './Screens/Mobile/States';
 import * as Onb from './Screens/Mobile/Onboarding';
@@ -29,16 +30,19 @@ import * as WPlan from './Screens/Web/PlanWeb';
 import * as WSino from './Screens/Web/SinoWeb';
 import * as WStudy from './Screens/Web/StudyWeb';
 import * as WTests from './Screens/Web/TestsWeb';
+import * as Watch from './Screens/Watch/Watch';
+import * as Share from './Screens/Share/ShareCards';
 
 /**
  * Every UI/UX drawing, by id. The export (`npm run uiux`), the boards and the
  * screen inventory (docs/UIUX/Ekran-Envanteri.md) read this list.
  *
- * Ids: m-<group>-<name> mobile, w-<group>-<name> web panel, s-<name> site, t-<group>-<name> tablet.
+ * Ids: m-<group>-<name> mobile, w-<group>-<name> web panel, s-<name> site, t-<group>-<name> tablet,
+ * k-<apple|wear>-<name> watch (kol saati), p-<card>-<hikaye|gonderi> share cards (paylaşım).
  * `route` names the screen in the app (mobile route name or web path), so a
  * drawing maps to the code that draws it. `note` says what the screen does.
  */
-export type UIPlatform = 'mobile' | 'web' | 'site' | 'tablet';
+export type UIPlatform = 'mobile' | 'web' | 'site' | 'tablet' | 'watch' | 'share';
 
 export type UIScreen = {
 	id: string;
@@ -57,11 +61,15 @@ export type UIScreen = {
 	height?: number;
 	/** Tablet screens drawn upright (834 × 1194) instead of landscape. */
 	portrait?: boolean;
+	/** Watch screens on a round Wear OS face (227 × 227) instead of Apple Watch (208 × 248); share cards as a 1080 × 1080 post instead of a 1080 × 1920 story. */
+	round?: boolean;
 };
 
 const mobile = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey): UIScreen => ({id, platform: 'mobile', group, title, route, Component, note, module});
 const web = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey): UIScreen => ({id, platform: 'web', group, title, route, Component, note, module});
 const site = (id: string, group: string, title: string, route: string, Component: React.FC, height: number, note = ''): UIScreen => ({id, platform: 'site', group, title, route, Component, note, height});
+const watch = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', round?: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'watch', group, title, route, Component, note, module, round});
+const share = (id: string, title: string, Component: React.FC, note: string, square: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'share', group: 'Paylaşım kartları', title, route: 'ShareCard (mobil: görünümden PNG · web: next/og)', Component, note, module, round: square});
 const tablet = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey, portrait?: boolean): UIScreen => ({id, platform: 'tablet', group, title, route, Component, note, module, portrait});
 
 export const UI_SCREENS: readonly UIScreen[] = [
@@ -71,7 +79,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-hub-plansiz', 'Modüller', 'Ana ekran · planı olmayan öğrenci', 'ModuleHubHome', HubNoPlanScreen, 'Plan kartı kayıttaki cevapları gösterir ve tek düğmeyle planı hazırlar; ilk mikro ders plansız da başlar.'),
 	mobile('m-hub-gun-bitti', 'Modüller', 'Ana ekran · günün planı bitti', 'ModuleHubHome', HubDayDoneScreen, 'Bitti kartı: görev, dakika, seri; Yarına bak ve isteğe bağlı fazladan 10 soru.'),
 	mobile('m-hub-abonelik-bitti', 'Modüller', 'Ana ekran · deneme süresi bitti', 'ModuleHubHome', HubExpiredScreen, 'Ödeme yoksa erişim yok: ilerleme korunur, modüller kilitli; Paketleri gör ve mağaza alımını geri yükle.'),
-	mobile('m-giris-karsilama', 'Giriş ve kayıt', 'Karşılama', '—', Auth.WelcomeScreen, 'İlk açılış: modül slaytlarıyla ürün bir bakışta; Başlayalım ve Zaten hesabım var.'),
+	mobile('m-giris-karsilama', 'Giriş ve kayıt', 'Karşılama', '—', Auth.WelcomeScreen, 'Oturumu kapatmış öğrencinin karşılaması: modül slaytlarıyla ürün bir bakışta; Başlayalım ve Zaten hesabım var. Uygulamanın ilk açılışı m-onb-0-karsilama’dır.'),
 	mobile('m-giris-oturum-ac', 'Giriş ve kayıt', 'Oturum aç veya kaydol', 'AuthLogin', Auth.SignInScreen, 'Apple ve Google üstte, e-posta altta; hesap varsa kod gider, yoksa kayıt açılır.'),
 	mobile('m-giris-kod', 'Giriş ve kayıt', 'Doğrulama kodu', 'AuthLogin', Auth.SignInCodeScreen, '6 kutulu kod, yeniden gönderme süresi, şifreyle giriş seçeneği.'),
 	mobile('m-kayit-eposta', 'Giriş ve kayıt', 'Hesap oluştur', 'AuthRegister', Auth.SignUpScreen, 'Apple ve Google önde; e-postayla devam edene kod gider.'),
@@ -156,7 +164,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-plan-program', 'Ders Planı', 'Program', 'StudyPlanSchedule · StudyPlanPlan', Plan.PlanScheduleScreen, '', 'studyPlan'),
 	mobile('m-plan-ayarlar', 'Ders Planı', 'Plan ayarları', 'StudyPlanCreate', Plan.PlanSettingsScreen, '', 'studyPlan'),
 	mobile('m-ozet-vitrin', 'Akıllı Özet', 'Akıllı Özet', 'LensHome · LensAnalyses', Assist.SummaryHomeScreen, 'Geçmişte konu başlığı; kalan kota yazılı.', 'smartSummary'),
-	mobile('m-ozet-yukle', 'Akıllı Özet', 'Soru yükle', 'LensNew · LensSessionCreate', Assist.SummaryUploadScreen, '', 'smartSummary'),
+	mobile('m-ozet-yukle', 'Akıllı Özet', 'Soru yükle', 'LensNew · LensUpload', Assist.SummaryUploadScreen, '', 'smartSummary'),
 	mobile('m-ozet-kamera', 'Akıllı Özet', 'Kamera', 'LensCamera', Assist.SummaryCameraScreen, '', 'smartSummary'),
 	mobile('m-ozet-isleniyor', 'Akıllı Özet', 'Analiz ediliyor', 'LensSessionProgress', Assist.SummaryProcessingScreen, '', 'smartSummary'),
 	mobile('m-ozet-sonuc', 'Akıllı Özet', 'Çözüm', 'LensSessionDetail', Assist.SummaryResultScreen, '', 'smartSummary'),
@@ -197,6 +205,17 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-geri-bildirim', 'Profil ve hesap', 'Geri bildirimlerim', 'FeedbackMy', Account.FeedbackScreen, ''),
 	mobile('m-bildirimler', 'Bildirimler', 'Bildirimler', 'NotificationInbox', Account.NotificationsScreen, ''),
 	mobile('m-bildirimler-bos', 'Bildirimler', 'Bildirim yok', 'NotificationInbox', States.NotificationsEmptyScreen, 'Neyin burada görüneceği ve bildirim ayarları.'),
+	mobile('m-bildirim-ayarlar', 'Bildirimler', 'Bildirim ayarları', 'ProfileNotificationSettings', Notif.NotificationSettingsScreen, 'Yeni: türlere göre aç/kapa. Günde en çok 2 hatırlatma, 22:00–08:00 sessiz; canlı etkinlikler ayrı; bağlı saat.'),
+	mobile('m-bildirim-canli-deneme', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Canlı etkinlik · deneme başlıyor', 'iOS Live Activity (ActivityKit)', Notif.LockLiveExamScreen, 'Yeni: canlı denemeye 15 dk kala kilit ekranında geri sayım, katılan sayısı ve Hazırım. Uygulama simgesi yok (Apple), modül simgesi var. Sunucu push-to-start ile başlatır, deneme başlayınca biter.'),
+	mobile('m-bildirim-canli-odak', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Canlı etkinlik · odak oturumu', 'iOS Live Activity (ActivityKit)', Notif.LockFocusScreen, 'Yeni: odak sayacı kilit ekranında; tek düğme (Duraklat) uygulamayı açmadan çalışır (App Intents, Apple: tek etkileşimli öğe). Öğrenci başlatır, süre bitince hemen kapanır.'),
+	mobile('m-bildirim-ada', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Dynamic Island hâlleri', 'iOS Live Activity (ActivityKit)', Notif.IslandSheetScreen, 'Kompakt, minimal (iki etkinlik), genişletilmiş deneme ve mikro ders. Deneme sürerken soru, kalan süre ve boşlar.'),
+	mobile('m-bildirim-seri', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Canlı etkinlik · akşam serisi', 'iOS Live Activity (ActivityKit)', Notif.LockStreakScreen, 'Yeni: yalnız o gün çalışılmadıysa 20:00’de; gerçek son (23:59) ve tek kısa yol (12 kart · 5 dk). Sahte aciliyet yok.'),
+	mobile('m-bildirim-zengin', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Zengin bildirimler', 'UNNotificationContent + attachment', Notif.RichNotificationsScreen, 'Yeni: her bildirim tek bilgi ve modül renginde küçük görsel (net sütunları, modül simgesi). Metinler sen dilinde, sayı somut.'),
+	mobile('m-bildirim-genis', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Bildirim · uzun basınca', 'Notification Content Extension', Notif.ExpandedNotificationScreen, 'Yeni: deneme sonucu bildirimi açılınca ders ders net ve iki eylem (Yanlışlarımı çalış, Planıma ekle). Yalnız uygulamayı açan eylem yok: bildirime dokunmak açar.'),
+	mobile('m-bildirim-android', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Android 16 · canlı güncelleme', 'Notification.ProgressStyle (Live Update)', Notif.AndroidLiveUpdateScreen, 'Yeni: odak oturumu durum çubuğunda süre çipi ve bildirimde görev dilimleri; deneme sonucu büyük görselle, kart hatırlatması eylemli.'),
+	mobile('m-bildirim-widget-kilit', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Kilit ekranı widget’ları', 'WidgetKit (accessory)', Notif.LockWidgetsScreen, 'Yeni: dakika halkası, sıradaki görev, seri. Sabah plan bildirimi.'),
+	mobile('m-bildirim-widget-ana', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Ana ekran widget’ları', 'WidgetKit (iOS)', Notif.HomeWidgetsScreen, 'Yeni: iOS ana ekranı. Bugün halkası, sıradaki deneme, etkileşimli plan listesi (görev uygulama açılmadan tamamlanır).'),
+	mobile('m-bildirim-widget-android', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Android ana ekran widget’ları', 'Jetpack Glance (Android)', Notif.AndroidWidgetsScreen, 'Yeni: Material You, renkler duvar kâğıdından. 2×2 bugün halkası, 2×1 sıradaki deneme ve odak başlat, 4×2 etkileşimli plan listesi; boyutlandırılabilir. Dokunma hedefi 48 dp, köşe sistemin (Google, Tier 1).'),
 	mobile('m-destek', 'Destek', 'Destek', 'Support · SupportHub', Account.SupportHubScreen, ''),
 	mobile('m-destek-talepler', 'Destek', 'Taleplerim', 'SupportTickets', Gaps.SupportTicketsScreen, 'Açılan taleplerin durumu (Yanıtlandı, İnceleniyor, Kapandı) ve Yeni talep.'),
 	mobile('m-destek-yeni', 'Destek', 'Yeni talep', 'SupportNew', Account.SupportNewScreen, ''),
@@ -271,7 +290,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	web('w-test-cozumler', 'Web · Testler', 'Çözümler', '/student/testler/cozumler', WGaps.WebTestSolutionsListScreen, '', 'tests'),
 	web('w-test-coz', 'Web · Testler', 'Test çözme · doğru', '/student/testler/quiz/[quizId]', WTests.WebTestSolveScreen, '', 'tests'),
 	web('w-test-coz-yanlis', 'Web · Testler', 'Test çözme · yanlış', '/student/testler/quiz/[quizId]', WTests.WebTestSolveWrongScreen, 'Doğru şık ve nedeni; konunun mikro dersine ya da SinoAI’ye geçiş.', 'tests'),
-	web('w-test-yanlislar', 'Web · Testler', 'Yanlışlarım', '/student/testler/cozumler/[attemptId]', WStudy.WebTestWrongReviewScreen, 'İlk yanlıştan açılır; soru ızgarası solda.'),
+	web('w-test-yanlislar', 'Web · Testler', 'Yanlışlarım', '/student/testler/cozumler/[attemptId]', WStudy.WebTestWrongReviewScreen, 'İlk yanlıştan açılır; soru ızgarası solda.', 'tests'),
 	web('w-plan-bugun', 'Web · Ders Planı', 'Bugün', '/student/ders-plani', WStudy.WebPlanTodayScreen, '', 'studyPlan'),
 	web('w-plan-program', 'Web · Ders Planı', 'Program', '/student/ders-plani/program', WPlan.WebPlanScheduleScreen, '', 'studyPlan'),
 	web('w-plan-oneriler', 'Web · Ders Planı', 'Öneriler', '/student/ders-plani/oneriler', WPlan.WebPlanSuggestionsScreen, '', 'studyPlan'),
@@ -299,7 +318,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	site('s-sinavlar', 'Web sitesi · Sınavlar', 'Sınavlar', '/sinavlar', SiteP.SiteExamsScreen, 1189, ''),
 	site('s-sinav-yks', 'Web sitesi · Sınavlar', 'Sınav sayfası · YKS', '/yks-hazirlik (şablon)', SiteP.SiteExamLandingScreen, 2657, 'Tüm sınav ve hazırlık sayfaları bu şablonla.'),
 	site('s-net-hesaplama', 'Web sitesi · Sınavlar', 'Net hesaplama', '/net-hesaplama', SiteP.SiteNetCalcScreen, 1024, ''),
-	site('s-paketler', 'Web sitesi · Paketler', 'Paketler', '/corporate/packages', SiteP.SitePlansScreen, 1160, 'Yalnız ücretli paketler; deneme süresi mobil uygulamada.'),
+	site('s-paketler', 'Web sitesi · Paketler', 'Paketler', '/corporate/packages', SiteP.SitePlansScreen, 1200, 'Yalnız ücretli paketler; deneme süresi mobil uygulamada.'),
 	site('s-urun-denemeler', 'Web sitesi · Ürünler', 'Ürün · Denemeler', '/urunler/denemeler (şablon)', SiteP.SiteProductExamScreen, 2068, 'Altı ürün sayfası tek şablon.'),
 	site('s-urun-ozet', 'Web sitesi · Ürünler', 'Ürün · Akıllı Özet', '/urunler/lens', SiteP.SiteProductSummaryScreen, 2047, ''),
 	site('s-blog', 'Web sitesi · Blog', 'Blog', '/blog', SiteP.SiteBlogScreen, 1815, ''),
@@ -348,6 +367,28 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	tablet('t-plan-hafta', 'Tablet · Kalemsiz', 'Ders Planı · hafta', 'StudyPlanSchedule', TWide.PlanWeekScreen, 'Haftanın yedi günü yan yana, görevler sürüklenerek taşınır; bugünün görevleri sağda.', 'studyPlan'),
 	tablet('t-istatistik-pano', 'Tablet · Kalemsiz', 'İstatistiklerim', 'ProfileStatistics', TParity.StatsTabletScreen, 'Web İstatistiklerim sayfasının kendisi tablette.'),
 	tablet('t-bolunmus-ekran', 'Tablet · Kalemsiz', 'Bölünmüş ekran', 'Uygulama geneli', TWide.SplitViewScreen, 'Split View / Stage Manager: pencere 600 pt altına inince telefon düzeni; süre ve oturum kesilmez.'),
+	watch('k-apple-bugun', 'Saat · Apple Watch', 'Bugün', 'watchOS app', Watch.AppleTodayScreen, 'Dakika halkası, görev sayısı, seri ve sıradaki görev; Başla odak sayacını saatte açar.'),
+	watch('k-apple-plan', 'Saat · Apple Watch', 'Günün planı', 'watchOS app', Watch.ApplePlanScreen, 'Görevler modül renginde; yuvarlağa dokununca görev tamamlanır.'),
+	watch('k-apple-odak', 'Saat · Apple Watch', 'Odak sayacı', 'watchOS app', Watch.AppleFocusScreen, 'Sayaç saatte çalışır, telefondaki canlı etkinlikle eşit; Duraklat ve Bitir.'),
+	watch('k-apple-kart', 'Saat · Apple Watch', 'Hızlı kart tekrarı', 'watchOS app', Watch.AppleCardScreen, 'Saatte yapılabilen tek çalışma: Bilgi Kartları. Soru yüzü ve Cevabı göster.'),
+	watch('k-apple-kart-cevap', 'Saat · Apple Watch', 'Kart · cevap', 'watchOS app', Watch.AppleCardAnswerScreen, 'Cevap ve iki düğme: bilmedim / bildim. Tekrar günü telefonla aynı.'),
+	watch('k-apple-deneme', 'Saat · Apple Watch', 'Deneme geri sayımı', 'watchOS app', Watch.AppleExamScreen, 'Canlı denemeye kalan süre ve hatırlatma; deneme telefonda çözülür.'),
+	watch('k-apple-kadran', 'Saat · Apple Watch', 'Kadran komplikasyonları', 'WidgetKit (watchOS)', Watch.AppleFaceScreen, 'Seri, sıradaki görev (dikdörtgen), dakika, kart ve deneme halkaları.'),
+	watch('k-apple-yigin', 'Saat · Apple Watch', 'Akıllı Yığın', 'WidgetKit (watchOS)', Watch.AppleSmartStackScreen, 'Sabah ve canlı deneme öncesi Sınavika widget’ı yığının üstüne çıkar.'),
+	watch('k-apple-bildirim', 'Saat · Apple Watch', 'Bildirim · eylemli', 'watchOS notification (long look)', Watch.AppleNotificationScreen, 'Odak bitince sonuç ve iki eylem: sıradaki görev ya da 5 dk mola.'),
+	watch('k-wear-kutucuk', 'Saat · Wear OS', 'Kutucuk (Tile)', 'Wear OS Tile (ProtoLayout)', Watch.WearTileScreen, 'Kenarda dakika yayı (altta kenar düğmesi için boşluk), ortada 45/90 ve seri; sıradaki görev Material 3 kenar düğmesinde. Tek görev, fazla işlev yok (Google).', true),
+	watch('k-wear-odak', 'Saat · Wear OS', 'Odak sayacı', 'Wear OS app (Compose for Wear OS)', Watch.WearFocusScreen, 'Kenarda kalan süre yayı, ortada sayaç, yuvarlak Duraklat ve Bitir; ongoing activity.', true),
+	watch('k-wear-kadran', 'Saat · Wear OS', 'Kadran komplikasyonları', 'Wear OS complications', Watch.WearFaceScreen, 'Aralıklı değer (dakika), kısa metin (seri) ve uzun metin (sıradaki görev).', true),
+	share('p-deneme-hikaye', 'Deneme sonucu · hikâye', Share.ExamStory, 'Net, geçen denemeye göre fark, D/Y/B (simge + sözcük), en iyi ders. “ÖSYM puanı değildir” notu; puan tahmini yok.', false, 'exam'),
+	share('p-deneme-gonderi', 'Deneme sonucu · gönderi', Share.ExamPost, 'Aynı içerik 1080 × 1080; istatistikten ilk üçü.', true, 'exam'),
+	share('p-seri-hikaye', 'Seri rozeti · hikâye', Share.StreakStory, '3 · 7 · 14 · 30 gün basamakları: ulaşılan beyaz ve tikli, sıradaki kesikli. Marka yüzeyi (turuncu).', false),
+	share('p-seri-gonderi', 'Seri rozeti · gönderi', Share.StreakPost, 'Aynı içerik 1080 × 1080.', true),
+	share('p-konu-hikaye', 'Konu bitirme · hikâye', Share.TopicStory, 'Dersler: konu adı, mikro ders ve adım sayısı, ilk denemede doğru oranı.', false, 'lessons'),
+	share('p-konu-gonderi', 'Konu bitirme · gönderi', Share.TopicPost, 'Aynı içerik 1080 × 1080.', true, 'lessons'),
+	share('p-hafta-hikaye', 'Haftalık özet · hikâye', Share.WeekStory, 'Ders Planı: haftalık süre, günlük sütunlar (en çok çalışılan gün beyaz), soru, deneme, seri.', false, 'studyPlan'),
+	share('p-hafta-gonderi', 'Haftalık özet · gönderi', Share.WeekPost, 'Aynı içerik 1080 × 1080.', true, 'studyPlan'),
+	share('p-soru-hikaye', 'Bu soruyu çözdüm · hikâye', Share.SolvedStory, 'Testler: soru metni ya da görseli ve şıklar; cevap ve çözüm yok. Ders · konu etiketi, süre ve seviye.', false, 'tests'),
+	share('p-soru-gonderi', 'Bu soruyu çözdüm · gönderi', Share.SolvedPost, 'Aynı içerik 1080 × 1080.', true, 'tests'),
 ];
 
 export const findScreen = (id: string): UIScreen => {

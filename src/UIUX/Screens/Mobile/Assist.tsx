@@ -22,7 +22,15 @@ export const SummaryHomeScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="smartSummary" tab={0}>
 			<Content gap={12}>
-				<PageTitle module="smartSummary" title={t('Akıllı Özet', 'Smart Summary')} right={<Chip tone="module" module="smartSummary">{t('Bu ay 7 / 30', '7 / 30 this month')}</Chip>} />
+				<PageTitle
+					module="smartSummary"
+					title={t('Akıllı Özet', 'Smart Summary')}
+					right={
+						<Chip tone="module" module="smartSummary">
+							{t('Bu ay 7 / 30', '7 / 30 this month')}
+						</Chip>
+					}
+				/>
 				<Stack gap={10}>
 					<ModuleSlide module="smartSummary" height={176} />
 					<Dots count={2} active={0} colors={[mod.color, mod.color]} />
@@ -54,7 +62,12 @@ export const SummaryHomeScreen: React.FC = () => {
 
 export const SummaryCameraScreen: React.FC = () => {
 	const t = useT();
-	const corners: [string, string][] = [['left', 'top'], ['right', 'top'], ['left', 'bottom'], ['right', 'bottom']];
+	const corners: [string, string][] = [
+		['left', 'top'],
+		['right', 'top'],
+		['left', 'bottom'],
+		['right', 'bottom'],
+	];
 	return (
 		<UIProvider module="smartSummary">
 			<Phone bg="#05070C" lightStatus>
@@ -155,7 +168,21 @@ export const SummaryResultScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('smartSummary');
 	return (
-		<ModuleScreen module="smartSummary" noTabBar header={<AppHeader left="back" title={t('Türev · Zincir kuralı', 'Chain rule')} right={<div style={{width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Icon name="more" size={22} color={colors.ink} stroke={3} /></div>} />}>
+		<ModuleScreen
+			module="smartSummary"
+			noTabBar
+			header={
+				<AppHeader
+					left="back"
+					title={t('Türev · Zincir kuralı', 'Chain rule')}
+					right={
+						<div style={{width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Icon name="more" size={22} color={colors.ink} stroke={3} />
+						</div>
+					}
+				/>
+			}
+		>
 			<Content tabBar={false} gap={12}>
 				<Stack row gap={8}>
 					<Chip tone="module" module="smartSummary" icon="scan">
@@ -174,7 +201,7 @@ export const SummaryResultScreen: React.FC = () => {
 						[t('Yerine koy', 'Substitute'), "f'(1) = 4 · 1³ · 6 = 24"],
 					].map(([title, formula], index) => (
 						<Stack key={title} row gap={12} align="flex-start">
-							<div style={{width: 26, height: 26, borderRadius: 13, background: mod.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+							<div style={{width: 26, height: 26, borderRadius: 13, background: mod.action, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 								<Text role="meta" weight={800} color="#FFFFFF">
 									{index + 1}
 								</Text>
@@ -201,13 +228,18 @@ export const SummaryResultScreen: React.FC = () => {
 					</Text>
 				</Card>
 				<Card padding={14} style={{border: `1.5px solid ${colors.warningSoft}`}}>
-					<Text role="over" color={colors.warning}>
+					<Text role="over" color={colors.warningInk}>
 						{t('Sık hata', 'Common mistake')}
 					</Text>
 					<Text role="small" color={colors.ink2} style={{marginTop: 4}}>
 						{t('İçteki fonksiyonun türevini (6x) çarpmayı unutmak.', 'Forgetting to multiply by the inner derivative (6x).')}
 					</Text>
 				</Card>
+				<SectionTitle title={t('Bu konuda devam et', 'Keep going on this topic')} />
+				<List>
+					<ListRow module="lessons" icon="book" title={t('Konuyu çalış', 'Study the topic')} subtitle={t('Dersler · Türev · 6 mikro ders', 'Lessons · Derivatives · 6 micro-lessons')} />
+					<ListRow module="flashcards" icon="cards" title={t('Bilgi kartı yap', 'Make flashcards')} subtitle={t('Bu çözümden 3 kart', '3 cards from this solution')} />
+				</List>
 			</Content>
 			<BottomBar border>
 				<Stack row gap={10}>
@@ -314,7 +346,23 @@ export const CardsHomeScreen: React.FC = () => {
 				<SectionTitle title={t('Dersler', 'Subjects')} sub={t('Önce dersi seç, desteler içinde', 'Pick a subject; decks are inside')} />
 				<List>
 					{lessons.map(([tr, en, decks, value, due]) => (
-						<ListRow key={tr} module="flashcards" icon="book" title={t(tr, en)} subtitle={`${decks} ${t('deste', 'decks')} · %${Math.round(value * 100)} ${t('öğrenildi', 'learnt')}`} trailing={<Stack row gap={8}>{due ? <Chip tone="module" module="flashcards" size="sm">{due} {t('bugün', 'today')}</Chip> : null}<Icon name="right" size={18} color="#94A3B8" /></Stack>} />
+						<ListRow
+							key={tr}
+							module="flashcards"
+							icon="book"
+							title={t(tr, en)}
+							subtitle={t(`${decks} deste · %${Math.round(value * 100)} öğrenildi`, `${decks} decks · ${Math.round(value * 100)}% learnt`)}
+							trailing={
+								<Stack row gap={8}>
+									{due ? (
+										<Chip tone="module" module="flashcards" size="sm">
+											{due} {t('bugün', 'today')}
+										</Chip>
+									) : null}
+									<Icon name="right" size={18} color="#94A3B8" />
+								</Stack>
+							}
+						/>
 					))}
 				</List>
 			</Content>
@@ -344,7 +392,7 @@ export const CardsTodayScreen: React.FC = () => {
 							<Text role="small" color="rgba(255,255,255,0.9)">
 								{t('Yaklaşık 6 dakika. Seri 7 gün.', 'About 6 minutes. 7-day streak.')}
 							</Text>
-							<Button tone="white" size="sm" icon="play" style={{alignSelf: 'flex-start', color: mod.color}}>
+							<Button tone="white" size="sm" icon="play" style={{alignSelf: 'flex-start', color: mod.action}}>
 								{t('Devam et', 'Continue')}
 							</Button>
 						</Stack>
@@ -446,7 +494,11 @@ export const CardSessionBackScreen: React.FC = () => {
 						{t('Ne kadar iyi hatırladın?', 'How well did you recall it?')}
 					</Text>
 					<Stack row gap={8}>
-						{[[t('Bilmiyorum', 'Don’t know'), t('1 dk', '1 min'), colors.error], [t('Emin değilim', 'Not sure'), t('6 dk', '6 min'), colors.warning], [t('Biliyorum', 'I know it'), t('4 gün', '4 days'), colors.success]].map(([label, next, color]) => (
+						{[
+							[t('Bilmiyorum', 'Don’t know'), t('1 dk', '1 min'), colors.errorInk],
+							[t('Emin değilim', 'Not sure'), t('6 dk', '6 min'), colors.warningInk],
+							[t('Biliyorum', 'I know it'), t('4 gün', '4 days'), colors.successInk],
+						].map(([label, next, color]) => (
 							<Stack key={label} align="center" justify="center" gap={2} style={{flex: 1, height: 62, borderRadius: 18, background: colors.card, border: `1.5px solid ${colors.line}`}}>
 								<Text role="headline" size={13.5} color={color}>
 									{label}

@@ -1,35 +1,10 @@
 import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {Bar, Button, Card, Chip, Ring, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
 import {Grid, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 import {UI_CANVAS, UI_SHADOW} from '../../Tokens';
-import {
-	ConceptContent,
-	Feedback,
-	FillContent,
-	Hero,
-	Kind,
-	MapRow,
-	MICRO_LESSONS,
-	MicroDoneContent,
-	microStates,
-	OrderContent,
-	PlainCard,
-	PredictContent,
-	QuestionContent,
-	REVIEWS,
-	Rich,
-	RoundButton,
-	Segments,
-	SUMMARY,
-	TOPIC,
-	TopicBadge,
-	TrueFalseContent,
-	VideoRow,
-	WORK_LESSONS,
-	WORK_TOPICS,
-} from '../Mobile/Lessons';
+import {ConceptContent, Feedback, FillContent, Hero, Kind, MapRow, MICRO_LESSONS, MicroDoneContent, microStates, OrderContent, PlainCard, PredictContent, QuestionContent, REVIEWS, Rich, RoundButton, Segments, SUMMARY, TOPIC, TopicBadge, TrueFalseContent, VideoRow, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
 
 /**
  * Dersler on the web panel. The browsing pages (lessons, topics, review, the
@@ -48,7 +23,17 @@ export const WebLessonsHomeScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<Panel active="lessons">
-			<ModuleHead module="lessons" tab={0} title={t('Dersler', 'Lessons')} sub={t('Konuları mikro derslerle, adım adım öğren', 'Learn each topic in micro-lessons, step by step')} actions={<Button tone="ghost" icon="search">{t('Konu ara', 'Find topic')}</Button>} />
+			<ModuleHead
+				module="lessons"
+				tab={0}
+				title={t('Dersler', 'Lessons')}
+				sub={t('Konuları mikro derslerle, adım adım öğren', 'Learn each topic in micro-lessons, step by step')}
+				actions={
+					<Button tone="ghost" icon="search">
+						{t('Konu ara', 'Find topic')}
+					</Button>
+				}
+			/>
 			<Grid columns="1.5fr 1fr">
 				<ModuleBanner module="lessons" over={t('Kaldığın yerden', 'Pick up where you left off')} title={t('Mecaz anlam', 'Figurative meaning')} text={t('Türkçe · Sözcükte Anlam · 2 / 5 adım · 3 dakika kaldı', 'Turkish · Word meaning · step 2 / 5 · 3 minutes left')} action={t('Devam et', 'Continue')} />
 				<WCard title={t('Tekrar zamanı', 'Time to review')}>
@@ -150,7 +135,9 @@ export const WebLessonsTopicsScreen: React.FC = () => {
 					<WCard title={t('Türkçe ilerlemen', 'Your Turkish progress')}>
 						<Stack row gap={18}>
 							<Ring value={0.11} size={92} stroke={9} color={mod.color} track={mod.track}>
-								<Text role="section">%11</Text>
+								<Text role="section">
+									<Pct value={11} />
+								</Text>
 							</Ring>
 							<Stack gap={8}>
 								<Text role="small">{t('1 konu başladı · 14 mikro ders bitti', '1 topic started · 14 micro-lessons done')}</Text>
@@ -348,25 +335,61 @@ export const Back: React.FC<{children?: string; icon?: UIIconName}> = ({children
 export const Main: React.FC<{children: string}> = ({children}) => <Button size="lg">{children}</Button>;
 
 export const WebLessonConceptScreen: React.FC = () => (
-	<StudyPlayer done={0} step="adım 1 / 5" nav={<><Back /><Main>Devam</Main></>}>
+	<StudyPlayer
+		done={0}
+		step="adım 1 / 5"
+		nav={
+			<>
+				<Back />
+				<Main>Devam</Main>
+			</>
+		}
+	>
 		<ConceptContent size={1.15} />
 	</StudyPlayer>
 );
 
 export const WebLessonPredictScreen: React.FC = () => (
-	<StudyPlayer done={1} step="adım 2 / 5" nav={<><Back /><Main>Devam</Main></>}>
+	<StudyPlayer
+		done={1}
+		step="adım 2 / 5"
+		nav={
+			<>
+				<Back />
+				<Main>Devam</Main>
+			</>
+		}
+	>
 		<PredictContent size={1.1} />
 	</StudyPlayer>
 );
 
 export const WebLessonFillScreen: React.FC = () => (
-	<StudyPlayer done={2} step="adım 3 / 5" nav={<><Back /><Main>Devam</Main></>}>
+	<StudyPlayer
+		done={2}
+		step="adım 3 / 5"
+		nav={
+			<>
+				<Back />
+				<Main>Devam</Main>
+			</>
+		}
+	>
 		<FillContent size={1.1} />
 	</StudyPlayer>
 );
 
 export const WebLessonTrueFalseScreen: React.FC = () => (
-	<StudyPlayer done={3} step="adım 4 / 5" nav={<><Back /><Main>Devam</Main></>}>
+	<StudyPlayer
+		done={3}
+		step="adım 4 / 5"
+		nav={
+			<>
+				<Back />
+				<Main>Devam</Main>
+			</>
+		}
+	>
 		<TrueFalseContent size={1.1} />
 	</StudyPlayer>
 );
@@ -392,13 +415,35 @@ export const WebLessonQuestionScreen: React.FC = () => {
 };
 
 export const WebLessonOrderScreen: React.FC = () => (
-	<StudyPlayer now={11} done={1} step="adım 2 / 5" nav={<><Back icon="refresh">Baştan diz</Back><Main>Kontrol et</Main></>}>
+	<StudyPlayer
+		now={11}
+		done={1}
+		step="adım 2 / 5"
+		nav={
+			<>
+				<Back icon="refresh">Baştan diz</Back>
+				<Main>Kontrol et</Main>
+			</>
+		}
+	>
 		<OrderContent size={1.1} />
 	</StudyPlayer>
 );
 
 export const WebLessonMicroDoneScreen: React.FC = () => (
-	<StudyPlayer now={2} done={5} current={false} step="tamamlandı" center nav={<><Back icon="tree">Konu haritası</Back><Main>Terim anlama geç</Main></>}>
+	<StudyPlayer
+		now={2}
+		done={5}
+		current={false}
+		step="tamamlandı"
+		center
+		nav={
+			<>
+				<Back icon="tree">Konu haritası</Back>
+				<Main>Terim anlama geç</Main>
+			</>
+		}
+	>
 		<MicroDoneContent size={1.05} />
 	</StudyPlayer>
 );
@@ -418,7 +463,7 @@ export const WebLessonTopicDoneScreen: React.FC = () => {
 					</Text>
 				</Stack>
 				<Chip tone="success" icon="checkCircle">
-					İlk denemede %75 doğru
+					{t('İlk denemede %75 doğru', '75% right first time')}
 				</Chip>
 			</Stack>
 			<Grid columns="1.4fr 1fr" gap={22} style={{alignItems: 'start'}}>

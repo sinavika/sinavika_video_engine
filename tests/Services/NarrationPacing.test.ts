@@ -44,3 +44,25 @@ describe('narration pacing', () => {
 		expect(narrationPacingWarnings({a: clip(10, 0.2), b: clip(3, 1)})).toEqual([]);
 	});
 });
+
+describe('formula lines and prose are paced apart', () => {
+	const line = (texts: string[], step: number): VoiceClips[string] => ({
+		src: 'Voiceovers/x.wav',
+		startSeconds: 0,
+		durationSeconds: texts.length * step,
+		playbackRate: 1,
+		words: texts.map((text, index) => ({text, startSeconds: index * step})),
+	});
+	const formula = ['a', 'çarpı', 'x', 'artı', 'b', 'çarpı', 'x', 'eşittir', 'x', 'parantez'];
+	const prose = ['Neden', 'çalıştığını', 'görmek', 'için', 'dört', 'terimi', 'tabloya', 'yerleştirelim.'];
+
+	it('does not call a plain sentence rushed because the formulas of a maths lesson are slow per letter (TYT Matematik 10, 14 Nov 2026)', () => {
+		const clips = {f1: line(formula, 0.4), f2: line(formula, 0.42), f3: line(formula, 0.38), f4: line(formula, 0.41), p1: line(prose, 0.5), p2: line(prose, 0.52), p3: line(prose, 0.48)};
+		expect(narrationPacingWarnings(clips)).toEqual([]);
+	});
+
+	it('still finds a rushed sentence among sentences', () => {
+		const clips = {f1: line(formula, 0.4), f2: line(formula, 0.42), f3: line(formula, 0.38), p1: line(prose, 0.5), p2: line(prose, 0.52), p3: line(prose, 0.48), rushed: line(prose, 0.25)};
+		expect(narrationPacingWarnings(clips)).toEqual([expect.stringContaining('"rushed" satırı olağan hızın 2.0 katı hızlı')]);
+	});
+});

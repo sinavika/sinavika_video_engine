@@ -1,7 +1,7 @@
 import React from 'react';
-import {useColors, useT} from '../../Context';
+import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
+import {MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {Button, Card, Chip, Field, Stack, Text, Tile} from '../../Parts/Shared';
 import {AuthLayout, DevicePhone, Grid, WebOnboarding, type AuthPromo} from '../../Parts/Web';
 import {UI_RADIUS} from '../../Tokens';
@@ -57,19 +57,13 @@ const Title: React.FC<{title: string; muted: string; link: string}> = ({title, m
 /** The right half of sign-in and sign-up: the same three points, a pitch per page, the app home on a phone. */
 const useAuthPromo = (page: 'signIn' | 'signUp'): AuthPromo => {
 	const t = useT();
-	const points = [
-		t('Gerçek sınav gibi denemeler, net ve konu analizi', 'Real exam-style practice tests with score and topic analysis'),
-		t('Eksik konularına göre günlük Ders Planı', 'A daily study plan built around your weak topics'),
-		t('Takıldığın soruda SinoAI ile adım adım çözüm', 'Stuck on a question? SinoAI solves it step by step'),
-	];
+	const points = [t('Gerçek sınav gibi denemeler, net ve konu analizi', 'Real exam-style practice tests with score and topic analysis'), t('Eksik konularına göre günlük Ders Planı', 'A daily study plan built around your weak topics'), t('Takıldığın soruda SinoAI ile adım adım çözüm', 'Stuck on a question? SinoAI solves it step by step')];
 	const preview = (
 		<DevicePhone width={280} rotate={-4}>
 			<HubScreen />
 		</DevicePhone>
 	);
-	return page === 'signIn'
-		? {over: t('Tekrar hoş geldin', 'Welcome back'), title: t('Kaldığın yerden devam et', 'Pick up where you left off'), text: t('Planın, denemelerin ve SinoAI geçmişin seni bekliyor. Telefonda da aynı hesap.', 'Your plan, practice tests and SinoAI history are waiting. Same account on your phone.'), points, preview}
-		: {over: t('Sınavika’ya katıl', 'Join Sınavika'), title: t('Ne çalışacağını bil, her gün ilerle', 'Know what to study, move forward every day'), text: t('Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın.', 'Choose your exam and goal; your first day’s plan is ready in two minutes.'), points, preview};
+	return page === 'signIn' ? {over: t('Tekrar hoş geldin', 'Welcome back'), title: t('Kaldığın yerden devam et', 'Pick up where you left off'), text: t('Planın, denemelerin ve SinoAI geçmişin seni bekliyor. Telefonda da aynı hesap.', 'Your plan, practice tests and SinoAI history are waiting. Same account on your phone.'), points, preview} : {over: t('Sınavika’ya katıl', 'Join Sınavika'), title: t('Ne çalışacağını bil, her gün ilerle', 'Know what to study, move forward every day'), text: t('Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın.', 'Choose your exam and goal; your first day’s plan is ready in two minutes.'), points, preview};
 };
 
 export const WebSignInScreen: React.FC = () => {
@@ -204,7 +198,11 @@ const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: stri
 					<Text role="section" size={16}>
 						{title}
 					</Text>
-					{tag ? <Chip tone="brand" size="sm">{tag}</Chip> : null}
+					{tag ? (
+						<Chip tone="brand" size="sm">
+							{tag}
+						</Chip>
+					) : null}
 				</Stack>
 				{sub ? <Text role="small">{sub}</Text> : null}
 			</Stack>
@@ -257,7 +255,13 @@ export const WebOnbExamScreen: React.FC = () => {
 				{t('Oturum ve puan türü', 'Session and score type')}
 			</Text>
 			<Stack row wrap gap={8}>
-				{[['TYT', true], ['AYT · Sayısal', true], ['AYT · Eşit ağırlık', false], ['AYT · Sözel', false], ['YDT', false]].map(([label, on]) => (
+				{[
+					['TYT', true],
+					['AYT · Sayısal', true],
+					['AYT · Eşit ağırlık', false],
+					['AYT · Sözel', false],
+					['YDT', false],
+				].map(([label, on]) => (
 					<Chip key={label as string} tone="outline" icon={on ? 'check' : undefined} style={{height: 40, padding: '0 16px', fontSize: 14, color: on ? colors.ink : colors.ink2, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
 						{label as string}
 					</Chip>
@@ -332,7 +336,18 @@ const WeekPlanPreview: React.FC = () => (
 export const WebOnbWeakScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
-	const lessons: [string, string, boolean][] = [['Matematik', 'Maths', true], ['Türkçe', 'Turkish', false], ['Geometri', 'Geometry', true], ['Fizik', 'Physics', false], ['Kimya', 'Chemistry', true], ['Biyoloji', 'Biology', false], ['Tarih', 'History', false], ['Coğrafya', 'Geography', false], ['Felsefe', 'Philosophy', false], ['Din Kültürü', 'Religion', false]];
+	const lessons: [string, string, boolean][] = [
+		['Matematik', 'Maths', true],
+		['Türkçe', 'Turkish', false],
+		['Geometri', 'Geometry', true],
+		['Fizik', 'Physics', false],
+		['Kimya', 'Chemistry', true],
+		['Biyoloji', 'Biology', false],
+		['Tarih', 'History', false],
+		['Coğrafya', 'Geography', false],
+		['Felsefe', 'Philosophy', false],
+		['Din Kültürü', 'Religion', false],
+	];
 	return (
 		<WebOnboarding step={4} over={t('Dersler', 'Subjects')} title={t('Hangi derslerde daha çok desteğe ihtiyacın var?', 'Where do you need more support?')} text={t('Planında bu derslere daha çok yer ayırırız. Seçmesen de olur.', 'We give these more room. Optional.')} cta={t('Planımı hazırla', 'Build my plan')} preview={<WeekPlanPreview />}>
 			<Stack row wrap gap={8}>
@@ -347,15 +362,27 @@ export const WebOnbWeakScreen: React.FC = () => {
 };
 
 export const WebOnbPlanScreen: React.FC = () => {
+	const lessonsInk = useModuleColors('lessons').ink;
 	const t = useT();
 	return (
-		<WebOnboarding step={5} over={t('Hazır', 'Ready')} title={t('YKS planın hazır', 'Your YKS plan is ready')} text={t('48 netten 78 nete, günde 3 saatlik dengeli tempoyla. Telefonda da aynı plan.', 'From 48 to 78 at a balanced 3 hours a day. Same plan on your phone.')} cta={t('Planımı kaydet', 'Save my plan')} preview={<PhonePreview label={t('Mobilde aynı plan', 'Same plan on mobile')}><PlanTodayScreen /></PhonePreview>}>
+		<WebOnboarding
+			step={5}
+			over={t('Hazır', 'Ready')}
+			title={t('YKS planın hazır', 'Your YKS plan is ready')}
+			text={t('48 netten 78 nete, günde 3 saatlik dengeli tempoyla. Telefonda da aynı plan.', 'From 48 to 78 at a balanced 3 hours a day. Same plan on your phone.')}
+			cta={t('Planımı kaydet', 'Save my plan')}
+			preview={
+				<PhonePreview label={t('Mobilde aynı plan', 'Same plan on mobile')}>
+					<PlanTodayScreen />
+				</PhonePreview>
+			}
+		>
 			<WeekPlan />
 			<Card tone="moduleLine" module="lessons" padding={16}>
 				<Stack row gap={12}>
 					<Tile module="lessons" size={44} />
 					<Stack grow gap={1}>
-						<Text role="over" color={MODULES.lessons.color.light}>
+						<Text role="over" color={lessonsInk}>
 							{t('Bugünkü ilk görevin', 'Your first task today')}
 						</Text>
 						<Text role="headline">{t('Paragraf · Ana fikir · 25 dk', 'Reading · Main idea · 25 min')}</Text>
@@ -370,9 +397,23 @@ export const WebOnbPlanChoiceScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<WebOnboarding step={6} over={t('Paket', 'Plan')} title={t('Paketini seç', 'Pick your plan')} text={t('Ödemeden sonra bütün modüller açılır. İstediğin an iptal edebilirsin; iptal, dönemin sonunda geçerli olur.', 'Every module opens after payment. Cancel any time; it takes effect at the end of the period.')} cta={t('Ödemeye geç', 'Go to payment')} preview={<PhonePreview label={t('Tüm modüller açık', 'Every module open')}><HubScreen /></PhonePreview>}>
+		<WebOnboarding
+			step={6}
+			over={t('Paket', 'Plan')}
+			title={t('Paketini seç', 'Pick your plan')}
+			text={t('Ödemeden sonra bütün modüller açılır. İstediğin an iptal edebilirsin; iptal, dönemin sonunda geçerli olur.', 'Every module opens after payment. Cancel any time; it takes effect at the end of the period.')}
+			cta={t('Ödemeye geç', 'Go to payment')}
+			preview={
+				<PhonePreview label={t('Tüm modüller açık', 'Every module open')}>
+					<HubScreen />
+				</PhonePreview>
+			}
+		>
 			<Stack gap={10}>
-				{[[t('YKS Yıllık', 'YKS Yearly'), t('₺249/ay · yıllık ₺2.990 · 2 ay hediye', '₺249/mo · ₺2,990 a year'), true], [t('YKS Aylık', 'YKS Monthly'), '₺299/ay', false]].map(([title, sub, on]) => (
+				{[
+					[t('YKS Yıllık', 'YKS Yearly'), t('₺249/ay · yıllık ₺2.990 · 2 ay hediye', '₺249/mo · ₺2,990 a year'), true],
+					[t('YKS Aylık', 'YKS Monthly'), t('₺299/ay', '₺299/mo'), false],
+				].map(([title, sub, on]) => (
 					<Stack key={title as string} row gap={14} style={{padding: 16, borderRadius: 18, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`, background: colors.card}}>
 						<div style={{width: 22, height: 22, borderRadius: 11, border: on ? `7px solid ${colors.ink}` : `2px solid ${colors.line}`, boxSizing: 'border-box'}} />
 						<Stack grow gap={1}>

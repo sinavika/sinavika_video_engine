@@ -3,7 +3,7 @@ import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, Levels, List, ListRow, OptionRow, Ring, Segmented, Stack, TEST_LEVELS, Text} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Levels, List, ListRow, OptionRow, Pct, Ring, Segmented, Stack, TEST_LEVELS, Text} from '../../Parts/Shared';
 
 /**
  * Testler (Quizzes). The promo templates (src/Templates/Advertisements/PromoKit)
@@ -24,6 +24,7 @@ export const LESSON_MAINS: [string, string, number, number][] = [
 
 export const TestsHomeScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	const mod = useModuleColors('tests');
 	return (
 		<ModuleScreen module="tests" tab={0}>
@@ -33,7 +34,21 @@ export const TestsHomeScreen: React.FC = () => {
 				<SectionTitle title={t('Dersler', 'Subjects')} sub={t('TYT · önce dersi seç', 'TYT · pick a subject first')} />
 				<List>
 					{LESSON_MAINS.map(([tr, en, done, total]) => (
-						<ListRow key={tr} module="tests" icon="book" title={t(tr, en)} subtitle={`${done} / ${total} ${t('test', 'quizzes')}`} trailing={<Stack row gap={10}><div style={{width: 70}}><Bar value={done / total} color={mod.color} track={mod.track} height={6} /></div><Icon name="right" size={18} color="#94A3B8" /></Stack>} />
+						<ListRow
+							key={tr}
+							module="tests"
+							icon="book"
+							title={t(tr, en)}
+							subtitle={`${done} / ${total} ${t('test', 'quizzes')}`}
+							trailing={
+								<Stack row gap={10}>
+									<div style={{width: 70}}>
+										<Bar value={done / total} color={mod.color} track={mod.track} height={6} />
+									</div>
+									<Icon name="right" size={18} color={colors.subtle} />
+								</Stack>
+							}
+						/>
 					))}
 				</List>
 			</Content>
@@ -54,7 +69,9 @@ export const TestsTopicsScreen: React.FC = () => {
 							<Text role="small">{t('25 konu · 9 tamamlandı', '25 topics · 9 complete')}</Text>
 						</Stack>
 						<Ring value={0.36} size={48} stroke={5} color={mod.color} track={mod.track}>
-							<Text role="meta" weight={800}>%36</Text>
+							<Text role="meta" weight={800}>
+								<Pct value={36} />
+							</Text>
 						</Ring>
 					</Stack>
 				</Card>
@@ -97,13 +114,13 @@ export const TestOverviewScreen: React.FC = () => {
 				<Stack gap={8}>
 					{/* The three levels the product really has, named as in the app (Kolay, Orta, Zor); 20 questions each. */}
 					{[
-						[1, t('Kolay', 'Easy'), '%90', 'done'],
+						[1, t('Kolay', 'Easy'), t('%90', '90%'), 'done'],
 						[2, t('Orta', 'Medium'), t('Sıradaki', 'Next'), 'now'],
 						[3, t('Zor', 'Hard'), '', 'lock'],
 					].map(([level, name, meta, state]) => (
 						<Card key={level as number} padding={12} tone={state === 'now' ? 'moduleLine' : 'card'} module="tests">
 							<Stack row gap={12}>
-								<Stack align="center" justify="center" style={{width: 40, height: 40, borderRadius: 12, background: state === 'done' ? mod.color : mod.soft}}>
+								<Stack align="center" justify="center" style={{width: 40, height: 40, borderRadius: 12, background: state === 'done' ? mod.action : mod.soft}}>
 									<Text role="headline" color={state === 'done' ? '#FFFFFF' : mod.color}>
 										{level}
 									</Text>
@@ -112,7 +129,17 @@ export const TestOverviewScreen: React.FC = () => {
 									<Text role="headline">{name}</Text>
 									<Text role="small">{t('20 soru · ~25 dk', '20 questions · ~25 min')}</Text>
 								</Stack>
-								{state === 'done' ? <Chip tone="success" size="sm">{meta}</Chip> : state === 'now' ? <Chip tone="module" module="tests" size="sm">{meta}</Chip> : <Icon name="lock" size={18} color={colors.subtle} />}
+								{state === 'done' ? (
+									<Chip tone="success" size="sm">
+										{meta}
+									</Chip>
+								) : state === 'now' ? (
+									<Chip tone="module" module="tests" size="sm">
+										{meta}
+									</Chip>
+								) : (
+									<Icon name="lock" size={18} color={colors.subtle} />
+								)}
 							</Stack>
 						</Card>
 					))}
@@ -240,7 +267,11 @@ export const TestDoneScreen: React.FC = () => {
 					{t('Problemlerde ilerledin. Zor seviye açıldı.', 'You moved up in Problems. Hard is unlocked.')}
 				</Text>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, width: '100%'}}>
-					{[['24 dk', t('süre', 'time')], ['4', t('yanlış', 'wrong')], ['+1', t('seviye', 'level')]].map(([value, label]) => (
+					{[
+						[t('24 dk', '24 min'), t('süre', 'time')],
+						['4', t('yanlış', 'wrong')],
+						['+1', t('seviye', 'level')],
+					].map(([value, label]) => (
 						<Card key={label} padding={12}>
 							<Text role="section" align="center">
 								{value}

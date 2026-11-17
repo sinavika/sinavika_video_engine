@@ -48,7 +48,7 @@ const Composer: React.FC<{placeholder?: string}> = ({placeholder}) => {
 	return (
 		<div style={{padding: '8px 14px 18px'}}>
 			<div style={{borderRadius: 26, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.card, padding: '12px 10px 10px 16px'}}>
-				<Text role="body" color={colors.subtle}>
+				<Text role="body" color={colors.subtle} ui="placeholder">
 					{placeholder ?? t('SinoAI’ye sor', 'Ask SinoAI')}
 				</Text>
 				<Stack row gap={8} style={{marginTop: 10}}>
@@ -135,18 +135,18 @@ export const SinoChatScreen: React.FC = () => {
 				<Stack align="flex-end" gap={8}>
 					{/* The photographed question: a slightly tilted piece of paper with the printed problem. */}
 					<div style={{width: 176, padding: '10px 12px', borderRadius: 12, background: '#FBF8F1', border: `1px solid ${colors.line}`, boxShadow: '0 6px 14px -8px rgba(15,23,42,0.35)', transform: 'rotate(-2deg)', boxSizing: 'border-box'}}>
-						<Text role="meta" size={10} color={colors.muted}>
+						<Text role="meta" size={10} color="#5F6B7D">
 							{t('12. soru', 'Question 12')}
 						</Text>
-						<Text role="body" size={13} color={colors.ink} style={{lineHeight: '18px', marginTop: 3}}>
+						<Text role="body" size={13} color="#0B1C30" style={{lineHeight: '18px', marginTop: 3}}>
 							f(x) = (3x² − 2)⁴
 						</Text>
-						<Text role="body" size={13} color={colors.ink} style={{lineHeight: '18px'}}>
+						<Text role="body" size={13} color="#0B1C30" style={{lineHeight: '18px'}}>
 							{t("ise f'(1) kaçtır?", "find f'(1).")}
 						</Text>
 						<div style={{display: 'flex', gap: 6, marginTop: 6}}>
 							{['A) 12', 'B) 24', 'C) 48'].map((choice) => (
-								<Text key={choice} role="meta" size={10} color={colors.muted}>
+								<Text key={choice} role="meta" size={10} color="#5F6B7D">
 									{choice}
 								</Text>
 							))}
@@ -317,7 +317,7 @@ export const SinoMenuScreen: React.FC = () => {
 	return (
 		<SinoPhone
 			overlay={
-				<div style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.28)', zIndex: 20}}>
+				<div data-ui="scrim" style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.28)', zIndex: 20}}>
 					<div style={{position: 'absolute', left: 0, top: 0, bottom: 0, width: 300, background: colors.bg, padding: '64px 14px 30px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 4}}>
 						<Stack row gap={10} style={{height: 44, padding: '0 12px', borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`, marginBottom: 10}}>
 							<Icon name="search" size={17} color={colors.muted} />

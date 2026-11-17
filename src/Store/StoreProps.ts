@@ -4,8 +4,14 @@ import {STORE_LANGUAGES, STORE_SLIDES} from './StoreListing';
 /** Props of the store picture composition (Store/StoreSet.tsx), shared by the composition and the render script (which must not load browser code). */
 export const STORE_SET_ID = 'StoreSet';
 
+/** Looks: Turuncu is the main set (owner, 14 Nov 2026); krem, lacivert and seritli (Turuncu with one ribbon running through all eight shots) are alternatives. */
+export const STORE_LOOKS = ['turuncu', 'krem', 'lacivert', 'seritli'] as const;
+
 export const StoreSetPropsSchema = z.object({
-	kind: z.enum(['shot', 'search', 'header', 'feature']).default('shot'),
+	look: z.enum(STORE_LOOKS).default('turuncu'),
+	kind: z.enum(['shot', 'search', 'header', 'feature', 'watch']).default('shot'),
+	/** Watch screenshots: the UI/UX drawing id (k-…). */
+	screen: z.string().optional(),
 	/** Shots only: the device drawn (iPad shows the tablet drawing, desktop the web page). */
 	device: z.enum(['iphone', 'android', 'ipad', 'desktop']).default('iphone'),
 	/** Index in STORE_SLIDES. */

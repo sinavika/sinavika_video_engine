@@ -8,6 +8,8 @@ import {promisify} from 'node:util';
 import {renderStill, selectComposition, type HeadlessBrowser} from '@remotion/renderer';
 import {WORK_FIGURE_ROOM, WORK_FIGURE_STILL_WIDTH, collectWorkFigures, isRasterFigure, workFigureBox, type WorkFigureEntry, type WorkFigureMode} from '../Works/WorkFigure';
 import {WORK_FIGURE_COMPOSITION_ID, WORK_FIGURE_FPS, WORK_FIGURE_MARGIN, workFigurePage, workFigureSeconds, type WorkFigureProps} from '../Compositions/WorkFigureProps';
+import {geoLayerNames} from '../Courses/GeoName';
+import {mapVisualNameIssues} from '../Courses/LessonScript';
 import {bundleProject, isFrameWarning} from './VideoRenderer';
 
 const run = promisify(execFile);
@@ -332,6 +334,9 @@ export const raisedCount = (text: string): number | undefined => {
  * solids and pictures) into `directory`. Both have the same size: the crop is the union of what each draws.
  */
 export const renderWorkFigure = async (entry: WorkFigureEntry, directory: string, browser: HeadlessBrowser): Promise<WorkFigureStill> => {
+	// A map area named in English or misspelt passes the schema and is silently left blank: refuse it instead (Quiz, 14 Nov 2026).
+	const unknownAreas = mapVisualNameIssues(entry.visual, geoLayerNames);
+	if (unknownAreas.length > 0) throw new Error(unknownAreas.join(' '));
 	const serveUrl = await bundleProject();
 	const raster = isRasterFigure(entry.visual);
 	const work = await mkdtemp(path.join(os.tmpdir(), 'work-figure-'));

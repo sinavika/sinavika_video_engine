@@ -3,7 +3,7 @@
 Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.
 Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.
 
-Toplam 280 çizim: mobil uygulama 139, web paneli ve web giriş/onboarding 90, tablet (ipad ve android tablet, kalem) 37, web sitesi (giriş öncesi) 14.
+Toplam 313 çizim: mobil uygulama 150, web paneli ve web giriş/onboarding 90, tablet (ipad ve android tablet, kalem) 37, web sitesi (giriş öncesi) 14, akıllı saat (apple watch ve wear os) 12, paylaşım kartları (hikâye ve gönderi) 10.
 
 ## Mobil uygulama
 
@@ -23,7 +23,7 @@ Toplam 280 çizim: mobil uygulama 139, web paneli ve web giriş/onboarding 90, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `m-giris-karsilama` | Karşılama | `—` | İlk açılış: modül slaytlarıyla ürün bir bakışta; Başlayalım ve Zaten hesabım var. |
+| `m-giris-karsilama` | Karşılama | `—` | Oturumu kapatmış öğrencinin karşılaması: modül slaytlarıyla ürün bir bakışta; Başlayalım ve Zaten hesabım var. Uygulamanın ilk açılışı m-onb-0-karsilama’dır. |
 | `m-giris-oturum-ac` | Oturum aç veya kaydol | `AuthLogin` | Apple ve Google üstte, e-posta altta; hesap varsa kod gider, yoksa kayıt açılır. |
 | `m-giris-kod` | Doğrulama kodu | `AuthLogin` | 6 kutulu kod, yeniden gönderme süresi, şifreyle giriş seçeneği. |
 | `m-kayit-eposta` | Hesap oluştur | `AuthRegister` | Apple ve Google önde; e-postayla devam edene kod gider. |
@@ -138,7 +138,7 @@ Toplam 280 çizim: mobil uygulama 139, web paneli ve web giriş/onboarding 90, t
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `m-ozet-vitrin` | Akıllı Özet | `LensHome · LensAnalyses` | Geçmişte konu başlığı; kalan kota yazılı. |
-| `m-ozet-yukle` | Soru yükle | `LensNew · LensSessionCreate` | — |
+| `m-ozet-yukle` | Soru yükle | `LensNew · LensUpload` | — |
 | `m-ozet-kamera` | Kamera | `LensCamera` | — |
 | `m-ozet-isleniyor` | Analiz ediliyor | `LensSessionProgress` | — |
 | `m-ozet-sonuc` | Çözüm | `LensSessionDetail` | — |
@@ -209,6 +209,22 @@ Toplam 280 çizim: mobil uygulama 139, web paneli ve web giriş/onboarding 90, t
 |---|---|---|---|
 | `m-bildirimler` | Bildirimler | `NotificationInbox` | — |
 | `m-bildirimler-bos` | Bildirim yok | `NotificationInbox` | Neyin burada görüneceği ve bildirim ayarları. |
+| `m-bildirim-ayarlar` | Bildirim ayarları | `ProfileNotificationSettings` | Yeni: türlere göre aç/kapa. Günde en çok 2 hatırlatma, 22:00–08:00 sessiz; canlı etkinlikler ayrı; bağlı saat. |
+
+### Bildirimler · kilit ekranı ve canlı etkinlik
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `m-bildirim-canli-deneme` | Canlı etkinlik · deneme başlıyor | `iOS Live Activity (ActivityKit)` | Yeni: canlı denemeye 15 dk kala kilit ekranında geri sayım, katılan sayısı ve Hazırım. Uygulama simgesi yok (Apple), modül simgesi var. Sunucu push-to-start ile başlatır, deneme başlayınca biter. |
+| `m-bildirim-canli-odak` | Canlı etkinlik · odak oturumu | `iOS Live Activity (ActivityKit)` | Yeni: odak sayacı kilit ekranında; tek düğme (Duraklat) uygulamayı açmadan çalışır (App Intents, Apple: tek etkileşimli öğe). Öğrenci başlatır, süre bitince hemen kapanır. |
+| `m-bildirim-ada` | Dynamic Island hâlleri | `iOS Live Activity (ActivityKit)` | Kompakt, minimal (iki etkinlik), genişletilmiş deneme ve mikro ders. Deneme sürerken soru, kalan süre ve boşlar. |
+| `m-bildirim-seri` | Canlı etkinlik · akşam serisi | `iOS Live Activity (ActivityKit)` | Yeni: yalnız o gün çalışılmadıysa 20:00’de; gerçek son (23:59) ve tek kısa yol (12 kart · 5 dk). Sahte aciliyet yok. |
+| `m-bildirim-zengin` | Zengin bildirimler | `UNNotificationContent + attachment` | Yeni: her bildirim tek bilgi ve modül renginde küçük görsel (net sütunları, modül simgesi). Metinler sen dilinde, sayı somut. |
+| `m-bildirim-genis` | Bildirim · uzun basınca | `Notification Content Extension` | Yeni: deneme sonucu bildirimi açılınca ders ders net ve iki eylem (Yanlışlarımı çalış, Planıma ekle). Yalnız uygulamayı açan eylem yok: bildirime dokunmak açar. |
+| `m-bildirim-android` | Android 16 · canlı güncelleme | `Notification.ProgressStyle (Live Update)` | Yeni: odak oturumu durum çubuğunda süre çipi ve bildirimde görev dilimleri; deneme sonucu büyük görselle, kart hatırlatması eylemli. |
+| `m-bildirim-widget-kilit` | Kilit ekranı widget’ları | `WidgetKit (accessory)` | Yeni: dakika halkası, sıradaki görev, seri. Sabah plan bildirimi. |
+| `m-bildirim-widget-ana` | Ana ekran widget’ları | `WidgetKit (iOS)` | Yeni: iOS ana ekranı. Bugün halkası, sıradaki deneme, etkileşimli plan listesi (görev uygulama açılmadan tamamlanır). |
+| `m-bildirim-widget-android` | Android ana ekran widget’ları | `Jetpack Glance (Android)` | Yeni: Material You, renkler duvar kâğıdından. 2×2 bugün halkası, 2×1 sıradaki deneme ve odak başlat, 4×2 etkileşimli plan listesi; boyutlandırılabilir. Dokunma hedefi 48 dp, köşe sistemin (Google, Tier 1). |
 
 ### Destek
 
@@ -536,4 +552,47 @@ Toplam 280 çizim: mobil uygulama 139, web paneli ve web giriş/onboarding 90, t
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
 | `s-sinoai-misafir` | SinoAI · misafir | `/sinoai` | — |
+
+## Akıllı saat (Apple Watch ve Wear OS)
+
+
+### Saat · Apple Watch
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `k-apple-bugun` | Bugün | `watchOS app` | Dakika halkası, görev sayısı, seri ve sıradaki görev; Başla odak sayacını saatte açar. |
+| `k-apple-plan` | Günün planı | `watchOS app` | Görevler modül renginde; yuvarlağa dokununca görev tamamlanır. |
+| `k-apple-odak` | Odak sayacı | `watchOS app` | Sayaç saatte çalışır, telefondaki canlı etkinlikle eşit; Duraklat ve Bitir. |
+| `k-apple-kart` | Hızlı kart tekrarı | `watchOS app` | Saatte yapılabilen tek çalışma: Bilgi Kartları. Soru yüzü ve Cevabı göster. |
+| `k-apple-kart-cevap` | Kart · cevap | `watchOS app` | Cevap ve iki düğme: bilmedim / bildim. Tekrar günü telefonla aynı. |
+| `k-apple-deneme` | Deneme geri sayımı | `watchOS app` | Canlı denemeye kalan süre ve hatırlatma; deneme telefonda çözülür. |
+| `k-apple-kadran` | Kadran komplikasyonları | `WidgetKit (watchOS)` | Seri, sıradaki görev (dikdörtgen), dakika, kart ve deneme halkaları. |
+| `k-apple-yigin` | Akıllı Yığın | `WidgetKit (watchOS)` | Sabah ve canlı deneme öncesi Sınavika widget’ı yığının üstüne çıkar. |
+| `k-apple-bildirim` | Bildirim · eylemli | `watchOS notification (long look)` | Odak bitince sonuç ve iki eylem: sıradaki görev ya da 5 dk mola. |
+
+### Saat · Wear OS
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `k-wear-kutucuk` | Kutucuk (Tile) | `Wear OS Tile (ProtoLayout)` | Kenarda dakika yayı (altta kenar düğmesi için boşluk), ortada 45/90 ve seri; sıradaki görev Material 3 kenar düğmesinde. Tek görev, fazla işlev yok (Google). |
+| `k-wear-odak` | Odak sayacı | `Wear OS app (Compose for Wear OS)` | Kenarda kalan süre yayı, ortada sayaç, yuvarlak Duraklat ve Bitir; ongoing activity. |
+| `k-wear-kadran` | Kadran komplikasyonları | `Wear OS complications` | Aralıklı değer (dakika), kısa metin (seri) ve uzun metin (sıradaki görev). |
+
+## Paylaşım kartları (hikâye ve gönderi)
+
+
+### Paylaşım kartları
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `p-deneme-hikaye` | Deneme sonucu · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Net, geçen denemeye göre fark, D/Y/B (simge + sözcük), en iyi ders. “ÖSYM puanı değildir” notu; puan tahmini yok. |
+| `p-deneme-gonderi` | Deneme sonucu · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080; istatistikten ilk üçü. |
+| `p-seri-hikaye` | Seri rozeti · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | 3 · 7 · 14 · 30 gün basamakları: ulaşılan beyaz ve tikli, sıradaki kesikli. Marka yüzeyi (turuncu). |
+| `p-seri-gonderi` | Seri rozeti · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
+| `p-konu-hikaye` | Konu bitirme · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Dersler: konu adı, mikro ders ve adım sayısı, ilk denemede doğru oranı. |
+| `p-konu-gonderi` | Konu bitirme · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
+| `p-hafta-hikaye` | Haftalık özet · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Ders Planı: haftalık süre, günlük sütunlar (en çok çalışılan gün beyaz), soru, deneme, seri. |
+| `p-hafta-gonderi` | Haftalık özet · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
+| `p-soru-hikaye` | Bu soruyu çözdüm · hikâye | `ShareCard (mobil: görünümden PNG · web: next/og)` | Testler: soru metni ya da görseli ve şıklar; cevap ve çözüm yok. Ders · konu etiketi, süre ve seviye. |
+| `p-soru-gonderi` | Bu soruyu çözdüm · gönderi | `ShareCard (mobil: görünümden PNG · web: next/og)` | Aynı içerik 1080 × 1080. |
 

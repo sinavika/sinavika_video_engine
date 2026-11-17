@@ -107,7 +107,7 @@ Motor, API'deki (`Services/Exams`, `Quizzes`, `Works`, `SocialHubs`) ve mobildek
 | Works | `Curriculum/Works`, `Curriculum/WorksWritten` | `src/Works`, `npm run figures`, `WorksWritten/Tools/works_batch.py` | `Outputs/Works/Figures` (manifest), `Outputs/Works/Written` | `docs/Courses/Works-*.md`, README'ler | Works iyileştirilmesi |
 | Sosyal medya | `Posts/<tarih>_<Ad>/` (medya `Media/` içinde) | `src/Social` (kampanyalar `src/Social/Campaigns`), `npm run social` | gönderinin `Media/` klasörü; kamp reels'i `Outputs/Camps` | `docs/Social/`, `docs/Campaigns/`, `docs/Analiz/` | Sosyal Medya Yönetimi |
 | UI/UX | — | `src/UIUX`, `npm run uiux` | `Desktop\Sinavika-UIUX3` | `docs/UIUX/` | UI/UX |
-| Reklam ve mağaza | — | `src/Ads`, `src/Store`, `npm run google-ads`, `apple-ads`, `store` | `Desktop\Sinavika-GoogleAds`, `Sinavika-AppleAds`, `MobileHeader` | `docs/Ads/` | — |
+| Reklam ve mağaza | — | `src/Ads`, `src/Store`, `npm run google-ads`, `apple-ads`, `store` | `Desktop\Sinavika-GoogleAds`, `Sinavika-AppleAds`, `sinavika-mobileheader\magaza-gorselleri` | `docs/Ads/` | — |
 | VC | `Desktop\Sinavika-Yatirim` (motorda kod yok) | — | `Desktop\Sinavika-Yatirim\Sunum` | — | VC |
 
 Ortak (merkezî) olanlar, modüller kendi kopyasını yazmaz:

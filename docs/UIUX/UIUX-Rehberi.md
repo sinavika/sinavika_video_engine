@@ -3,8 +3,9 @@
 Web (Next.js + Tailwind), mobil ve tablet (React Native) ve içerik motoru için ortak arayüz kuralları.
 
 **Güncelleme:** 14 Kasım 2026
-**Çizimler:** `Desktop\Sinavika-UIUX3` · `acik/` ve `koyu/` ayrı klasörler (her biri mobil, web-panel, web-site, tablet, panolar) · kaynak: `sinavika_video_engine/src/UIUX`
-**Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası, üretilir), `Adlandirma-Kurallari.md`, `Tablet-Kalem.md` (tablet ve kalem), `UX-Kurallari.md` (119 UX kuralı), `Hareket-Standardi.md`, `AppScreens.md` (videolardaki uygulama ekranları), `UIUX-Gecmis.md` (denetimler, kararlar, açık işler), `BrandIdentity.md`
+**Çizimler:** `Desktop\Sinavika-UIUX3` · `acik/` ve `koyu/` ayrı klasörler (her biri mobil, web-panel, web-site, tablet, saat, paylasim, panolar) · kaynak: `sinavika_video_engine/src/UIUX`
+**Kodlama belgeleri:** [`Kodlama/`](Kodlama/README.md): her ekranın yazıyla tanımı (yerleşim, metin, veri, geçiş, hâller, kabul testleri), modül modül mobil ve web; gezinme ve kilitlenmeme kuralları [`Kodlama/Navigasyon.md`](Kodlama/Navigasyon.md).
+**Belgeler:** `Modul-Kimligi.md` (renk ve merkezi kod), `Ekran-Envanteri.md` (her çizim ve gerçek rotası, üretilir), `Adlandirma-Kurallari.md`, `Tablet-Kalem.md` (tablet ve kalem), `Saat-Bildirim.md` (saat, bildirim, canlı etkinlik, widget), `Paylasim-Kartlari.md` (paylaşım kartları), `UX-Kurallari.md` (119 UX kuralı), `Hareket-Standardi.md`, `AppScreens.md` (videolardaki uygulama ekranları), `UIUX-Gecmis.md` (denetimler, kararlar, açık işler), `BrandIdentity.md`
 
 ## 0. Temel kurallar
 
@@ -125,7 +126,7 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır. 
 
 ### 5.4 Analizden eyleme
 
-Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "10 soru" (Testler renginde); altında "Bu hafta planıma ekle". Testte yanlış cevaptan sonra da aynı yol vardır: doğru şık ve nedeni, konunun mikro dersi, SinoAI'ye sor.
+Her sonuç ve analiz bir eylemle biter: konu satırında "Mikro ders" (Dersler renginde) ve "20 soru" (Testler renginde; bir seviye testi); altında "Bu hafta planıma ekle". Testte yanlış cevaptan sonra da aynı yol vardır: doğru şık ve nedeni, konunun mikro dersi, SinoAI'ye sor.
 
 ### 5.4.1 Deneme ve test geri bildirimi
 
@@ -183,7 +184,8 @@ Mobil, web ve tablet aynı özelliği aynı parçalarla çizer (sahip, 8 ve 12 K
 | `Tokens.ts`, `Icons.tsx`, `Context.tsx` | Jetonlar, ikon seti, tema/dil/modül bağlamı |
 | `Parts/Shared.tsx`, `Parts/Mobile.tsx`, `Parts/Web.tsx`, `Parts/Tablet.tsx`, `Parts/Ink.tsx` | Bileşen kitaplığı |
 | `Parts/Study.tsx` | Üç platformun ortak çalışma parçaları (§5.7) |
-| `Screens/Mobile/*`, `Screens/Web/*`, `Screens/Site/*`, `Screens/Tablet/*` | Ekranlar (`m-`, `w-`, `s-`, `t-`) |
+| `Parts/System.tsx`, `Parts/Watch.tsx` | Kilit ekranı, canlı etkinlik, Dynamic Island, bildirim, widget; saat yüzeyleri |
+| `Screens/Mobile/*`, `Screens/Web/*`, `Screens/Site/*`, `Screens/Tablet/*`, `Screens/Watch/*`, `Screens/Share/*` | Ekranlar (`m-`, `w-`, `s-`, `t-`, `k-`, `p-`) |
 | `Registry.ts` | Her çizimin kimliği, grubu, gerçek rotası ve notu |
 | `UIUXComposition.tsx`, `UIUXProps.ts` | Remotion kompozisyonları (tek ekran ve pano) |
 | `scripts/RenderUIUX.ts` | Dışa aktarım |
@@ -212,6 +214,37 @@ Testler (`tests/UIUX/UIUX.test.ts`) şunları denetler:
 - Her ekranın TR ve EN olarak hatasız çizilmesi.
 - Her mobil modülün dolu hâlinin yanında en az bir durum ekranı olması (§5.5).
 - Mobil, web ve tablet eşliği (§5.7).
+
+**Düzen denetimi (16 Kasım 2026):** her çizim Chrome'da iki dilde, açık ve koyu temada çizilir ve sayfa ölçülür.
+
+```bash
+npm run uiux-audit
+```
+
+Rapor `Outputs/Checks/UIUX-Denetim.md` dosyasına yazılır; hata varsa komut 1 ile çıkar. Denetlenenler (`src/UIUX/LayoutAudit.ts`):
+- **Kesik metin:** bir kutunun ya da ekranın kenarında kesilen yazı.
+- **Çubuğun altında:** durum çubuğu, sekme çubuğu ya da alt düğme alanının altına giren yazı; yüzen sekme çubuğunun altında görünen sayfa içeriği.
+- **Üst üste:** başka bir parçanın örttüğü yazı (uyarı, gözle okunur).
+- **Kontrast:** düz zeminde WCAG 4,5:1 (büyük yazı 3:1).
+- **Yüzde biçimi:** Türkçede `%45`, İngilizcede `45%`. Ayrıca her ekranı iki dilde çizen birim testi de bunu denetler.
+- **Boş başlık:** bölüm başlığı altında öğe olmadan kalmış.
+- **Boş alan (uyarı):** sığmayan öğe gizlenmiş ve alanın dörtte birinden fazlası boş kalmış. Liste büyük ihtimalle tek blok olarak kurulmuştur.
+
+Kurallar:
+- Liste ekranın sonunda kesilmez (`src/UIUX/Fit.ts`). `Content`, sığmayanı sondan başlayarak tek tek gizler: `List` ve `FitList` satır satır, diğer bloklar bütün olarak. Altında öğe kalmayan bölüm başlığı da gizlenir. Kartlardan oluşan liste `Stack` ile değil `FitList` ile kurulur; yoksa bütün liste tek blok olarak kaybolur.
+- Yüzde `Pct` parçasıyla ya da `t('%45', '45%')` ile yazılır.
+- Başlık ilk satırıyla aynı bloktadır; tek başına alta düşmez.
+- Beyaz yazı ya da ikon taşıyan dolgu `mod.action` kullanır, açık `mod.color` kullanmaz.
+- Doğru ve yanlış kutuları her iki temada `#047857` ve `#DC2626` renklerindedir; bildirim rozeti `#DC2626`.
+- Durum renkli yazı `successInk`, `warningInk`, `errorInk` tonlarındadır.
+
+Parçalar kendini `data-ui` ile işaretler:
+- `statusbar`, `tabbar`, `bottombar`: çubuklar.
+- `screen`: telefon ya da tablet tuvali. Sayfa içindeki küçük önizlemede kırpma uyarı sayılır.
+- `scrim`: sayfayı bilerek örten karartma.
+- `scroll-x`, `scroll`: kaydırılmış gösterilen satır ya da sayfa.
+- `decor`: süs.
+- `disabled`, `placeholder`: bilerek soluk yazı; kontrastı uyarı sayılır.
 
 ## 7. Uygulama sırası
 

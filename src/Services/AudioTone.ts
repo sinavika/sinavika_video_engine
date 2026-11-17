@@ -88,11 +88,14 @@ export const limitPeaks = (samples: Float64Array, channels: number, sampleRate: 
 	}
 	const release = 1 - Math.exp(-1 / (releaseSeconds * sampleRate));
 	for (let frame = 1; frame < frames; frame++) held[frame] = Math.min(held[frame], held[frame - 1] + (1 - held[frame - 1]) * release);
-	// A moving average over the look-ahead turns each step into a ramp.
-	let sum = 0;
+	// A moving average over the look-ahead turns each step into a ramp. Before the first frame the gain is the first
+	// frame's: counted as 1 there, a sound that opens on a full-scale hit (a reel's event at 0 s) passed its first
+	// milliseconds almost untouched, 1.54 against a 0.78 ceiling (15 Nov 2026).
+	const before = frames > 0 ? held[0] : 1;
+	let sum = before * ahead;
 	for (let frame = 0; frame < frames; frame++) {
-		sum += held[frame] - (frame >= ahead ? held[frame - ahead] : 1);
-		const gain = Math.min(1, (sum + ahead) / ahead);
+		sum += held[frame] - (frame >= ahead ? held[frame - ahead] : before);
+		const gain = Math.min(1, sum / ahead);
 		for (let channel = 0; channel < channels; channel++) samples[frame * channels + channel] *= gain;
 	}
 };

@@ -3,7 +3,7 @@ import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, Phone, SectionTitle} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, List, Logo, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, List, Logo, Pct, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {KpiCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
 import {Kind, Screen, StepBar, TrueFalseContent} from './Lessons';
@@ -64,7 +64,7 @@ export const OnbRegionScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const Option: React.FC<{flag: string; title: string; sub: string; on?: boolean}> = ({flag, title, sub, on}) => (
-		<Stack row gap={14} style={{padding: 16, borderRadius: 20, background: on ? colors.brandWash : colors.card, border: `1.5px solid ${on ? colors.brand : colors.line}`}}>
+		<Stack row gap={14} style={{padding: 16, borderRadius: 20, background: colors.card, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
 			<div style={{width: 44, height: 44, borderRadius: 22, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 				<Text role="headline" size={15}>
 					{flag}
@@ -76,14 +76,12 @@ export const OnbRegionScreen: React.FC = () => {
 				</Text>
 				<Text role="small">{sub}</Text>
 			</Stack>
-			<div style={{width: 24, height: 24, borderRadius: 12, border: `2px solid ${on ? colors.brand : colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-				{on ? <div style={{width: 12, height: 12, borderRadius: 6, background: colors.brand}} /> : null}
-			</div>
+			<div style={{width: 24, height: 24, borderRadius: 12, border: on ? undefined : `2px solid ${colors.line}`, background: on ? colors.ink : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{on ? <Icon name="check" size={14} color={colors.bg} stroke={3} /> : null}</div>
 		</Stack>
 	);
 	return (
 		<Phone>
-			<FocusHeader left="left" title="" steps={[1, 6]} />
+			<FocusHeader left="left" title="" />
 			<Content tabBar={false} gap={14} padding="10px 22px 20px">
 				<Text role="title" size={26}>
 					{t('Bölgeni seç', 'Choose your region')}
@@ -274,9 +272,9 @@ export const StatisticsLessonScreen: React.FC = () => {
 			<Content tabBar={false} gap={12}>
 				<Segmented items={[t('Bu hafta', 'This week'), t('Son 30 gün', 'Last 30 days'), t('Tümü', 'All')]} active={1} />
 				<Stack row gap={8}>
-					<KpiCard compact icon="clock" label={t('Çalışma', 'Study')} value={t('2 sa 50', '2 h 50')} delta="%14" />
+					<KpiCard compact icon="clock" label={t('Çalışma', 'Study')} value={t('2 sa 50', '2 h 50')} delta={t('%14', '14%')} />
 					<KpiCard compact icon="quiz" label={t('Soru', 'Questions')} value="164" />
-					<KpiCard compact icon="target" label={t('Başarı', 'Success')} value="%60" delta="%5" />
+					<KpiCard compact icon="target" label={t('Başarı', 'Success')} value={t('%60', '60%')} delta={t('%5', '5%')} />
 				</Stack>
 				<SectionTitle title={t('Konular', 'Topics')} />
 				<Card padding={14}>
@@ -286,7 +284,7 @@ export const StatisticsLessonScreen: React.FC = () => {
 								<Stack row justify="space-between">
 									<Text role="headline">{name}</Text>
 									<Text role="small" weight={700}>
-										%{Math.round(value * 100)}
+										<Pct value={Math.round(value * 100)} />
 									</Text>
 								</Stack>
 								<Bar value={value} color={value < 0.5 ? colors.warning : colors.success} height={6} />
@@ -439,7 +437,10 @@ export const SinoStudyNoteScreen: React.FC = () => {
 					<Card padding={14}>
 						<Stack gap={6}>
 							<Text role="over">{t('Terimler', 'Terms')}</Text>
-							{[['Eylemsizlik', 'Inertia', t('cismin hâlini koruma eğilimi', 'tendency to keep its state')], ['İvme', 'Acceleration', t('hızın birim zamandaki değişimi', 'change of velocity per time')]].map(([tr, en, def]) => (
+							{[
+								['Eylemsizlik', 'Inertia', t('cismin hâlini koruma eğilimi', 'tendency to keep its state')],
+								['İvme', 'Acceleration', t('hızın birim zamandaki değişimi', 'change of velocity per time')],
+							].map(([tr, en, def]) => (
 								<Text key={tr} role="small" color={colors.ink2}>
 									<b style={{color: colors.ink}}>{t(tr, en)}</b> · {def}
 								</Text>

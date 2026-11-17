@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
 import {UI_SCREENS} from '../../src/UIUX/Registry';
-import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_FORMATS, STORE_LANGUAGES, STORE_SLIDES} from '../../src/Store/StoreListing';
+import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_FORMATS, STORE_LANGUAGES, STORE_SLIDES, WATCH_SHOTS} from '../../src/Store/StoreListing';
 import {StoreSetPropsSchema} from '../../src/Store/StoreProps';
 
 const ids = new Set(UI_SCREENS.map((screen) => screen.id));
@@ -25,6 +25,9 @@ describe('store listing', () => {
 			expect(ids.has(slide.screens.web) && slide.screens.web.startsWith('w-'), slide.screens.web).toBe(true);
 			if (slide.screens.tablet) expect(ids.has(slide.screens.tablet) && slide.screens.tablet.startsWith('t-'), slide.screens.tablet).toBe(true);
 		}
+		for (const [device, shots] of Object.entries(WATCH_SHOTS)) {
+			for (const [, id] of shots) expect(ids.has(id) && id.startsWith(device === 'applewatch' ? 'k-apple-' : 'k-wear-'), id).toBe(true);
+		}
 	});
 
 	it('opens with studying, not the assistant (owner, 14 Nov 2026)', () => {
@@ -36,7 +39,14 @@ describe('store listing', () => {
 	it('asks only for sizes the stores accept', () => {
 		for (const format of STORE_FORMATS) {
 			for (const [width, height] of format.sizes) {
-				if (format.platform === 'android' && format.device !== 'feature') {
+				if (format.device === 'wearos') {
+					// Google Play, Wear OS: 1:1, at least 384 px.
+					expect(width, format.folder).toBe(height);
+					expect(width, format.folder).toBeGreaterThanOrEqual(384);
+				} else if (format.device === 'applewatch') {
+					// One of Apple's Apple Watch screenshot sizes.
+					expect([[422, 514], [410, 502], [416, 496], [396, 484], [368, 448], [312, 390]], format.folder).toContainEqual([width, height]);
+				} else if (format.platform === 'android' && format.device !== 'feature') {
 					// Google Play: 16:9 or 9:16, sides within its limits.
 					expect(Math.max(width, height) / Math.min(width, height), format.folder).toBeCloseTo(16 / 9, 2);
 					expect(Math.max(width, height), format.folder).toBeLessThanOrEqual(3840);

@@ -34,16 +34,39 @@ const paces = (clips: VoiceClips) =>
 	Object.entries(clips).flatMap(([id, clip]) => {
 		if (!clip.words || clip.words.length < MIN_WORDS || clip.durationSeconds <= 0) return [];
 		const spoken = clip.words.reduce((sum, word) => sum + letters(word.text), 0);
-		return spoken > 0 ? [{id, clip, pace: spoken / clip.durationSeconds}] : [];
+		return spoken > 0 ? [{id, clip, pace: spoken / clip.durationSeconds, kind: lineKind(clip.words)}] : [];
 	});
+
+/** Spoken math: the operations and single letters a formula is read as ("a çarpı x artı b x"). */
+const MATH_WORDS = new Set(['artı', 'eksi', 'çarpı', 'bölü', 'kare', 'küp', 'eşittir', 'parantez', 'kök', 'karekök', 'üssü', 'üzeri']);
+/** A line at least this much spoken math is a formula line. */
+const MATH_SHARE = 0.25;
+
+/**
+ * Formula lines and prose run at different letter rates: short words and the voice's pauses between terms make a
+ * formula slower per letter. In a maths lesson the formulas set the median, and a plain sentence read at the usual pace
+ * came out "1.5 times fast" (8.7 against 11.8 letters a second, TYT Matematik 10, 14 Nov 2026). Each line is measured
+ * against lines of its own kind.
+ */
+const lineKind = (words: readonly {text: string}[]): 'math' | 'prose' => {
+	const tokens = words.map((word) => word.text.replace(/[^\p{L}\p{N}]/gu, '').toLocaleLowerCase('tr')).filter(Boolean);
+	const math = tokens.filter((token) => MATH_WORDS.has(token) || /^\p{L}$/u.test(token)).length;
+	return tokens.length > 0 && math / tokens.length >= MATH_SHARE ? 'math' : 'prose';
+};
 
 export const narrationPacingWarnings = (clips: VoiceClips): string[] => {
 	const measured = paces(clips);
 	if (measured.length < 3) return [];
-	const usual = median(measured.map((line) => line.pace));
+	const overall = median(measured.map((line) => line.pace));
+	// A kind's own median once it has enough lines to have one; otherwise the narration's.
+	const usualFor = (kind: 'math' | 'prose') => {
+		const own = measured.filter((line) => line.kind === kind).map((line) => line.pace);
+		return own.length >= 3 ? median(own) : overall;
+	};
+	const usual = {math: usualFor('math'), prose: usualFor('prose')};
 	const warnings: string[] = [];
-	for (const {id, clip, pace} of measured) {
-		const ratio = pace / usual;
+	for (const {id, clip, pace, kind} of measured) {
+		const ratio = pace / usual[kind];
 		if (ratio > PACE_RATIO.fast) warnings.push(`Seslendirme: "${id}" satırı olağan hızın ${ratio.toFixed(1)} katı hızlı okundu; dinleyip gerekirse cümleyi bölün.`);
 		if (ratio < PACE_RATIO.slow) warnings.push(`Seslendirme: "${id}" satırı olağan hızın yarısı kadar yavaş okundu; uzun bir duraklama olabilir.`);
 		const words = clip.words ?? [];

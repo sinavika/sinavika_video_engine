@@ -24,7 +24,7 @@ export const InkOption: React.FC<{letter: string; text: string; mark?: InkMark; 
 	const stroke = usePen(color);
 	return (
 		<div style={{position: 'relative'}}>
-			<div style={{opacity: mark === 'strike' && state === 'idle' ? 0.55 : 1}}>
+			<div data-ui={mark === 'strike' && state === 'idle' ? 'disabled' : undefined} style={{opacity: mark === 'strike' && state === 'idle' ? 0.55 : 1}}>
 				<OptionRow letter={letter} text={text} state={state} />
 			</div>
 			{mark === 'strike' ? (
@@ -104,9 +104,18 @@ const ExamWorking: React.FC<{scale?: number}> = ({scale = 1}) => {
 			<InkLoop cx={s(122)} cy={s(296)} rx={s(72)} ry={s(32)} color="red" width={2.6 * scale} />
 			<InkArrow from={[s(208), s(296)]} to={[s(282), s(262)]} bend={s(18)} color="red" width={2.4 * scale} />
 			<HandText text="B" x={s(296)} y={s(238)} size={s(30)} color="red" seed={1} width={2.7 * scale} />
-			<InkLine points={[[s(26), s(352)], [s(160), s(349)], [s(330), s(353)]]} color="ink" width={1.4 * scale} opacity={0.35} />
+			<InkLine
+				points={[
+					[s(26), s(352)],
+					[s(160), s(349)],
+					[s(330), s(353)],
+				]}
+				color="ink"
+				width={1.4 * scale}
+				opacity={0.35}
+			/>
 			<HandText text={t('kontrol: 12 + 6 = 18', 'check: 12 + 6 = 18')} x={s(26)} y={s(380)} size={s(21)} color="green" seed={12} width={2.1 * scale} />
-			<HandText text="18 / 36 = %50" x={s(26)} y={s(426)} size={s(21)} color="green" seed={14} width={2.1 * scale} />
+			<HandText text={t('18 / 36 = %50', '18 / 36 = 50%')} x={s(26)} y={s(426)} size={s(21)} color="green" seed={14} width={2.1 * scale} />
 			<InkCheck x={s(230)} y={s(424)} size={s(26)} color="green" width={2.6 * scale} />
 		</>
 	);
@@ -154,15 +163,7 @@ export const ExamScratchScreen: React.FC = () => {
 };
 
 const PARAGRAPH = {
-	tr: [
-		'Şehirde büyüyen çocuklar doğayı çoğu zaman ekranlardan tanıyor. ',
-		'Oysa',
-		' bir yaprağın dokusunu, toprağın kokusunu hiçbir görüntü tam olarak aktaramaz. Doğayla doğrudan temas, çocuğun merakını besleyen ',
-		'en güçlü öğretmendir',
-		'. ',
-		'Bu yüzden',
-		' okullar, derslerin bir kısmını açık havaya taşımalıdır.',
-	],
+	tr: ['Şehirde büyüyen çocuklar doğayı çoğu zaman ekranlardan tanıyor. ', 'Oysa', ' bir yaprağın dokusunu, toprağın kokusunu hiçbir görüntü tam olarak aktaramaz. Doğayla doğrudan temas, çocuğun merakını besleyen ', 'en güçlü öğretmendir', '. ', 'Bu yüzden', ' okullar, derslerin bir kısmını açık havaya taşımalıdır.'],
 	en: ['Children growing up in cities mostly meet nature on screens. ', 'Yet', ' no picture can fully pass on the feel of a leaf or the smell of soil. Direct contact with nature is ', 'the strongest teacher', ' of a child’s curiosity. ', 'That is why', ' schools should move some lessons outdoors.'],
 };
 
@@ -302,9 +303,7 @@ export const ExamSolutionNotesScreen: React.FC = () => {
 							<Text role="over" color={mod.ink}>
 								{t('Çözüm', 'Solution')}
 							</Text>
-							<Text role="body">
-								{t('Başta x öğrenci varsa kız sayısı 0,4x. 6 kız gelince: 0,4x + 6 = 0,5(x + 6) → 0,1x = 3 → x = 30.', 'With x students, girls are 0.4x. After 6 join: 0.4x + 6 = 0.5(x + 6) → 0.1x = 3 → x = 30.')}
-							</Text>
+							<Text role="body">{t('Başta x öğrenci varsa kız sayısı 0,4x. 6 kız gelince: 0,4x + 6 = 0,5(x + 6) → 0,1x = 3 → x = 30.', 'With x students, girls are 0.4x. After 6 join: 0.4x + 6 = 0.5(x + 6) → 0.1x = 3 → x = 30.')}</Text>
 							<Text role="small">{t('Doğru cevap B. Bu soruyu adayların %58’i doğru yaptı.', 'Answer B. 58% of candidates got it right.')}</Text>
 						</Stack>
 					</Card>
@@ -426,7 +425,15 @@ export const TestWrongScratchScreen: React.FC = () => {
 						<HandText text="18 ÷ 2 = 9" x={44} y={104} size={28} seed={5} />
 						<InkLoop cx={132} cy={92} rx={112} ry={70} color="red" seed={9} />
 						<HandText text={t('günler toplanmaz!', 'don’t add days!')} x={44} y={186} size={20} color="red" seed={11} width={2.2} />
-						<InkLine points={[[26, 232], [200, 229], [380, 233]]} width={1.2} opacity={0.3} />
+						<InkLine
+							points={[
+								[26, 232],
+								[200, 229],
+								[380, 233],
+							]}
+							width={1.2}
+							opacity={0.3}
+						/>
 						<HandText text="1/6 + 1/12 = 1/4" x={26} y={262} size={26} color="green" seed={13} />
 						<HandText text={t('4 gün', '4 days')} x={26} y={318} size={26} color="green" seed={15} />
 						<InkCheck x={146} y={318} size={26} color="green" />
@@ -463,20 +470,41 @@ export const TestFigureScreen: React.FC = () => {
 							{t('Şekildeki ABC üçgeninde verilenlere göre x kaç derecedir?', 'In triangle ABC, what is x in degrees?')}
 						</Text>
 						<div style={{position: 'relative', width: w, height: (w * 246) / 280, alignSelf: 'center'}}>
-							<svg width={w} height={(w * 246) / 280} viewBox="0 0 280 246" style={{display: 'block'}}>
+							<svg width={w} height={(w * 246) / 280} viewBox="0 0 280 246" style={{display: 'block', overflow: 'visible'}}>
 								<polygon points="117,14 40,224 240,224" fill={mod.wash} stroke={colors.ink} strokeWidth={2.2} strokeLinejoin="round" />
-								<text x={111} y={10} style={label}>A</text>
-								<text x={22} y={238} style={label}>B</text>
-								<text x={246} y={238} style={label}>C</text>
-								<text x={104} y={58} style={angle}>50°</text>
-								<text x={58} y={214} style={angle}>70°</text>
-								<text x={208} y={214} style={angle}>x</text>
+								<text x={111} y={10} style={label}>
+									A
+								</text>
+								<text x={22} y={238} style={label}>
+									B
+								</text>
+								<text x={246} y={238} style={label}>
+									C
+								</text>
+								<text x={104} y={58} style={angle}>
+									50°
+								</text>
+								<text x={58} y={214} style={angle}>
+									70°
+								</text>
+								<text x={208} y={214} style={angle}>
+									x
+								</text>
 							</svg>
 							<InkLayer width={w} height={(w * 246) / 280}>
 								<InkLoop cx={212 * k} cy={209 * k} rx={18} ry={16} color="blue" />
 								<HandText text="= 60°" x={226 * k} y={168 * k} size={26} color="blue" seed={4} width={2.6} />
 								<HandText text="180 - 120" x={262} y={60} size={22} color="red" seed={6} />
-								<InkLine points={[[300, 96], [318, 180], [338, 236]]} color="red" width={1.8} opacity={0.6} />
+								<InkLine
+									points={[
+										[300, 96],
+										[318, 180],
+										[338, 236],
+									]}
+									color="red"
+									width={1.8}
+									opacity={0.6}
+								/>
 							</InkLayer>
 						</div>
 					</Stack>
@@ -508,7 +536,7 @@ export const PenTipScreen: React.FC = () => {
 		<Tablet
 			module="exam"
 			overlay={
-				<div style={{position: 'absolute', inset: 0, zIndex: 30}}>
+				<div data-ui="scrim" style={{position: 'absolute', inset: 0, zIndex: 30}}>
 					<div style={{position: 'absolute', left: hole.x, top: hole.y, width: hole.w, height: hole.h, borderRadius: 24, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11, 28, 48, 0.62)'}} />
 					<div style={{position: 'absolute', left: hole.x - 300, top: hole.y + hole.h + 20, width: 440, borderRadius: 22, background: colors.card, padding: 20, boxShadow: UI_SHADOW.float, boxSizing: 'border-box'}}>
 						<div style={{position: 'absolute', left: 300 + hole.w / 2 - 8, top: -7, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />

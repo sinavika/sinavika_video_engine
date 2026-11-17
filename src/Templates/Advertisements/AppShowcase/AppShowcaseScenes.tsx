@@ -1,20 +1,25 @@
 import React from 'react';
-import {AbsoluteFill, Freeze, Img, interpolate, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {CAPTURE, captureImage, type CaptureMedia, DeviceCapture} from '../../../Components/AppScreens/DeviceCapture';
+import {AbsoluteFill, interpolate} from 'remotion';
+import {APP_SCREEN} from '../../../Components/AppScreens/AppScreenTokens';
+import {PhoneFrame} from '../../../Components/AppScreens/PhoneFrame';
 import {StoreBadges} from '../../../Components/Brand/StoreBadge';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
 import {BrandMark} from '../../../Components/Overlays/BrandMark';
+import {themeVars, UIProvider} from '../../../UIUX/Context';
 import {Icon} from '../../../UIUX/Icons';
 import {MODULES} from '../../../UIUX/ModuleIdentity';
+import {findScreen} from '../../../UIUX/Registry';
 import {CLAMP, useLand, useSeconds} from '../PromoKit/PromoKit';
-import type {AppShowcaseContent, ShowcaseBeat, ShowcaseClip} from './AppShowcaseSchema';
+import type {AppShowcaseContent, ShowcaseBeat} from './AppShowcaseSchema';
 
 /**
  * The app showcase film: a launch-style product film on the brand's orange.
- * Real phones (metal rim, side buttons) swing in 3D, play the live app's own
- * recordings and lift details off the screen toward the camera; big white
- * type lands word by word. A navy wall of every screen, then the end card
- * with the stores. Every screen is a capture of the real app.
+ * Phones (metal rim, side buttons) swing in 3D, walk through the app's
+ * screens and lift details off the screen toward the camera; big white type
+ * lands word by word. A navy wall of every screen, then the end card with
+ * the stores. Every screen is the current UI/UX drawing (src/UIUX, the same
+ * as Desktop\Sinavika-UIUX3); captures of the old live app were dropped on
+ * 14 Nov 2026.
  */
 
 const ORANGE = '#EA580C';
@@ -24,6 +29,7 @@ const NAVY = '#0B1C30';
 const WHITE = '#FFFFFF';
 
 type Content = AppShowcaseContent;
+type Lang = Content['lang'];
 
 /** The orange ground: two slow light blobs and a dotted texture; it never stands still. */
 const OrangeGround: React.FC = () => {
@@ -38,20 +44,42 @@ const OrangeGround: React.FC = () => {
 	);
 };
 
-/** A recording or still, cut to [from, until] at `rate`; after `until` the last frame holds. */
-const ClipElement: React.FC<{clip: ShowcaseClip; style: React.CSSProperties}> = ({clip, style}) => {
-	const frame = useCurrentFrame();
-	const {fps} = useVideoConfig();
-	if (clip.kind === 'image') return <Img src={staticFile(clip.src)} style={style} />;
-	const last = Math.max(0, Math.floor(((clip.until - clip.from) / clip.rate) * fps) - 1);
-	const video = <OffthreadVideo src={staticFile(clip.src)} startFrom={Math.round(clip.from * fps)} playbackRate={clip.rate} muted transparent style={style} />;
-	return frame > last ? <Freeze frame={last}>{video}</Freeze> : video;
+/** A mobile UI/UX drawing on the app canvas (390 × 844), in the film's language. */
+const Drawing: React.FC<{id: string; lang: Lang}> = ({id, lang}) => {
+	const screen = findScreen(id);
+	return (
+		<UIProvider lang={lang} mode="light" module={screen.module}>
+			<div style={{...themeVars('light'), width: APP_SCREEN.width, height: APP_SCREEN.height}}>
+				<screen.Component />
+			</div>
+		</UIProvider>
+	);
 };
 
-const clipMedia = (clip: ShowcaseClip): CaptureMedia => (style) => <ClipElement clip={clip} style={style} />;
+/** Seconds each screen of a flow stays before the next slides in. */
+const FLOW_STEP = 1.7;
+
+/** Screens one after another, the next sliding in from the right (a short walk through the app); the last one holds. */
+const Flow: React.FC<{ids: readonly string[]; lang: Lang; delay?: number}> = ({ids, lang, delay = 0}) => {
+	const seconds = useSeconds() - delay;
+	return (
+		<div style={{position: 'relative', width: APP_SCREEN.width, height: APP_SCREEN.height, overflow: 'hidden'}}>
+			{ids.map((id, index) => {
+				const enter = index === 0 ? 1 : interpolate(seconds, [index * FLOW_STEP, index * FLOW_STEP + 0.32], [0, 1], CLAMP);
+				const leave = index === ids.length - 1 ? 0 : interpolate(seconds, [(index + 1) * FLOW_STEP, (index + 1) * FLOW_STEP + 0.32], [0, 1], CLAMP);
+				if (enter <= 0 || leave >= 1) return null;
+				return (
+					<div key={`${id}-${index}`} style={{position: 'absolute', inset: 0, transform: `translateX(${(1 - enter) * APP_SCREEN.width - leave * APP_SCREEN.width * 0.3}px)`, opacity: 1 - leave * 0.6}}>
+						<Drawing id={id} lang={lang} />
+					</div>
+				);
+			})}
+		</div>
+	);
+};
 
 /** A phone in 3D space. `turn` is the settled rotation; it swings in from `from` degrees further. */
-const Phone3D: React.FC<{media: CaptureMedia; width: number; variant: Content['variant']; turn?: number; tilt?: number; delay?: number; from?: number; label?: string}> = ({media, width, variant, turn = 0, tilt = 0, delay = 0, from = 40, label}) => {
+const Phone3D: React.FC<{children: React.ReactNode; width: number; content: Content; turn?: number; tilt?: number; delay?: number; from?: number}> = ({children, width, content, turn = 0, tilt = 0, delay = 0, from = 40}) => {
 	const {u} = useVideoLayout();
 	const seconds = useSeconds();
 	const land = useLand(delay, 120, 18);
@@ -59,16 +87,12 @@ const Phone3D: React.FC<{media: CaptureMedia; width: number; variant: Content['v
 	const ry = turn + (1 - land) * from;
 	const rx = tilt + (1 - land) * 18;
 	return (
-		<div style={{perspective: u(2400), display: 'flex', flexDirection: 'column', alignItems: 'center', gap: u(20)}}>
+		<div style={{perspective: u(2400)}}>
 			<div style={{transform: `translateY(${(1 - land) * u(520) + float}px) rotateY(${ry}deg) rotateX(${rx}deg)`, transformStyle: 'preserve-3d', opacity: Math.min(1, land * 2), filter: `drop-shadow(0 ${u(40)}px ${u(50)}px rgba(60, 20, 0, 0.35))`}}>
-				<DeviceCapture media={media} width={u(width)} variant={variant} rim />
+				<PhoneFrame width={u(width)} variant={content.variant} lang={content.lang} rim>
+					{children}
+				</PhoneFrame>
 			</div>
-			{label ? (
-				<div style={{opacity: interpolate(seconds, [delay + 0.5, delay + 0.8], [0, 1], CLAMP), display: 'flex', alignItems: 'center', gap: u(10), padding: `${u(8)}px ${u(18)}px`, borderRadius: u(999), background: 'rgba(11,28,48,0.35)', color: WHITE, fontSize: u(19), fontWeight: 700}}>
-					<div style={{width: u(10), height: u(10), borderRadius: u(5), background: '#F87171'}} />
-					{label}
-				</div>
-			) : null}
 		</div>
 	);
 };
@@ -91,8 +115,16 @@ const Kinetic: React.FC<{lines: readonly [string, string]; at?: number; size?: n
 	const second = lines[1].split(' ');
 	return (
 		<div style={{display: 'flex', flexDirection: 'column', gap: u(18), alignItems: align === 'center' ? 'center' : 'flex-start', textAlign: align}}>
-			<div>{first.map((word, index) => <Word key={`a${index}`} text={word} at={at + index * 0.09} size={size} color={WHITE} />)}</div>
-			<div>{second.map((word, index) => <Word key={`b${index}`} text={word} at={at + (first.length + index) * 0.09 + 0.1} size={size} color={ORANGE} band />)}</div>
+			<div>
+				{first.map((word, index) => (
+					<Word key={`a${index}`} text={word} at={at + index * 0.09} size={size} color={WHITE} />
+				))}
+			</div>
+			<div>
+				{second.map((word, index) => (
+					<Word key={`b${index}`} text={word} at={at + (first.length + index) * 0.09 + 0.1} size={size} color={ORANGE} band />
+				))}
+			</div>
 		</div>
 	);
 };
@@ -111,17 +143,19 @@ const ModuleChip: React.FC<{module: ShowcaseBeat['module']; text: string; at?: n
 	);
 };
 
-/** A region of the screen lifted toward the camera, the same recording, larger, on a white card. */
-const PopOut: React.FC<{clip: ShowcaseClip; pop: NonNullable<ShowcaseBeat['pop']>; width: number; at: number}> = ({clip, pop, width, at}) => {
+/** A region of the screen lifted toward the camera: the same drawing, larger, on a white card. */
+const PopOut: React.FC<{id: string; lang: Lang; pop: NonNullable<ShowcaseBeat['pop']>; width: number; at: number}> = ({id, lang, pop, width, at}) => {
 	const {u} = useVideoLayout();
 	const land = useLand(at, 150, 16);
 	const cardW = u(width);
 	const fullW = cardW / pop.w;
-	const fullH = fullW * (CAPTURE.height / CAPTURE.width);
+	const fullH = fullW * (APP_SCREEN.height / APP_SCREEN.width);
 	const cardH = fullH * pop.h;
 	return (
 		<div style={{width: cardW, height: cardH, borderRadius: u(26), overflow: 'hidden', position: 'relative', background: WHITE, border: `${u(5)}px solid ${WHITE}`, boxShadow: `0 ${u(40)}px ${u(70)}px -${u(20)}px rgba(40,10,0,0.55)`, opacity: Math.min(1, land * 2), transform: `scale(${0.55 + land * 0.45}) translateY(${(1 - land) * u(60)}px)`}}>
-			<ClipElement clip={clip} style={{position: 'absolute', left: -pop.x * fullW, top: -pop.y * fullH, width: fullW, height: fullH}} />
+			<div style={{position: 'absolute', left: -pop.x * fullW, top: -pop.y * fullH, width: APP_SCREEN.width, height: APP_SCREEN.height, transform: `scale(${fullW / APP_SCREEN.width})`, transformOrigin: 'top left'}}>
+				<Drawing id={id} lang={lang} />
+			</div>
 		</div>
 	);
 };
@@ -157,8 +191,10 @@ export const HookScene: React.FC<{content: Content}> = ({content}) => {
 			<div style={{position: 'absolute', left: u(130), top: 0, bottom: 0, width: u(980), display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 				<Kinetic lines={content.hook.lines} size={112} />
 			</div>
-			<div style={{position: 'absolute', right: u(230), top: u(70)}}>
-				<Phone3D media={clipMedia(content.hook.clip)} width={420} variant={content.variant} turn={-14} tilt={4} delay={0.05} from={50} label={content.realLabel} />
+			<div style={{position: 'absolute', right: u(230), top: u(90)}}>
+				<Phone3D width={420} content={content} turn={-14} tilt={4} delay={0.05} from={50}>
+					<Flow ids={content.hook.screens} lang={content.lang} delay={0.6} />
+				</Phone3D>
 			</div>
 		</AbsoluteFill>
 	);
@@ -173,7 +209,6 @@ export const FanScene: React.FC<{content: Content}> = ({content}) => {
 		{x: u(430) * spread, turn: -26, z: 0.86, delay: 0.16},
 		{x: 0, turn: 0, z: 1, delay: 0},
 	];
-	const order = [0, 1, 2];
 	const screens = [content.fan.screens[1], content.fan.screens[2], content.fan.screens[0]];
 	return (
 		<AbsoluteFill>
@@ -183,9 +218,11 @@ export const FanScene: React.FC<{content: Content}> = ({content}) => {
 				<div style={{fontSize: u(78), fontWeight: 800, color: WHITE, letterSpacing: '-0.03em', opacity: interpolate(seconds, [0.05, 0.35], [0, 1], CLAMP), transform: `translateY(${interpolate(seconds, [0.05, 0.4], [u(-30), 0], CLAMP)}px)`}}>{content.fan.headline}</div>
 			</div>
 			<div style={{position: 'absolute', left: 0, right: 0, top: u(205), display: 'flex', justifyContent: 'center'}}>
-				{order.map((index) => (
+				{[0, 1, 2].map((index) => (
 					<div key={index} style={{position: 'absolute', transform: `translateX(${positions[index].x}px) scale(${positions[index].z})`, zIndex: index === 2 ? 2 : 1}}>
-						<Phone3D media={captureImage(screens[index])} width={330} variant={content.variant} turn={positions[index].turn} delay={positions[index].delay} from={30} />
+						<Phone3D width={330} content={content} turn={positions[index].turn} delay={positions[index].delay} from={30}>
+							<Drawing id={screens[index]} lang={content.lang} />
+						</Phone3D>
 					</div>
 				))}
 			</div>
@@ -217,10 +254,12 @@ export const BeatScene: React.FC<{content: Content; index: number}> = ({content,
 	);
 	const phone = (
 		<div style={{position: 'relative'}}>
-			<Phone3D media={clipMedia(beat.clip)} width={400} variant={content.variant} turn={turn} tilt={3} delay={0} from={phoneLeft ? -45 : 45} label={content.realLabel} />
+			<Phone3D width={400} content={content} turn={turn} tilt={3} delay={0} from={phoneLeft ? -45 : 45}>
+				<Flow ids={beat.screens} lang={content.lang} delay={0.9} />
+			</Phone3D>
 			{beat.pop ? (
 				<div style={{position: 'absolute', top: u(phoneLeft ? 600 : 330), [phoneLeft ? 'right' : 'left']: -u(phoneLeft ? 150 : 320)} as React.CSSProperties}>
-					<PopOut clip={beat.clip} pop={beat.pop} width={phoneLeft ? 400 : 440} at={0.75} />
+					<PopOut id={beat.screens[0]} lang={content.lang} pop={beat.pop} width={phoneLeft ? 400 : 440} at={0.75} />
 				</div>
 			) : null}
 		</div>
@@ -237,7 +276,7 @@ export const BeatScene: React.FC<{content: Content; index: number}> = ({content,
 	);
 };
 
-/** A tilted wall of every screen sliding past, on navy: everything shown is the real app. */
+/** A tilted wall of every screen sliding past, on navy. */
 export const WallScene: React.FC<{content: Content}> = ({content}) => {
 	const {u} = useVideoLayout();
 	const seconds = useSeconds();
@@ -249,8 +288,10 @@ export const WallScene: React.FC<{content: Content}> = ({content}) => {
 			<div style={{position: 'absolute', left: '50%', top: '50%', transform: `translate(-50%, -50%) perspective(${u(2000)}px) rotateX(24deg) rotateZ(-14deg)`}}>
 				{rows.map((row, r) => (
 					<div key={r} style={{display: 'flex', gap: u(40), marginBottom: u(40), transform: `translateX(${(r % 2 === 0 ? shift : -shift) - u(200)}px)`}}>
-						{[...row, ...row].map((src, i) => (
-							<DeviceCapture key={`${r}-${i}`} src={src} width={u(260)} variant={content.variant} />
+						{[...row, ...row].map((id, i) => (
+							<PhoneFrame key={`${r}-${i}`} width={u(260)} variant={content.variant} lang={content.lang}>
+								<Drawing id={id} lang={content.lang} />
+							</PhoneFrame>
 						))}
 					</div>
 				))}
@@ -286,13 +327,19 @@ export const ClosingScene: React.FC<{content: Content}> = ({content}) => {
 			</div>
 			<div style={{position: 'absolute', right: u(120), top: u(150), display: 'flex', alignItems: 'flex-start'}}>
 				<div style={{marginRight: -u(120), marginTop: u(90), zIndex: 1}}>
-					<Phone3D media={captureImage(left)} width={300} variant={content.variant} turn={22} delay={0.2} from={30} />
+					<Phone3D width={300} content={content} turn={22} delay={0.2} from={30}>
+						<Drawing id={left} lang={content.lang} />
+					</Phone3D>
 				</div>
 				<div style={{zIndex: 2}}>
-					<Phone3D media={captureImage(centre)} width={350} variant={content.variant} turn={-6} delay={0.05} from={30} />
+					<Phone3D width={350} content={content} turn={-6} delay={0.05} from={30}>
+						<Drawing id={centre} lang={content.lang} />
+					</Phone3D>
 				</div>
 				<div style={{marginLeft: -u(120), marginTop: u(90), zIndex: 1}}>
-					<Phone3D media={captureImage(right)} width={300} variant={content.variant} turn={-24} delay={0.3} from={30} />
+					<Phone3D width={300} content={content} turn={-24} delay={0.3} from={30}>
+						<Drawing id={right} lang={content.lang} />
+					</Phone3D>
 				</div>
 			</div>
 		</AbsoluteFill>

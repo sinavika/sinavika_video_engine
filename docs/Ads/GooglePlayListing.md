@@ -1,86 +1,127 @@
-# Google Play mağaza girişi (TR ve EN)
+# Mağaza girişleri: Google Play ve App Store (TR ve EN)
 
-**Tarih:** 20 Ekim 2026
-**Kurallar:** [`ProductMessaging.md`](../Brand/ProductMessaging.md) (adlar, araç ve davet cümleleri), [`BrandIdentity.md`](../Brand/BrandIdentity.md) §5 ve §13.
-**Görseller:** `Desktop\MobileHeader\<tr|en>\android\` (uygulama simgesi 512, özellik grafiği 1024×500, telefon, 7" ve 10" tablet, Chromebook/masaüstü).
+**Tarih:** 14 Kasım 2026 (ilk sürüm 20 Ekim 2026)
+**Kurallar:** [`ProductMessaging.md`](../Brand/ProductMessaging.md) (adlar, araç ve davet cümleleri), [`BrandIdentity.md`](../Brand/BrandIdentity.md) §5 ve §13. Türkçede "quiz" ve "koç" yok; "yapay zekâ destekli" yerine SinoAI. Sunulmayan sınavlar (ÖABT, AGS, ALES, DHBT; İngilizcede AP, GRE, MCAT, LSAT) hiçbir alanda geçmez.
+**Görseller:** `Desktop\sinavika-mobileheader\magaza-gorselleri\<tr|en>\` (Turuncu set, 14 Kasım 2026). Play simgesi: `Desktop\Sinavika-Logo\uygulama-ikonu\A-turuncu-zemin\android\play-store-icon-512.png`.
+**Açıklamanın sırası** mağaza görsellerinin sırasıdır: plan, ders, deneme, test, istatistik, Bilgi Kartları, Akıllı Özet, SinoAI.
 
-**Durum:** 20 Ekim 2026'da Play Console'a girildi (varsayılan tr-TR + en-US çevirisi, iki dilde simge, özellik grafiği, telefon, 7" ve 10" tablet, masaüstü görselleri) ve incelemeye gönderildi.
+## Durum (14 Kasım 2026)
 
-Sınırlar: başlık 30, kısa açıklama 80, uzun açıklama 4000 karakter. Anahtar kelimeler başlıkta ve kısa açıklamada bir kez, uzun açıklamada doğal akış içinde geçer; anahtar kelime tekrarı yapılmaz (Play politikası).
+| Mağaza | Yapılan | Açık kalan |
+|---|---|---|
+| Google Play | TR + EN: kısa ve uzun açıklama, özellik grafiği, telefon, 7" ve 10" tablet, masaüstü görselleri (8'er kare); simge turuncu zemin (A). 2.11.0 üretim yayınıyla birlikte 16 değişiklik 14 Kasım'da sahibin onayıyla incelemeye gönderildi (yönetilen yayınlama kapalı: onaylanınca kendiliğinden yayına çıkar) | Tanıtım videosu (YouTube adresi) eklenmedi |
+| App Store | 2.11.0 sürümünde TR + EN: üst görsel, arama sonucu görseli, iPhone ve iPad 13" (8'er kare), tanıtım metni, açıklama, anahtar kelimeler, "What's New" (hata düzeltmeleri ve performans iyileştirmeleri); App Information'da ad ve alt başlık. 14 Kasım'da sahibin onayıyla incelemeye gönderildi (Waiting for Review) | — |
 
-## Türkçe (tr-TR) — Türkiye
+## Google Play
+
+Sınırlar: başlık 30, kısa açıklama 80, uzun açıklama 4000 karakter. Anahtar kelimeler başlıkta ve kısa açıklamada bir kez geçer; tekrar yapılmaz (Play politikası).
+
+### Türkçe (tr-TR)
 
 **Uygulama adı:** Sınavika: YKS ve KPSS Hazırlık
 
-**Kısa açıklama:** YKS ve KPSS için deneme, ders, test, çalışma planı ve SinoAI tek uygulamada.
+**Kısa açıklama:** YKS ve KPSS için ders, deneme, test, çalışma planı ve SinoAI tek uygulamada.
 
 **Uzun açıklama:**
 
-Sınav hazırlığın tek yerde. Sınavika; YKS (TYT, AYT, YDT) ve KPSS (Lisans, Önlisans, Ortaöğretim) için deneme, konu anlatımı, test, çalışma planı ve yapay zekâ desteğini tek uygulamada toplar.
+Sana göre sınav hazırlığı. Sınavika; YKS (TYT, AYT, YDT) ve KPSS (Lisans, Önlisans, Ortaöğretim) için ders, deneme, test, çalışma planı ve bilgi kartlarını tek uygulamada toplar. Takıldığın yerde SinoAI'ye sorarsın.
 
-SENİ TANIYAN YAPAY ZEKÂ: SİNOAI
-Takıldığın konuyu sor! SinoAI hedefini, eksiklerini ve geçmiş çalışmalarını bilerek yanıtlar. Kendi notlarını ve kaynaklarını yükle; SinoAI onlardan konu anlatımı, test, deneme ve bilgi kartı hazırlar.
+BUGÜN NE ÇALIŞACAĞINI BİL
+Ders Planı her gün sıradaki işini önüne koyar: bugünün görevleri, tekrar etmen gereken konular ve haftalık programın.
 
-FOTOĞRAFINI ÇEK, ÇÖZÜMÜNÜ ÖĞREN
-Çözemediğin sorunun fotoğrafını çek. Akıllı Özet çözümü adım adım gösterir, kazanımı ve hatanı söyler. İstersen çözümü videolu anlatımla izle.
+KONUYU ADIM ADIM ÖĞREN
+Dersler konuyu kısa mikro derslerle anlatır. Her adımda sen de cevaplarsın ve kaldığın yerden devam edersin.
 
-DENEMENİ ÇÖZ, GELİŞİMİNİ GÖR
-Süreli denemelerle kendini sına. Denemeler doğru, yanlış ve boşlarını konu konu gösterir; netinin değişimini takip eder.
+DENEMENİ ÇÖZÜP NETİNİ GÖR
+Türkiye geneli denemelerle kendini ölç. Sonuçlar doğru, yanlış ve boşlarını konu konu gösterir; netinin nasıl değiştiğini takip edersin.
 
-KONUYU ÖĞREN, SORULARLA PEKİŞTİR
-Dersler konuyu kısa mikro derslerle anlatır; Testler seviye seviye sınar ve her soruda anında açıklama verir. Kaldığın yerden devam et.
+EKSİK KONUNU TESTLE KAPAT
+Testler Kolay, Orta ve Zor seviyelerde sınar. Her yanlışın nedeni hemen yanında açıklanır.
 
-EKSİĞİNİ GÖR, ÇALIŞMANI PLANLA
-Ders Planı tekrar etmen gereken konuları ve bugünün görevlerini gösterir. Günlük planını kur, kaç saat çalıştığını takip et.
+ÇALIŞMANI GÜN GÜN GÖR
+İstatistiklerin çalışma süreni, doğru oranını ve en verimli saatlerini gösterir.
 
-TEKRAR ET, AKLINDA TUT
-Bilgi Kartları unutmak üzere olduğun kartları tam zamanında önüne getirir. Kısa molalarını değerlendir.
+KARTLARLA AKLINDA TUT
+Bilgi Kartları tekrarı doğru günde önüne getirir; unutmadan önce hatırlarsın.
+
+HATANI ADIM ADIM GÖR
+Akıllı Özet sorunun çözümünü adım adım gösterir, kazanımı ve hatanı söyler.
+
+TAKILDIĞINDA SİNOAI'YE SOR
+SinoAI konuyu anlatır, sorunu adım adım çözer. Hedefini ve eksiklerini bilerek cevap verir; kendi notlarından test, özet ve bilgi kartı hazırlar.
 
 KİMLER İÇİN?
 • TYT, AYT ve YDT'ye hazırlanan lise öğrencileri ve mezunlar
 • KPSS Lisans, Önlisans ve Ortaöğretim adayları
-• Netini düzenli takip etmek ve planlı çalışmak isteyen herkes
+• Netini düzenli takip etmek ve planlı çalışmak isteyenler
 
 ABONELİK
-Sınavika'yı 3 gün ücretsiz dene. Deneme süresi bitince aboneliğin, Google Play hesabından aylık ya da yıllık olarak yenilenir. Aboneliğini dilediğin zaman Google Play › Ödemeler ve abonelikler bölümünden iptal edebilirsin; iptal ettiğinde erişimin dönem sonuna kadar sürer.
+Sınavika'yı 3 gün ücretsiz dene. Deneme süresi bitince aboneliğin Google Play hesabından aylık ya da yıllık olarak yenilenir. Aboneliğini dilediğin zaman Google Play › Ödemeler ve abonelikler bölümünden iptal edebilirsin; iptal ettiğinde erişimin dönem sonuna kadar sürer.
 
 Gizlilik politikası: https://sinavika.com/tr/corporate/yasal/gizlilik-politikasi
 Destek: info@sinavika.com
 
-## English (en-US) — United States and other English-speaking markets
+### English (en-US)
 
 **App name:** Sınavika: SAT & ACT Prep
 
-**Short description:** Practice exams, lessons, quizzes, a study plan and SinoAI for SAT and ACT.
+**Short description:** Lessons, mock exams, tests, a study plan and SinoAI for the SAT and ACT.
 
-**Full description:**
+**Full description:** the English App Store text below, with the Play subscription paragraph: "Try Sınavika free for 3 days. After the trial, your subscription renews monthly or yearly through your Google Play account. Cancel any time in Google Play › Payments & subscriptions; your access continues until the end of the period." and "Support: info@sinavika.com" in place of the EULA line.
 
-Your exam prep, all in one place. Sınavika brings practice exams, lessons, quizzes, a study plan and AI help for the SAT and ACT together in one app.
+## App Store
 
-MEET SINOAI, THE AI THAT KNOWS YOU
-Ask about anything you're stuck on! SinoAI answers with your goal, your gaps and your past work in mind. Upload your own notes and materials; SinoAI turns them into lessons, quizzes, practice exams and flashcards.
+Sınırlar: ad 30, alt başlık 30, tanıtım metni 170, anahtar kelimeler 100 karakter. Ad ve alt başlıktaki kelimeler anahtar kelimelerde tekrarlanmaz. Ad ve alt başlık App Information'dadır; bir sonraki sürümle yayına çıkar.
 
-SNAP A QUESTION, LEARN THE SOLUTION
-Take a photo of a question you can't solve. Smart Summary solves it step by step and shows where you went wrong. Watch the solution explained in a video.
+### Türkçe
 
-TAKE PRACTICE EXAMS, SEE YOUR PROGRESS
-Test yourself under exam conditions. Practice exams break down your answers by topic and track your score over time.
+- **Ad:** Sınavika: YKS KPSS & SinoAI
+- **Alt başlık:** Sana göre sınav hazırlığı
+- **Tanıtım metni:** Bugün ne çalışacağın hazır: Ders Planı sıradaki işini önüne koyar, deneme sonucun eksik konunu gösterir. Takıldığın yerde SinoAI'ye sor.
+- **Anahtar kelimeler:** tyt,ayt,ydt,deneme,sınav,test,soru,ders,konu,net,puan,analiz,çalışma planı,bilgi kartı,özet,hazırlık
+- **Açıklama:** Google Play Türkçe uzun açıklamasıyla aynı; yalnız abonelik paragrafı Apple'a göre: "Deneme süresi bitince aboneliğin Apple hesabından aylık ya da yıllık olarak otomatik yenilenir. Aboneliğini dilediğin zaman Ayarlar › Apple Hesabı › Abonelikler bölümünden iptal edebilirsin; …" ve son satırda "Kullanım koşulları (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/".
 
-LEARN IT, THEN LOCK IT IN
-Lessons teach in short micro-lessons; Quizzes test you level by level and explain every answer instantly. Pick up where you left off.
+### English (U.S.)
 
-SEE YOUR GAPS, PLAN YOUR STUDY
-Study Plan shows what to review and what to do today. Set your daily plan and track your hours.
+- **Name:** Sınavika: SAT ACT & SinoAI
+- **Subtitle:** Exam prep built around you
+- **Promotional text:** Your plan puts the next task in front of you every day, and your mock exams show your weak topics. Stuck? Ask SinoAI.
+- **Keywords:** sat,act,practice,test,study,exam,prep,score,planner,mock exam,question,flashcards,lessons,math
 
-REVIEW IT, REMEMBER IT
-Flashcards bring back each card just before you would forget it. Make the most of short breaks.
+**Description:**
+
+Exam prep built around you. Sınavika brings lessons, mock exams, tests, a study plan and flashcards for the SAT and ACT together in one app. When you're stuck, ask SinoAI.
+
+KNOW WHAT TO STUDY TODAY
+Study Plan puts the next task in front of you every day: today's tasks, the topics to review and your weekly schedule.
+
+LEARN IT STEP BY STEP
+Lessons teach each topic in short micro-lessons. You answer at every step and pick up where you left off.
+
+TAKE EXAMS AND SEE YOUR SCORE
+Practice under exam conditions. Results show your right, wrong and blank answers topic by topic and track how your score changes.
+
+FIX WEAK TOPICS WITH TESTS
+Tests come in Easy, Medium and Hard levels. The reason for every mistake is right beside it.
+
+SEE YOUR STUDY DAY BY DAY
+Your stats show your study time, your accuracy and your best study hours.
+
+REMEMBER IT WITH FLASHCARDS
+Flashcards come back on the right day, so you review just before you would forget.
+
+SEE YOUR MISTAKE STEP BY STEP
+Smart Summary shows the solution step by step, the skill behind the question and where you went wrong.
+
+STUCK? ASK SINOAI
+SinoAI explains the topic and solves the question step by step. It answers with your goal and your gaps in mind, and turns your own notes into tests, summaries and flashcards.
 
 WHO IS IT FOR?
 • High school students preparing for the SAT or ACT
 • Students who want to track their scores and study with a plan
 
 SUBSCRIPTION
-Try Sınavika free for 3 days. After the trial, your subscription renews monthly or yearly through your Google Play account. Cancel any time in Google Play › Payments & subscriptions; your access continues until the end of the period.
+Try Sınavika free for 3 days. After the trial, your subscription renews automatically each month or year through your Apple Account. Cancel any time in Settings › Apple Account › Subscriptions; your access continues until the end of the period.
 
 Privacy policy: https://sinavika.com/en/corporate/yasal/gizlilik-politikasi
-Support: info@sinavika.com
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/

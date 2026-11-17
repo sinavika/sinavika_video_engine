@@ -11,9 +11,9 @@ import {VIDEO_ENCODING} from '../Configurations/VideoFormats';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import {narrationPacingWarnings} from '../Services/NarrationPacing';
 import {sceneChapters, type Chapter} from '../Scenes/SceneChapter';
-import {VOICE_LEAD_SECONDS, type VoiceClips} from '../Scenes/Voiceover';
+import {slotLead, type VoiceClips} from '../Scenes/Voiceover';
 import {audioProblems, inspectAudio} from '../Services/AudioCheck';
-import {AUDIO_LEVELS, ffmpeg, masterFilter, masterSpeechWav, measureLoudness} from '../Services/AudioLeveling';
+import {AUDIO_LEVELS, ffmpeg, masterWav, measureLoudness} from '../Services/AudioLeveling';
 import type {SpeechBackend} from '../Services/ElevenLabsSpeech';
 import {beatsFrom, musicPieceFor, writeMusicBed} from '../Services/MusicLibrary';
 import {analyzeBeats, tempoHint} from '../Services/BeatGrid';
@@ -23,7 +23,7 @@ import type {VoiceCast} from '../Services/VoiceCasting';
 import {writeSoundtrack, type SoundtrackCues} from '../Services/SoundtrackComposer';
 import {renderVideoCover} from '../Services/VideoCoverGenerator';
 import {generateVoiceover} from '../Services/VoiceoverGenerator';
-import {durationWarnings, resolveVideoJob, voiceLines, withBeats, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
+import {durationWarnings, resolveVideoJob, tempoWarningsOf, voiceLines, withBeats, withVoiceClips, type ResolvedVideoJob} from './VideoJob';
 
 const PROJECT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const PUBLIC_DIRECTORY = path.join(PROJECT_ROOT, 'public');
@@ -214,7 +214,7 @@ const soundtrackCues = (job: ResolvedVideoJob): SoundtrackCues => {
 	const lineStarts = scenes.flatMap((scene, index) => {
 		let offset = 0;
 		return (scene.voice ?? []).map((slot) => {
-			const start = startOf(index) + offset + VOICE_LEAD_SECONDS;
+			const start = startOf(index) + offset + slotLead(slot);
 			offset += slot.seconds;
 			return start;
 		});
@@ -246,15 +246,19 @@ const attachSoundtrack = async (job: ResolvedVideoJob, serveUrl: string): Promis
  * Times the cuts to the music: picks the piece (made now if needed) for the
  * video's length plus the room the cuts may add, measures its beats and holds
  * every scene until the next beat (Scenes/Rhythm). Jobs without described
- * music are returned unchanged.
+ * music are returned unchanged. `cachedOnly` (validate) composes nothing: it
+ * throws when the piece is not cached.
  */
-const attachBeats = async (job: ResolvedVideoJob): Promise<ResolvedVideoJob> => {
+export const attachBeats = async (job: ResolvedVideoJob, {cachedOnly = false}: {cachedOnly?: boolean} = {}): Promise<ResolvedVideoJob> => {
 	if (!job.soundtrack || !job.soundtrackMusic || job.template.cutsOnBeat === false) return job;
 	try {
 		const scenes = job.template.buildScenes(job.inputProps.content, job.inputProps.voiceClips);
 		// Each cut may move by up to a beat (0.5 s at 120 BPM); the piece is picked long enough for all of them.
 		const seconds = job.durationInFrames / job.fps + scenes.length * 0.6;
-		const piece = await musicPieceFor(job.soundtrackMusic, seconds, PUBLIC_DIRECTORY, undefined, job.soundtrackFrom);
+		const refuse = async (): Promise<Buffer> => {
+			throw new Error('The music is not cached yet; nothing was composed.');
+		};
+		const piece = await musicPieceFor(job.soundtrackMusic, seconds, PUBLIC_DIRECTORY, cachedOnly ? refuse : undefined, job.soundtrackFrom);
 		const {beats} = await analyzeBeats(piece, tempoHint(job.soundtrackMusic));
 		return withBeats(job, beatsFrom(beats, job.soundtrackFrom), piece);
 	} catch (error) {
@@ -313,7 +317,7 @@ const toResult = (
 	voiceLineCount: Object.keys(job.inputProps.voiceClips).length,
 	voiceCast: job.voiceCast,
 	chapters: sceneChapters(templateScenes(job.template, job.inputProps.content, job.inputProps.voiceClips, job.inputProps.beats), job.template.transition, job.fps),
-	warnings: [...new Set([...warnings, ...durationWarnings(job), ...narrationPacingWarnings(job.inputProps.voiceClips)])],
+	warnings: [...new Set([...warnings, ...durationWarnings(job), ...tempoWarningsOf(job), ...narrationPacingWarnings(job.inputProps.voiceClips)])],
 });
 
 /** WebGL through ANGLE, so the 3D visuals (three.js) render in the headless browser as they do in the Studio. */
@@ -377,8 +381,8 @@ export const renderVideo = async (rawJob: unknown, options: RenderOptions): Prom
  * note about the tools that produced it. The video stream is copied as it is.
  * The sound is mastered here: a mix of voice, music and effects to -14 LUFS,
  * a voice-only video (lessons, episode 0) to -16 LUFS with the speech
- * service's codec hiss cut (AudioLeveling.masterFilter); both under a -1.5 dB
- * true-peak ceiling. A video with no sound keeps its silent track. The
+ * service's codec hiss cut; both by one gain and a look-ahead limiter under a
+ * -1.5 dB true-peak ceiling (AudioLeveling.masterWav). A video with no sound keeps its silent track. The
  * finished file is then checked as a listener hears it (AudioCheck), and every
  * problem comes back as a warning.
  */
@@ -387,19 +391,18 @@ const finishFile = async (file: string, sound: 'mix' | 'speech' | 'none'): Promi
 	const measured = sound === 'none' ? null : await measureLoudness(file);
 	const finish = ['-map_metadata', '-1', '-fflags', '+bitexact', '-movflags', '+faststart', clean];
 	const aac = ['-ar', '48000', '-c:a', 'aac', '-b:a', VIDEO_ENCODING.audioBitrate];
-	if (measured && sound === 'speech') {
-		const raw = `${file}.speech.wav`;
+	if (measured && sound !== 'none') {
+		const raw = `${file}.sound.wav`;
 		const mastered = `${file}.mastered.wav`;
 		try {
 			await ffmpeg(['-y', '-i', file, '-vn', '-ar', '48000', '-c:a', 'pcm_s16le', raw]);
-			await masterSpeechWav(raw, mastered, measured);
+			await masterWav(raw, mastered, measured, sound);
 			await ffmpeg(['-y', '-i', file, '-i', mastered, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', ...aac, ...finish]);
 		} finally {
 			await Promise.all([rm(raw, {force: true}), rm(mastered, {force: true})]);
 		}
 	} else {
-		const audio = measured ? ['-c:v', 'copy', '-af', masterFilter(measured), ...aac] : ['-c', 'copy'];
-		await ffmpeg(['-y', '-i', file, '-map', '0', ...audio, ...finish]);
+		await ffmpeg(['-y', '-i', file, '-map', '0', '-c', 'copy', ...finish]);
 	}
 	await rename(clean, file);
 	const warnings = measured && measured.truePeak > AUDIO_LEVELS.clippingTruePeak ? [`Audio mix peaks at ${measured.truePeak} dBTP before mastering: voice and music together reach full scale and may crackle.`] : [];

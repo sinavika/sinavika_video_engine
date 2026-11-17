@@ -10,7 +10,7 @@
  *   npm run uiux -- --list                        (id, route and title of every drawing)
  *   npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md   (writes the screen inventory and exits)
  *
- * Mobile screens are written at 3x (1170 x 2532), web and site at 2x.
+ * Mobile and watch screens are written at 3x (1170 x 2532; watch 624 x 744 or 681 x 681), web and site at 2x.
  */
 import {mkdir, writeFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -43,16 +43,10 @@ if (values.inventory) {
 		['web', 'Web paneli ve web giriş/onboarding'],
 		['tablet', 'Tablet (iPad ve Android tablet, kalem)'],
 		['site', 'Web sitesi (giriş öncesi)'],
+		['watch', 'Akıllı saat (Apple Watch ve Wear OS)'],
+		['share', 'Paylaşım kartları (hikâye ve gönderi)'],
 	];
-	const lines = [
-		'# Sınavika UI/UX ekran envanteri',
-		'',
-		'Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.',
-		'Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.',
-		'',
-		`Toplam ${UI_SCREENS.length} çizim: ${platforms.map(([platform, label]) => `${label.toLocaleLowerCase('tr-TR')} ${UI_SCREENS.filter((screen) => screen.platform === platform).length}`).join(', ')}.`,
-		'',
-	];
+	const lines = ['# Sınavika UI/UX ekran envanteri', '', 'Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.', 'Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.', '', `Toplam ${UI_SCREENS.length} çizim: ${platforms.map(([platform, label]) => `${label.toLocaleLowerCase('tr-TR')} ${UI_SCREENS.filter((screen) => screen.platform === platform).length}`).join(', ')}.`, ''];
 	for (const [platform, label] of platforms) {
 		lines.push(`## ${label}`, '');
 		let group = '';
@@ -83,16 +77,22 @@ const FOLDER: Record<UIPlatform, string> = {
 	web: 'web-panel',
 	site: 'web-site',
 	tablet: 'tablet',
+	watch: 'saat',
+	share: 'paylasim',
 };
 const BOARD_COLUMNS: Record<UIPlatform, number> = {
 	mobile: 5,
 	web: 3,
 	site: 4,
 	tablet: 2,
+	watch: 5,
+	share: 4,
 };
 const langs = (values.lang === 'both' ? ['tr', 'en'] : [values.lang]) as UILang[];
 const modes = (values.mode === 'both' ? ['light', 'dark'] : [values.mode]) as UIMode[];
 const MODE_FOLDER: Record<UIMode, string> = {light: 'acik', dark: 'koyu'};
+/** Every board in registry order (platform|group); a board's number is its place here. */
+const BOARD_ORDER = [...new Set(UI_SCREENS.map((screen) => `${screen.platform}|${screen.group}`))];
 const selected = UI_SCREENS.filter((screen) => !values.only || values.only.some((prefix) => screen.id.startsWith(prefix)));
 
 const serveUrl = await bundleProject();
@@ -106,7 +106,7 @@ for (const lang of langs)
 		const root = path.join(values.out, ...(lang === 'tr' ? [] : ['en']), MODE_FOLDER[mode]);
 		if (!values['boards-only']) {
 			for (const screen of selected) {
-				const inputProps: UIUXScreenProps = {id: screen.id, lang, mode};
+				const inputProps: UIUXScreenProps = {id: screen.id, lang, mode, audit: false};
 				const output = path.resolve(root, FOLDER[screen.platform], `${screen.id}.png`);
 				await mkdir(path.dirname(output), {recursive: true});
 				const composition = await selectComposition({
@@ -115,7 +115,7 @@ for (const lang of langs)
 					inputProps,
 					puppeteerInstance: browser,
 				});
-				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : UI_CANVAS.web.scale;
+				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'watch' ? UI_CANVAS.watch.scale : screen.platform === 'share' ? UI_CANVAS.share.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : UI_CANVAS.web.scale;
 				await renderStill({
 					composition,
 					serveUrl,
@@ -133,9 +133,9 @@ for (const lang of langs)
 		if (!values['no-boards']) {
 			const groups = new Map<string, typeof selected>();
 			for (const screen of selected) groups.set(`${screen.platform}|${screen.group}`, [...(groups.get(`${screen.platform}|${screen.group}`) ?? []), screen]);
-			let index = 0;
 			for (const [key, screens] of groups) {
-				index += 1;
+				// Board numbers follow the whole registry, so `--only` redraws a board under its own number instead of renumbering.
+				const index = BOARD_ORDER.indexOf(key) + 1;
 				const [platform, group] = key.split('|') as [UIPlatform, string];
 				const inputProps: UIUXBoardProps = {
 					ids: screens.map((screen) => screen.id),

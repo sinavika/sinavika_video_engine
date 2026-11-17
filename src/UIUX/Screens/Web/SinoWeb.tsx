@@ -47,7 +47,7 @@ const Composer: React.FC<{placeholder?: string}> = ({placeholder}) => {
 	const t = useT();
 	return (
 		<div style={{borderRadius: 28, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, padding: '16px 14px 12px 20px'}}>
-			<Text role="body" size={15.5} color={colors.subtle}>
+			<Text role="body" size={15.5} color={colors.subtle} ui="placeholder">
 				{placeholder ?? t('SinoAI’ye sor', 'Ask SinoAI')}
 			</Text>
 			<Stack row gap={8} style={{marginTop: 14}}>

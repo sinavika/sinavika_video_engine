@@ -2,9 +2,9 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
-import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
+import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
 import {EntryRow, NetBars} from '../../Parts/Study';
-import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
 
 /** Denemeler: practice exams, results, analysis and solutions. Tabs: Denemeler · Denemelerim · Modüller · Sonuçlar · Profil. */
 
@@ -18,11 +18,24 @@ const LESSONS: [string, string, number, number, string][] = [
 const num = (value: number, lang: string) => (lang === 'en' ? String(value) : String(value).replace('.', ','));
 
 const ExamRow: React.FC<{title: string; sub: string; meta: string; tag?: string}> = ({title, sub, meta, tag}) => (
-	<ListRow module="exam" title={title} subtitle={sub} meta={meta} trailing={tag ? <Chip tone="module" module="exam" size="sm">{tag}</Chip> : undefined} />
+	<ListRow
+		module="exam"
+		title={title}
+		subtitle={sub}
+		meta={meta}
+		trailing={
+			tag ? (
+				<Chip tone="module" module="exam" size="sm">
+					{tag}
+				</Chip>
+			) : undefined
+		}
+	/>
 );
 
 export const ExamHomeScreen: React.FC = () => {
 	const t = useT();
+	const examInk = useModuleColors('exam').ink;
 	return (
 		<ModuleScreen module="exam" tab={0}>
 			<Content>
@@ -31,10 +44,12 @@ export const ExamHomeScreen: React.FC = () => {
 				<Card tone="moduleLine" module="exam" padding={14}>
 					<Stack row gap={12}>
 						<Ring value={0.6} size={48} stroke={5} color={MODULES.exam.color.light}>
-							<Text role="meta" weight={800}>%60</Text>
+							<Text role="meta" weight={800}>
+								<Pct value={60} />
+							</Text>
 						</Ring>
 						<Stack grow gap={1}>
-							<Text role="over" color={MODULES.exam.color.light}>
+							<Text role="over" color={examInk}>
 								{t('Devam eden', 'In progress')}
 							</Text>
 							<Text role="headline">{t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')}</Text>
@@ -87,12 +102,18 @@ export const ExamDetailScreen: React.FC = () => {
 		<ModuleScreen module="exam" noTabBar header={<AppHeader left="back" title={t('Deneme detayı', 'Exam details')} right={<div style={{width: 40}} />} />}>
 			<Content tabBar={false}>
 				<Stack gap={8}>
-					<Chip tone="module" module="exam">{t('TYT · Türkiye geneli', 'TYT · Nationwide')}</Chip>
+					<Chip tone="module" module="exam">
+						{t('TYT · Türkiye geneli', 'TYT · Nationwide')}
+					</Chip>
 					<Text role="hero">{t('TYT Deneme 5', 'TYT Exam 5')}</Text>
 					<Text role="body">{t('Sonuçlar sınavdan 2 saat sonra açıklanır. Sıralaman 12.480 kişi içinde hesaplanır.', 'Results in 2 hours. Ranked among 12,480 students.')}</Text>
 				</Stack>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
-					{[['120', t('soru', 'questions')], ['165', t('dakika', 'minutes')], ['4', t('oturum', 'sections')]].map(([value, label]) => (
+					{[
+						['120', t('soru', 'questions')],
+						['165', t('dakika', 'minutes')],
+						['4', t('oturum', 'sections')],
+					].map(([value, label]) => (
 						<Card key={label} tone="flat" padding={12} style={{textAlign: 'center'}}>
 							<Text role="num" size={24} align="center">
 								{value}
@@ -185,7 +206,18 @@ export const ExamSolveScreen: React.FC = () => {
 		<ModuleScreen
 			module="exam"
 			noTabBar
-			header={<FocusHeader title="1:42:18" sub={t('Temel Matematik', 'Basic Maths')} progress={0.38} right={<div style={{width: 40, height: 40, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Icon name="grid" size={20} color={colors.ink} stroke={3} /></div>} />}
+			header={
+				<FocusHeader
+					title="1:42:18"
+					sub={t('Temel Matematik', 'Basic Maths')}
+					progress={0.38}
+					right={
+						<div style={{width: 40, height: 40, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Icon name="grid" size={20} color={colors.ink} stroke={3} />
+						</div>
+					}
+				/>
+			}
 		>
 			<Content tabBar={false} gap={14}>
 				<Stack row justify="space-between">
@@ -222,6 +254,7 @@ export const ExamSolveScreen: React.FC = () => {
 
 export const MyExamsScreen: React.FC = () => {
 	const t = useT();
+	const examInk = useModuleColors('exam').ink;
 	return (
 		<ModuleScreen module="exam" tab={1}>
 			<Content>
@@ -234,10 +267,10 @@ export const MyExamsScreen: React.FC = () => {
 					].map(([day, title, sub, state], index) => (
 						<Stack key={title} row gap={12} style={{padding: '12px 14px'}}>
 							<Stack align="center" justify="center" style={{width: 44, height: 50, borderRadius: 14, background: 'rgba(232,89,12,0.12)'}}>
-								<Text role="headline" size={17} color={MODULES.exam.color.light}>
+								<Text role="headline" size={17} color={examInk}>
 									{day}
 								</Text>
-								<Text role="meta" size={10} weight={800} color={MODULES.exam.color.light}>
+								<Text role="meta" size={10} weight={800} color={examInk}>
 									{t('EKİ', 'OCT')}
 								</Text>
 							</Stack>
@@ -271,7 +304,6 @@ export const MyExamsScreen: React.FC = () => {
 	);
 };
 
-
 /**
  * Sonuçlar (revised 5 Nov 2026): the student's nets as bars across exams
  * (own exams added by hand drawn hatched), then the three ways in: Sınavika
@@ -284,7 +316,15 @@ export const ExamResultsScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="exam" tab={2}>
 			<Content gap={12}>
-				<PageTitle module="exam" title={t('Sonuçlar', 'Results')} right={<Chip tone="outline" icon="info">{t('Nasıl hesaplanır?', 'How it works')}</Chip>} />
+				<PageTitle
+					module="exam"
+					title={t('Sonuçlar', 'Results')}
+					right={
+						<Chip tone="outline" icon="info">
+							{t('Nasıl hesaplanır?', 'How it works')}
+						</Chip>
+					}
+				/>
 				<Card padding={16}>
 					<Stack gap={12}>
 						<Stack row justify="space-between">
@@ -298,7 +338,15 @@ export const ExamResultsScreen: React.FC = () => {
 								<Segmented items={['TYT', 'AYT']} module="exam" />
 							</div>
 						</Stack>
-						<NetBars items={[[t('D2', 'E2'), 64], [t('D3', 'E3'), 72], [t('Yayın', 'Pub.'), 69.5, true], [t('D4', 'E4'), 78.5], [t('D5', 'E5'), 84.25]]} />
+						<NetBars
+							items={[
+								[t('D2', 'E2'), 64],
+								[t('D3', 'E3'), 72],
+								[t('Yayın', 'Pub.'), 69.5, true],
+								[t('D4', 'E4'), 78.5],
+								[t('D5', 'E5'), 84.25],
+							]}
+						/>
 						<Stack row gap={8} style={{padding: '8px 12px', borderRadius: 14, background: colors.successSoft}}>
 							<Icon name="trend" size={16} color={colors.successInk} />
 							<Text role="small" weight={700} color={colors.successInk}>
@@ -307,18 +355,33 @@ export const ExamResultsScreen: React.FC = () => {
 						</Stack>
 					</Stack>
 				</Card>
-				<Stack gap={8}>
+				<FitList gap={8}>
 					<EntryRow module="exam" strong icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
 					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
 					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün denemenin sonucu', 'A result from another exam')} />
-				</Stack>
+				</FitList>
 				<SectionTitle title={t('Son sonuçlar', 'Latest results')} action={t('Tümü', 'All')} />
 				<List>
 					{[
 						[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim · sıralama 6.870', '19 Oct · rank 6,870'), '84,25', '+5,75'],
 						[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), '78,5', '+9'],
 					].map(([title, sub, score, delta]) => (
-						<ListRow key={title} module="exam" title={title} subtitle={sub} trailing={<Stack align="flex-end" gap={2}><Text role="headline" size={16}>{score}</Text><Text role="meta" color={colors.successInk}>{delta}</Text></Stack>} />
+						<ListRow
+							key={title}
+							module="exam"
+							title={title}
+							subtitle={sub}
+							trailing={
+								<Stack align="flex-end" gap={2}>
+									<Text role="headline" size={16}>
+										{score}
+									</Text>
+									<Text role="meta" color={colors.successInk}>
+										{delta}
+									</Text>
+								</Stack>
+							}
+						/>
 					))}
 				</List>
 			</Content>
@@ -459,7 +522,19 @@ export const ExamDoneDetailScreen: React.FC = () => {
 						[t('Problemler', 'Word problems'), t('6 soru · 4 yanlış', '6 questions · 4 wrong'), 'tests'],
 						[t('Üslü sayılar', 'Exponents'), t('3 soru · 2 yanlış', '3 questions · 2 wrong'), 'lessons'],
 					].map(([title, sub, module]) => (
-						<ListRow key={title} module={module as 'tests'} icon={module === 'tests' ? 'quiz' : 'book'} title={title} subtitle={sub} trailing={<Button tone="moduleSoft" module={module as 'tests'} size="sm">{module === 'tests' ? t('Test', 'Quiz') : t('Ders', 'Lesson')}</Button>} chevron={false} />
+						<ListRow
+							key={title}
+							module={module as 'tests'}
+							icon={module === 'tests' ? 'quiz' : 'book'}
+							title={title}
+							subtitle={sub}
+							trailing={
+								<Button tone="moduleSoft" module={module as 'tests'} size="sm">
+									{module === 'tests' ? t('Test', 'Quiz') : t('Ders', 'Lesson')}
+								</Button>
+							}
+							chevron={false}
+						/>
 					))}
 				</List>
 			</Content>
@@ -520,7 +595,9 @@ export const ExamAddExternalScreen: React.FC = () => {
 									<Text role="headline" size={14.5}>
 										{name}
 									</Text>
-									<Text role="meta">{total} {t('soru', 'q')}</Text>
+									<Text role="meta">
+										{total} {t('soru', 'q')}
+									</Text>
 								</Stack>
 								<Box value={right} tone={colors.successInk} />
 								<Box value={wrong} tone={colors.errorInk} />
@@ -637,14 +714,14 @@ export const ExamAnalysisScreen: React.FC = () => {
 					].map(([tr, en, subTr, subEn, loss], index) => (
 						<Stack key={tr} row gap={12} align="flex-start" style={{padding: 14}}>
 							<div style={{width: 28, height: 28, borderRadius: 9, background: colors.errorSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-								<Text role="headline" size={13} color={colors.error}>
+								<Text role="headline" size={13} color={colors.errorInk}>
 									{index + 1}
 								</Text>
 							</div>
 							<Stack grow gap={6}>
 								<Stack row justify="space-between">
 									<Text role="headline">{t(tr, en)}</Text>
-									<Text role="headline" color={colors.error}>
+									<Text role="headline" color={colors.errorInk}>
 										−{loss} net
 									</Text>
 								</Stack>
@@ -704,7 +781,7 @@ export const ExamTrendScreen: React.FC = () => {
 							</Text>
 							<Bar value={value as number} color={(value as number) < 0.5 ? colors.error : MODULES.tests.color.light} />
 							<Text role="small" weight={700} style={{width: 36, textAlign: 'right'}}>
-								%{Math.round((value as number) * 100)}
+								<Pct value={Math.round((value as number) * 100)} />
 							</Text>
 						</Stack>
 					))}
@@ -730,7 +807,7 @@ export const ExamSolutionsScreen: React.FC = () => {
 							const empty = [7, 18, 29].includes(index);
 							return (
 								<div key={index} style={{height: 32, borderRadius: 9, display: 'flex', alignItems: 'center', justifyContent: 'center', background: wrong ? 'var(--ui-errorSoft)' : empty ? 'var(--ui-line2)' : 'var(--ui-successSoft)', outline: index === 5 ? '2px solid var(--ui-ink)' : undefined}}>
-									<Text role="meta" weight={800} color={wrong ? 'var(--ui-error)' : empty ? 'var(--ui-muted)' : 'var(--ui-success)'}>
+									<Text role="meta" weight={800} color={wrong ? 'var(--ui-errorInk)' : empty ? 'var(--ui-muted)' : 'var(--ui-successInk)'}>
 										{index + 41}
 									</Text>
 								</div>
@@ -751,7 +828,22 @@ export const ExamBookletScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<ModuleScreen module="exam" noTabBar header={<FocusHeader left="left" title={t('Soru 46', 'Question 46')} sub={t('Çözümler · Matematik', 'Solutions · Maths')} right={<div style={{width: 40, height: 40, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Icon name="bookmark" size={20} color={colors.ink} /></div>} />}>
+		<ModuleScreen
+			module="exam"
+			noTabBar
+			header={
+				<FocusHeader
+					left="left"
+					title={t('Soru 46', 'Question 46')}
+					sub={t('Çözümler · Matematik', 'Solutions · Maths')}
+					right={
+						<div style={{width: 40, height: 40, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Icon name="bookmark" size={20} color={colors.ink} />
+						</div>
+					}
+				/>
+			}
+		>
 			<Content tabBar={false} gap={12}>
 				<Stack row gap={8}>
 					<Chip tone="error" icon="x">

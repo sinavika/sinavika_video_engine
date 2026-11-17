@@ -1,0 +1,318 @@
+{
+	"template": "StudyDeskStory",
+	"format": "Vertical",
+	"theme": "SinavikaDark",
+	"fps": 60,
+	"quality": "1080p",
+	"name": "sinavika.tr 3 · Telefonunu bırakma!",
+	"output": "Outputs/Videos/SinavikaTr/Pilot/03_Telefonunu_Birakma.mp4",
+	"voiceover": {
+		"profile": "Herald",
+		"voice": "Doga",
+		"model": "v4",
+		"pace": 1.12
+	},
+	"soundtrack": {
+		"music": "Bright, glitchy electro-pop for a fast social video: crisp phone-like UI blips and swipes woven into the beat, bubbly synth arps, punchy kick and clap; a quick tension build with a ticking clock feel, then a happy, confident drop when the app opens. Around 120 BPM, upbeat and modern, leaves room for a fast voice. No vocals."
+	},
+	"cover": {
+		"title": "Telefonunu bırakma!",
+		"emphasis": "bırakma",
+		"kicker": "Sınavika"
+	},
+	"content": {
+		"beats": [
+			{
+				"id": "hook",
+				"narration": "Telefonunu bırakma! Onu ders çalışmak için kullan.",
+				"moves": [
+					{
+						"kind": "shake",
+						"on": "bırakma"
+					}
+				],
+				"items": [
+					{
+						"kind": "phrase",
+						"text": "Telefonunu bırakma!",
+						"keywords": [
+							"bırakma"
+						],
+						"size": 130,
+						"x": 90,
+						"y": 220,
+						"at": 0.05
+					},
+					{
+						"kind": "phrase",
+						"text": "Ders için kullan.",
+						"keywords": [
+							"Ders"
+						],
+						"size": 90,
+						"x": 90,
+						"y": 560,
+						"on": "ders"
+					},
+					{
+						"kind": "student",
+						"poses": [
+							{
+								"pose": "phone"
+							},
+							{
+								"pose": "surprised",
+								"on": "bırakma"
+							},
+							{
+								"pose": "phone",
+								"on": "kullan"
+							}
+						],
+						"size": 480,
+						"x": 300,
+						"y": 1000
+					}
+				]
+			},
+			{
+				"id": "scroll",
+				"narration": "Beş dakika diyorsun, bir saat gidiyor.",
+				"moves": [
+					{
+						"kind": "shake",
+						"on": "bir saat"
+					}
+				],
+				"items": [
+					{
+						"kind": "home",
+						"width": 460,
+						"x": 310,
+						"y": 300,
+						"touches": [
+							{
+								"app": "akis",
+								"touch": "hover",
+								"on": "Beş"
+							}
+						],
+						"at": 0
+					},
+					{
+						"kind": "number",
+						"to": 60,
+						"from": 5,
+						"suffix": " dk",
+						"size": 160,
+						"x": 360,
+						"y": 1330,
+						"on": "bir saat"
+					}
+				]
+			},
+			{
+				"id": "switch",
+				"narration": "Aynı telefon, başka bir uygulama.",
+				"moves": [
+					{
+						"kind": "punch",
+						"on": "başka"
+					}
+				],
+				"items": [
+					{
+						"kind": "home",
+						"width": 460,
+						"x": 310,
+						"y": 300,
+						"touches": [
+							{
+								"app": "akis",
+								"touch": "hover",
+								"at": 0.1
+							},
+							{
+								"app": "sinavika",
+								"touch": "tap",
+								"on": "başka"
+							}
+						],
+						"screens": [
+							{
+								"id": "m-plan-bugun",
+								"on": "uygulama"
+							}
+						],
+						"at": 0
+					}
+				]
+			},
+			{
+				"id": "plan",
+				"narration": "Ders Planı bugünkü görevini hazır tutuyor.",
+				"moves": [
+					{
+						"kind": "punch",
+						"on": "görevini"
+					}
+				],
+				"items": [
+					{
+						"kind": "chip",
+						"text": "Bugünün planı",
+						"x": 330,
+						"y": 220,
+						"on": "Ders Planı"
+					},
+					{
+						"kind": "device",
+						"id": "m-plan-bugun",
+						"width": 460,
+						"x": 310,
+						"y": 320,
+						"at": 0
+					}
+				]
+			},
+			{
+				"id": "solve",
+				"narration": "Takıldığın soruyu çek, Akıllı Özet adım adım çözsün.",
+				"moves": [
+					{
+						"kind": "punch",
+						"on": "Akıllı Özet"
+					}
+				],
+				"items": [
+					{
+						"kind": "chip",
+						"text": "Adım adım çözüm",
+						"x": 320,
+						"y": 220,
+						"on": "adım adım"
+					},
+					{
+						"kind": "device",
+						"id": "m-ozet-kamera",
+						"screens": [
+							{
+								"id": "m-ozet-kamera",
+								"at": 0
+							},
+							{
+								"id": "m-ozet-sonuc",
+								"on": "Akıllı Özet"
+							}
+						],
+						"width": 460,
+						"x": 310,
+						"y": 320,
+						"at": 0
+					}
+				]
+			},
+			{
+				"id": "progress",
+				"narration": "Ne kadar çalıştığını da görürsün.",
+				"moves": [
+					{
+						"kind": "whipIn",
+						"at": 0
+					}
+				],
+				"items": [
+					{
+						"kind": "chip",
+						"text": "Haftalık ilerleme",
+						"x": 160,
+						"y": 220,
+						"on": "çalıştığını"
+					},
+					{
+						"kind": "device",
+						"id": "m-plan-ilerleme",
+						"width": 440,
+						"x": 150,
+						"y": 320,
+						"rotate": -3,
+						"at": 0.05
+					},
+					{
+						"kind": "device",
+						"id": "k-apple-bugun",
+						"screens": [
+							{
+								"id": "k-apple-bugun",
+								"at": 0
+							},
+							{
+								"id": "k-apple-odak",
+								"on": "görürsün"
+							}
+						],
+						"width": 250,
+						"x": 720,
+						"y": 1080,
+						"on": "çalıştığını"
+					}
+				]
+			},
+			{
+				"id": "close",
+				"narration": "Mesele telefonu bırakmak değil, nasıl kullandığın.",
+				"moves": [
+					{
+						"kind": "flash",
+						"on": "nasıl"
+					},
+					{
+						"kind": "punch",
+						"on": "kullandığın"
+					}
+				],
+				"items": [
+					{
+						"kind": "phrase",
+						"text": "Bırakma, doğru kullan.",
+						"keywords": [
+							"doğru"
+						],
+						"size": 120,
+						"x": 90,
+						"y": 220,
+						"at": 0.05
+					},
+					{
+						"kind": "student",
+						"poses": [
+							{
+								"pose": "phone"
+							},
+							{
+								"pose": "happy",
+								"on": "nasıl"
+							}
+						],
+						"size": 480,
+						"x": 300,
+						"y": 1000
+					},
+					{
+						"kind": "device",
+						"id": "m-hub-moduller",
+						"width": 300,
+						"x": 700,
+						"y": 620,
+						"rotate": 6,
+						"on": "kullandığın"
+					}
+				]
+			}
+		],
+		"card": {
+			"seconds": 2
+		},
+		"look": "navy"
+	}
+}

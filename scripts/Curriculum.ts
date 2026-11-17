@@ -82,7 +82,7 @@
  */
 import path from 'node:path';
 import {parseArgs} from 'node:util';
-import {existsSync, readFileSync} from 'node:fs';
+import {existsSync} from 'node:fs';
 import {mkdir, readdir, readFile, unlink, writeFile} from 'node:fs/promises';
 import {CAMPS_DIRECTORY, CampSchema, campFromChecklist, campMismatches} from '../src/Courses/Camp';
 import {CampJobSpecSchema, campJobFiles, campJobNumber} from '../src/Courses/CampJob';
@@ -91,9 +91,9 @@ import {VideoJobValidationError, durationWarnings, resolveVideoJob, withEstimate
 import {readVideoJob} from '../src/Renderers/VideoJobFile';
 import {visualKitOf} from '../src/Courses/CourseDesign';
 import {CHECKLIST_STAGES, CURRICULUM_DIRECTORY, STAGE_LABELS, TWIN_LESSONS, entryRef, nextEntry, subtopicCoverage, taughtRefs, unknownSubtopics, type ChecklistEntry, type ChecklistStage, type TeachingScript} from '../src/Courses/Curriculum';
+import {geoLayerNames} from '../src/Courses/GeoName';
 import {LessonScriptSchema, ignoredFields, mapNameIssues, reviewScript, type LessonScript} from '../src/Courses/LessonScript';
 import {openingVarietyIssues} from '../src/Courses/OpeningVariety';
-import {GEO_FILES, GEO_LAYERS} from '../src/Configurations/GeoData';
 import {WORKS_DIRECTORY, worksViewOf} from '../src/Works/WorksView';
 import {WORKS_WRITTEN_DIRECTORY, WrittenLessonSchema, writtenIssues, writtenWarnings} from '../src/Works/WorksWritten';
 import {MEDIA_CREDITS_FILE, MEDIA_DIRECTORY, MediaCreditsSchema} from '../src/Courses/MediaLibrary';
@@ -102,19 +102,6 @@ import {pastExamFile, readPastExamQuestions, summarizePastExam} from '../src/Cou
 import {lessonMix, repeatedSentences, similarQuestions, type AuditedScript} from '../src/Courses/ScriptAudit';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-/** The names of a map layer's areas, read from public/Geo; undefined when the data is not there. */
-const geoNameCache = new Map<string, readonly string[] | undefined>();
-const geoLayerNames = (layer: string): readonly string[] | undefined => {
-	if (geoNameCache.has(layer)) return geoNameCache.get(layer);
-	const spec = (GEO_LAYERS as Record<string, {file: keyof typeof GEO_FILES; object: string}>)[layer];
-	const file = spec ? path.join(ROOT, 'public', GEO_FILES[spec.file].src) : '';
-	const names = spec && existsSync(file)
-		? (JSON.parse(readFileSync(file, 'utf8')).objects[spec.object]?.geometries ?? []).map((item: {properties?: {name?: string}}) => item.properties?.name ?? '').filter(Boolean)
-		: undefined;
-	geoNameCache.set(layer, names);
-	return names;
-};
-
 const CURRICULUM = path.join(ROOT, CURRICULUM_DIRECTORY);
 const DATA = educationDataDirectory();
 /** How a data file is shown: from the data folder's name, so the reader sees where it lives. */
@@ -187,7 +174,7 @@ if (command === 'import') {
 	for (const entry of checklist.entries) {
 		if (values.category && entry.category !== values.category) continue;
 		const key = values.category ? `${entry.lessonName} (${entry.lesson})` : `${entry.exam} · ${entry.categoryName}`;
-		const group = groups.get(key) ?? {name: key, total: 0, done: {prepared: 0, used: 0, youtube: 0, short: 0}};
+		const group = groups.get(key) ?? {name: key, total: 0, done: {prepared: 0, used: 0, youtube: 0, short: 0, published: 0}};
 		group.total += 1;
 		for (const stage of CHECKLIST_STAGES) if (entry.status[stage]) group.done[stage] += 1;
 		groups.set(key, group);

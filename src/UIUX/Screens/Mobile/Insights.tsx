@@ -24,9 +24,9 @@ export const StatisticsScreen: React.FC = () => {
 			<Content tabBar={false} gap={12}>
 				<Segmented items={[t('Bu hafta', 'This week'), t('Son 30 gün', 'Last 30 days'), t('Tümü', 'All')]} />
 				<Stack row gap={8}>
-					<KpiCard compact icon="clock" label={t('Çalışma', 'Study')} value={t('4 sa', '4 h')} delta="%22" />
-					<KpiCard compact icon="quiz" label={t('Soru', 'Questions')} value="176" delta="%31" />
-					<KpiCard compact icon="target" label={t('Doğru', 'Accuracy')} value="%62" delta="%6" />
+					<KpiCard compact icon="clock" label={t('Çalışma', 'Study')} value={t('4 sa', '4 h')} delta={t('%22', '22%')} />
+					<KpiCard compact icon="quiz" label={t('Soru', 'Questions')} value="176" delta={t('%31', '31%')} />
+					<KpiCard compact icon="target" label={t('Doğru', 'Accuracy')} value={t('%62', '62%')} delta={t('%6', '6%')} />
 				</Stack>
 				<Card padding={16}>
 					<Stack gap={12}>
@@ -38,7 +38,35 @@ export const StatisticsScreen: React.FC = () => {
 								{t('geçen haftadan +%22', '+22% vs last week')}
 							</Chip>
 						</Stack>
-						<StudyBars height={120} active={3} tooltip={{title: t('Perşembe', 'Thursday'), rows: [[t('Planlanan', 'Planned'), t('90 dk', '90 min')], [t('Çalışılan', 'Studied'), t('50 dk', '50 min')]]}} bars={[0, 1, 2, 3, 4, 5, 6].map((day) => ({label: ['P', 'S', 'Ç', 'P', 'C', 'C', 'P'][day], parts: DAY_MODULES.map((key, part) => [key, [[30, 10, 0, 5], [20, 25, 0, 10], [40, 0, 55, 0], [25, 20, 0, 5], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]][day][part]] as [ModuleKey, number])}))} />
+						<StudyBars
+							height={120}
+							active={3}
+							tooltip={{
+								title: t('Perşembe', 'Thursday'),
+								rows: [
+									[t('Planlanan', 'Planned'), t('90 dk', '90 min')],
+									[t('Çalışılan', 'Studied'), t('50 dk', '50 min')],
+								],
+							}}
+							bars={[0, 1, 2, 3, 4, 5, 6].map((day) => ({
+								label: ['P', 'S', 'Ç', 'P', 'C', 'C', 'P'][day],
+								parts: DAY_MODULES.map(
+									(key, part) =>
+										[
+											key,
+											[
+												[30, 10, 0, 5],
+												[20, 25, 0, 10],
+												[40, 0, 55, 0],
+												[25, 20, 0, 5],
+												[0, 0, 0, 0],
+												[0, 0, 0, 0],
+												[0, 0, 0, 0],
+											][day][part],
+										] as [ModuleKey, number],
+								),
+							}))}
+						/>
 						<Stack row gap={12} wrap>
 							{DAY_MODULES.map((key) => (
 								<Stack key={key} row gap={5}>
@@ -107,7 +135,7 @@ export const StatisticsFirstWeekScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const Step: React.FC<{module: ModuleKey; title: string; sub: string; done?: boolean; action: string}> = ({module, title, sub, done, action}) => (
-		<Stack row gap={12} style={{padding: 14, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, opacity: done ? 0.65 : 1}}>
+		<Stack data-ui={done ? 'disabled' : undefined} row gap={12} style={{padding: 14, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`, opacity: done ? 0.65 : 1}}>
 			<Tile module={module} size={42} />
 			<Stack grow gap={1}>
 				<Text role="headline" style={{textDecoration: done ? 'line-through' : undefined}}>
@@ -115,7 +143,13 @@ export const StatisticsFirstWeekScreen: React.FC = () => {
 				</Text>
 				<Text role="small">{sub}</Text>
 			</Stack>
-			{done ? <Icon name="checkCircle" size={22} color={colors.successInk} /> : <Button tone="moduleSoft" module={module} size="sm">{action}</Button>}
+			{done ? (
+				<Icon name="checkCircle" size={22} color={colors.successInk} />
+			) : (
+				<Button tone="moduleSoft" module={module} size="sm">
+					{action}
+				</Button>
+			)}
 		</Stack>
 	);
 	return (

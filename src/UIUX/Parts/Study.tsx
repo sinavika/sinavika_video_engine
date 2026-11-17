@@ -3,7 +3,7 @@ import {useAccent, useColors, useModuleColors, useT} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
 import {MODULES, type ModuleKey} from '../ModuleIdentity';
 import {UI_SHADOW} from '../Tokens';
-import {Bar, Button, Stack, Text, Tile} from './Shared';
+import {Bar, Button, Pct, Stack, Text, Tile} from './Shared';
 
 /**
  * Study parts shared by mobile, tablet and web (5–8 Nov 2026): the week strip,
@@ -79,7 +79,7 @@ export const ActionCard: React.FC<{module: ModuleKey; over: string; title: strin
 								{meter.label}
 							</Text>
 							<Text role="meta" weight={800} color={mod.ink}>
-								%{Math.round(meter.progress * 100)}
+								<Pct value={Math.round(meter.progress * 100)} />
 							</Text>
 						</Stack>
 						<Bar value={Math.max(meter.progress, 0.02)} color={mod.color} track={colors.card} height={8} />
@@ -260,7 +260,7 @@ export const FilterChips: React.FC<{items: string[]; active?: number; module?: M
 	const colors = useColors();
 	const mod = useModuleColors(module);
 	return (
-		<div style={{display: 'flex', gap: 8, overflow: 'hidden', margin: '0 -18px', padding: '0 18px'}}>
+		<div data-ui="scroll-x" style={{display: 'flex', gap: 8, overflow: 'hidden', margin: '0 -18px', padding: '0 18px'}}>
 			{items.map((item, index) => (
 				<div key={item} style={{flexShrink: 0, padding: '8px 14px', borderRadius: 14, background: index === active ? mod.action : colors.card, border: index === active ? undefined : `1px solid ${colors.line}`}}>
 					<Text role="small" weight={700} color={index === active ? '#FFFFFF' : colors.ink2}>
@@ -283,7 +283,7 @@ export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; 
 	const key: ModuleKey = module === 'own' ? 'studyPlan' : module;
 	const mod = useModuleColors(key);
 	return (
-		<div style={{padding: '12px 14px 12px', borderRadius: 20, background: colors.card, border: `1.5px solid ${now ? mod.line : colors.line}`, boxShadow: now ? UI_SHADOW.card : undefined, display: 'flex', flexDirection: 'column', gap: 8, opacity: done ? 0.62 : 1}}>
+		<div data-ui={done ? 'disabled' : undefined} style={{padding: '12px 14px 12px', borderRadius: 20, background: colors.card, border: `1.5px solid ${now ? mod.line : colors.line}`, boxShadow: now ? UI_SHADOW.card : undefined, display: 'flex', flexDirection: 'column', gap: 8, opacity: done ? 0.62 : 1}}>
 			<Stack row justify="space-between" align="flex-start" gap={10}>
 				<Stack gap={2} grow>
 					<Text role="meta" size={12.5}>
@@ -293,9 +293,7 @@ export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; 
 						{title}
 					</Text>
 				</Stack>
-				<div style={{width: 26, height: 26, borderRadius: 13, border: done ? undefined : `2px solid ${colors.line}`, background: done ? colors.success : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-					{done ? <Icon name="check" size={15} color="#FFFFFF" /> : null}
-				</div>
+				<div style={{width: 26, height: 26, borderRadius: 13, border: done ? undefined : `2px solid ${colors.line}`, background: done ? colors.success : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{done ? <Icon name="check" size={15} color="#FFFFFF" /> : null}</div>
 			</Stack>
 			<Stack row justify="space-between">
 				<Stack row gap={8}>
@@ -496,7 +494,7 @@ export const StudyDonut: React.FC<{parts: [ModuleKey, number][]; center: string;
 							</Text>
 						</Stack>
 						<Text role="headline" size={14} tnum>
-							%{Math.round((value / total) * 100)}
+							<Pct value={Math.round((value / total) * 100)} />
 						</Text>
 					</Stack>
 				))}

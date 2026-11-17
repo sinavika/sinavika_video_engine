@@ -1,8 +1,8 @@
 /**
  * Exports the Apple Ads set (src/Ads/Apple/AppleAdsPlan.ts) for the Apple Ads Advanced account.
  *
- *   npm run apple-ads                       (to Desktop\Sinavika-AppleAds, store shots from Desktop\MobileHeader)
- *   npm run apple-ads -- --out <dir> --store <MobileHeader dir>
+ *   npm run apple-ads                       (to Desktop\Sinavika-AppleAds, store shots from Desktop\sinavika-mobileheader\magaza-gorselleri)
+ *   npm run apple-ads -- --out <dir> --store <store set dir>
  *
  * <out>/README.md                                  campaigns, budgets, setup steps
  * <out>/<tr|en>/kampanya.md                        one campaign: ad groups, bids, keywords
@@ -10,17 +10,18 @@
  * <out>/<tr|en>/negatif-kelimeler.csv              Keyword, Match Type (campaign negatives)
  * <out>/<tr|en>/ozel-urun-sayfasi/<exam>/           custom product page: screenshots in the page order + tanitim-metni.txt
  */
-import {copyFile, mkdir, rm, writeFile} from 'node:fs/promises';
+import {copyFile, mkdir, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {APPLE_CAMPAIGNS, CUSTOM_PRODUCT_PAGES, type AppleCampaign} from '../src/Ads/Apple/AppleAdsPlan';
 import {toCsv} from '../src/Ads/Google/SearchExport';
+import {toRecycleBin} from '../src/Services/RecycleBin';
 
 const desktop = path.join(process.env.USERPROFILE ?? '', 'Desktop');
 const {values} = parseArgs({
 	options: {
 		out: {type: 'string', default: path.join(desktop, 'Sinavika-AppleAds')},
-		store: {type: 'string', default: path.join(desktop, 'MobileHeader')},
+		store: {type: 'string', default: path.join(desktop, 'sinavika-mobileheader', 'magaza-gorselleri')},
 	},
 });
 const out = values.out as string;
@@ -85,7 +86,7 @@ Onaylanana kadar reklamlar varsayılan ürün sayfasını gösterir; kampanyalar
 `;
 
 const main = async () => {
-	await rm(out, {recursive: true, force: true});
+	toRecycleBin(out);
 	await writeFile(path.join(await ensure(out), 'README.md'), README);
 
 	for (const campaign of APPLE_CAMPAIGNS) {

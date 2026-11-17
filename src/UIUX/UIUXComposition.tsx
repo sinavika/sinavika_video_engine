@@ -1,7 +1,8 @@
 import React from 'react';
-import {AbsoluteFill, Composition, Folder} from 'remotion';
+import {AbsoluteFill, Composition, continueRender, delayRender, Folder} from 'remotion';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {themeVars, UIProvider} from './Context';
+import {auditScreen} from './LayoutAudit';
 import {Text} from './Parts/Shared';
 import {findScreen, UI_SCREENS, type UIScreen} from './Registry';
 import {BOARD, screenSize, UIUX_BOARD_ID, UIUX_SCREEN_ID, UIUXBoardPropsSchema, UIUXScreenPropsSchema, type UIUXBoardProps, type UIUXScreenProps} from './UIUXProps';
@@ -10,12 +11,24 @@ import {BOARD, screenSize, UIUX_BOARD_ID, UIUX_SCREEN_ID, UIUXBoardPropsSchema, 
  * The UI/UX drawings as pictures: one screen at its own size, or a board of
  * several screens with their titles. Which screen comes from the props.
  */
-const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode}) => {
+const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode, audit}) => {
 	const {Component} = findScreen(id);
+	const ref = React.useRef<HTMLDivElement>(null);
+	const [handle] = React.useState(() => (audit ? delayRender('uiux-audit') : null));
+	React.useEffect(() => {
+		if (handle === null) return;
+		// After the fonts: text is measured as it is drawn.
+		document.fonts.ready.then(() =>
+			setTimeout(() => {
+				if (ref.current) console.log(`UIUX_AUDIT ${JSON.stringify(auditScreen(ref.current, lang))}`);
+				continueRender(handle);
+			}, 300),
+		);
+	}, [handle, lang]);
 	return (
 		<VideoFrame themeId="SinavikaLight" lang={lang}>
 			<UIProvider lang={lang} mode={mode}>
-				<AbsoluteFill style={themeVars(mode)}>
+				<AbsoluteFill ref={ref} style={themeVars(mode)}>
 					<Component />
 				</AbsoluteFill>
 			</UIProvider>
@@ -24,8 +37,8 @@ const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode}) => {
 };
 
 const boardCell = (screen: UIScreen) => {
-	const size = screenSize(screen.platform, screen.height, screen.portrait);
-	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : screen.platform === 'tablet' ? (screen.portrait ? BOARD.tabletPortraitWidth : BOARD.tabletWidth) : BOARD.webWidth;
+	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round);
+	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : screen.platform === 'watch' ? BOARD.watchWidth : screen.platform === 'share' ? BOARD.shareWidth : screen.platform === 'tablet' ? (screen.portrait ? BOARD.tabletPortraitWidth : BOARD.tabletWidth) : BOARD.webWidth;
 	return {size, width, scale: width / size.width, height: (size.height * width) / size.width};
 };
 
@@ -80,7 +93,7 @@ const BoardPicture: React.FC<UIUXBoardProps> = ({ids, title, lang, mode, columns
 								<Text role="meta" size={13} style={{height: 26}}>
 									{screen.id}
 								</Text>
-								<div style={{position: 'relative', width: cell.width, height: cell.height, marginTop: BOARD.caption - 52, borderRadius: screen.platform === 'mobile' ? 34 : screen.platform === 'tablet' ? 26 : 14, overflow: 'hidden', boxShadow: '0 20px 50px -24px rgba(15, 23, 42, 0.45)', background: dark ? '#0F1115' : '#FFFFFF'}}>
+								<div style={{position: 'relative', width: cell.width, height: cell.height, marginTop: BOARD.caption - 52, borderRadius: screen.platform === 'watch' ? (screen.round ? '50%' : 64) : screen.platform === 'mobile' ? 34 : screen.platform === 'tablet' ? 26 : 14, overflow: 'hidden', boxShadow: '0 20px 50px -24px rgba(15, 23, 42, 0.45)', background: dark ? '#0F1115' : '#FFFFFF'}}>
 									<div style={{width: cell.size.width, height: cell.size.height, transform: `scale(${cell.scale})`, transformOrigin: 'top left'}}>
 										<Component />
 									</div>
@@ -108,7 +121,7 @@ export const UIUXComposition: React.FC = () => (
 			calculateMetadata={({props}) => {
 				const parsed = UIUXScreenPropsSchema.parse(props);
 				const screen = findScreen(parsed.id);
-				return {props: parsed, ...screenSize(screen.platform, screen.height, screen.portrait)};
+				return {props: parsed, ...screenSize(screen.platform, screen.height, screen.portrait, screen.round)};
 			}}
 		/>
 		<Composition

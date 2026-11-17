@@ -19,16 +19,16 @@ Bu derste:
 ✅ Köklü sayılarda dört işlem
 ✅ Eşlenik ve paydayı kökten kurtarma
 ✅ Köklü denklemler ve yabancı kök
-✅ 8 TYT tarzı soru, adım adım çözümle
+✅ 18 TYT tarzı soru, adım adım çözümle
 
 🎯 Kamp görevi:
 1. √50, √75 ve √98 sayılarını sadeleştir ve hangi tam sayılar arasında olduklarını bul.
-2. 2/√3 + 1 ifadesinin paydasını eşlenikle kökten kurtar.
+2. 2/(√3 + 1) ifadesinin paydasını eşlenikle kökten kurtar.
 3. Sınavika'da Köklü Sayılar testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Üslü Sayılar: (yayın linki)
+⏮️ Önceki ders, Üslü Sayılar: https://youtu.be/JePacKqjnfo
 ⏭️ Sıradaki ders: Çarpanlara Ayırma. Kanala abone ol, hiçbir dersi kaçırma! 🔔
-🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
+🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/S9bPjvzsidk
 
 📲 Kampın testleri ve Ders Planı Sınavika'da:
 App Store: https://apps.apple.com/tr/app/id6762061768?l=tr
@@ -36,7 +36,15 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Koklu_Sayilar_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Kök ve tanımlılık, Kök dışına çıkarma, Dört işlem, Eşlenik, Köklü denklemler, Özet, Kamp görevi)
+0:00 Giriş
+0:29 Kök nedir, ne zaman tanımlı?
+5:45 Kök dışına çıkarma, kök içine alma
+11:41 Köklü sayılarda dört işlem
+19:07 Eşlenik
+25:05 Paydayı kökten kurtarma
+30:49 Köklü denklemler
+36:28 Özet
+36:58 Kamp görevi
 
 #TYT #YKS #TYTMatematik #KöklüSayılar #Sınavika
 
@@ -51,3 +59,7 @@ TYT Matematik Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: sahibin kararı).
+
+## Yükleme (14 Kasım 2026)
+
+Video sahibin yüklemesi: https://youtu.be/locTjXXc7Jc · herkese açık **20 Kasım 2026 18:00** (sahip her gün 18:00 istedi; 18:00, kanaldaki bir Short'a 90 dakikadan yakınsa saat kaydırıldı). Studio'da girildi ve açıklama dosyayla karakter karakter karşılaştırıldı: başlık A, yukarıdaki açıklama (18 soru, önceki ders bağlantısı, Bölüm 0 bağlantısı Matematik kampının), kamp kapağı, iki oynatma listesi, etiketler, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı (abone ol + en son yükleme).

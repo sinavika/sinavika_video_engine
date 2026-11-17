@@ -27,9 +27,12 @@ Görsel bir veridir; motor açık ve koyu temada çizer. Yalnız ekteki JSON şe
 - `plot`: fonksiyon eğrisi ve noktalar; değer grafikleri (zaman–hız, sıcaklık–zaman) için eğri ya da nokta dizisi.
 - `pie`: yüzde dağılımı.
 - `climate`: aylık sıcaklık ve yağış grafiği. `regime`: akarsu rejimi. `pyramid`: nüfus piramidi (her piramit ya hazır `shape` ya da yaş gruplarıyla `male` + `female` verisi taşır, ikisi birden değil). `windRose`: rüzgâr gülü.
-- `map`: Türkiye ya da dünya haritası; işaretler `markers` ile [boylam, enlem], iller ve bölgeler adlarıyla.
+- `map`: Türkiye ya da dünya haritası; işaretler `markers` ile [boylam, enlem], iller ve bölgeler adlarıyla. **Adlar Türkçe** yazılır (Türkiye, Azerbaycan, Kazakistan, Rusya); motor bilmediği adı sessizce atlar. Bölgesel bir konu için `focus` ile haritayı o bölgeye yaklaştır; etiketler kısa olsun, üst üste binmesin.
+- Makine görsellerinde (`pulley`, `lever`) yük etiketi kısa olur ("G", "60 N"); uzun etiket kutudan taşar.
+- `geometry`: noktalar, doğru parçaları, çokgenler, açı yayları (`angles`), etiketler. Açı, uzunluk ve şekil soruları bununla çizilir; `plot` noktalarıyla açı çizilmez (açının adı nokta gibi görünür). Ölçekli çizimde etiketlenen uzunluk ve açılar çizimle uyuşur (±%5, ±2°); ölçeksiz ÖSYM tarzı şekilde `"toScale": false`.
 - `timeline`: yıllı olay dizisi.
 - `lever`, `pulley`, `gears`, `circuit`: basit makineler ve devreler.
+- `connectedBlocks`: yatay düzlemde iple bağlı 2–3 blok, çekme kuvveti, ip gerilmeleri (T), sürtünme. Soru figüründe `showValues` kapalı kalır (hesaplanan T ve a değerlerini yazar, cevabı ele verir).
 
 Figür nesnesi: `{"code": "tbl1", "title": "≤80 karakter", "alt": "görme engelli için görselin bütün bilgisini veren tek cümle", "visual": {...}}`. Kod yalnız harf, rakam, `_`, `-`.
 

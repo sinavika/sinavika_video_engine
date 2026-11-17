@@ -1,4 +1,4 @@
-import {rm} from 'node:fs/promises';
+import {copyFile, rename, rm} from 'node:fs/promises';
 import {RenderInternals} from '@remotion/renderer';
 import {applyTone, limitPeaks, processWav, toneWav, type ToneFilter} from './AudioTone';
 
@@ -91,12 +91,6 @@ export const levelAudio = async (input: string, output: string, level: AudioLeve
 	await ffmpeg(['-y', '-i', input, '-vn', '-af', [...filters, `volume=${gain.toFixed(2)}dB`].join(','), '-ar', '48000', '-c:a', 'pcm_s16le', '-map_metadata', '-1', '-fflags', '+bitexact', output]);
 };
 
-/** The filter that masters a mix of voice, music and effects to the published level, set from a measurement of that mix. */
-export const masterFilter = (measured: Loudness | null): string =>
-	measured
-		? `loudnorm=${MEASURE_TARGET}:measured_I=${measured.integrated}:measured_TP=${measured.truePeak}:measured_LRA=${measured.range}:measured_thresh=${measured.threshold}:offset=${measured.offset}:linear=true`
-		: `loudnorm=${MEASURE_TARGET}`;
-
 /**
  * The tone a voice-only video is given when it is mastered: an eighth-order Butterworth low-pass at 12.5 kHz, four
  * biquads with the Butterworth Q values. Flat through 10 kHz (under 0.2 dB), about 13 dB down at 15 kHz and 17 dB at
@@ -105,19 +99,47 @@ export const masterFilter = (measured: Loudness | null): string =>
 export const SPEECH_MASTER_TONE: readonly ToneFilter[] = [0.5098, 0.6013, 0.9, 2.5629].map((q) => ({type: 'lowpass', frequency: 12500, q}));
 
 /**
- * Masters a voice-only video's sound (a 16-bit WAV) in code, as the ffmpeg that ships with Remotion has no limiter:
- * the hiss band is cut, one fixed gain brings it to -16 LUFS, and a look-ahead limiter holds the few peaks that would
- * pass the ceiling (0.7 dB under the true-peak ceiling covers what lies between samples). One gain and no
- * compression, so the pauses stay as silent as they were.
+ * Masters a video's sound (a 16-bit WAV) in code, as the ffmpeg that ships with Remotion has no limiter: one fixed
+ * gain brings it to its loudness, and a look-ahead limiter holds the few peaks that would pass the ceiling (0.7 dB
+ * under the true-peak ceiling covers what lies between samples). One gain and no compression, so the pauses stay as
+ * silent as they were.
+ *
+ * - `speech`, a voice-only video (lessons, episode 0): -16 LUFS, the hiss band cut first.
+ * - `mix`, voice with music and effects (reels, ads): -14 LUFS. These went through ffmpeg's linear loudness filter,
+ *   which cannot hold a peak: a reel with many effects came out at -0.7 dBTP (sinavika.tr, 15 Nov 2026).
  */
-export const masterSpeechWav = async (input: string, output: string, measured: Loudness): Promise<void> => {
-	const {integrated, truePeak} = AUDIO_LEVELS.speechMaster;
+export const masterWav = async (input: string, output: string, measured: Loudness, kind: 'speech' | 'mix'): Promise<void> => {
+	const {integrated, truePeak} = kind === 'speech' ? AUDIO_LEVELS.speechMaster : AUDIO_LEVELS.master;
 	const gain = 10 ** ((integrated - measured.integrated) / 20);
 	const ceiling = 10 ** ((truePeak - 0.7) / 20);
 	await processWav(input, output, (samples, channels, sampleRate) => {
-		applyTone(samples, channels, sampleRate, SPEECH_MASTER_TONE);
+		if (kind === 'speech') applyTone(samples, channels, sampleRate, SPEECH_MASTER_TONE);
 		for (let index = 0; index < samples.length; index++) samples[index] *= gain;
 		limitPeaks(samples, channels, sampleRate, ceiling);
 	});
+	// Where the limiter held many peaks (a reel full of effects) it took loudness with them: measure again and make up
+	// the difference, at most twice. A voice-only video is limited only now and then and stops after the first pass.
+	for (let pass = 0; pass < MAKE_UP_PASSES; pass++) {
+		const now = await measureLoudness(output);
+		const short = now ? integrated - now.integrated : 0;
+		if (short <= MAKE_UP_TOLERANCE_DB) break;
+		const kept = `${output}.kept.wav`;
+		await copyFile(output, kept);
+		const makeUp = 10 ** (short / 20);
+		await processWav(output, output, (samples, channels, sampleRate) => {
+			for (let index = 0; index < samples.length; index++) samples[index] *= makeUp;
+			limitPeaks(samples, channels, sampleRate, ceiling);
+		});
+		// The ceiling comes before the loudness: a make-up the limiter cannot hold under it is given back.
+		const after = await measureLoudness(output);
+		if (after && after.truePeak > truePeak) {
+			await rename(kept, output);
+			break;
+		}
+		await rm(kept, {force: true});
+	}
 };
 
+/** Make-up passes after the master's limiter, and how far below its loudness a master may stay. */
+const MAKE_UP_PASSES = 2;
+const MAKE_UP_TOLERANCE_DB = 0.5;

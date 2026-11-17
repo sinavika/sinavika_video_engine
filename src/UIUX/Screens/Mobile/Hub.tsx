@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {AppHeader, Content, Phone, SectionTitle, TourOverlay} from '../../Parts/Mobile';
+import {AppHeader, Content, FitList, Phone, SectionTitle, TourOverlay} from '../../Parts/Mobile';
 import {Button, Chip, Stack, Text, Tile} from '../../Parts/Shared';
 import {ActionCard, TodayCard, WeekStrip, type HubState} from '../../Parts/Study';
 
@@ -27,15 +27,13 @@ const STATUS: Record<ModuleKey, [string, string]> = {
 	sinoAi: ['Sor', 'Ask'],
 };
 
-
-
 /** A module in the compact grid: tile, name, today's status. */
 const ModuleTile: React.FC<{module: ModuleKey; status: string}> = ({module, status}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
-		<Stack align="center" gap={6} style={{padding: '12px 6px 10px', borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
-			<Tile module={module} size={44} />
+		<Stack align="center" gap={5} style={{padding: '10px 6px 8px', borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
+			<Tile module={module} size={40} />
 			<Text role="headline" size={13.5} align="center" style={{lineHeight: '17px'}}>
 				{t(MODULES[module].name)}
 			</Text>
@@ -46,101 +44,128 @@ const ModuleTile: React.FC<{module: ModuleKey; status: string}> = ({module, stat
 	);
 };
 
-
-
-
-
 const HubBody: React.FC<{scrolled?: boolean; state?: HubState}> = ({scrolled, state = 'plan'}) => {
 	const t = useT();
 	const colors = useColors();
 	const grid: ModuleKey[] = ['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards'];
+	const page = (
+		<>
+			<Stack key="hello" row justify="space-between" align="flex-end">
+				<Stack gap={4}>
+					<Text role="title" size={23}>
+						{t('Günaydın Ayşe', 'Good morning, Ayşe')}
+					</Text>
+					<Stack row gap={6}>
+						<Icon name="target" size={15} color={colors.ink2} />
+						<Text role="small" color={colors.ink2}>
+							{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
+						</Text>
+					</Stack>
+				</Stack>
+				<Chip tone="warning" icon="flame">
+					{t('5 gün', '5 days')}
+				</Chip>
+			</Stack>
+			<WeekStrip done={state === 'noPlan' ? [] : state === 'done' ? [0, 1, 2, 3] : [0, 1, 2]} share={state === 'done' ? 1 : state === 'noPlan' ? 0 : 0.4} />
+			<TodayCard state={state} />
+			<Stack row gap={10} align="stretch">
+				{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · ilk mikro ders', 'TYT Turkish · first micro-lesson')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('6 adım · 4 dk', '6 steps · 4 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.4, label: t('2 / 5 adım', '2 / 5 steps')}} />}
+				<ActionCard
+					module="exam"
+					over={t('Sıradaki deneme', 'Next exam')}
+					title={t('TYT Deneme 5', 'TYT Exam 5')}
+					line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')}
+					action={t('Hatırlat', 'Remind me')}
+					icon="exam"
+					meter={{
+						countdown: [
+							['2', t('gün', 'days')],
+							['4', t('saat', 'hours')],
+							['15', t('dk', 'min')],
+						],
+					}}
+				/>
+			</Stack>
+			{/* The heading goes with the first row: a heading never stands alone at the bottom. */}
+			<Stack key="modules" gap={10}>
+				<SectionTitle title={t('Modüller', 'Modules')} />
+				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
+					{grid.slice(0, 3).map((key) => (
+						<ModuleTile key={key} module={key} status={t(STATUS[key][0], STATUS[key][1])} />
+					))}
+				</div>
+			</Stack>
+			<div key="modules-2" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
+				{grid.slice(3).map((key) => (
+					<ModuleTile key={key} module={key} status={t(STATUS[key][0], STATUS[key][1])} />
+				))}
+			</div>
+			<Stack row gap={12} style={{padding: 14, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
+				<Tile module="sinoAi" size={44} />
+				<Stack grow gap={2}>
+					<Text role="headline">SinoAI</Text>
+					<Text role="small">{t('Takıldığın yerde hedefini bilerek anlatır', 'Explains with your goal in mind')}</Text>
+				</Stack>
+				<Icon name="right" size={20} color={colors.subtle} />
+			</Stack>
+			<Stack gap={10} style={{padding: 16, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
+				<Stack row justify="space-between">
+					<Text role="headline">{t('Bugün tekrar', 'Review today')}</Text>
+					<Text role="meta">{t('yaklaşık 12 dk', 'about 12 min')}</Text>
+				</Stack>
+				<Stack row gap={10}>
+					<Tile module="lessons" icon="refresh" size={36} />
+					<Stack grow gap={1}>
+						<Text role="headline" size={14.5}>
+							{t('5 adım', '5 steps')}
+						</Text>
+						<Text role="small">{t('Dersler · ilk denemede yanlış', 'Lessons · missed first time')}</Text>
+					</Stack>
+					<Button tone="moduleSoft" module="lessons" size="sm">
+						{t('Başla', 'Start')}
+					</Button>
+				</Stack>
+				<Stack row gap={10}>
+					<Tile module="flashcards" size={36} />
+					<Stack grow gap={1}>
+						<Text role="headline" size={14.5}>
+							{t('32 kart', '32 cards')}
+						</Text>
+						<Text role="small">{t('Bilgi Kartları · unutmak üzere', 'Flashcards · about to slip')}</Text>
+					</Stack>
+					<Button tone="moduleSoft" module="flashcards" size="sm">
+						{t('Başla', 'Start')}
+					</Button>
+				</Stack>
+			</Stack>
+			<Stack row gap={12} style={{padding: 14, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
+				<div style={{width: 40, height: 40, borderRadius: 13, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<Icon name="headset" size={20} color={colors.ink2} />
+				</div>
+				<Stack grow gap={2}>
+					<Text role="headline">{t('Destek', 'Support')}</Text>
+					<Text role="small">{t('Soruların ve taleplerin için yardım merkezi', 'Help centre for your questions')}</Text>
+				</Stack>
+				<Icon name="right" size={20} color={colors.subtle} />
+			</Stack>
+		</>
+	);
+	const blocks = React.Children.toArray((page.props as {children: React.ReactNode}).children);
+	// The page scrolls: at the top only whole blocks show; scrolled, the end of the page sits at the bottom and the top runs under the header.
 	return (
 		<>
 			<AppHeader />
-			<Content tabBar={false} gap={14}>
-				<Stack gap={16} style={{transform: scrolled ? 'translateY(-456px)' : undefined}}>
-					<Stack row justify="space-between" align="flex-end">
-						<Stack gap={4}>
-							<Text role="title" size={23}>
-								{t('Günaydın Ayşe', 'Good morning, Ayşe')}
-							</Text>
-							<Stack row gap={6}>
-								<Icon name="target" size={15} color={colors.ink2} />
-								<Text role="small" color={colors.ink2}>
-									{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
-								</Text>
-							</Stack>
-						</Stack>
-						<Chip tone="warning" icon="flame">
-							{t('5 gün', '5 days')}
-						</Chip>
-					</Stack>
-					<WeekStrip done={state === 'noPlan' ? [] : state === 'done' ? [0, 1, 2, 3] : [0, 1, 2]} share={state === 'done' ? 1 : state === 'noPlan' ? 0 : 0.4} />
-					<TodayCard state={state} />
-					<Stack row gap={10} align="stretch">
-						{state === 'noPlan' ? (
-							<ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · ilk mikro ders', 'TYT Turkish · first micro-lesson')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('6 adım · 4 dk', '6 steps · 4 min')}} />
-						) : (
-							<ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.4, label: t('2 / 5 adım', '2 / 5 steps')}} />
-						)}
-						<ActionCard module="exam" over={t('Sıradaki deneme', 'Next exam')} title={t('TYT Deneme 5', 'TYT Exam 5')} line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')} action={t('Hatırlat', 'Remind me')} icon="exam" meter={{countdown: [['2', t('gün', 'days')], ['4', t('saat', 'hours')], ['15', t('dk', 'min')]]}} />
-					</Stack>
-					<SectionTitle title={t('Modüller', 'Modules')} />
-					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
-						{grid.map((key) => (
-							<ModuleTile key={key} module={key} status={t(STATUS[key][0], STATUS[key][1])} />
-						))}
+			{scrolled ? (
+				<Content tabBar={false} gap={14} fit={false} style={{justifyContent: 'flex-end'}}>
+					<div data-ui="scroll">
+						<Stack gap={14}>{blocks}</Stack>
 					</div>
-					<Stack row gap={12} style={{padding: 14, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
-						<Tile module="sinoAi" size={44} />
-						<Stack grow gap={2}>
-							<Text role="headline">SinoAI</Text>
-							<Text role="small">{t('Takıldığın yerde hedefini bilerek anlatır', 'Explains with your goal in mind')}</Text>
-						</Stack>
-						<Icon name="right" size={20} color={colors.subtle} />
-					</Stack>
-					<Stack gap={10} style={{padding: 16, borderRadius: 22, background: colors.card, border: `1px solid ${colors.line}`}}>
-						<Stack row justify="space-between">
-							<Text role="headline">{t('Bugün tekrar', 'Review today')}</Text>
-							<Text role="meta">{t('yaklaşık 12 dk', 'about 12 min')}</Text>
-						</Stack>
-						<Stack row gap={10}>
-							<Tile module="lessons" icon="refresh" size={36} />
-							<Stack grow gap={1}>
-								<Text role="headline" size={14.5}>
-									{t('5 adım', '5 steps')}
-								</Text>
-								<Text role="small">{t('Dersler · ilk denemede yanlış', 'Lessons · missed first time')}</Text>
-							</Stack>
-							<Button tone="moduleSoft" module="lessons" size="sm">
-								{t('Başla', 'Start')}
-							</Button>
-						</Stack>
-						<Stack row gap={10}>
-							<Tile module="flashcards" size={36} />
-							<Stack grow gap={1}>
-								<Text role="headline" size={14.5}>
-									{t('32 kart', '32 cards')}
-								</Text>
-								<Text role="small">{t('Bilgi Kartları · unutmak üzere', 'Flashcards · about to slip')}</Text>
-							</Stack>
-							<Button tone="moduleSoft" module="flashcards" size="sm">
-								{t('Başla', 'Start')}
-							</Button>
-						</Stack>
-					</Stack>
-					<Stack row gap={12} style={{padding: 14, borderRadius: 20, background: colors.card, border: `1px solid ${colors.line}`}}>
-						<div style={{width: 40, height: 40, borderRadius: 13, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-							<Icon name="headset" size={20} color={colors.ink2} />
-						</div>
-						<Stack grow gap={2}>
-							<Text role="headline">{t('Destek', 'Support')}</Text>
-							<Text role="small">{t('Soruların ve taleplerin için yardım merkezi', 'Help centre for your questions')}</Text>
-						</Stack>
-						<Icon name="right" size={20} color={colors.subtle} />
-					</Stack>
-				</Stack>
-			</Content>
+				</Content>
+			) : (
+				<Content tabBar={false} gap={14}>
+					<FitList gap={14}>{blocks}</FitList>
+				</Content>
+			)}
 		</>
 	);
 };

@@ -81,8 +81,8 @@ Otomatik düzeltmeler: tablolarda `highlightColumn` (cevabı ele verir) ve makin
   - Kalan konular API ile yazılacak; araç henüz yok (Works'teki Batch kalıbı, tahmin 130–150 $, sahibin onayıyla).
 - **Eksik görsel onarımı:**
   - AYT pilotu 18 soru canlıda (14 Kasım 2026, 00:16; 0,63 $): 9 düzeltildi, 9 yeniden yazıldı. Öğrenci bildirimi 49CDD64E'deki "Basit Makineler — Kolay" testi düzeldi.
-  - AYT'nin kalan 1.076 sorusu onarılıyor (sahip 40 $ onayladı). İlk tur 15,39 $: 1.055 yanıt alındı, 21 soru düzeltme turunda.
-  - KPSS (1.043): AYT bitince.
+  - **AYT tamamen canlıda (14 Kasım 2026, 10:32–10:53):** kalan 1.076 soru 14 ders partisiyle yazıldı (966 figür; 22,82 $). Her parti dryRun + canlı + geri okuma; her dersin dışa aktarılan eski hâli `Outputs/Quizzes/Work/GorselOnarim/yks_ayt/disa-aktarim-<ders>.json` (geri alma verisi), yazım günlüğü `canli-yazim.json`.
+  - **KPSS (14 Kasım, sahip 30 $ onayladı):** yalnız **Lisans** bitirildi: 419 sorunun hepsi denetimden ve cevapsız ikinci çözümden geçti (8,09 $), canlıya ders ders yazılmayı bekliyor. **Önlisans ve Ortaöğretim bekletiliyor** (sahip, 14 Kasım: "sistemde çalışan yok, önlisans ile ortaöğretim bir zaten, onlar dursun; sonra hallederiz"). Önlisans'ın 302 onarım yanıtı `Revisions/KPSS/KPSS_ONLISANS/*_00_gorsel.jsonl`'de, ikinci çözüm paketi gönderildi ama toplanmadı (`Outputs/Quizzes/Work/GorselOnarim/kpss_onlisans/coz-batch.json`); devamında önce `mikro kpss_onlisans` (302 kayıt yanlış alt konu listesiyle yazıldı; araç 14 Kasım'da düzeltildi), sonra `topla-coz` → düzeltme turu → Ortaöğretim kopyaları (`kpss_ortaogretim`, kendi dersinde, aynı içerik). Canlıya bir şey yazılmadı.
 - **KPSS tam revizyon:** başlanmadı.
 
 ## Açık kalanlar

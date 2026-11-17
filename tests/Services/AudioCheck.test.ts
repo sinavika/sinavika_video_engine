@@ -3,7 +3,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {afterAll, describe, expect, it} from 'vitest';
 import {AUDIO_LIMITS, audioProblems, findClicks, floorOf, inspectAudio, sizzleOf, type AudioReport} from '../../src/Services/AudioCheck';
-import {masterSpeechWav, measureLoudness} from '../../src/Services/AudioLeveling';
+import {masterWav, measureLoudness} from '../../src/Services/AudioLeveling';
 import {speechLike, writeWav} from '../Support/Wav';
 
 const RATE = 48000;
@@ -70,7 +70,7 @@ describe('audio problems', () => {
 	});
 });
 
-describe('voice-only master (masterSpeechWav)', () => {
+describe('master (masterWav)', () => {
 	const directory = mkdtempSync(path.join(tmpdir(), 'audio-check-'));
 	afterAll(() => rmSync(directory, {recursive: true, force: true}));
 
@@ -84,7 +84,7 @@ describe('voice-only master (masterSpeechWav)', () => {
 		expect(before.integrated).toBeLessThan(-20);
 		expect(before.sizzleDb).toBeGreaterThan(AUDIO_LIMITS.sizzleDb);
 
-		await masterSpeechWav(input, output, (await measureLoudness(input))!);
+		await masterWav(input, output, (await measureLoudness(input))!, 'speech');
 		const after = (await inspectAudio(output))!;
 		expect(Math.abs(after.integrated - -16)).toBeLessThan(1);
 		expect(after.truePeak).toBeLessThanOrEqual(AUDIO_LIMITS.truePeak);
@@ -92,5 +92,22 @@ describe('voice-only master (masterSpeechWav)', () => {
 		expect(after.floorDb).toBeLessThan(AUDIO_LIMITS.speechFloorDb);
 		expect(after.clicks).toEqual([]);
 		expect(audioProblems(after, true)).toEqual([]);
+	}, 60_000);
+
+	it('holds a reel full of loud effects under the ceiling at -14 LUFS (sinavika.tr, 15 Nov 2026)', async () => {
+		const input = path.join(directory, 'effects.wav');
+		const output = path.join(directory, 'mix.wav');
+		// Speech with a short full-scale hit every half second, as stacked whooshes and impacts sum.
+		writeWav(input, speechLike(12, 0.3).map((value, index) => {
+			// A decaying 1 kHz hit every half second on top of the voice, reaching full scale as stacked effects do.
+			const t = (index % (RATE / 2)) / RATE;
+			return Math.max(-1, Math.min(1, value + 0.95 * Math.exp(-t * 40) * Math.sin(2 * Math.PI * 1000 * t)));
+		}));
+		await masterWav(input, output, (await measureLoudness(input))!, 'mix');
+		const after = (await inspectAudio(output))!;
+		// The ceiling always holds; the loudness gets as close to -14 as the effects allow.
+		expect(after.truePeak).toBeLessThanOrEqual(AUDIO_LIMITS.truePeak);
+		expect(after.integrated).toBeGreaterThan(-18);
+		expect(after.integrated).toBeLessThan(-13);
 	}, 60_000);
 });

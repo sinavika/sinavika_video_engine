@@ -228,4 +228,10 @@ export const UI_CANVAS = {
 	web: {width: 1440, height: 900, scale: 2},
 	/** iPad 11" in landscape (the pen's wide layout, ≥ 900 pt); portrait screens swap the sides (834 × 1194). */
 	tablet: {width: 1194, height: 834, scale: 2},
+	/** Apple Watch 46 mm (Series 10/11) in points; Wear OS round screens use `watchRound` (454 px at 2x). */
+	watch: {width: 208, height: 248, scale: 3},
+	watchRound: {width: 227, height: 227, scale: 3},
+	/** Share cards (15 Nov 2026): Instagram story 1080 × 1920 and post 1080 × 1080, in pixels. */
+	share: {width: 1080, height: 1920, scale: 1},
+	shareSquare: {width: 1080, height: 1080, scale: 1},
 } as const;

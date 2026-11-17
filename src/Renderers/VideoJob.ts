@@ -10,12 +10,14 @@ import {
 } from '../Configurations/VideoFormats';
 import {PACE_RANGE, VOICE_KEYS, VOICE_MODEL_KEYS, VOICE_PROFILE_KEYS} from '../Configurations/Voices';
 import {OUTRO_SCENE_ID} from '../Scenes/AppEndScene';
+import {planTemplateScenes} from '../Scenes/SceneSeries';
+import {tempoWarnings} from '../Scenes/TempoCheck';
 import {estimateNarrationSeconds, type VoiceClips} from '../Scenes/Voiceover';
 import {createVideoPropsSchema, type VideoProps} from '../Schemas/VideoProps';
 import {DEFAULT_SOUNDTRACK_STYLE, SOUNDTRACK_STYLE_KEYS, type SoundtrackStyleKey} from '../Services/SoundtrackComposer';
 import type {VoiceCast, VoiceoverRequest} from '../Services/VoiceCasting';
 import type {VoiceLine} from '../Services/VoiceoverGenerator';
-import {compositionId, templateDurationInFrames, type AnyTemplateDefinition} from '../Templates/TemplateDefinition';
+import {compositionId, templateDurationInFrames, templateScenes, type AnyTemplateDefinition} from '../Templates/TemplateDefinition';
 import {TEMPLATE_IDS, findTemplate} from '../Templates/TemplateRegistry';
 
 /**
@@ -244,6 +246,16 @@ export const durationWarnings = (job: ResolvedVideoJob): string[] => {
 	return seconds < target.min || seconds > target.max
 		? [`${job.template.id} runs ${seconds.toFixed(1)}s without its outro; it is meant to be ${target.min}-${target.max}s.`]
 		: [];
+};
+
+/** Where the video breaks the pace its template promises (TemplateDefinition.tempo), measured on its clips. */
+export const tempoWarningsOf = (job: ResolvedVideoJob): string[] => {
+	const tempo = job.template.tempo;
+	if (!tempo) return [];
+	const clips = job.inputProps.voiceClips;
+	const scenes = templateScenes(job.template, job.inputProps.content, clips, job.inputProps.beats);
+	const plan = planTemplateScenes(scenes, job.template.transition, job.fps);
+	return tempoWarnings(scenes, plan, clips, job.fps, tempo.limits, tempo.pictureChanges?.(job.inputProps.content, clips) ?? []);
 };
 
 /** The same job with generated audio attached; its duration now follows the clips. */

@@ -12,11 +12,28 @@ export const WebTestsHomeScreen: React.FC = () => {
 	const mod = useModuleColors('tests');
 	return (
 		<Panel active="tests">
-			<ModuleHead module="tests" tab={0} title={t('Testler', 'Quizzes')} sub={t('Kolay, Orta, Zor · her seviye 20 soru', 'Easy, Medium, Hard · 20 questions each')} actions={<Button tone="ghost" icon="search">{t('Konu ara', 'Find topic')}</Button>} />
+			<ModuleHead
+				module="tests"
+				tab={0}
+				title={t('Testler', 'Quizzes')}
+				sub={t('Kolay, Orta, Zor · her seviye 20 soru', 'Easy, Medium, Hard · 20 questions each')}
+				actions={
+					<Button tone="ghost" icon="search">
+						{t('Konu ara', 'Find topic')}
+					</Button>
+				}
+			/>
 			<Grid columns="1fr 2fr">
 				<ModuleBanner module="tests" over={t('Senin için hazır', 'Ready for you')} title={t('Problemler · Orta', 'Problems · Medium')} text={t('Denemede en çok net kaybettiğin konu. 20 soru, anında açıklama.', 'Where you lost most. 20 questions, instant feedback.')} action={t('Teste başla', 'Start quiz')} />
 				<Grid columns="1fr 1fr" gap={14}>
-					{[['Türkçe', 'Turkish', 12, 30], ['Matematik', 'Maths', 9, 35], ['Geometri', 'Geometry', 3, 20], ['Fizik', 'Physics', 5, 18], ['Kimya', 'Chemistry', 4, 16], ['Biyoloji', 'Biology', 2, 14]].map(([tr, en, done, total]) => (
+					{[
+						['Türkçe', 'Turkish', 12, 30],
+						['Matematik', 'Maths', 9, 35],
+						['Geometri', 'Geometry', 3, 20],
+						['Fizik', 'Physics', 5, 18],
+						['Kimya', 'Chemistry', 4, 16],
+						['Biyoloji', 'Biology', 2, 14],
+					].map(([tr, en, done, total]) => (
 						<Card key={tr as string} padding={16}>
 							<Stack row gap={12}>
 								<Tile module="tests" icon="book" size={40} />
@@ -79,7 +96,17 @@ export const WebTestSolveScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('tests');
 	return (
-		<Immersive module="tests" title={t('Problemler · Orta', 'Problems · Medium')} sub={t('Soru 4 / 20', 'Question 4 / 20')} progress={0.4} right={<Chip tone="success" icon="check">{t('3 doğru', '3 right')}</Chip>}>
+		<Immersive
+			module="tests"
+			title={t('Problemler · Orta', 'Problems · Medium')}
+			sub={t('Soru 4 / 20', 'Question 4 / 20')}
+			progress={0.4}
+			right={
+				<Chip tone="success" icon="check">
+					{t('3 doğru', '3 right')}
+				</Chip>
+			}
+		>
 			<Stack gap={16} style={{flex: 1, padding: '40px 160px'}}>
 				<Stack row gap={5}>
 					{[1, 1, 1, 2, 0, 0, 0, 0, 0, 0].map((state, index) => (
@@ -121,7 +148,17 @@ export const WebTestSolveWrongScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	return (
-		<Immersive module="tests" title={t('Problemler · Orta', 'Problems · Medium')} sub={t('Soru 5 / 20', 'Question 5 / 20')} progress={0.45} right={<Chip tone="success" icon="check">{t('3 doğru', '3 right')}</Chip>}>
+		<Immersive
+			module="tests"
+			title={t('Problemler · Orta', 'Problems · Medium')}
+			sub={t('Soru 5 / 20', 'Question 5 / 20')}
+			progress={0.45}
+			right={
+				<Chip tone="success" icon="check">
+					{t('3 doğru', '3 right')}
+				</Chip>
+			}
+		>
 			<Stack gap={16} style={{flex: 1, padding: '40px 160px'}}>
 				<Stack row gap={5}>
 					{[1, 1, 1, 1, 3, 0, 0, 0, 0, 0].map((state, index) => (

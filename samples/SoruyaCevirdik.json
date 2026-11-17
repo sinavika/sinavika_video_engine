@@ -1,0 +1,167 @@
+{
+  "template": "SoruyaCevirdik",
+  "format": "Vertical",
+  "theme": "SinavikaLight",
+  "fps": 60,
+  "name": "Soruya çevirdik 1 · Çaydanlık",
+  "voiceover": {
+    "profile": "Launch",
+    "voice": "Doga",
+    "model": "v4"
+  },
+  "soundtrack": {
+    "music": "Warm, playful kitchen-table acoustic groove: plucked ukulele and light marimba, soft brushed snare, a cheeky little bass line, like a curious friend working out a puzzle over tea. Around 100 BPM, light and friendly, stays under a voice. No vocals."
+  },
+  "cover": {
+    "title": "Çaydanlıktan TYT sorusu çıkar mı?",
+    "emphasis": "Çaydanlıktan",
+    "kicker": "Soruya çevirdik"
+  },
+  "content": {
+    "question": {
+      "text": "π = 3. Bir bardak 120 cm³. Çaydanlık (r = 6 cm, h = 10 cm) ağzına 2 cm kala doldurulursa en fazla kaç tam bardak çay çıkar?",
+      "options": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    "beats": [
+      {
+        "id": "hook",
+        "narration": "Hayattaki her şeyden bir TYT sorusu çıkar.",
+        "view": {
+          "type": "hook",
+          "text": "Çaydanlıktan TYT sorusu çıkar mı?",
+          "art": {
+            "kind": "teapot"
+          }
+        }
+      },
+      {
+        "id": "shape",
+        "narration": "Bu hafta biz seçtik: çaydanlık. Yarıçap 6, boy 10.",
+        "view": {
+          "type": "art",
+          "title": "Bu hafta biz seçtik",
+          "art": {
+            "kind": "teapot",
+            "morph": [
+              0,
+              1
+            ],
+            "r": "r = 6 cm",
+            "h": "h = 10 cm"
+          }
+        }
+      },
+      {
+        "id": "question",
+        "narration": "Bir bardak 120 santimetreküp. Ağzına 2 santim kala doldurursak kaç tam bardak çıkar?",
+        "view": {
+          "type": "question",
+          "label": "Soru"
+        }
+      },
+      {
+        "id": "countdown",
+        "narration": "Hadi, düşün!",
+        "minSeconds": 1.8,
+        "view": {
+          "type": "countdown"
+        }
+      },
+      {
+        "id": "first-try",
+        "narration": "3 çarpı 36 çarpı 10, 1080. Böl 120'ye: 9.",
+        "view": {
+          "type": "work",
+          "lines": [
+            "V = π · r² · h",
+            "3 · 36 · 10 = 1080",
+            "1080 ÷ 120 = 9"
+          ],
+          "result": "9 bardak?"
+        }
+      },
+      {
+        "id": "oops",
+        "narration": "Dur! Biz de önce 9 dedik. Ama 2 santim boş.",
+        "view": {
+          "type": "work",
+          "art": {
+            "kind": "cylinder",
+            "r": "r = 6",
+            "h": "h = 10",
+            "level": [
+              1,
+              0.8
+            ],
+            "gap": "2 cm"
+          },
+          "lines": [
+            "Biz de önce 9 dedik."
+          ],
+          "marks": [
+            {
+              "index": 3,
+              "state": "wrong"
+            }
+          ]
+        }
+      },
+      {
+        "id": "fix",
+        "narration": "Boy 8. 864 böl 120: 7 virgül 2. Yani 7 bardak.",
+        "view": {
+          "type": "work",
+          "lines": [
+            "h = 10 − 2 = 8",
+            "3 · 36 · 8 = 864",
+            "864 ÷ 120 = 7,2"
+          ],
+          "result": "7 tam bardak",
+          "marks": [
+            {
+              "index": 3,
+              "state": "wrong"
+            },
+            {
+              "index": 1,
+              "state": "correct"
+            }
+          ]
+        }
+      },
+      {
+        "id": "trap",
+        "narration": "O 2 santimi okumayan 9'u işaretliyor.",
+        "view": {
+          "type": "tag",
+          "text": "TUZAK",
+          "sub": "Ağzına 2 cm kala",
+          "art": {
+            "kind": "cylinder",
+            "r": "r = 6",
+            "h": "h = 10",
+            "level": [
+              0.8,
+              0.8
+            ],
+            "gap": "2 cm"
+          }
+        }
+      },
+      {
+        "id": "close",
+        "narration": "Sırada ne var? Yoruma yaz, en beğenileni soruya çeviriyoruz.",
+        "view": {
+          "type": "close",
+          "text": "Sırada ne var? Yoruma yaz."
+        }
+      }
+    ]
+  }
+}

@@ -259,17 +259,8 @@ describe('lesson script', () => {
 	});
 
 	it.runIf(existsSync(path.resolve(ROOT, 'public', 'Geo', 'World.json')))('finds every area the course maps name in the map data', async () => {
-		const {GEO_FILES, GEO_LAYERS} = await import('../../src/Configurations/GeoData');
+		const {geoLayerNames: namesOf} = await import('../../src/Courses/GeoName');
 		const {globSync} = await import('node:fs');
-		const cache = new Map<string, string[] | undefined>();
-		const namesOf = (layer: string) => {
-			if (!cache.has(layer)) {
-				const spec = (GEO_LAYERS as Record<string, {file: keyof typeof GEO_FILES; object: string}>)[layer];
-				const file = spec ? path.resolve(ROOT, 'public', GEO_FILES[spec.file].src) : '';
-				cache.set(layer, spec && existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')).objects[spec.object].geometries.map((item: {properties?: {name?: string}}) => item.properties?.name ?? '') : undefined);
-			}
-			return cache.get(layer);
-		};
 		const issues = globSync('Curriculum/Scripts/**/*.json', {cwd: ROOT}).flatMap((file) => {
 			const parsed = LessonScriptSchema.safeParse(JSON.parse(readFileSync(path.resolve(ROOT, file), 'utf8')));
 			return parsed.success ? mapNameIssues(parsed.data, namesOf).map((issue) => `${file}: ${issue}`) : [];

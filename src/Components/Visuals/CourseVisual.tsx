@@ -75,6 +75,7 @@ import {OpticsVisual} from './Physics/Optics';
 import {TankVisual} from './Physics/Tank';
 import {LEVER_STAGE, LeverVisual} from './Physics/Lever';
 import {CentreOfMassVisual} from './Physics/CentreOfMass';
+import {ConnectedBlocksVisual, connectedBlocksStage} from './Physics/ConnectedBlock';
 import {PulleyVisual, pulleyStage} from './Physics/Pulley';
 import {GearVisual} from './Physics/Gear';
 import {MotionGraphVisual, motionGraphRatio} from './Physics/MotionGraph';
@@ -187,6 +188,16 @@ export const CourseVisual: React.FC<VisualBoxProps & {visual: CourseVisualSpec}>
 	);
 };
 
+/** A formula card's type size in a video, in reference pixels. */
+const FORMULA_SIZE = 72;
+/** A formula's width per character of FormulaLine's measure, in ems (measured: 41.8 characters, 1963 px at 72 px). */
+const FORMULA_CHAR_EM = 0.65;
+/**
+ * A formula that would have to shrink below this on one line is set in lines instead, broken at its = signs: a chain
+ * of four equalities shrank to half size and still ran out of its box (TYT Matematik 09, s5-c4, 14 Nov 2026).
+ */
+const FORMULA_MIN_LINE_SCALE = 0.7;
+
 /** The characters a formula's line may take in an app still (FormulaLine). */
 const STILL_FORMULA_WIDTH = 24;
 
@@ -227,6 +238,8 @@ export const worldRatio = (visual: CourseVisualSpec): number | undefined => {
 			return poemLayout(visual).width / poemLayout(visual).height;
 		case 'pulley':
 			return pulleyStage(visual.ropes).width / pulleyStage(visual.ropes).height;
+		case 'connectedBlocks':
+			return connectedBlocksStage(visual).width / connectedBlocksStage(visual).height;
 		case 'kinematics':
 			return motionGraphRatio(visual);
 		case 'oscillator':
@@ -307,8 +320,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 				<FitBox style={{width, maxHeight: height}}>
 					<div style={{display: 'flex', justifyContent: 'center'}}>
 						<Card padding={SPACING.lg} elevated={false}>
-							<Text size={72} align="center">
-								<MathExpression latex={visual.latex} display style={{margin: 0}} />
+							<Text size={FORMULA_SIZE} align="center">
+								<MathExpression latex={formulaLines(visual.latex, width / (u(FORMULA_SIZE) * FORMULA_CHAR_EM * FORMULA_MIN_LINE_SCALE))} display style={{margin: 0}} />
 							</Text>
 							{visual.caption ? (
 								<Text tone="muted" align="center" size={30} style={{marginTop: u(SPACING.sm)}}>
@@ -339,6 +352,8 @@ const VisualOfKind: React.FC<VisualBoxProps & {visual: CourseVisualSpec}> = ({vi
 			return <CentreOfMassVisual visual={visual} {...box} />;
 		case 'pulley':
 			return <PulleyVisual visual={visual} {...box} />;
+		case 'connectedBlocks':
+			return <ConnectedBlocksVisual visual={visual} {...box} />;
 		case 'gears':
 			return <GearVisual visual={visual} {...box} />;
 		case 'kinematics':

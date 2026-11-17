@@ -12,9 +12,9 @@
  * render.
  *
  * Headlines name the benefit; the key words sit between *stars* and get the
- * highlighter stroke. A Turkish headline made of commands with a comma ends
- * with a full stop. English is written for English-speaking students, not
- * translated word for word.
+ * mark (a navy box on orange). Headlines are short phrases with no comma and
+ * no full stop (review, 14 Nov 2026: one rule for all). English is written
+ * for English-speaking students, not translated word for word.
  */
 export const STORE_LANGUAGES = ['tr', 'en'] as const;
 type StoreLanguage = (typeof STORE_LANGUAGES)[number];
@@ -38,7 +38,7 @@ export type StoreSlide = {
 export const STORE_SLIDES: readonly StoreSlide[] = [
 	{
 		file: '01-bugun-ne-calisacagini-bil',
-		headline: {tr: 'Bugün *ne çalışacağını* bil', en: 'Know *what to study* today'},
+		headline: {tr: 'Bugün ne *çalışacağını* bil', en: 'Know what to *study* today'},
 		subline: {tr: 'Planın her gün sıradaki işi önüne koyar.', en: 'Your plan puts the next task in front of you.'},
 		screens: {phone: 'm-hub-moduller', tablet: 't-hub-moduller', web: 'w-panel-anasayfa'},
 		float: 'today',
@@ -52,7 +52,7 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 	},
 	{
 		file: '03-deneme-net',
-		headline: {tr: 'Denemeni çöz, *netini* gör.', en: 'Take mock exams, *see your score*.'},
+		headline: {tr: 'Denemeni çözüp *netini* gör', en: 'Take exams and *see your score*'},
 		subline: {tr: 'Türkiye geneli denemeler, net gelişimin ve eksik konuların.', en: 'Mock exams, your score trend and your weak topics.'},
 		screens: {phone: 'm-deneme-sonuclar', tablet: 't-deneme-sonuclar', web: 'w-deneme-sonuclar'},
 		float: 'nets',
@@ -73,15 +73,15 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 	},
 	{
 		file: '06-bilgi-kartlari',
-		headline: {tr: 'Kartlarla *unutma*', en: 'Remember it *with flashcards*'},
+		headline: {tr: 'Kartlarla *aklında* tut', en: 'Remember it *with flashcards*'},
 		subline: {tr: 'Bilgi Kartları tekrarı doğru günde önüne getirir.', en: 'Flashcards come back on the right day.'},
-		screens: {phone: 'm-kart-on', tablet: 't-kart-el-yazisi', web: 'w-kart-bugun'},
+		screens: {phone: 'm-kart-arka', tablet: 't-kart-el-yazisi', web: 'w-kart-bugun'},
 		float: 'none',
 	},
 	{
 		file: '07-akilli-ozet',
-		headline: {tr: 'Sorunun *fotoğrafını* çek', en: 'Snap *a question*'},
-		subline: {tr: 'Akıllı Özet çözümü, kazanımı ve hatanı gösterir.', en: 'Smart Summary shows the solution and where you went wrong.'},
+		headline: {tr: 'Hatanı *adım adım* gör', en: 'See your mistake *step by step*'},
+		subline: {tr: 'Akıllı Özet sorunun çözümünü, kazanımını ve hatanı gösterir.', en: 'Smart Summary shows the solution, the skill and where you went wrong.'},
 		screens: {phone: 'm-ozet-sonuc', web: 'w-ozet-detay'},
 		float: 'none',
 	},
@@ -93,6 +93,29 @@ export const STORE_SLIDES: readonly StoreSlide[] = [
 		float: 'none',
 	},
 ];
+
+/**
+ * Watch screenshots: only the app's own screen, as the stores ask. The phone and
+ * tablet sets carry no watch (owner, 16 Nov 2026); the watch has its own shots.
+ * Google Play (Wear OS, WO-G5): 1:1, at least 384 px, no device frame, no extra text or graphics, no transparency or masking.
+ * App Store: one of Apple's Apple Watch sizes (416 × 496 = Series 10–12 at 2x), no alpha. Same files in every look.
+ */
+export const WATCH_SHOTS: Record<'applewatch' | 'wearos', readonly (readonly [string, string])[]> = {
+	applewatch: [
+		['01-bugun', 'k-apple-bugun'],
+		['02-plan', 'k-apple-plan'],
+		['03-odak', 'k-apple-odak'],
+		['04-kart', 'k-apple-kart'],
+		['05-kart-cevap', 'k-apple-kart-cevap'],
+		['06-deneme', 'k-apple-deneme'],
+		['07-bildirim', 'k-apple-bildirim'],
+	],
+	wearos: [
+		['01-kutucuk', 'k-wear-kutucuk'],
+		['02-odak', 'k-wear-odak'],
+		['03-kadran', 'k-wear-kadran'],
+	],
+};
 
 /** The Google Play feature graphic (1024 × 500): no device, no white or dark ground, no badge. */
 export const FEATURE_GRAPHIC = {
@@ -109,11 +132,11 @@ type StoreCreativeKind = 'header' | 'search';
 
 export const STORE_CREATIVE: Record<StoreCreativeKind, {file: string; headline: StoreText}> = {
 	header: {file: 'ust-gorsel', headline: {tr: 'Her gün *bir adım* öne', en: 'One step *ahead* every day'}},
-	search: {file: 'arama-sonucu', headline: {tr: 'Planlı çalış, *netini* artır.', en: 'Study *with a plan*'}},
+	search: {file: 'arama-sonucu', headline: {tr: 'Planlı çalışıp *netini* artır', en: 'Study *with a plan*'}},
 };
 
 /** What a picture shows. iPad pictures show the tablet drawing; Android tablets (9:16) the phone. */
-type StoreDevice = 'iphone' | 'android' | 'ipad' | 'desktop' | 'feature' | StoreCreativeKind;
+type StoreDevice = 'iphone' | 'android' | 'ipad' | 'desktop' | 'feature' | 'applewatch' | 'wearos' | StoreCreativeKind;
 
 type StoreFormat = {
 	platform: 'ios' | 'android';
@@ -137,4 +160,6 @@ export const STORE_FORMATS: readonly StoreFormat[] = [
 	{platform: 'android', folder: 'tablet-10-inc', device: 'android', sizes: [[2160, 3840]], note: '10 inç tablet, 9:16'},
 	{platform: 'android', folder: 'masaustu', device: 'desktop', sizes: [[1920, 1080]], note: 'Masaüstü (Chromebook), 16:9 (4–8 adet)'},
 	{platform: 'android', folder: 'ozellik-grafigi', device: 'feature', sizes: [[1024, 500]], note: 'Özellik grafiği 1024 × 500'},
+	{platform: 'ios', folder: 'apple-watch', device: 'applewatch', sizes: [[416, 496]], note: 'Apple Watch Series 10–12 (46 mm); yalnız arayüz, alfa yok'},
+	{platform: 'android', folder: 'wear-os', device: 'wearos', sizes: [[454, 454]], note: 'Wear OS 1:1, en az 384 px; yalnız arayüz, çerçeve, yazı ve maske yok'},
 ];

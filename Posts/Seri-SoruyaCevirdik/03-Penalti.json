@@ -1,0 +1,135 @@
+{
+  "template": "SoruyaCevirdik",
+  "format": "Vertical",
+  "theme": "SinavikaLight",
+  "fps": 60,
+  "quality": "1080p",
+  "name": "Soruya çevirdik 3 · Penaltı",
+  "output": "Outputs/Videos/SoruyaCevirdik/Pilot/03_Penalti.mp4",
+  "voiceover": {
+    "profile": "Launch",
+    "voice": "Doga",
+    "model": "v4"
+  },
+  "soundtrack": {
+    "music": "Tense-then-playful stadium drum groove: low tom heartbeat and crowd-like claps building suspense, then a light, cheeky pizzicato and whistle-like synth when the answer lands. Around 96 BPM, sporty and fun, sits under a voice. No vocals, no real crowd noise."
+  },
+  "cover": {
+    "title": "Kaleci doğru tarafa kaç ihtimalle atlar?",
+    "emphasis": "kaç ihtimalle",
+    "kicker": "Soruya çevirdik"
+  },
+  "content": {
+    "question": {
+      "text": "Oyuncu topu sol, orta veya sağa eşit olasılıkla vuruyor. Kaleci bundan bağımsız olarak üç taraftan birine eşit olasılıkla atlıyor. Kalecinin topun gittiği tarafa atlama olasılığı kaçtır?",
+      "options": [
+        "1/9",
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ]
+    },
+    "beats": [
+      {
+        "id": "hook",
+        "narration": "Bu hafta da biz seçtik: penaltı.",
+        "minSeconds": 2.6,
+        "view": {
+          "type": "hook",
+          "text": "Kaleci doğru tarafa kaç ihtimalle atlar?",
+          "art": {
+            "kind": "goal",
+            "zones": [
+              "Sol",
+              "Orta",
+              "Sağ"
+            ],
+            "dive": 0,
+            "shot": 2
+          }
+        }
+      },
+      {
+        "id": "question",
+        "narration": "Oyuncu üç taraftan birine vuruyor, kaleci de üç taraftan birine atlıyor, ikisi de rastgele. Kaleci doğru tarafa kaç ihtimalle atlar?",
+        "view": {
+          "type": "question",
+          "label": "Soru"
+        }
+      },
+      {
+        "id": "countdown",
+        "narration": "Hadi, düşün!",
+        "minSeconds": 1.8,
+        "view": {
+          "type": "countdown"
+        }
+      },
+      {
+        "id": "all-cases",
+        "narration": "Bütün durumlar: üç vuruş çarpı üç atlayış, dokuz durum.",
+        "view": {
+          "type": "art",
+          "title": "3 × 3 = 9 durum",
+          "art": {
+            "kind": "grid",
+            "rows": "Atlayış",
+            "cols": "Vuruş",
+            "labels": [
+              "Sol",
+              "Orta",
+              "Sağ"
+            ],
+            "diagonal": false
+          }
+        }
+      },
+      {
+        "id": "saves",
+        "narration": "Kalecinin tuttuğu durumlar: sol-sol, orta-orta, sağ-sağ. Üç. Üç bölü dokuz: üçte bir.",
+        "view": {
+          "type": "work",
+          "art": {
+            "kind": "grid",
+            "rows": "Atlayış",
+            "cols": "Vuruş",
+            "labels": [
+              "Sol",
+              "Orta",
+              "Sağ"
+            ],
+            "diagonal": true
+          },
+          "lines": [
+            "Sol-sol, orta-orta, sağ-sağ"
+          ],
+          "result": "3/9 = 1/3",
+          "marks": [
+            {
+              "index": 2,
+              "state": "correct"
+            }
+          ]
+        }
+      },
+      {
+        "id": "trap",
+        "narration": "1 bölü 9 diyen, yalnız tek bir durumu saymış. En sık tuzak bu.",
+        "view": {
+          "type": "tag",
+          "text": "TUZAK",
+          "sub": "1/9 yalnız tek durumu sayar"
+        }
+      },
+      {
+        "id": "close",
+        "narration": "Sırada ne var? Maç, market, otobüs; yoruma yaz, en beğenileni soruya çeviriyoruz.",
+        "view": {
+          "type": "close",
+          "text": "Sırada ne var? Yoruma yaz."
+        }
+      }
+    ]
+  }
+}

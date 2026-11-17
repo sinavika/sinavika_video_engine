@@ -78,6 +78,7 @@ export const CodeBoxes: React.FC<{digits: string}> = ({digits}) => {
 
 export const WelcomeScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	const fan: ModuleKey[] = ['lessons', 'exam', 'smartSummary'];
 	return (
 		<Phone bg="radial-gradient(90% 55% at 50% 30%, var(--ui-brandSoft) 0%, var(--ui-bg) 70%)">
@@ -95,7 +96,7 @@ export const WelcomeScreen: React.FC = () => {
 				<Text role="display" align="center">
 					{t('Ne çalışacağını bil,', 'Know what to study,')}
 					<br />
-					<span style={{color: '#EA580C'}}>{t('her gün ilerle.', 'move forward daily.')}</span>
+					<span style={{color: colors.brand}}>{t('her gün ilerle.', 'move ahead every day.')}</span>
 				</Text>
 				<Text role="body" align="center">
 					{t('Deneme, ders, test, plan ve SinoAI tek uygulamada. Planın 2 dakikada hazır.', 'Exams, lessons, quizzes, a plan and SinoAI in one app. Your plan in 2 minutes.')}

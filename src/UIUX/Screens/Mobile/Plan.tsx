@@ -2,8 +2,8 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {Bar, Bars, Button, Card, Chip, Field, List, ListRow, Ring, Segmented, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
+import {Bar, Bars, Button, Card, Chip, Field, List, ListRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {FilterChips, PlanTaskCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
 
@@ -14,10 +14,8 @@ export const PlanTask: React.FC<{module: ModuleKey; title: string; meta: string;
 	const colors = useColors();
 	const color = MODULES[module].color.light;
 	return (
-		<Stack row gap={12} style={{padding: '12px 14px', borderRadius: 18, background: colors.card, border: `1.5px solid ${now ? color : colors.line}`, borderLeft: `5px solid ${color}`, opacity: done ? 0.7 : 1}}>
-			<div style={{width: 24, height: 24, borderRadius: 8, background: done ? color : 'transparent', border: done ? undefined : `2px solid ${now ? color : colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-				{done ? <Icon name="check" size={14} color="#FFFFFF" /> : null}
-			</div>
+		<Stack data-ui={done ? 'disabled' : undefined} row gap={12} style={{padding: '12px 14px', borderRadius: 18, background: colors.card, border: `1.5px solid ${now ? color : colors.line}`, borderLeft: `5px solid ${color}`, opacity: done ? 0.7 : 1}}>
+			<div style={{width: 24, height: 24, borderRadius: 8, background: done ? color : 'transparent', border: done ? undefined : `2px solid ${now ? color : colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{done ? <Icon name="check" size={14} color="#FFFFFF" /> : null}</div>
 			<Stack grow gap={1}>
 				<Text role="headline" style={{textDecoration: done ? 'line-through' : undefined}} color={done ? colors.muted : colors.ink}>
 					{title}
@@ -28,8 +26,6 @@ export const PlanTask: React.FC<{module: ModuleKey; title: string; meta: string;
 		</Stack>
 	);
 };
-
-
 
 const DayRings: React.FC = () => {
 	const colors = useColors();
@@ -71,7 +67,6 @@ const DayRings: React.FC = () => {
  */
 export const PlanTodayScreen: React.FC = () => {
 	const t = useT();
-	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
 	return (
 		<ModuleScreen module="studyPlan" tab={0}>
@@ -106,19 +101,18 @@ export const PlanTodayScreen: React.FC = () => {
 						<div style={{width: '45%', height: '100%', borderRadius: 5, background: mod.color}} />
 						<div style={{position: 'absolute', left: 'calc(45% - 22px)', top: -8, padding: '2px 8px', borderRadius: 10, background: mod.action}}>
 							<Text role="meta" size={12} weight={800} color="#FFFFFF">
-								%45
+								<Pct value={45} />
 							</Text>
 						</div>
 					</div>
 				</Stack>
-				<Stack gap={9}>
+				<FitList gap={9}>
 					<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('3 mikro ders · 8 dk', '3 micro-lessons · 8 min')} done />
 					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} now />
 					<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} />
 					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} />
 					<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" />
-				</Stack>
-				<div style={{height: 4, background: colors.bg}} />
+				</FitList>
 			</Content>
 		</ModuleScreen>
 	);
@@ -297,7 +291,7 @@ export const PlanProgressScreen: React.FC = () => {
 							<Text role="num">{t('11 sa 20 dk', '11 h 20 min')}</Text>
 						</Stack>
 						<Chip tone="success" icon="trend">
-							%18
+							<Pct value={18} />
 						</Chip>
 					</Stack>
 					<div style={{marginTop: 14}}>
@@ -319,7 +313,10 @@ export const PlanProgressScreen: React.FC = () => {
 					</Text>
 				</Card>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-					{[['flame', t('5 gün', '5 days'), t('Seri', 'Streak')], ['checkCircle', '%86', t('Plana uyum', 'On plan')]].map(([icon, value, label]) => (
+					{[
+						['flame', t('5 gün', '5 days'), t('Seri', 'Streak')],
+						['checkCircle', t('%86', '86%'), t('Plana uyum', 'On plan')],
+					].map(([icon, value, label]) => (
 						<Card key={label} padding={14}>
 							<Stack row gap={10}>
 								<Tile icon={icon as 'flame'} module="studyPlan" size={36} />
@@ -344,7 +341,12 @@ export const PlanLessonProgressScreen: React.FC = () => {
 		<ModuleScreen module="studyPlan" tab={1} header={<AppHeader left="back" title={t('Konu ilerlemesi', 'Topic progress')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-					{[['38', t('Tamamlandı', 'Done'), colors.success], ['12', t('Devam', 'Active'), mod.color], ['6', t('Tekrar', 'Review'), colors.warning], ['55', t('Başlanmadı', 'Not started'), colors.muted]].map(([value, label, color]) => (
+					{[
+						['38', t('Tamamlandı', 'Done'), colors.success],
+						['12', t('Devam', 'Active'), mod.color],
+						['6', t('Tekrar', 'Review'), colors.warning],
+						['55', t('Başlanmadı', 'Not started'), colors.muted],
+					].map(([value, label, color]) => (
 						<Card key={label} padding={14}>
 							<Text role="num" size={26} color={color}>
 								{value}
@@ -360,20 +362,35 @@ export const PlanLessonProgressScreen: React.FC = () => {
 						['Paragrafta ana fikir', 'Main idea', '5 gün önce · %62', '5 days ago · 62%'],
 						['Mol kavramı', 'The mole', '1 hafta önce · %58', '1 week ago · 58%'],
 					].map(([tr, en, subTr, subEn]) => (
-						<ListRow key={tr} module="studyPlan" icon="refresh" title={t(tr, en)} subtitle={t(subTr, subEn)} trailing={<Chip tone="module" module="studyPlan" size="sm">{t('Ekle', 'Add')}</Chip>} />
+						<ListRow
+							key={tr}
+							module="studyPlan"
+							icon="refresh"
+							title={t(tr, en)}
+							subtitle={t(subTr, subEn)}
+							trailing={
+								<Chip tone="module" module="studyPlan" size="sm">
+									{t('Ekle', 'Add')}
+								</Chip>
+							}
+						/>
 					))}
 				</List>
 				<SectionTitle title={t('Derslere göre', 'By subject')} />
 				<Card padding={14}>
 					<Stack gap={10}>
-						{[['Türkçe', 'Turkish', 0.64], ['Matematik', 'Maths', 0.38], ['Fen', 'Science', 0.3]].map(([tr, en, value]) => (
+						{[
+							['Türkçe', 'Turkish', 0.64],
+							['Matematik', 'Maths', 0.38],
+							['Fen', 'Science', 0.3],
+						].map(([tr, en, value]) => (
 							<Stack key={tr as string} row gap={10}>
 								<Text role="small" weight={700} color={colors.ink} style={{width: 80}}>
 									{t(tr as string, en as string)}
 								</Text>
 								<Bar value={value as number} color={mod.color} track={mod.track} />
 								<Text role="meta" style={{width: 34, textAlign: 'right'}}>
-									%{Math.round((value as number) * 100)}
+									<Pct value={Math.round((value as number) * 100)} />
 								</Text>
 							</Stack>
 						))}
@@ -397,7 +414,17 @@ export const PlanScheduleScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="studyPlan" tab={2}>
 			<Content gap={12}>
-				<PageTitle module="studyPlan" title={t('Program', 'Schedule')} sub={t('12–18 Ekim · 21 saat', '12–18 Oct · 21 hours')} right={<Stack row gap={6}><Button tone="ghost" size="sm" icon="left" /><Button tone="ghost" size="sm" icon="right" /></Stack>} />
+				<PageTitle
+					module="studyPlan"
+					title={t('Program', 'Schedule')}
+					sub={t('12–18 Ekim · 21 saat', '12–18 Oct · 21 hours')}
+					right={
+						<Stack row gap={6}>
+							<Button tone="ghost" size="sm" icon="left" />
+							<Button tone="ghost" size="sm" icon="right" />
+						</Stack>
+					}
+				/>
 				<Card padding={10}>
 					<Stack row gap={4} style={{paddingLeft: 40}}>
 						{['P', 'S', 'Ç', 'P', 'C', 'C', 'P'].map((day, index) => (
@@ -457,7 +484,7 @@ export const PlanSettingsScreen: React.FC = () => {
 				</List>
 				<List>
 					<ListRow title={t('Denemeden sonra planı güncelle', 'Update plan after exams')} subtitle={t('Eksik konular otomatik eklenir', 'Gaps are added automatically')} trailing={<Toggle on module="studyPlan" />} chevron={false} />
-					<ListRow title={t('Günlük hatırlatma', 'Daily reminder')} subtitle="08:00" trailing={<Toggle on module="studyPlan" />} chevron={false} />
+					<ListRow title={t('Günlük hatırlatma', 'Daily reminder')} subtitle="08:30" trailing={<Toggle on module="studyPlan" />} chevron={false} />
 				</List>
 			</Content>
 			<BottomBar>

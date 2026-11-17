@@ -680,35 +680,36 @@ const figuresOf = (card: LessonScript['lesson']['sections'][number]['cards'][num
 
 /**
  * Areas a map names that its layer does not have. The map leaves them out without a word: "Çin" framed nothing on
- * the Silk Road map, the world layer calls it "Çin Halk Cumhuriyeti" (KPSS Coğrafya 20, 2 Nov 2026). `namesOf` gives a
- * layer's names (the check reads them from public/Geo), undefined when it cannot.
+ * the Silk Road map, the world layer calls it "Çin Halk Cumhuriyeti" (KPSS Coğrafya 20, 2 Nov 2026); "Turkey" shaded
+ * nothing on a quiz figure, the layer is Turkish (Quiz, 14 Nov 2026). `namesOf` gives a layer's names (Node reads them
+ * from public/Geo, `Courses/GeoName`), undefined when it cannot. Used by the lesson check and before a figure is drawn.
  */
+export const mapVisualNameIssues = (visual: CourseVisual, namesOf: (layer: string) => readonly string[] | undefined): string[] => {
+	if (visual.kind !== 'map' || typeof visual.base !== 'string') return [];
+	const check = (layer: string, names: readonly string[], field: string) => {
+		const known = namesOf(layer);
+		if (!known) return [];
+		return [...new Set(names)]
+			.filter((name) => !known.includes(name))
+			.map((name) => {
+				const lower = name.toLocaleLowerCase('tr');
+				// Every near name, not the first: "Çin" is both "Çin Halk Cumhuriyeti" and Taiwan's "Çin Cumhuriyeti".
+				const near = known.filter((item) => item.toLocaleLowerCase('tr').startsWith(lower) || lower.startsWith(item.toLocaleLowerCase('tr')) || item.toLocaleLowerCase('tr').includes(lower)).slice(0, 3);
+				return `the map's ${field} names "${name}", which the ${layer} layer does not have${near.length > 0 ? ` (did you mean ${near.map((item) => `"${item}"`).join(' or ')}?)` : ' (names are the Turkish names in public/Geo)'}; the map leaves it out.`;
+			});
+	};
+	return [
+		...check(visual.base, visual.focus, 'focus'),
+		...check(visual.base, visual.highlights.map((item) => item.name), 'highlights'),
+		...check(visual.base, visual.shades.flatMap((shade) => shade.names), 'shades'),
+		...visual.overlays.flatMap((overlay) => check(overlay.layer, overlay.names, `${overlay.layer} overlay`)),
+	];
+};
+
+/** `mapVisualNameIssues` for every map of a lesson, with the card's place. */
 export const mapNameIssues = (script: LessonScript, namesOf: (layer: string) => readonly string[] | undefined): string[] =>
 	script.lesson.sections.flatMap((section, sectionIndex) =>
-		section.cards.flatMap((card, cardIndex) =>
-			figuresOf(card).flatMap((visual) => {
-				if (visual.kind !== 'map' || typeof visual.base !== 'string') return [];
-				const where = `s${sectionIndex + 1}-c${cardIndex + 1}`;
-				const check = (layer: string, names: readonly string[], field: string) => {
-					const known = namesOf(layer);
-					if (!known) return [];
-					return [...new Set(names)]
-						.filter((name) => !known.includes(name))
-						.map((name) => {
-							const lower = name.toLocaleLowerCase('tr');
-							// Every near name, not the first: "Çin" is both "Çin Halk Cumhuriyeti" and Taiwan's "Çin Cumhuriyeti".
-							const near = known.filter((item) => item.toLocaleLowerCase('tr').startsWith(lower) || lower.startsWith(item.toLocaleLowerCase('tr')) || item.toLocaleLowerCase('tr').includes(lower)).slice(0, 3);
-							return `${where}: the map's ${field} names "${name}", which the ${layer} layer does not have${near.length > 0 ? ` (did you mean ${near.map((item) => `"${item}"`).join(' or ')}?)` : ''}; the map leaves it out.`;
-						});
-				};
-				return [
-					...check(visual.base, visual.focus, 'focus'),
-					...check(visual.base, visual.highlights.map((item) => item.name), 'highlights'),
-					...check(visual.base, visual.shades.flatMap((shade) => shade.names), 'shades'),
-					...visual.overlays.flatMap((overlay) => check(overlay.layer, overlay.names, `${overlay.layer} overlay`)),
-				];
-			}),
-		),
+		section.cards.flatMap((card, cardIndex) => figuresOf(card).flatMap((visual) => mapVisualNameIssues(visual, namesOf).map((issue) => `s${sectionIndex + 1}-c${cardIndex + 1}: ${issue}`))),
 	);
 
 export const stageIssues = (script: LessonScript): string[] =>

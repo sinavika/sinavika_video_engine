@@ -1,5 +1,5 @@
 import React from 'react';
-import {useColors, useModuleColors} from '../../Context';
+import {useColors, useModuleColors, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {Button, Stack, Text} from '../../Parts/Shared';
 import {UI_SHADOW} from '../../Tokens';
@@ -43,11 +43,7 @@ const Sentence: React.FC<{text: string; size?: number}> = ({text, size = 15}) =>
 const Check: React.FC<{on?: boolean; round?: boolean}> = ({on, round}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
-	return (
-		<div style={{width: 24, height: 24, borderRadius: round ? 12 : 7, flexShrink: 0, background: on ? mod.action : colors.card, border: on ? undefined : `2px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-			{on ? <Icon name="check" size={15} color="#FFFFFF" /> : null}
-		</div>
-	);
+	return <div style={{width: 24, height: 24, borderRadius: round ? 12 : 7, flexShrink: 0, background: on ? mod.action : colors.card, border: on ? undefined : `2px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{on ? <Icon name="check" size={15} color="#FFFFFF" /> : null}</div>;
 };
 
 /** The guess toggle that sits left of Devam (live since 4 Nov): a round question-mark button. */
@@ -122,13 +118,16 @@ export const LessonGroupScreen: React.FC = () => {
 export const LessonMatchScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
+	const {mode} = useUI();
 	// Pairs stay in the Dersler colour (no other module's colour); the number tells them apart.
 	const tint = [mod.color, mod.action, mod.ink];
+	// The number reads on its disc: the dark theme's light tints take dark ink.
+	const numberInk = (n: number) => (mode === 'dark' && n !== 1 ? '#0B1C30' : '#FFFFFF');
 	const Pair: React.FC<{text: string; n?: number; on?: boolean}> = ({text, n, on}) => (
 		<div style={{position: 'relative', padding: '12px 12px', borderRadius: 16, minHeight: 50, boxSizing: 'border-box', display: 'flex', alignItems: 'center', gap: 8, background: n !== undefined ? `${tint[n]}14` : colors.card, border: `1.5px solid ${n !== undefined ? tint[n] : on ? colors.ink : colors.line}`}}>
 			{n !== undefined ? (
 				<div style={{width: 22, height: 22, borderRadius: 11, background: tint[n], display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-					<Text role="meta" size={12} weight={800} color="#FFFFFF">
+					<Text role="meta" size={12} weight={800} color={numberInk(n)}>
 						{n + 1}
 					</Text>
 				</div>
@@ -342,7 +341,8 @@ export const LessonTypedBlankScreen: React.FC = () => {
 				<Text role="headline" size={18} weight={700} style={{lineHeight: '34px'}}>
 					Bir bilim ya da meslek alanına özgü anlama{' '}
 					<span style={{display: 'inline-flex', alignItems: 'center', minWidth: 110, padding: '0 10px', height: 34, verticalAlign: 'middle', borderRadius: 10, border: `2px solid ${mod.color}`, background: mod.wash, color: mod.ink}}>
-						terim<span style={{width: 2, height: 20, background: mod.color, marginLeft: 2}} />
+						terim
+						<span style={{width: 2, height: 20, background: mod.color, marginLeft: 2}} />
 					</span>{' '}
 					anlam denir.
 				</Text>
@@ -470,8 +470,14 @@ export const LessonSectionScreen: React.FC = () => {
 			<Stack gap={8}>
 				{sections.map(([name, state], index) => (
 					<Stack key={name} row gap={12} style={{padding: '10px 12px', borderRadius: 16, background: state === 'now' ? mod.wash : 'transparent', border: `1px solid ${state === 'now' ? mod.line : colors.line}`}}>
-						<div style={{width: 28, height: 28, borderRadius: 14, background: state === 'done' ? mod.color : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
-							{state === 'done' ? <Icon name="check" size={14} color="#FFFFFF" /> : <Text role="meta" weight={800}>{index + 1}</Text>}
+						<div style={{width: 28, height: 28, borderRadius: 14, background: state === 'done' ? mod.action : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
+							{state === 'done' ? (
+								<Icon name="check" size={14} color="#FFFFFF" />
+							) : (
+								<Text role="meta" weight={800}>
+									{index + 1}
+								</Text>
+							)}
 						</div>
 						<Text role="headline" style={{flex: 1}} color={state === 'next' ? colors.muted : colors.ink}>
 							{name}

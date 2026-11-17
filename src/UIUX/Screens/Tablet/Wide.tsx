@@ -24,9 +24,7 @@ const Pane: React.FC<{children: React.ReactNode; style?: React.CSSProperties}> =
 
 const Key: React.FC<{children: string}> = ({children}) => {
 	const colors = useColors();
-	return (
-		<span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 24, height: 24, padding: '0 6px', boxSizing: 'border-box', borderRadius: 6, background: colors.card, border: `1px solid ${colors.line}`, borderBottomWidth: 2.5, fontSize: 12, fontWeight: 800, color: colors.ink}}>{children}</span>
-	);
+	return <span style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 24, height: 24, padding: '0 6px', boxSizing: 'border-box', borderRadius: 6, background: colors.card, border: `1px solid ${colors.line}`, borderBottomWidth: 2.5, fontSize: 12, fontWeight: 800, color: colors.ink}}>{children}</span>;
 };
 
 const KeyHint: React.FC<{keys: string[]; label: string}> = ({keys, label}) => (
@@ -48,7 +46,20 @@ export const ExamKeyboardScreen: React.FC = () => {
 	const states = Array.from({length: 40}, (_, index) => (index < 18 ? 1 : index === 18 ? 2 : index === 7 || index === 12 ? 3 : 0)) as (0 | 1 | 2 | 3)[];
 	return (
 		<Tablet module="exam">
-			<SolveBar pen={false} title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Temel Matematik', 'Basic Maths')} center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />} right={<Stack row gap={10}><Chip tone="outline" icon="language">{t('Klavye bağlı', 'Keyboard on')}</Chip><Button size="sm">{t('Bitir', 'Finish')}</Button></Stack>} />
+			<SolveBar
+				pen={false}
+				title={t('TYT Deneme 5', 'TYT Exam 5')}
+				sub={t('Temel Matematik', 'Basic Maths')}
+				center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />}
+				right={
+					<Stack row gap={10}>
+						<Chip tone="outline" icon="language">
+							{t('Klavye bağlı', 'Keyboard on')}
+						</Chip>
+						<Button size="sm">{t('Bitir', 'Finish')}</Button>
+					</Stack>
+				}
+			/>
 			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<Pane style={{flex: 1}}>
 					<Stack row justify="space-between">
@@ -68,7 +79,7 @@ export const ExamKeyboardScreen: React.FC = () => {
 					<Stack row gap={18} wrap style={{marginTop: 'auto', padding: '12px 14px', borderRadius: 16, background: colors.line2}}>
 						<KeyHint keys={['A', '–', 'E']} label={t('cevapla', 'answer')} />
 						<KeyHint keys={['←', '→']} label={t('önceki / sonraki', 'prev / next')} />
-						<KeyHint keys={['İ']} label={t('işaretle', 'flag')} />
+						<KeyHint keys={['M']} label={t('işaretle', 'flag')} />
 						<KeyHint keys={['⌫']} label={t('cevabı sil', 'clear')} />
 						<KeyHint keys={['⌘', '/']} label={t('tüm kısayollar', 'all shortcuts')} />
 					</Stack>
@@ -120,7 +131,17 @@ export const LessonSinoPanelScreen: React.FC = () => {
 	);
 	return (
 		<Tablet module="lessons" wash>
-			<SolveBar pen={false} title="TYT tarzı soru" sub={`${TOPIC.title} · 5 / 5`} center={<div style={{width: 260, height: 5, borderRadius: 3, background: colors.line2}}><div style={{width: '90%', height: '100%', borderRadius: 3, background: lessons.color}} /></div>} right={<RoundButton icon="sparkles" on label="SinoAI" />} />
+			<SolveBar
+				pen={false}
+				title="TYT tarzı soru"
+				sub={`${TOPIC.title} · 5 / 5`}
+				center={
+					<div style={{width: 260, height: 5, borderRadius: 3, background: colors.line2}}>
+						<div style={{width: '90%', height: '100%', borderRadius: 3, background: lessons.color}} />
+					</div>
+				}
+				right={<RoundButton icon="sparkles" on label="SinoAI" />}
+			/>
 			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<Pane style={{flex: 1}}>
 					<Kind>TYT tarzı · 5 / 5</Kind>
@@ -190,7 +211,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 					<Text role="title" size={24}>
 						Türkçe
 					</Text>
-					<Text role="small">15 konu · ilk denemede %80</Text>
+					<Text role="small">{t('15 konu · ilk denemede %80', '15 topics · 80% first try')}</Text>
 					<Stack gap={4} style={{marginTop: 8}}>
 						{WORK_TOPICS.map(([name, micro, done, minutes], index) => (
 							<Stack key={name} row gap={12} style={{padding: '11px 12px', borderRadius: 16, background: index === 0 ? mod.soft : 'transparent'}}>
@@ -221,7 +242,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 								{TOPIC.hook}
 							</Text>
 							<Stack row gap={10} style={{marginTop: 6}}>
-								<Button tone="white" icon="play" style={{color: mod.ink}}>
+								<Button tone="white" icon="play" style={{color: mod.action}}>
 									Mecaz anlamla devam et
 								</Button>
 								<Chip tone="glass" icon="video">
@@ -237,8 +258,14 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
 						{MICRO_LESSONS.slice(0, 10).map(([name, steps, minutes], index) => (
 							<Stack key={name} row gap={10} style={{padding: '10px 12px', borderRadius: 16, background: colors.card, border: `1px solid ${states[index] === 'now' ? mod.color : colors.line}`}}>
-								<div style={{width: 26, height: 26, borderRadius: 13, background: states[index] === 'done' ? mod.color : colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-									{states[index] === 'done' ? <Icon name="check" size={14} color="#FFFFFF" /> : <Text role="meta" weight={800}>{index + 1}</Text>}
+								<div style={{width: 26, height: 26, borderRadius: 13, background: states[index] === 'done' ? mod.action : colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+									{states[index] === 'done' ? (
+										<Icon name="check" size={14} color="#FFFFFF" />
+									) : (
+										<Text role="meta" weight={800}>
+											{index + 1}
+										</Text>
+									)}
 								</div>
 								<Stack grow gap={0}>
 									<Text role="headline" size={14}>
@@ -266,19 +293,19 @@ export const PlanWeekScreen: React.FC = () => {
 	const mod = useModuleColors('studyPlan');
 	const days = [t('Pzt 12', 'Mon 12'), t('Sal 13', 'Tue 13'), t('Çar 14', 'Wed 14'), t('Per 15', 'Thu 15'), t('Cum 16', 'Fri 16'), t('Cmt 17', 'Sat 17'), t('Paz 18', 'Sun 18')];
 	const tasks: [number, ModuleKey, string, string, boolean?][] = [
-		[0, 'lessons', 'Gerçek anlam', '8 dk', true],
-		[0, 'tests', 'Sayılar', '20 soru', true],
-		[1, 'lessons', 'Mecaz anlam', '10 dk', true],
-		[1, 'flashcards', 'Mol', '20 kart', true],
-		[2, 'tests', 'Paragraf', '20 soru', true],
-		[2, 'exam', 'Paragraf branş', '40 soru'],
-		[3, 'lessons', 'Sözcükte Anlam', '8 dk', true],
-		[3, 'tests', 'Problemler', '20 soru'],
-		[3, 'flashcards', 'Mol kavramı', '20 kart'],
-		[4, 'lessons', 'Söz Yorumu', '12 dk'],
-		[4, 'tests', 'Üslü sayılar', '20 soru'],
-		[5, 'exam', 'TYT Deneme 5', '10:00'],
-		[6, 'lessons', 'Haftalık tekrar', '30 dk'],
+		[0, 'lessons', t('Gerçek anlam', 'Literal meaning'), t('8 dk', '8 min'), true],
+		[0, 'tests', t('Sayılar', 'Numbers'), t('20 soru', '20 q'), true],
+		[1, 'lessons', t('Mecaz anlam', 'Figurative meaning'), t('10 dk', '10 min'), true],
+		[1, 'flashcards', t('Mol', 'The mole'), t('20 kart', '20 cards'), true],
+		[2, 'tests', t('Paragraf', 'Paragraphs'), t('20 soru', '20 q'), true],
+		[2, 'exam', t('Paragraf branş', 'Paragraph exam'), t('40 soru', '40 q')],
+		[3, 'lessons', t('Sözcükte Anlam', 'Word meaning'), t('8 dk', '8 min'), true],
+		[3, 'tests', t('Problemler', 'Problems'), t('20 soru', '20 q')],
+		[3, 'flashcards', t('Mol kavramı', 'The mole'), t('20 kart', '20 cards')],
+		[4, 'lessons', t('Söz Yorumu', 'Reading statements'), t('12 dk', '12 min')],
+		[4, 'tests', t('Üslü sayılar', 'Exponents'), t('20 soru', '20 q')],
+		[5, 'exam', t('TYT Deneme 5', 'TYT Exam 5'), '10:00'],
+		[6, 'lessons', t('Haftalık tekrar', 'Weekly review'), t('30 dk', '30 min')],
 	];
 	return (
 		<Tablet module="studyPlan" wash>
@@ -310,7 +337,7 @@ export const PlanWeekScreen: React.FC = () => {
 								{tasks
 									.filter(([dayIndex]) => dayIndex === index)
 									.map(([, module, title, amount, done]) => (
-										<div key={title} style={{padding: '8px 9px', borderRadius: 12, background: MODULES[module] ? colors.card : colors.card, border: `1px solid ${colors.line}`, borderLeft: `4px solid ${MODULES[module].color.light}`, opacity: done ? 0.55 : 1}}>
+										<div data-ui={done ? 'disabled' : undefined} key={title} style={{padding: '8px 9px', borderRadius: 12, background: MODULES[module] ? colors.card : colors.card, border: `1px solid ${colors.line}`, borderLeft: `4px solid ${MODULES[module].color.light}`, opacity: done ? 0.55 : 1}}>
 											<Text role="headline" size={13} style={{textDecoration: done ? 'line-through' : undefined}}>
 												{title}
 											</Text>

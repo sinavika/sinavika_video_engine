@@ -233,6 +233,8 @@ export const numberedPartNames = (visual: CourseVisual): string[] | null => {
 			return [...count('b', visual.bodies.length), 'centre', 'coordinates'];
 		case 'pulley':
 			return ['ropes', 'load', 'f', 'pull', 'h'];
+		case 'connectedBlocks':
+			return [...count('b', visual.blocks.length), 'f', ...count('t', visual.blocks.length - 1), 'a'];
 		case 'gears':
 			return [...count('w', visual.wheels.length), 'turn', 'counts'];
 		case 'kinematics':

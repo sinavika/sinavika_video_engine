@@ -29,7 +29,11 @@ const NavRow: React.FC<{item: PanelItem; active: boolean; label: string; icon: U
 			<Text role="headline" size={14} weight={active ? 700 : 500} color={active ? colors.ink : colors.ink2} style={{flex: 1}}>
 				{label}
 			</Text>
-			{badge ? <Text role="meta" weight={700} color={colors.muted}>{badge}</Text> : null}
+			{badge ? (
+				<Text role="meta" weight={700} color={colors.muted}>
+					{badge}
+				</Text>
+			) : null}
 		</Stack>
 	);
 };
@@ -201,7 +205,11 @@ export const ModuleHead: React.FC<{module: ModuleKey; tab?: number; tabs?: strin
 					<Text role="title" size={26}>
 						{title}
 					</Text>
-					{sub ? <Text role="small" size={13.5}>{sub}</Text> : null}
+					{sub ? (
+						<Text role="small" size={13.5}>
+							{sub}
+						</Text>
+					) : null}
 				</Stack>
 				<Stack row gap={10} style={{position: 'relative'}}>
 					{actions}
@@ -248,7 +256,12 @@ export const Immersive: React.FC<{module: ModuleKey; title: string; sub?: string
 export const SiteHeader: React.FC<{active?: string; open?: 'products'}> = ({active, open}) => {
 	const colors = useColors();
 	const t = useT();
-	const links: [string, boolean][] = [[t('Ürünler', 'Products'), true], [t('Sınavlar', 'Exams'), false], [t('Paketler', 'Plans'), false], [t('Kaynaklar', 'Resources'), true]];
+	const links: [string, boolean][] = [
+		[t('Ürünler', 'Products'), true],
+		[t('Sınavlar', 'Exams'), false],
+		[t('Paketler', 'Plans'), false],
+		[t('Kaynaklar', 'Resources'), true],
+	];
 	return (
 		<div style={{position: 'relative', zIndex: 10}}>
 			<Stack row style={{height: 80, padding: '0 112px', background: colors.card, borderBottom: `1px solid ${colors.line}`}}>
@@ -324,7 +337,7 @@ const SiteFooter: React.FC = () => {
 				<Stack gap={14} style={{width: 300}}>
 					<Logo wordmark height={22} color={colors.ink} />
 					<Text role="small" color={colors.muted}>
-						{t('Ne çalışacağını bil, her gün ilerle. YKS ve KPSS için çalışma platformu.', 'Know what to study, move forward daily.')}
+						{t('Ne çalışacağını bil, her gün ilerle. YKS ve KPSS için çalışma platformu.', 'Know what to study, move ahead every day.')}
 					</Text>
 					<Stack row gap={8}>
 						<Button tone="ghost" size="sm" icon="apple">
@@ -349,10 +362,10 @@ const SiteFooter: React.FC = () => {
 				))}
 			</Stack>
 			<Stack row justify="space-between" style={{marginTop: 36, paddingTop: 18, borderTop: `1px solid ${colors.line}`}}>
-				<Text role="meta" color={colors.subtle}>
+				<Text role="meta" color={colors.muted}>
 					© 2026 Sınavika
 				</Text>
-				<Text role="meta" color={colors.subtle}>
+				<Text role="meta" color={colors.muted}>
 					Türkçe · English · Deutsch · Nederlands
 				</Text>
 			</Stack>
@@ -424,7 +437,9 @@ export const DevicePhone: React.FC<{width?: number; rotate?: number; children: R
 		<div style={{width, height: 844 * scale + bezel * 2, borderRadius: width * g.outerRadius, background: g.body, padding: bezel, boxSizing: 'border-box', transform: `rotate(${rotate}deg)`, boxShadow: `0 ${width * 0.08}px ${width * 0.2}px -${width * 0.06}px rgba(11,28,48,0.55), inset 0 0 0 ${Math.max(1, width * 0.006)}px rgba(255,255,255,0.2)`}}>
 			<div style={{width: width - bezel * 2, height: 844 * scale, borderRadius: width * g.screenRadius, overflow: 'hidden', position: 'relative', background: '#FFFFFF'}}>
 				<div style={{width: 390, height: 844, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
-					<UIProvider calm={false} web={false}>{children}</UIProvider>
+					<UIProvider calm={false} web={false}>
+						{children}
+					</UIProvider>
 				</div>
 				<div style={{position: 'absolute', top: width * g.island.top, left: '50%', width: width * g.island.width, height: width * g.island.height, marginLeft: (-width * g.island.width) / 2, borderRadius: width, background: g.body}} />
 			</div>
@@ -448,7 +463,9 @@ export const DeviceBrowser: React.FC<{width?: number; title?: string; children: 
 			</Stack>
 			<div style={{width, height: H * scale, overflow: 'hidden'}}>
 				<div style={{width: W, height: H, transform: `scale(${scale})`, transformOrigin: 'top left'}}>
-					<UIProvider calm={false} web={false}>{children}</UIProvider>
+					<UIProvider calm={false} web={false}>
+						{children}
+					</UIProvider>
 				</div>
 			</div>
 		</div>
@@ -580,7 +597,7 @@ export const WebOnboarding: React.FC<{step: number; total?: number; over: string
 					</Button>
 				</Stack>
 			</div>
-			<div style={{flex: 1, margin: 16, borderRadius: 32, background: `radial-gradient(120% 100% at 100% 0%, #FFEDD5 0%, ${colors.bg} 60%)`, position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{preview}</div>
+			<div style={{flex: 1, margin: 16, borderRadius: 32, background: `radial-gradient(120% 100% at 100% 0%, ${colors.brandSoft} 0%, ${colors.bg} 60%)`, position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{preview}</div>
 		</div>
 	);
 };

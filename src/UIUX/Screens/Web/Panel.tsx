@@ -53,7 +53,7 @@ export const WebNotificationsScreen: React.FC = () => {
 	const colors = useColors();
 	const rows: [ModuleKey, string, string, string, string, string, boolean][] = [
 		['exam', 'Sonucun hazır: TYT Deneme 4', 'Your result: TYT Exam 4', '78,5 net · eksik konularını analizde gör.', '78.5 · see your gaps.', '10:24', true],
-		['studyPlan', 'Bugünün planı hazır', 'Today’s plan is ready', '3 görev, yaklaşık 45 dakika. İlki: Paragraf.', '3 tasks, ~45 minutes.', '08:00', true],
+		['studyPlan', 'Bugünün planı hazır', 'Today’s plan is ready', '3 görev, yaklaşık 45 dakika. İlki: Paragraf.', '3 tasks, ~45 minutes.', '08:30', true],
 		['sinoAi', 'SinoAI yanıtladı', 'SinoAI replied', 'Türev sorunun adım adım çözümü hazır.', 'Your derivative answer is ready.', t('Dün', 'Yesterday'), true],
 		['flashcards', '32 kart seni bekliyor', '32 cards are due', 'Bugün 8 dakika yeter, seriyi koru.', '8 minutes keeps your streak.', t('Pazartesi', 'Monday'), false],
 		['smartSummary', 'Analizin hazır', 'Your analysis is ready', 'Mol hesaplamaları sorusunun çözümü hazır.', 'Mole question solved.', t('Pazar', 'Sunday'), false],
@@ -99,7 +99,14 @@ export const WebNotificationsScreen: React.FC = () => {
 const ProfileTabs: React.FC<{active: number}> = ({active}) => {
 	const colors = useColors();
 	const t = useT();
-	const tabs: [UIIconName, string][] = [['user', t('Hesap', 'Account')], ['target', t('Hedefim', 'Goal')], ['card', t('Abonelik', 'Plan')], ['bell', t('Bildirimler', 'Notifications')], ['moon', t('Görünüm', 'Appearance')], ['shield', t('Güvenlik', 'Security')]];
+	const tabs: [UIIconName, string][] = [
+		['user', t('Hesap', 'Account')],
+		['target', t('Hedefim', 'Goal')],
+		['card', t('Abonelik', 'Plan')],
+		['bell', t('Bildirimler', 'Notifications')],
+		['moon', t('Görünüm', 'Appearance')],
+		['shield', t('Güvenlik', 'Security')],
+	];
 	return (
 		<Stack row gap={6} style={{borderBottom: `1px solid ${colors.line}`}}>
 			{tabs.map(([icon, label], index) => (
@@ -208,7 +215,12 @@ export const WebSubscriptionScreen: React.FC = () => {
 					</div>
 					<WCard title={t('Kullanım · Ekim', 'Usage · October')}>
 						<Stack gap={14}>
-							{([['smartSummary', 7, 30], ['sinoAi', 4, 20]] as [ModuleKey, number, number][]).map(([key, used, total]) => (
+							{(
+								[
+									['smartSummary', 7, 30],
+									['sinoAi', 4, 20],
+								] as [ModuleKey, number, number][]
+							).map(([key, used, total]) => (
 								<Stack key={key} gap={6}>
 									<Stack row justify="space-between">
 										<Text role="small" weight={700} color={colors.ink}>
@@ -226,7 +238,11 @@ export const WebSubscriptionScreen: React.FC = () => {
 				</Stack>
 				<WCard title={t('Faturalar', 'Invoices')}>
 					<List>
-						{[['12 Ekim 2026', '₺299'], ['12 Eylül 2026', '₺299'], ['12 Ağustos 2026', '₺299']].map(([date, price]) => (
+						{[
+							['12 Ekim 2026', '₺299'],
+							['12 Eylül 2026', '₺299'],
+							['12 Ağustos 2026', '₺299'],
+						].map(([date, price]) => (
 							<ListRow key={date} icon="file" plainIcon title={date} subtitle={t('YKS Aylık · ödendi', 'YKS Monthly · paid')} trailing={<Text role="headline">{price}</Text>} />
 						))}
 					</List>
@@ -251,14 +267,23 @@ export const WebSettingsScreen: React.FC = () => {
 			<Grid columns="1fr 1fr">
 				<WCard title={t('Bildirimler', 'Notifications')}>
 					<List>
-						{[[t('Günlük plan hatırlatması', 'Daily plan reminder'), t('Her gün 08:00', 'Every day 08:00'), true], [t('Seri hatırlatması', 'Streak reminder'), t('Akşam, çalışmadıysan', 'Evening, if not studied'), true], [t('Sonuç ve çözümler', 'Results and solutions'), t('Açıklanınca', 'When ready'), true], [t('Kampanyalar', 'Offers'), t('Ayda en fazla 2', 'At most 2 a month'), false]].map(([title, sub, on]) => (
+						{[
+							[t('Günlük plan hatırlatması', 'Daily plan reminder'), t('Her gün 08:30', 'Every day 08:30'), true],
+							[t('Seri hatırlatması', 'Streak reminder'), t('Akşam, çalışmadıysan', 'Evening, if not studied'), true],
+							[t('Sonuç ve çözümler', 'Results and solutions'), t('Açıklanınca', 'When ready'), true],
+							[t('Kampanyalar', 'Offers'), t('Ayda en fazla 2', 'At most 2 a month'), false],
+						].map(([title, sub, on]) => (
 							<ListRow key={title as string} title={title as string} subtitle={sub as string} trailing={<Toggle on={on as boolean} />} chevron={false} />
 						))}
 					</List>
 				</WCard>
 				<WCard title={t('Görünüm', 'Appearance')}>
 					<Grid columns="1fr 1fr 1fr" gap={12}>
-						{[[t('Açık', 'Light'), '#F7F7F8', false], [t('Koyu', 'Dark'), '#0F1115', false], [t('Sistem', 'System'), 'linear-gradient(90deg, #F7F7F8 50%, #0F1115 50%)', true]].map(([label, bg, on]) => (
+						{[
+							[t('Açık', 'Light'), '#F7F7F8', false],
+							[t('Koyu', 'Dark'), '#0F1115', false],
+							[t('Sistem', 'System'), 'linear-gradient(90deg, #F7F7F8 50%, #0F1115 50%)', true],
+						].map(([label, bg, on]) => (
 							<Stack key={label as string} gap={8} align="center">
 								<div style={{width: '100%', height: 110, borderRadius: 16, background: bg as string, border: `2px solid ${on ? 'var(--ui-ink)' : 'var(--ui-line)'}`}} />
 								<Text role="headline" size={14}>
@@ -299,7 +324,18 @@ export const WebSupportScreen: React.FC = () => {
 						['Deneme sonucu görünmüyor', 'Result not showing', 'Denemeler', 'Exams', 'Dün', 'Yesterday', 'warning', 'İnceleniyor', 'In review'],
 						['Şifre sıfırlama kodu', 'Password reset code', 'Hesap', 'Account', '3 Ekim', '3 Oct', 'neutral', 'Kapandı', 'Closed'],
 					].map(([tr, en, catTr, catEn, dateTr, dateEn, tone, stateTr, stateEn]) => (
-						<ListRow key={tr} icon="chat" plainIcon title={t(tr, en)} subtitle={`${t(catTr, catEn)} · ${t(dateTr, dateEn)}`} trailing={<Chip tone={tone as 'success'} size="sm">{t(stateTr, stateEn)}</Chip>} />
+						<ListRow
+							key={tr}
+							icon="chat"
+							plainIcon
+							title={t(tr, en)}
+							subtitle={`${t(catTr, catEn)} · ${t(dateTr, dateEn)}`}
+							trailing={
+								<Chip tone={tone as 'success'} size="sm">
+									{t(stateTr, stateEn)}
+								</Chip>
+							}
+						/>
 					))}
 				</List>
 				<Stack gap={18}>
@@ -318,14 +354,12 @@ export const WebSupportScreen: React.FC = () => {
 					<div style={{borderRadius: 22, padding: 18, background: colors.card, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', gap: 12}}>
 						<Tile module="sinoAi" size={40} />
 						<Stack grow gap={2}>
-							<Text role="headline">
-								{t('Ders sorusu mu?', 'A study question?')}
-							</Text>
-							<Text role="small">
-								{t('SinoAI çok daha hızlı yanıtlar.', 'SinoAI is much faster.')}
-							</Text>
+							<Text role="headline">{t('Ders sorusu mu?', 'A study question?')}</Text>
+							<Text role="small">{t('SinoAI çok daha hızlı yanıtlar.', 'SinoAI is much faster.')}</Text>
 						</Stack>
-						<Button size="sm" tone="dark">SinoAI</Button>
+						<Button size="sm" tone="dark">
+							SinoAI
+						</Button>
 					</div>
 				</Stack>
 			</Grid>
@@ -373,7 +407,15 @@ export const WebSupportTicketScreen: React.FC = () => {
 					</Stack>
 				</Stack>
 			</Card>
-			<Field placeholder={t('Yanıt yaz…', 'Write a reply…')} trailing={<Button size="sm" icon="send">{t('Gönder', 'Send')}</Button>} height={56} />
+			<Field
+				placeholder={t('Yanıt yaz…', 'Write a reply…')}
+				trailing={
+					<Button size="sm" icon="send">
+						{t('Gönder', 'Send')}
+					</Button>
+				}
+				height={56}
+			/>
 		</Panel>
 	);
 };
@@ -390,7 +432,7 @@ const CheckoutSummary: React.FC = () => {
 				</Stack>
 				<Stack row justify="space-between">
 					<Text role="small">{t('İndirim kodu: EKIM10', 'Code: EKIM10')}</Text>
-					<Text role="small" color={colors.success}>
+					<Text role="small" color={colors.successInk}>
 						−₺299
 					</Text>
 				</Stack>

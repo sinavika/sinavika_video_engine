@@ -6,7 +6,8 @@ import type {ScenePlan, TemplateScene} from '../Scenes/ScenePlan';
 import {snapScenesToBeats, type Beats} from '../Scenes/Rhythm';
 import {planTemplateScenes} from '../Scenes/SceneSeries';
 import type {SceneTransition} from '../Scenes/SceneTransition';
-import type {VoiceClips} from '../Scenes/Voiceover';
+import type {TempoLimits} from '../Scenes/TempoCheck';
+import {slotLead, spokenSeconds, type VoiceClips} from '../Scenes/Voiceover';
 import type {Theme} from '../Themes/Theme';
 import {THEME_IDS, type ThemeId} from '../Themes/ThemeRegistry';
 
@@ -48,6 +49,12 @@ type TemplateDefinition<Schema extends z.ZodType> = {
 	renderOverlay?: (content: z.output<Schema>, plan: ScenePlan) => ReactNode;
 	/** `false` keeps the scenes' own lengths even with music: no cut is moved onto a beat (a remembrance stays still). Default true. */
 	cutsOnBeat?: boolean;
+	/**
+	 * The pace the template promises, checked on the real recording at render and by `validate --narration`
+	 * (Scenes/TempoCheck). `pictureChanges` gives the moments inside each scene where the picture changes (seconds
+	 * from the scene's start, one list per scene); scene cuts always count.
+	 */
+	tempo?: {limits: TempoLimits; pictureChanges?: (content: z.output<Schema>, voiceClips: VoiceClips) => number[][]};
 };
 
 type Defaulted = 'supportedThemes' | 'voiceProfile';
@@ -70,9 +77,25 @@ export const defineTemplate = <Schema extends z.ZodType>(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyTemplateDefinition = TemplateDefinition<any>;
 
+/**
+ * How far each cut may wait for the beat in a template that promises a tempo: the line-gap limit less the silence the
+ * cut already has (the last line's tail after its last word and the next line's lead). Unvoiced cuts are free.
+ */
+const beatRoom = (scenes: readonly TemplateScene[], voiceClips: VoiceClips, maxLineGapSeconds: number) => (index: number): number => {
+	const last = scenes[index].voice?.at(-1);
+	const next = scenes[index + 1]?.voice?.[0];
+	const clip = last ? voiceClips[last.id] : undefined;
+	if (!last || !next || !clip) return Number.POSITIVE_INFINITY;
+	const spokenInScene = (scenes[index].voice ?? []).reduce((total, slot) => total + slot.seconds, 0);
+	const silence = last.seconds - slotLead(last) - spokenSeconds(clip) + (scenes[index].seconds - spokenInScene) + slotLead(next);
+	return Math.max(0, maxLineGapSeconds - silence);
+};
+
 /** A template's scenes as they play: built from the content and voice, every cut moved onto the music's beat when there is a grid (Scenes/Rhythm). */
-export const templateScenes = (template: AnyTemplateDefinition, content: unknown, voiceClips: VoiceClips = {}, beats?: Beats): TemplateScene[] =>
-	snapScenesToBeats(template.buildScenes(content, voiceClips), beats);
+export const templateScenes = (template: AnyTemplateDefinition, content: unknown, voiceClips: VoiceClips = {}, beats?: Beats): TemplateScene[] => {
+	const scenes = template.buildScenes(content, voiceClips);
+	return snapScenesToBeats(scenes, beats, template.tempo ? beatRoom(scenes, voiceClips, template.tempo.limits.maxLineGapSeconds) : undefined);
+};
 
 export const templateDurationInFrames = (
 	template: AnyTemplateDefinition,

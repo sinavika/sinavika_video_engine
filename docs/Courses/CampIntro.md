@@ -75,6 +75,8 @@ On sahne var. Her sahne kendi seslendirmesinin süresi kadar ekranda kalır ve o
 
 ## 4. AYT senaryosu (Bölüm 0)
 
+TYT ve AYT senaryoları (§3, §4) yayınlandığı gibidir; uygulama sahnesi ve kapanışı aşağıdaki §5 kurallarından önce yazıldı, bu yüzden o kısımları örnek alınmaz.
+
 **Kanca.** Yüz altmış soru. Yüz seksen dakika. Ama hepsini çözmen gerekmiyor. AYT'nin ilk sırrı bu: sadece senin testlerin. Bu videoda AYT'yi baştan sona tanıyacak, sonra kampın haritasını göreceksin.
 
 **Bölüm 0.** Sınavika'nın YKS kampına hoş geldin! Bu, AYT kampının sıfırıncı bölümü. TYT'de temeli attıysan şimdi alan derslerine geçiyoruz; önce sınavı ve haritayı tanıyalım.
@@ -97,7 +99,14 @@ On sahne var. Her sahne kendi seslendirmesinin süresi kadar ekranda kalır ve o
 
 ## 5. Yeni bir kampa Bölüm 0 eklemek
 
-TYT ya da AYT iş dosyası kopyalanır ve şu alanlar değiştirilir:
+**Uygulamadan söz ederken (sahip, 14 Kasım 2026).** Adlar ve akış UIUX3'teki güncel ekranlarla tutar (`docs/UIUX/Ekran-Envanteri.md`); ekranlar motorda koddan canlı çizilir, ekran görüntüsü verilmez.
+- "İndir" denmez. Kapanış "Testlerin ve denemelerin Sınavika'da seni bekliyor." der; mağaza adları ekranda rozet olarak durur.
+- Anlatıcı SinoAI değildir: "ben varım", "hazırlarım" gibi birinci kişi yok. SinoAI üçüncü kişiyle anılır: "Takıldığın yerde SinoAI'ye sor".
+- Deneme sonrası analiz Denemeler'in **Sonuçlar** bölümündedir (`Analysis` ekranı); "istatistiklerde" denmez. İstatistikler, Profil'deki ayrı bir ekrandır.
+- Ana ekran (`Home`) önce Bugün'ü gösterir (Bugünün planı, sıradaki görev); yazısı "Bütün modüller tek yerde" olmaz.
+- `tests/Courses/CampIntroAppWording.test.ts` bu kuralları yayında olmayan her Bölüm 0'da denetler. Yayındakiler kontrol listesinde kayıtlıdır (`npm run curriculum -- mark INTRO:<kamp> --stage published`) ve olduğu gibi kalır; 14 Kasım 2026'da 29 kampın Bölüm 0'ının hepsi yayındaydı (sahip: "bölüm 0 da kalsın, o da yayınlandı").
+
+TYT ya da AYT iş dosyası kopyalanır, uygulama sahnesi ve kapanış yukarıdaki kurallarla yeniden yazılır ve şu alanlar değiştirilir:
 - `exam`, `series`;
 - `anatomy`: sınavın testleri;
 - `camp.lessons`: `lesson.csv`'den sayılır;
@@ -120,8 +129,8 @@ Sahibin isteği (9 Kasım 2026): her kampın 0 videosu o dersi anlatır. Sınav�
 | 5 | Dersler nasıl işlenecek? | Kampın kendi derslerinden 4–5 gerçek an, pencerede oynar: hareketli anlatım, önce tahmin et, sıra sende, düşünme sayacı ya da çözüm adımları, sık yapılan hata, kamp görevi. Her anın yanında "Sen ne yapmalısın?" kutusu ve dayandığı araştırma yazar |
 | 6 | Neden işe yarar? | Dört kart, her birinin kaynağı altında: geri çağırma, ön test, derse özel bir bulgu, altyazısız anlatım |
 | 7 | Sınav taktikleri | Derse özel 3–4 taktik; kanıtı olmayanın kaynağı "uzman görüşü" diye yazar |
-| 8 | Deneme ve test | Uygulamada konu testi, deneme ve istatistik |
-| 9 | İlk ders | Kampın ilk dersi, abone ol, mağazalar |
+| 8 | Deneme ve test | Uygulamada konu testi, deneme ve Denemeler'in Sonuçlar bölümü |
+| 9 | İlk ders | Kampın ilk dersi, abone ol; mağaza rozetleri ekranda, "indir" denmez |
 
 **Sayılar veriden gelir, elle yazılmaz.**
 - **Konu ve alt konu sayıları:** `Desktop/lesson.csv` (KPSS kampları Lisans listesini sayar).

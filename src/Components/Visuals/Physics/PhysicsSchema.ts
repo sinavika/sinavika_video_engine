@@ -2,6 +2,7 @@ import {z} from 'zod';
 import {plainText} from '../../../Schemas/RichText';
 import {expression, Point2} from '../VisualSchemaPart';
 import {polygonCentre, systemCentres} from './BodyCentre';
+import {blockChain} from './BlockChain';
 import {gearTrain} from './GearTrain';
 import {forceDirection} from './PlateForce';
 
@@ -651,6 +652,42 @@ export const PHYSICS_VISUALS = [
 		forceLabel: plainText(14).optional(),
 		motion: z.boolean().default(true),
 	}),
+	/**
+	 * Physics: two or three blocks tied in a row by ropes on a horizontal surface, the row pulled at one end by F
+	 * (Newton's laws with connected bodies, AYT FIZ_NEWTON). The engine works out the acceleration and each rope's
+	 * tension (`BlockChain`): a = (F − μ·g·M) / M, T = F · (mass behind the rope) / M. Each rope pulls both blocks it
+	 * joins, so its two T arrows point at each other along the rope. A frictionless surface is a plain line, a rough one
+	 * is hatched. Labels are symbols (F, T, T₁, T₂, a) unless `showValues` writes the computed values; a question's
+	 * figure keeps them hidden. Beats point at blocks b1…, `f`, ropes t1… and `a`.
+	 */
+	z
+		.object({
+			kind: z.literal('connectedBlocks'),
+			/** From the left. `label` is what the block shows: "m₁", "2 kg", "A". */
+			blocks: z
+				.array(z.object({label: plainText(12), mass: z.number().positive().max(1000)}))
+				.min(2)
+				.max(3),
+			/** F in newtons and the side it pulls towards (the last block to the right, the first to the left). */
+			force: z.number().positive().max(10000),
+			pull: z.enum(['right', 'left']).default('right'),
+			forceLabel: plainText(14).optional(),
+			/** One label per rope from the left; without them "T" (one rope) or "T₁", "T₂". */
+			tensionLabels: z.array(plainText(8)).max(2).optional(),
+			/** Coefficient of kinetic friction μk, the same under every block; 0 is a frictionless surface. */
+			friction: z.number().min(0).max(1).default(0),
+			g: z.number().min(1).max(20).default(10),
+			/** Writes the computed values on the labels (T = 12 N, a = 2 m/s²). */
+			showValues: z.boolean().default(false),
+			/** The acceleration arrow above the row. */
+			acceleration: z.boolean().default(false),
+		})
+		.superRefine((visual, context) => {
+			if (visual.tensionLabels && visual.tensionLabels.length !== visual.blocks.length - 1)
+				context.addIssue({code: 'custom', path: ['tensionLabels'], message: `${visual.blocks.length} blocks have ${visual.blocks.length - 1} rope(s): one label each.`});
+			const {moves} = blockChain({masses: visual.blocks.map((block) => block.mass), force: visual.force, pull: visual.pull, friction: visual.friction, g: visual.g});
+			if (!moves) context.addIssue({code: 'custom', path: ['force'], message: 'F does not overcome the friction (μ·g·M): the blocks stay at rest and the tensions are not determined.'});
+		}),
 	/**
 	 * Physics: the centre of mass of point masses, uniform rods and plates on a square grid (one square a unit, y up).
 	 * Each body comes in with its own centre; the system's centre (KM) then slides from body to body as each one is

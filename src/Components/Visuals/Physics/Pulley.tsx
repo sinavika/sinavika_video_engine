@@ -3,6 +3,7 @@ import {easeFrom} from '../../../Animations/Motion';
 import {useReveal, useSceneSeconds, useVisualPalette, type VisualBoxProps} from '../VisualFrame';
 import type {CourseVisual} from '../VisualSchema';
 import {Part, useBeatStartFor, useShownAt} from '../VisualTimeline';
+import {textWidth} from '../FigureLabel';
 import {arrowHead} from './ArrowHead';
 
 type Pulley = Extract<CourseVisual, {kind: 'pulley'}>;
@@ -34,6 +35,13 @@ export const pulleyLayout = (ropes: number) => {
 export const pulleyForce = (visual: Pick<Pulley, 'ropes' | 'load' | 'pulleyWeight'>) => (visual.load + pulleyLayout(visual.ropes).lower * (visual.pulleyWeight ?? 0)) / visual.ropes;
 
 const format = (value: number) => (Math.round(value * 100) / 100).toString().replace('.', ',');
+
+/** The load box: its label's size and the box's width limits, in stage units. */
+const LOAD_FONT = 46;
+const LOAD_PAD = 24;
+const LOAD_MIN_WIDTH = 170;
+const LOAD_MAX_WIDTH = 300;
+const LOAD_ROPE_GAP = 18;
 
 /** How far the free end is pulled, in stage units. */
 const PULL = 200;
@@ -76,12 +84,18 @@ export const PulleyVisual: React.FC<VisualBoxProps & {visual: Pulley}> = ({visua
 	const lowerY0 = 480;
 	const lowerY = lowerY0 - rise;
 	const loadTop = (y: number) => (n === 1 ? y : y + r + 46);
-	const loadW = 170;
+	// The load box grows to its label ("Yük 60 N", "G = 40 N" ran out of a fixed 170, Quiz 14 Nov 2026), up to
+	// LOAD_MAX_WIDTH; a longer label is set smaller to fit.
+	const loadLabel = visual.loadLabel ?? `${format(visual.load)} N`;
+	const labelWidth = textWidth(loadLabel, LOAD_FONT);
 	const loadH = 120;
 	const lowers = pulleys.filter((pulley) => !pulley.upper).map((pulley) => (xs[pulley.index] + xs[pulley.index + 1]) / 2);
 	const blockLeft = Math.min(...lowers, anchor === 'block' ? xs[0] : Infinity);
 	const blockRight = Math.max(...lowers, anchor === 'block' ? xs[0] : -Infinity);
 	const loadX = n === 1 ? xs[0] : (blockLeft + blockRight) / 2;
+	// Never over the free end's rope, which comes down on the right (one fixed pulley: 116 units from the load).
+	const loadW = Math.min(LOAD_MAX_WIDTH, 2 * (xs[n] - loadX - LOAD_ROPE_GAP), Math.max(LOAD_MIN_WIDTH, labelWidth + 2 * LOAD_PAD));
+	const loadFont = Math.min(LOAD_FONT, (LOAD_FONT * (loadW - 2 * LOAD_PAD)) / labelWidth);
 	const freeY0 = 470;
 	const freeY = freeY0 + pulled;
 	const fontSize = 46;
@@ -153,13 +167,17 @@ export const PulleyVisual: React.FC<VisualBoxProps & {visual: Pulley}> = ({visua
 					{n > 1 ? <line x1={Math.min(blockLeft, loadX) - 12} y1={lowerY} x2={Math.max(blockRight, loadX) + 12} y2={lowerY} stroke={palette.ink} strokeWidth={12} strokeLinecap="round" /> : null}
 					{n > 1 ? <line x1={loadX} y1={lowerY} x2={loadX} y2={loadTop(lowerY)} stroke={palette.ink} strokeWidth={6} /> : null}
 				</g>
-				{/* The load, with a dashed outline where it started. */}
+				{/* Where the load started, shown with h: drawn under the load, so a small rise (3 ropes) never crosses its label (14 Nov 2026). */}
+				<Part id="h">
+					{(look) => <rect opacity={marks * look.opacity} x={loadX - loadW / 2} y={loadTop(lowerY0)} width={loadW} height={loadH} rx={12} fill="none" stroke={palette.muted} strokeWidth={4} strokeDasharray="14 10" />}
+				</Part>
+				{/* The load. */}
 				<Part id="load">
 					{(look) => (
 						<g opacity={loadIn * look.opacity}>
 							<rect x={loadX - loadW / 2} y={loadTop(lowerY)} width={loadW} height={loadH} rx={12} fill={palette.lesson} stroke={palette.ink} strokeWidth={look.scale > 1 ? 7 : 4} />
-							<text x={loadX} y={loadTop(lowerY) + loadH / 2 + fontSize * 0.36} fill={palette.onLesson} fontSize={fontSize} fontWeight={800} textAnchor="middle">
-								{visual.loadLabel ?? `${format(visual.load)} N`}
+							<text x={loadX} y={loadTop(lowerY) + loadH / 2 + loadFont * 0.36} fill={palette.onLesson} fontSize={loadFont} fontWeight={800} textAnchor="middle">
+								{loadLabel}
 							</text>
 							{visual.pulleyWeight && lowers.length > 0 ? (
 								<text x={blockLeft - r - 20} y={lowerY + 14} fill={palette.muted} fontSize={fontSize * 0.7} fontWeight={700} textAnchor="end">
@@ -184,7 +202,6 @@ export const PulleyVisual: React.FC<VisualBoxProps & {visual: Pulley}> = ({visua
 				<Part id="h">
 					{(look) => (
 						<g opacity={marks * look.opacity} fontSize={fontSize} fontWeight={800}>
-							<rect x={loadX - loadW / 2} y={loadTop(lowerY0)} width={loadW} height={loadH} rx={12} fill="none" stroke={palette.muted} strokeWidth={4} strokeDasharray="14 10" />
 							<line x1={loadX - loadW / 2 - 30} y1={loadTop(lowerY0) + loadH} x2={loadX - loadW / 2 - 30} y2={loadTop(lowerY) + loadH} stroke={palette.lesson} strokeWidth={6} />
 							<path d={arrowHead(loadX - loadW / 2 - 30, loadTop(lowerY) + loadH, -Math.PI / 2, 24)} fill={palette.lesson} />
 							<text x={loadX - loadW / 2 - 50} y={(loadTop(lowerY0) + loadTop(lowerY)) / 2 + loadH + 16} fill={palette.ink} textAnchor="end">

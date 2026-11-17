@@ -171,26 +171,16 @@ type CustomProductPage = {
 
 export const PROMOTIONAL_TEXT_MAX = 170;
 
-const TR_STORE = {
-	allInOne: '01-hepsi-tek-yerde.png',
-	sinoai: '02-sinoai.png',
-	snap: '03-fotograf-cek-coz.png',
-	notes: '04-kendi-kaynaklarin.png',
-	learn: '05-ogren-pekistir.png',
-	mock: '06-deneme-gelisim.png',
-	plan: '07-plan-takip.png',
-	cards: '08-kartlarla-tekrar.png',
-} as const;
-
-const EN_STORE = {
-	allInOne: '01-all-in-one.png',
-	sinoai: '02-sinoai.png',
-	snap: '03-snap-and-solve.png',
-	notes: '04-your-own-notes.png',
-	learn: '05-learn-and-practise.png',
-	mock: '06-mock-exams.png',
-	plan: '07-plan-and-track.png',
-	cards: '08-flashcards.png',
+/** The store set's iPhone pictures (Store/StoreListing.ts STORE_SLIDES; the same names in Turkish and English). */
+const STORE = {
+	today: '01-bugun-ne-calisacagini-bil.png',
+	learn: '02-adim-adim-ogren.png',
+	mock: '03-deneme-net.png',
+	tests: '04-testle-eksik-kapat.png',
+	stats: '05-istatistik.png',
+	cards: '06-bilgi-kartlari.png',
+	snap: '07-akilli-ozet.png',
+	sinoai: '08-sinoai.png',
 } as const;
 
 export const CUSTOM_PRODUCT_PAGES: readonly CustomProductPage[] = [
@@ -199,27 +189,27 @@ export const CUSTOM_PRODUCT_PAGES: readonly CustomProductPage[] = [
 		market: 'tr',
 		name: 'YKS – deneme ve plan',
 		promotionalText: 'TYT ve AYT denemesi çöz, netini nerede kaybettiğini gör. Ders Planı eksiklerini günlük görevlere çevirir, SinoAI takıldığın soruyu anlatır.',
-		screenshots: [TR_STORE.mock, TR_STORE.plan, TR_STORE.snap, TR_STORE.sinoai, TR_STORE.learn, TR_STORE.cards, TR_STORE.notes, TR_STORE.allInOne],
+		screenshots: [STORE.mock, STORE.today, STORE.tests, STORE.learn, STORE.stats, STORE.cards, STORE.snap, STORE.sinoai],
 	},
 	{
 		exam: 'kpss',
 		market: 'tr',
 		name: 'KPSS – deneme ve kartlar',
 		promotionalText: 'KPSS denemesi çöz, puanını ve eksik konularını gör. Bilgi Kartları ile tarih ve coğrafyayı tekrar et, işten sonra da günlük planla hazırlan.',
-		screenshots: [TR_STORE.mock, TR_STORE.cards, TR_STORE.plan, TR_STORE.sinoai, TR_STORE.snap, TR_STORE.learn, TR_STORE.notes, TR_STORE.allInOne],
+		screenshots: [STORE.mock, STORE.cards, STORE.today, STORE.tests, STORE.stats, STORE.learn, STORE.snap, STORE.sinoai],
 	},
 	{
 		exam: 'sat',
 		market: 'en',
 		name: 'SAT – practice and plan',
 		promotionalText: 'Take an SAT practice test and see where your score drops by section. Study Plan turns weak skills into daily tasks, and SinoAI explains any question.',
-		screenshots: [EN_STORE.mock, EN_STORE.plan, EN_STORE.snap, EN_STORE.sinoai, EN_STORE.learn, EN_STORE.cards, EN_STORE.notes, EN_STORE.allInOne],
+		screenshots: [STORE.mock, STORE.today, STORE.tests, STORE.learn, STORE.stats, STORE.cards, STORE.snap, STORE.sinoai],
 	},
 	{
 		exam: 'act',
 		market: 'en',
 		name: 'ACT – practice and plan',
 		promotionalText: 'Take an ACT practice test and see your score by section. Study Plan turns weak skills into short daily tasks, and SinoAI explains the questions you miss.',
-		screenshots: [EN_STORE.mock, EN_STORE.plan, EN_STORE.snap, EN_STORE.sinoai, EN_STORE.learn, EN_STORE.cards, EN_STORE.notes, EN_STORE.allInOne],
+		screenshots: [STORE.mock, STORE.today, STORE.tests, STORE.learn, STORE.stats, STORE.cards, STORE.snap, STORE.sinoai],
 	},
 ];

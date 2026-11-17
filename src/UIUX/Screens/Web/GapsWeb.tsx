@@ -7,6 +7,7 @@ import {EntryRow} from '../../Parts/Study';
 import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
 import {EmbedStep, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
 import {LessonReviewSessionScreen} from '../Mobile/Gaps';
+import {SUMMARY_TABS} from './AssistWeb';
 import {Back, Main, StudyPlayer} from './LessonsWeb';
 
 /**
@@ -52,7 +53,21 @@ export const WebExamCalendarScreen: React.FC = () => {
 			<Grid columns="1.4fr 1fr">
 				<WCard title={t('Sınavlar', 'Exams')}>
 					{rows.map(([name, date, days, unit], index) => (
-						<Row key={name} module="exam" icon="calendar" title={name} sub={date} right={<Stack align="flex-end" gap={0}><Text role="section" color={index ? colors.ink : mod.ink}>{days}</Text><Text role="meta">{unit}</Text></Stack>} />
+						<Row
+							key={name}
+							module="exam"
+							icon="calendar"
+							title={name}
+							sub={date}
+							right={
+								<Stack align="flex-end" gap={0}>
+									<Text role="section" color={index ? colors.ink : mod.ink}>
+										{days}
+									</Text>
+									<Text role="meta">{unit}</Text>
+								</Stack>
+							}
+						/>
 					))}
 				</WCard>
 				<WCard title={t('Bu ay Sınavika denemeleri', 'Sınavika exams this month')}>
@@ -138,7 +153,16 @@ export const WebLessonsListScreen: React.FC = () => {
 };
 
 export const WebLessonReviewSessionScreen: React.FC = () => (
-	<StudyPlayer done={1} step="tekrar 2 / 5" nav={<><Back>Tekrarı kapat</Back><Main>Sonraki</Main></>}>
+	<StudyPlayer
+		done={1}
+		step="tekrar 2 / 5"
+		nav={
+			<>
+				<Back>Tekrarı kapat</Back>
+				<Main>Sonraki</Main>
+			</>
+		}
+	>
 		<EmbedStep>
 			<LessonReviewSessionScreen />
 		</EmbedStep>
@@ -152,7 +176,17 @@ export const WebCardsTodayScreen: React.FC = () => {
 	const mod = useModuleColors('flashcards');
 	return (
 		<Panel active="flashcards">
-			<ModuleHead module="flashcards" tab={1} title={t('Bugün', 'Today')} sub={t('32 kart tekrar zamanında · yaklaşık 8 dakika', '32 cards due · about 8 minutes')} actions={<Button tone="module" module="flashcards" icon="play">{t('Tekrara başla', 'Start review')}</Button>} />
+			<ModuleHead
+				module="flashcards"
+				tab={1}
+				title={t('Bugün', 'Today')}
+				sub={t('32 kart tekrar zamanında · yaklaşık 8 dakika', '32 cards due · about 8 minutes')}
+				actions={
+					<Button tone="module" module="flashcards" icon="play">
+						{t('Tekrara başla', 'Start review')}
+					</Button>
+				}
+			/>
 			<Grid columns="1fr 1fr">
 				{[
 					[t('Kimya · Mol', 'Chemistry · Mole'), 12, 0.4],
@@ -184,14 +218,30 @@ export const WebSummaryHistoryScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="smartSummary">
-			<ModuleHead module="smartSummary" tab={0} title={t('Geçmiş analizler', 'Past analyses')} sub={t('Bu ay 7 / 30', '7 / 30 this month')} />
+			<ModuleHead module="smartSummary" tab={3} tabs={SUMMARY_TABS(t)} title={t('Geçmiş analizler', 'Past analyses')} sub={t('Bu ay 7 / 30', '7 / 30 this month')} />
 			<WCard>
 				{[
 					[t('Türev · zincir kuralı', 'Derivative · chain rule'), t('Matematik · soru analizi · 3 Kas', 'Maths · question · 3 Nov'), 'image'],
 					[t('Mol kavramı', 'The mole'), t('Kimya · soru analizi · 1 Kas', 'Chemistry · question · 1 Nov'), 'image'],
 					[t('Kuvvet ve hareket', 'Force and motion'), t('Fizik · video özeti · 29 Eki', 'Physics · video · 29 Oct'), 'video'],
 				].map(([title, sub, icon]) => (
-					<Row key={title} module="smartSummary" icon={icon as UIIconName} title={title} sub={sub} right={<Stack row gap={8}><Button tone="ghost" size="sm" icon="file">PDF</Button><Button tone="moduleSoft" module="smartSummary" size="sm">{t('Aç', 'Open')}</Button></Stack>} />
+					<Row
+						key={title}
+						module="smartSummary"
+						icon={icon as UIIconName}
+						title={title}
+						sub={sub}
+						right={
+							<Stack row gap={8}>
+								<Button tone="ghost" size="sm" icon="file">
+									PDF
+								</Button>
+								<Button tone="moduleSoft" module="smartSummary" size="sm">
+									{t('Aç', 'Open')}
+								</Button>
+							</Stack>
+						}
+					/>
 				))}
 			</WCard>
 		</Panel>
@@ -220,7 +270,16 @@ export const WebSinoSourcesScreen: React.FC = () => {
 				<WCard title={t('Kaynaklar', 'Sources')}>
 					<Row icon="file" title={t('Fizik defterim.pdf', 'Physics notes.pdf')} sub={t('24 sayfa · okundu', '24 pages · read')} />
 					<Row icon="image" title={t('Kimya sorusu', 'Chemistry question')} sub={t('1 fotoğraf · okundu', '1 photo · read')} />
-					<Row icon="file" title={t('Tarih özet.pdf', 'History summary.pdf')} sub={t('12 sayfa · okunuyor', '12 pages · reading')} right={<Chip size="sm" tone="outline">{t('okunuyor', 'reading')}</Chip>} />
+					<Row
+						icon="file"
+						title={t('Tarih özet.pdf', 'History summary.pdf')}
+						sub={t('12 sayfa · okunuyor', '12 pages · reading')}
+						right={
+							<Chip size="sm" tone="outline">
+								{t('okunuyor', 'reading')}
+							</Chip>
+						}
+					/>
 				</WCard>
 				<WCard title={t('Çalışma notları', 'Study notes')}>
 					<Row icon="note" title={t('Fizik · Kuvvet ve hareket', 'Physics · Force and motion')} sub={t('3 Kasım', '3 Nov')} />
@@ -296,7 +355,18 @@ export const WebExamSolutionsListScreen: React.FC = () => {
 					[t('TYT Temel Matematik · Kasım', 'TYT Basic Maths · Nov'), t('3 Kasım · 13 yanlış, 13 boş', '3 Nov · 13 wrong, 13 blank')],
 					[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · 15 yanlış, 4 boş', '12 Oct · 15 wrong, 4 blank')],
 				].map(([title, sub]) => (
-					<Row key={title} module="exam" icon="checkCircle" title={title} sub={sub} right={<Button tone="moduleSoft" module="exam" size="sm">{t('Yanlışlarım', 'My mistakes')}</Button>} />
+					<Row
+						key={title}
+						module="exam"
+						icon="checkCircle"
+						title={title}
+						sub={sub}
+						right={
+							<Button tone="moduleSoft" module="exam" size="sm">
+								{t('Yanlışlarım', 'My mistakes')}
+							</Button>
+						}
+					/>
 				))}
 			</WCard>
 		</Panel>
@@ -314,7 +384,18 @@ export const WebTestSolutionsListScreen: React.FC = () => {
 					[t('Fizik Bilimine Giriş · Kolay', 'Intro to physics · Easy'), t('14 / 20 doğru · 3 Kas', '14 / 20 · 3 Nov')],
 					[t('Problemler · Orta', 'Problems · Medium'), t('16 / 20 doğru · 2 Kas', '16 / 20 · 2 Nov')],
 				].map(([title, sub]) => (
-					<Row key={title} module="tests" icon="quiz" title={title} sub={sub} right={<Button tone="moduleSoft" module="tests" size="sm">{t('Yanlışlarım', 'My mistakes')}</Button>} />
+					<Row
+						key={title}
+						module="tests"
+						icon="quiz"
+						title={title}
+						sub={sub}
+						right={
+							<Button tone="moduleSoft" module="tests" size="sm">
+								{t('Yanlışlarım', 'My mistakes')}
+							</Button>
+						}
+					/>
 				))}
 			</WCard>
 		</Panel>

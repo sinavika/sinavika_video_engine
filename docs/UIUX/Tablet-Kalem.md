@@ -123,7 +123,7 @@ Kalemi olmayan öğrenci de tabletin genişliğinden yararlanır.
 
 | Kimlik | Ekran | Özelleştirme |
 |---|---|---|
-| `t-deneme-klavye` | Deneme · klavye | Bağlı klavye: A–E cevaplar, ←/→ gezer, İ işaretler, ⌫ siler, ⌘/ kısayolları gösterir; soru haritası yatayda hep açık |
+| `t-deneme-klavye` | Deneme · klavye | Bağlı klavye: A–E cevaplar, ←/→ gezer, M işaretler, ⌫ siler, ⌘/ kısayolları gösterir; soru haritası yatayda hep açık |
 | `t-ders-sinoai-panel` | SinoAI yan panel | SinoAI adımı kapatmadan yanda açılır ve adımı bilir |
 | `t-ders-konular-iki-panel` | Konular iki panel | Liste solda kalır, seçilen konu sağda |
 | `t-plan-hafta` | Hafta | Yedi gün yan yana, görev sürükle-bırakla taşınır, bugün sağda |

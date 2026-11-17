@@ -13,6 +13,8 @@ import {UI_RADIUS, UI_SHADOW, UI_TYPE, type UITypeRole} from '../Tokens';
  */
 
 type TextProps = {
+	/** Layout-audit mark (LayoutAudit `data-ui`), e.g. 'placeholder'. */
+	ui?: string;
 	role?: UITypeRole;
 	size?: number;
 	weight?: number;
@@ -23,7 +25,7 @@ type TextProps = {
 	children: React.ReactNode;
 };
 
-export const Text: React.FC<TextProps> = ({role = 'body', size, weight, color, align, tnum, style, children}) => {
+export const Text: React.FC<TextProps> = ({ui, role = 'body', size, weight, color, align, tnum, style, children}) => {
 	const {typography} = useTheme();
 	const colors = useColors();
 	const onTint = useOnTint();
@@ -38,6 +40,7 @@ export const Text: React.FC<TextProps> = ({role = 'body', size, weight, color, a
 	const defaultColor = role === 'body' ? colors.ink2 : role === 'small' || role === 'meta' || role === 'over' ? quiet : colors.ink;
 	return (
 		<div
+			data-ui={ui}
 			style={{
 				fontFamily: typography.body,
 				fontSize: floor,
@@ -56,10 +59,10 @@ export const Text: React.FC<TextProps> = ({role = 'body', size, weight, color, a
 	);
 };
 
-type StackProps = {gap?: number; row?: boolean; align?: React.CSSProperties['alignItems']; justify?: React.CSSProperties['justifyContent']; wrap?: boolean; grow?: boolean; style?: React.CSSProperties; children?: React.ReactNode};
+type StackProps = {'data-ui'?: string; gap?: number; row?: boolean; align?: React.CSSProperties['alignItems']; justify?: React.CSSProperties['justifyContent']; wrap?: boolean; grow?: boolean; style?: React.CSSProperties; children?: React.ReactNode};
 
-export const Stack: React.FC<StackProps> = ({gap = 0, row, align, justify, wrap, grow, style, children}) => (
-	<div style={{display: 'flex', flexDirection: row ? 'row' : 'column', gap, alignItems: align ?? (row ? 'center' : undefined), justifyContent: justify, flexWrap: wrap ? 'wrap' : undefined, flex: grow ? 1 : undefined, minWidth: grow ? 0 : undefined, ...style}}>
+export const Stack: React.FC<StackProps> = ({'data-ui': ui, gap = 0, row, align, justify, wrap, grow, style, children}) => (
+	<div data-ui={ui} style={{display: 'flex', flexDirection: row ? 'row' : 'column', gap, alignItems: align ?? (row ? 'center' : undefined), justifyContent: justify, flexWrap: wrap ? 'wrap' : undefined, flex: grow ? 1 : undefined, minWidth: grow ? 0 : undefined, ...style}}>
 		{children}
 	</div>
 );
@@ -80,6 +83,9 @@ type ButtonProps = {
 	style?: React.CSSProperties;
 	children?: React.ReactNode;
 };
+
+/** A percentage as the language writes it: "%45" in Turkish, "45%" in English. */
+export const Pct: React.FC<{value: number | string}> = ({value}) => <>{useUI().lang === 'en' ? `${value}%` : `%${value}`}</>;
 
 /** The busy mark inside a loading button: a three-quarter ring. */
 const Spinner: React.FC<{size: number}> = ({size}) => (
@@ -109,6 +115,7 @@ export const Button: React.FC<ButtonProps> = ({tone = 'primary', size = 'md', bl
 	const {typography} = useTheme();
 	return (
 		<div
+			data-ui={tone === 'disabled' || loading ? 'disabled' : undefined}
 			style={{
 				boxSizing: 'border-box',
 				height,
@@ -184,7 +191,7 @@ export const Chip: React.FC<{tone?: ChipTone; icon?: UIIconName; module?: Module
 
 type CardTone = 'card' | 'flat' | 'soft' | 'module' | 'moduleLine' | 'dark';
 
-export const Card: React.FC<{tone?: CardTone; padding?: number; radius?: number; module?: ModuleKey; style?: React.CSSProperties; children?: React.ReactNode}> = ({tone = 'card', padding = 16, radius = UI_RADIUS.lg, module, style, children}) => {
+export const Card: React.FC<{tone?: CardTone; padding?: number; radius?: number; module?: ModuleKey; style?: React.CSSProperties; children?: React.ReactNode; fitGroup?: boolean}> = ({tone = 'card', padding = 16, radius = UI_RADIUS.lg, module, style, children, fitGroup}) => {
 	const colors = useColors();
 	const mod = useModuleColors(module);
 	const tones: Record<CardTone, React.CSSProperties> = {
@@ -195,7 +202,11 @@ export const Card: React.FC<{tone?: CardTone; padding?: number; radius?: number;
 		moduleLine: {background: colors.card, border: `1.5px solid ${mod.line}`, boxShadow: UI_SHADOW.card},
 		dark: {background: colors.ink, color: colors.bg},
 	};
-	const card = <div style={{boxSizing: 'border-box', padding, borderRadius: radius, ...tones[tone], ...style}}>{children}</div>;
+	const card = (
+		<div data-fit-group={fitGroup ? '' : undefined} style={{boxSizing: 'border-box', padding, borderRadius: radius, ...tones[tone], ...style}}>
+			{children}
+		</div>
+	);
 	return tone === 'module' ? <TintProvider>{card}</TintProvider> : card;
 };
 
@@ -269,11 +280,7 @@ export const Toggle: React.FC<{on?: boolean; module?: ModuleKey}> = ({on, module
 
 export const Avatar: React.FC<{initials?: string; size?: number; module?: ModuleKey}> = ({initials = 'AY', size = 40}) => {
 	const {typography} = useTheme();
-	return (
-		<div style={{width: size, height: size, borderRadius: size / 2, background: 'linear-gradient(135deg, #64748B, #334155)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.body, fontWeight: 800, fontSize: size * 0.36, flexShrink: 0}}>
-			{initials}
-		</div>
-	);
+	return <div style={{width: size, height: size, borderRadius: size / 2, background: 'linear-gradient(135deg, #64748B, #334155)', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: typography.body, fontWeight: 800, fontSize: size * 0.36, flexShrink: 0}}>{initials}</div>;
 };
 
 /** The wordmark without the icon (public site): `kaynak/sinavika-yazi-*.svg`, 567.98 × 100. */
@@ -324,7 +331,9 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 				}}
 			>
 				{icon ? <Icon name={icon} size={18} color={colors.muted} /> : null}
-				<span style={{flex: 1, whiteSpace: 'nowrap', overflow: 'hidden'}}>{value ?? placeholder}</span>
+				<span data-ui={value ? undefined : 'placeholder'} style={{flex: 1, whiteSpace: 'nowrap', overflow: 'hidden'}}>
+					{value ?? placeholder}
+				</span>
 				{trailing}
 			</div>
 			{error ? (
@@ -401,9 +410,9 @@ export const List: React.FC<{children: React.ReactNode; style?: React.CSSPropert
 	const colors = useColors();
 	const items = React.Children.toArray(children);
 	return (
-		<Card padding={0} style={{overflow: 'hidden', ...style}}>
+		<Card fitGroup padding={0} style={{overflow: 'hidden', ...style}}>
 			{items.map((child, index) => (
-				<div key={index} style={{borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
+				<div key={index} data-fit="item" style={{borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
 					{child}
 				</div>
 			))}
@@ -418,14 +427,22 @@ export const OptionRow: React.FC<{letter: string; text: string; state?: OptionSt
 	const mod = useModuleColors(module);
 	const look = {
 		idle: {line: colors.line, fill: colors.card, badge: colors.line2, ink: colors.ink2},
-		selected: {line: mod.color, fill: mod.wash, badge: mod.color, ink: '#FFFFFF'},
-		correct: {line: colors.success, fill: colors.successSoft, badge: colors.success, ink: '#FFFFFF'},
-		wrong: {line: colors.error, fill: colors.errorSoft, badge: colors.error, ink: '#FFFFFF'},
+		selected: {line: mod.color, fill: mod.wash, badge: mod.action, ink: '#FFFFFF'},
+		correct: {line: colors.success, fill: colors.successSoft, badge: '#047857', ink: '#FFFFFF'},
+		wrong: {line: colors.error, fill: colors.errorSoft, badge: '#DC2626', ink: '#FFFFFF'},
 	}[state];
 	return (
 		<Stack row gap={12} style={{padding: '11px 14px', borderRadius: UI_RADIUS.md, border: `1.5px solid ${look.line}`, background: look.fill}}>
 			<div style={{width: 30, height: 30, borderRadius: 10, background: look.badge, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-				{state === 'correct' ? <Icon name="check" size={16} color="#FFFFFF" /> : state === 'wrong' ? <Icon name="x" size={16} color="#FFFFFF" /> : <Text role="headline" size={14} color={look.ink}>{letter}</Text>}
+				{state === 'correct' ? (
+					<Icon name="check" size={16} color="#FFFFFF" />
+				) : state === 'wrong' ? (
+					<Icon name="x" size={16} color="#FFFFFF" />
+				) : (
+					<Text role="headline" size={14} color={look.ink}>
+						{letter}
+					</Text>
+				)}
 			</div>
 			<Text role="body" color={colors.ink} weight={600}>
 				{text}
@@ -460,7 +477,11 @@ export const Bars: React.FC<{values: number[]; labels?: string[]; color?: string
 			{values.map((value, index) => (
 				<Stack key={index} align="center" gap={6}>
 					<div style={{width: barWidth, height: Math.max(4, value * height), borderRadius: 7, background: index === highlight ? strong : alpha(strong.startsWith('#') ? strong : '#EA580C', 0.22)}} />
-					{labels ? <Text role="meta" color={index === highlight ? strong : colors.muted}>{labels[index]}</Text> : null}
+					{labels ? (
+						<Text role="meta" color={index === highlight ? strong : colors.muted}>
+							{labels[index]}
+						</Text>
+					) : null}
 				</Stack>
 			))}
 		</Stack>
@@ -515,12 +536,10 @@ export const Steps: React.FC<{count: number; done: number; color?: string}> = ({
 
 /** Big decorative icon in the corner of a gradient card, at low opacity. */
 export const Watermark: React.FC<{icon: UIIconName; size?: number; right?: number; bottom?: number; opacity?: number}> = ({icon, size = 120, right = -14, bottom = -18, opacity = 0.18}) => (
-	<div style={{position: 'absolute', right, bottom, opacity, transform: 'rotate(-12deg)'}}>
+	<div data-ui="decor" style={{position: 'absolute', right, bottom, opacity, transform: 'rotate(-12deg)'}}>
 		<Icon name={icon} size={size} color="#FFFFFF" stroke={1.4} />
 	</div>
 );
 
 /** Glow circles behind gradient cards: the translucent layers of the module colour. */
-export const Glow: React.FC<{size?: number; top?: number; right?: number; opacity?: number}> = ({size = 220, top = -90, right = -70, opacity = 0.14}) => (
-	<div style={{position: 'absolute', top, right, width: size, height: size, borderRadius: size / 2, background: `rgba(255, 255, 255, ${opacity})`}} />
-);
+export const Glow: React.FC<{size?: number; top?: number; right?: number; opacity?: number}> = ({size = 220, top = -90, right = -70, opacity = 0.14}) => <div data-ui="decor" style={{position: 'absolute', top, right, width: size, height: size, borderRadius: size / 2, background: `rgba(255, 255, 255, ${opacity})`}} />;

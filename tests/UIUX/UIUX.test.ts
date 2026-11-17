@@ -64,7 +64,7 @@ describe('UI/UX screens', () => {
 	it('has unique ids that match their platform', () => {
 		const ids = UI_SCREENS.map((screen) => screen.id);
 		expect(new Set(ids).size).toBe(ids.length);
-		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's', tablet: 't'}[screen.platform]);
+		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's', tablet: 't', watch: 'k', share: 'p'}[screen.platform]);
 	});
 
 	it('covers every module on mobile and web', () => {
@@ -80,7 +80,11 @@ describe('UI/UX screens', () => {
 			const states = UI_SCREENS.filter((screen) => screen.platform === 'mobile' && screen.module === key && state.test(screen.id));
 			expect(states.length, key).toBeGreaterThan(0);
 		}
-		for (const id of ['m-hub-plansiz', 'm-hub-gun-bitti', 'm-hub-abonelik-bitti']) expect(UI_SCREENS.some((screen) => screen.id === id), id).toBe(true);
+		for (const id of ['m-hub-plansiz', 'm-hub-gun-bitti', 'm-hub-abonelik-bitti'])
+			expect(
+				UI_SCREENS.some((screen) => screen.id === id),
+				id,
+			).toBe(true);
 	});
 
 	it('keeps mobile, web and tablet in step: every key feature and state has its drawing on each platform', () => {
@@ -112,9 +116,9 @@ describe('UI/UX screens', () => {
 
 	it('sizes site pages by their height and the rest by the canvas', () => {
 		for (const screen of UI_SCREENS) {
-			const size = screenSize(screen.platform, screen.height, screen.portrait);
+			const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round);
 			if (screen.platform === 'site') expect(screen.height, screen.id).toBeGreaterThan(800);
-			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : 1440);
+			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'share' ? 1080 : screen.platform === 'watch' ? (screen.round ? 227 : 208) : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : 1440);
 		}
 	});
 
@@ -124,6 +128,10 @@ describe('UI/UX screens', () => {
 				const html = renderToStaticMarkup(React.createElement(UIProvider, {lang, children: React.createElement(screen.Component)}));
 				expect(html.length, `${screen.id} ${lang}`).toBeGreaterThan(200);
 				if (lang === 'tr') expect(html, screen.id).not.toMatch(/Lens AI|Kelime Kartları|Sınavika AI|undefined/);
+				// Percent as the language writes it (VC deck, 16 Nov 2026): "%45" in Turkish, "45%" in English.
+				const text = html.replace(/<[^>]*>/g, ' ');
+				if (lang === 'en') expect(text, `${screen.id} en`).not.toMatch(/%\d/);
+				else expect(text, `${screen.id} tr`).not.toMatch(/\d%(?![\w’'])/);
 			}
 		}
 		// Drawing every screen twice takes ~6 s when the whole suite runs in parallel: past vitest's 5 s default.
@@ -154,7 +162,8 @@ describe('UI/UX screens', () => {
 		const alwaysDark = ['m-ozet-kamera'];
 		for (const screen of UI_SCREENS) {
 			expect(screen.id, screen.id).not.toMatch(/koyu|dark/);
-			if (alwaysDark.includes(screen.id)) continue;
+			// Watch faces are dark in both themes, as watchOS and Wear OS are.
+			if (alwaysDark.includes(screen.id) || screen.platform === 'watch') continue;
 			const light = renderToStaticMarkup(React.createElement(UIProvider, {mode: 'light', children: React.createElement(screen.Component)}));
 			const dark = renderToStaticMarkup(React.createElement(UIProvider, {mode: 'dark', children: React.createElement(screen.Component)}));
 			expect(dark, screen.id).not.toBe(light);

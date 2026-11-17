@@ -3,6 +3,7 @@ import {useAccent, useColors, useModuleColors, useT, useUI, UIProvider} from '..
 import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
+import {useFit} from '../Fit';
 import {Button, Chip, Glow, Logo, Stack, Steps, Text, Watermark} from './Shared';
 
 /**
@@ -17,16 +18,18 @@ const StatusBar: React.FC<{light?: boolean}> = ({light}) => {
 	const colors = useColors();
 	const ink = light ? '#FFFFFF' : colors.ink;
 	return (
-		<Stack row justify="space-between" style={{height: 50, padding: '14px 30px 0 34px', flexShrink: 0, boxSizing: 'border-box'}}>
-			<Text role="headline" size={15.5} weight={700} color={ink}>
-				9:41
-			</Text>
-			<Stack row gap={6}>
-				<Icon name="signal" size={17} color={ink} stroke={2.4} />
-				<Icon name="wifi" size={17} color={ink} />
-				<Icon name="battery" size={20} color={ink} />
+		<div data-ui="statusbar" style={{flexShrink: 0}}>
+			<Stack row justify="space-between" style={{height: 50, padding: '14px 30px 0 34px', boxSizing: 'border-box'}}>
+				<Text role="headline" size={15.5} weight={700} color={ink}>
+					9:41
+				</Text>
+				<Stack row gap={6}>
+					<Icon name="signal" size={17} color={ink} stroke={2.4} />
+					<Icon name="wifi" size={17} color={ink} />
+					<Icon name="battery" size={20} color={ink} />
+				</Stack>
 			</Stack>
-		</Stack>
+		</div>
 	);
 };
 
@@ -36,7 +39,7 @@ export const Phone: React.FC<{children: React.ReactNode; bg?: string; wash?: boo
 	const mod = useModuleColors();
 	const background = bg ?? (wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 34%)` : colors.bg);
 	return (
-		<div style={{position: 'relative', width: W, height: H, overflow: 'hidden', display: 'flex', flexDirection: 'column', background}}>
+		<div data-ui="screen" style={{position: 'relative', width: W, height: H, overflow: 'hidden', display: 'flex', flexDirection: 'column', background}}>
 			<StatusBar light={lightStatus} />
 			{children}
 			{overlay}
@@ -50,7 +53,7 @@ const RoundIcon: React.FC<{icon: UIIconName; badge?: string; tone?: 'plain' | 'c
 		<div style={{position: 'relative', width: 40, height: 40, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', background: tone === 'card' ? colors.card : 'transparent', border: tone === 'card' ? `1px solid ${colors.line}` : undefined}}>
 			<Icon name={icon} size={22} color={colors.ink} />
 			{badge ? (
-				<div style={{position: 'absolute', top: 2, right: 0, minWidth: 18, height: 18, padding: '0 4px', boxSizing: 'border-box', borderRadius: 9, background: colors.error, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+				<div style={{position: 'absolute', top: 2, right: 0, minWidth: 18, height: 18, padding: '0 4px', boxSizing: 'border-box', borderRadius: 9, background: '#DC2626', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<Text role="meta" size={9.5} weight={800} color="#FFFFFF">
 						{badge}
 					</Text>
@@ -85,16 +88,10 @@ export const TabBar: React.FC<{module: ModuleKey; active?: number}> = ({module, 
 	const mod = useModuleColors(module);
 	const tabs = MODULES[module].tabs;
 	if (!tabs) return null;
-	const items: ({label: string; icon: UIIconName} | 'hub')[] = [
-		{label: t(tabs[0].label), icon: tabs[0].icon},
-		{label: t(tabs[1].label), icon: tabs[1].icon},
-		'hub',
-		{label: t(tabs[2].label), icon: tabs[2].icon},
-		{label: t('Profil', 'Profile'), icon: 'user'},
-	];
+	const items: ({label: string; icon: UIIconName} | 'hub')[] = [{label: t(tabs[0].label), icon: tabs[0].icon}, {label: t(tabs[1].label), icon: tabs[1].icon}, 'hub', {label: t(tabs[2].label), icon: tabs[2].icon}, {label: t('Profil', 'Profile'), icon: 'user'}];
 	const slot = [0, 1, 3, 4][active] ?? 0;
 	return (
-		<div style={{position: 'absolute', left: 14, right: 14, bottom: 22, height: 72, borderRadius: 28, background: alpha(colors.card.length === 7 ? colors.card : '#FFFFFF', 0.96), border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, padding: '0 6px', zIndex: 5}}>
+		<div data-ui="tabbar" style={{position: 'absolute', left: 14, right: 14, bottom: 22, height: 72, borderRadius: 28, background: alpha(colors.card.length === 7 ? colors.card : '#FFFFFF', 0.96), border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, padding: '0 6px', zIndex: 5}}>
 			{items.map((item, index) => {
 				if (item === 'hub') {
 					return (
@@ -128,7 +125,7 @@ export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: 
 	const {mode} = useUI();
 	const identity = MODULES[module];
 	return (
-		<div style={{position: 'relative', overflow: 'hidden', height, borderRadius: UI_RADIUS.xl, background: moduleGradient(module, mode), padding: 20, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 6, boxShadow: `0 16px 30px -18px ${alpha(identity.color.light, 0.8)}`}}>
+		<div style={{position: 'relative', overflow: 'hidden', minHeight: height, borderRadius: UI_RADIUS.xl, background: moduleGradient(module, mode), padding: 20, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 6, boxShadow: `0 16px 30px -18px ${alpha(identity.color.light, 0.8)}`}}>
 			<Glow />
 			<Glow size={140} top={120} right={180} opacity={0.08} />
 			<Watermark icon={identity.icon} />
@@ -187,10 +184,41 @@ export const HubCard: React.FC<{module: ModuleKey; wide?: boolean; status?: stri
 	);
 };
 
-/** Content area of a module screen: padding and gaps, above the tab bar. */
-export const Content: React.FC<{children: React.ReactNode; gap?: number; tabBar?: boolean; padding?: string; style?: React.CSSProperties}> = ({children, gap = 14, tabBar = true, padding, style}) => (
-	<div style={{flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap, padding: padding ?? `4px 18px ${tabBar ? 108 : 20}px`, boxSizing: 'border-box', ...style}}>
-		{React.Children.map(children, (child) => (child ? <div style={{flexShrink: 0, display: 'flex', flexDirection: 'column', alignSelf: 'stretch', alignItems: style?.alignItems}}>{child}</div> : null))}
+/**
+ * Content area of a module screen: padding and gaps, above the tab bar. The
+ * area ends above the bar: what does not fit whole is not drawn, a list row by
+ * row and other blocks whole (owner, 16 Nov 2026: a half card used to show
+ * under the tab bar; see Fit.ts). `fit={false}` for a page drawn scrolled.
+ */
+export const Content: React.FC<{children: React.ReactNode; gap?: number; tabBar?: boolean; padding?: string; style?: React.CSSProperties; fit?: boolean}> = ({children, gap = 14, tabBar = true, padding, style, fit = true}) => {
+	const ref = React.useRef<HTMLDivElement>(null);
+	useFit(ref, fit);
+	return (
+		<div ref={ref} data-fit-area style={{flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap, padding: padding ?? `4px 18px ${tabBar ? 108 : 20}px`, boxSizing: 'border-box', ...style}}>
+			{React.Children.map(children, (child) =>
+				child ? (
+					<div data-fit="block" style={{flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: style?.alignItems}}>
+						{child}
+					</div>
+				) : null,
+			)}
+		</div>
+	);
+};
+
+/**
+ * A list of separate cards (tasks, questions) in `Content`: the cards that do
+ * not fit whole are left out one by one, as in a list scrolled to the top.
+ */
+export const FitList: React.FC<{children: React.ReactNode; gap?: number}> = ({children, gap = 10}) => (
+	<div data-fit-group style={{display: 'flex', flexDirection: 'column', gap}}>
+		{React.Children.map(children, (child) =>
+			child ? (
+				<div data-fit="item" style={{display: 'flex', flexDirection: 'column'}}>
+					{child}
+				</div>
+			) : null,
+		)}
 	</div>
 );
 
@@ -229,7 +257,7 @@ export const ModuleScreen: React.FC<{module: ModuleKey; tab?: number; header?: R
 export const SectionTitle: React.FC<{title: string; action?: string; sub?: string}> = ({title, action, sub}) => {
 	const accent = useAccent();
 	return (
-		<Stack row justify="space-between" align="flex-end">
+		<Stack data-ui="heading" row justify="space-between" align="flex-end">
 			<Stack gap={2}>
 				<Text role="section">{title}</Text>
 				{sub ? <Text role="small">{sub}</Text> : null}
@@ -246,7 +274,11 @@ export const SectionTitle: React.FC<{title: string; action?: string; sub?: strin
 /** Fixed bottom area with the screen's main action. */
 export const BottomBar: React.FC<{children: React.ReactNode; border?: boolean}> = ({children, border}) => {
 	const colors = useColors();
-	return <div style={{padding: '12px 18px 34px', display: 'flex', flexDirection: 'column', gap: 10, borderTop: border ? `1px solid ${colors.line2}` : undefined, background: border ? colors.card : undefined, flexShrink: 0}}>{children}</div>;
+	return (
+		<div data-ui="bottombar" style={{padding: '12px 18px 34px', display: 'flex', flexDirection: 'column', gap: 10, borderTop: border ? `1px solid ${colors.line2}` : undefined, background: border ? colors.card : undefined, flexShrink: 0}}>
+			{children}
+		</div>
+	);
 };
 
 /** Focus header: solving, lessons, sessions. No tab bar; exit, title and progress. */
@@ -279,7 +311,7 @@ export const FocusHeader: React.FC<{title: string; sub?: string; left?: UIIconNa
 export const Sheet: React.FC<{children: React.ReactNode; height?: number}> = ({children, height = 420}) => {
 	const colors = useColors();
 	return (
-		<div style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.45)', zIndex: 20}}>
+		<div data-ui="scrim" style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.45)', zIndex: 20}}>
 			<div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height, borderRadius: '28px 28px 0 0', background: colors.card, padding: '10px 20px 34px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14}}>
 				<div style={{alignSelf: 'center', width: 40, height: 5, borderRadius: 3, background: colors.line}} />
 				{children}
@@ -301,7 +333,7 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 	const top = below ? hole.y + hole.h + 18 : undefined;
 	const bottom = below ? undefined : H - hole.y + 18;
 	return (
-		<div style={{position: 'absolute', inset: 0, zIndex: 30}}>
+		<div data-ui="scrim" style={{position: 'absolute', inset: 0, zIndex: 30}}>
 			<div style={{position: 'absolute', left: hole.x, top: hole.y, width: hole.w, height: hole.h, borderRadius: hole.r ?? 22, boxShadow: `0 0 0 4px rgba(255,255,255,0.95), 0 0 0 2000px rgba(11, 28, 48, 0.62)`}} />
 			<div style={{position: 'absolute', left: 16, right: 16, top, bottom, borderRadius: 22, background: colors.card, padding: 18, boxShadow: UI_SHADOW.float}}>
 				<div style={{position: 'absolute', left: `calc(${arrow * 100}% - 8px)`, [below ? 'top' : 'bottom']: -7, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
@@ -325,4 +357,3 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 		</div>
 	);
 };
-

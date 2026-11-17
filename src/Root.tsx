@@ -3,6 +3,7 @@ import {Folder} from 'remotion';
 import {AppScreenComposition} from './Compositions/AppScreenComposition';
 import {GoogleAdsComposition} from './Ads/Google/GoogleAdsComposition';
 import {StoreComposition} from './Compositions/StoreComposition';
+import {StoryKitComposition} from './Compositions/StoryKitComposition';
 import {UIUXComposition} from './UIUX/UIUXComposition';
 import {VisualClipComposition} from './Compositions/VisualClipComposition';
 import {WorkFigureComposition} from './Compositions/WorkFigureComposition';
@@ -29,6 +30,7 @@ export const Root: React.FC = () => (
 		<UIUXComposition />
 		<WorkFigureComposition />
 		<VisualClipComposition />
+		<StoryKitComposition />
 		<Folder name="Images">
 			{IMAGE_CATEGORIES.map((category) => (
 				<ImageCategoryFolder key={category} category={category} templates={imageVariantsOf(category)} />

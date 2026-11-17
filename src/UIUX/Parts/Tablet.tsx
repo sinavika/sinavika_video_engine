@@ -4,7 +4,7 @@ import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {PEN, usePen, type PenColor} from './Ink';
-import {Stack, Text} from './Shared';
+import {Pct, Stack, Text} from './Shared';
 
 /**
  * Tablet parts (iPad 11" and Android tablets, 1194 × 834 landscape, 834 × 1194
@@ -23,7 +23,7 @@ const StatusBar: React.FC = () => {
 	const colors = useColors();
 	const t = useT();
 	return (
-		<Stack row justify="space-between" style={{height: 30, padding: '8px 26px 0', flexShrink: 0, boxSizing: 'border-box'}}>
+		<Stack row justify="space-between" style={{height: 30, padding: '8px 26px 0', flexShrink: 0, boxSizing: 'border-box'}} data-ui="statusbar">
 			<Stack row gap={8}>
 				<Text role="meta" size={13} weight={700} color={colors.ink}>
 					9:41
@@ -35,7 +35,7 @@ const StatusBar: React.FC = () => {
 			<Stack row gap={6}>
 				<Icon name="wifi" size={15} color={colors.ink} />
 				<Text role="meta" size={12} weight={700} color={colors.ink}>
-					%82
+					<Pct value={82} />
 				</Text>
 				<Icon name="battery" size={19} color={colors.ink} />
 			</Stack>
@@ -57,7 +57,7 @@ const TabletCanvas: React.FC<{portrait?: boolean; wash?: boolean; children: Reac
 	const mod = useModuleColors();
 	const size = tabletSize(portrait);
 	return (
-		<div style={{position: 'relative', ...size, overflow: 'hidden', display: 'flex', flexDirection: 'column', background: wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 30%), ${colors.bg}` : colors.bg}}>
+		<div data-ui="screen" style={{position: 'relative', ...size, overflow: 'hidden', display: 'flex', flexDirection: 'column', background: wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 30%), ${colors.bg}` : colors.bg}}>
 			<StatusBar />
 			{children}
 			{overlay}
@@ -199,9 +199,7 @@ export const PenToolbar: React.FC<{tool?: PenTool; color?: PenColor; width?: Pen
 				<Swatch key={swatch} color={swatch} on={tool !== 'eraser' && swatch === color} />
 			))}
 			<Divider vertical={vertical} />
-			{compact
-				? null
-				: (['thin', 'medium', 'thick'] as PenWidth[]).map((option) => <WidthDot key={option} width={option} on={option === width} />)}
+			{compact ? null : (['thin', 'medium', 'thick'] as PenWidth[]).map((option) => <WidthDot key={option} width={option} on={option === width} />)}
 			{compact ? null : <Divider vertical={vertical} />}
 			<ToolButton icon="undo" />
 			<ToolButton icon="redo" dim />
@@ -272,7 +270,11 @@ export const QuestionStrip: React.FC<{states: (0 | 1 | 2 | 3 | 4)[]; start?: num
 						<Text role="meta" size={12} weight={800} color={look.ink} tnum>
 							{start + index}
 						</Text>
-						{state === 4 ? <div style={{position: 'absolute', right: -3, top: -3, width: 14, height: 14, borderRadius: 7, background: colors.card, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Icon name="pen" size={11} color={mod.ink} /></div> : null}
+						{state === 4 ? (
+							<div style={{position: 'absolute', right: -3, top: -3, width: 14, height: 14, borderRadius: 7, background: colors.card, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+								<Icon name="pen" size={11} color={mod.ink} />
+							</div>
+						) : null}
 					</div>
 				);
 			})}
@@ -299,11 +301,7 @@ export const SideRail: React.FC<{module: ModuleKey; active?: number}> = ({module
 	const t = useT();
 	const mod = useModuleColors(module);
 	const tabs = MODULES[module].tabs;
-	const items: {label: string; icon: UIIconName}[] = [
-		...(tabs ? tabs.map((tab) => ({label: t(tab.label), icon: tab.icon})) : []),
-		{label: t('Modüller', 'Modules'), icon: 'grid'},
-		{label: t('Profil', 'Profile'), icon: 'user'},
-	];
+	const items: {label: string; icon: UIIconName}[] = [...(tabs ? tabs.map((tab) => ({label: t(tab.label), icon: tab.icon})) : []), {label: t('Modüller', 'Modules'), icon: 'grid'}, {label: t('Profil', 'Profile'), icon: 'user'}];
 	return (
 		<Stack gap={6} align="center" style={{width: 96, padding: '14px 0', flexShrink: 0, borderRight: `1px solid ${colors.line}`, background: colors.card}}>
 			{items.map((item, index) => {
@@ -324,4 +322,3 @@ export const SideRail: React.FC<{module: ModuleKey; active?: number}> = ({module
 		</Stack>
 	);
 };
-

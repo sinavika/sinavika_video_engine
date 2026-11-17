@@ -69,12 +69,13 @@ describe('product messaging', () => {
 		expect(errors).toEqual([]);
 	});
 
-	it('ends every store headline made of commands with a full stop', () => {
+	it('writes every store headline as one short phrase: no comma, no full stop (review, 14 Nov 2026)', () => {
+		const headlines = [...STORE_SLIDES.map((slide) => slide.headline), ...Object.values(STORE_CREATIVE).map((creative) => creative.headline), FEATURE_GRAPHIC.headline];
+		for (const headline of headlines) {
+			for (const lang of ['tr', 'en'] as const) expect(headline[lang]).not.toMatch(/[,.]/);
+		}
 		for (const slide of STORE_SLIDES) {
 			for (const lang of ['tr', 'en'] as const) {
-				const headline = slide.headline[lang].replace(/\*/g, '');
-				// A Turkish headline with commas is a series of commands; the English one follows the same slide.
-				if (slide.headline.tr.includes(',')) expect(headline, slide.file).toMatch(/[.!]$/);
 				expect(slide.subline[lang], slide.file).toMatch(/[.!?]$/);
 			}
 		}

@@ -25,9 +25,12 @@ const AppEndCard = componentOf(appEndScenes(true)[0].element);
  * Videos that end elsewhere on purpose: Google Ads films show the ad's own
  * exam screen in three shapes and two languages, the store film is a 16:9
  * landscape piece, holiday videos end on the logo alone (Configurations/
- * SpecialDay), and the camp lessons end on the next lesson (YouTube series).
+ * SpecialDay), the camp lessons end on the next lesson (YouTube series),
+ * "Soruya çevirdik" ends on its question with only a corner logo and
+ * sinavika.tr's StudyDeskStory on a 2 s plain card without a call (owner,
+ * 15 Nov 2026; docs/Social/Seri-Soruya-Cevirdik.md, Sinavika-Tr-Icerik-Yaklasimi.md).
  */
-const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLessonIntro', 'CampLesson', 'CampShort', 'CampFlash', 'CourseLesson', 'CourseShort']);
+const OWN_ENDING = new Set(['GoogleVideoAd', 'AppShowcase', 'RepublicDay', 'AtaturkMemorial', 'Basogretmen', 'CampIntro', 'CampLessonIntro', 'CampLesson', 'CampShort', 'CampFlash', 'CourseLesson', 'CourseShort', 'SoruyaCevirdik', 'StudyDeskStory']);
 
 describe('the one app card every reel ends on', () => {
 	const endingTemplates = TEMPLATES.filter((template) => !OWN_ENDING.has(template.id));

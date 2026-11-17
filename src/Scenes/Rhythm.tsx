@@ -21,8 +21,13 @@ export const beatInterval = (beats: Beats | undefined): number | undefined => {
 	return gaps[Math.floor(gaps.length / 2)];
 };
 
-/** The scenes with every cut moved to the next beat (never more than one beat later). */
-export const snapScenesToBeats = (scenes: TemplateScene[], beats: Beats | undefined): TemplateScene[] => {
+/**
+ * The scenes with every cut moved to the next beat (never more than one beat later). `maxShift` can hold a cut back
+ * further: a template that promises a tempo lets a cut wait for the beat only while the silence it adds stays within
+ * the promise; when the next beat is further away the cut stays where it is (Sosyal Medya, 15 Nov 2026: cuts held for
+ * the beat added 0.2–0.4 s of silence between lines).
+ */
+export const snapScenesToBeats = (scenes: TemplateScene[], beats: Beats | undefined, maxShift?: (index: number) => number): TemplateScene[] => {
 	const interval = beatInterval(beats);
 	if (!beats || !interval) return scenes;
 	let start = 0;
@@ -31,7 +36,8 @@ export const snapScenesToBeats = (scenes: TemplateScene[], beats: Beats | undefi
 		const end = start + scene.seconds;
 		const next = beats.find((beat) => beat >= end - 0.02);
 		const shift = next === undefined ? 0 : next - end;
-		const seconds = shift > 0 && shift <= interval ? scene.seconds + shift : scene.seconds;
+		const limit = Math.min(interval, maxShift?.(index) ?? interval);
+		const seconds = shift > 0 && shift <= limit + 1e-6 ? scene.seconds + shift : scene.seconds;
 		start += seconds;
 		return seconds === scene.seconds ? scene : {...scene, seconds};
 	});

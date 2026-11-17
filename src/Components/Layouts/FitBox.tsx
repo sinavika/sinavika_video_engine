@@ -31,9 +31,11 @@ const MEASURING_ATTRIBUTE = 'data-fit-measuring';
 const clippedElement = (root: HTMLElement): HTMLElement | undefined => {
 	for (const element of Array.from(root.querySelectorAll<HTMLElement>('*'))) {
 		// KaTeX lays subscripts and fractions out with zero-width table cells that always report a wider scroll
-		// than their box; they are not text being cut off. A formula wider than its own box is still caught by
-		// that box (an option, a step), which is not inside the formula.
-		if (element.closest('.katex')) continue;
+		// than their box; they are not text being cut off. Its display block (`.katex-display`) is the same: a root's
+		// or a superscript's overhang made it 2 px wider than itself at every scale, so a fitted formula warned that it
+		// overflowed even at half size (TYT Matematik 09, 14 Nov 2026), though nothing clips it. A formula wider than its
+		// own box is still caught by that box (an option, a step, the formula card), which is not inside the formula.
+		if (element.closest('.katex, .katex-display')) continue;
 		if (element.clientWidth > 0 && element.scrollWidth > element.clientWidth + 1) return element;
 	}
 	return undefined;

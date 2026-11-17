@@ -243,7 +243,7 @@ Araştır → Planla → Üret → Onayla ve dağıt → Ölç ve öğren → (y
 
 ## 10. Açık kararlar
 
-1. **sinavika.tr'de eğitim içeriği.** Kasım yalnız tanıtım (sahip, 29 Ekim). Kamp içerikleri 9 Kasım'dan beri kamp hesaplarında. Açık soru: sinavika.tr Aralık'ta da yalnız tanıtım mı olacak?
+1. **sinavika.tr'de eğitim içeriği.** Kasım yalnız tanıtım (sahip, 29 Ekim). Kamp içerikleri 9 Kasım'dan beri kamp hesaplarında. Açık soru: sinavika.tr Aralık'ta da yalnız tanıtım mı olacak? 15 Kasım: sahip sinavika.tr için problem ve merak odaklı, ürünü doğal gösteren yeni bir yaklaşım verdi ([`Sinavika-Tr-Icerik-Yaklasimi.md`](Sinavika-Tr-Icerik-Yaklasimi.md)); kamp hesapları kendi yapısında kalır.
 2. **1 milyon hedefinin tanımı ve tarihi.** Öneri: toplam takipçi, 2028 sonu.
 3. **İngilizce hesaplar.** Öneri: Faz 3 (2027'nin ikinci yarısı), SAT ve ACT içerikleriyle.
 4. **Ücretli dağıtım.** Organik olarak iyi giden videoların Spark Ads ya da Meta ile büyütülmesi ve bütçesi.

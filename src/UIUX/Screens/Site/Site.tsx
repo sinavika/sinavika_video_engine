@@ -68,9 +68,7 @@ const Cta: React.FC = () => {
 					</Text>
 				</Stack>
 				<Stack row gap={10}>
-					<Button size="lg">
-						{t('Ücretsiz başla', 'Start free')}
-					</Button>
+					<Button size="lg">{t('Ücretsiz başla', 'Start free')}</Button>
 					<StoreButtons />
 				</Stack>
 			</Stack>
@@ -92,7 +90,7 @@ export const SiteHomeScreen: React.FC = () => {
 						<Text role="display" size={58} style={{lineHeight: '62px', letterSpacing: '-0.035em'}}>
 							{t('Ne çalışacağını bil,', 'Know what to study,')}
 							<br />
-							<span style={{color: colors.muted}}>{t('her gün ilerle.', 'move forward daily.')}</span>
+							<span style={{color: colors.muted}}>{t('her gün ilerle.', 'move ahead every day.')}</span>
 						</Text>
 						<Text role="body" size={18} style={{lineHeight: '28px'}}>
 							{t('Deneme, ders, test, plan ve SinoAI tek platformda. Netini ölç, eksiğini gör, planınla kapat.', 'Exams, lessons, quizzes, a plan and SinoAI in one place.')}
@@ -131,7 +129,13 @@ export const SiteHomeScreen: React.FC = () => {
 			<Section bg={colors.bg}>
 				<SiteTitle center over={t('Nasıl çalışır', 'How it works')} title={t('Deneme çöz, eksiğini gör, planla kapat', 'Take an exam, see the gaps, close them')} />
 				<Grid columns="repeat(3, 1fr)" gap={24} style={{marginTop: 40}}>
-					{([['exam', '1', t('Deneme çöz', 'Take an exam'), t('Türkiye geneli denemeye katıl; netini ve sıralamanı gör.', 'Join a nationwide exam; see your score and rank.'), <ExamResultScreen key="a" />], ['tests', '2', t('Eksiğini gör', 'See your gaps'), t('Hangi konuda kaç net kaybettiğini tek ekranda gör.', 'See exactly where you lost points.'), <ExamAnalysisScreen key="b" />], ['studyPlan', '3', t('Planla kapat', 'Close them with a plan'), t('Eksik konular günlük planına ders ve testle eklenir.', 'Gaps become lessons and quizzes in your daily plan.'), <PlanTodayScreen key="c" />]] as [ModuleKey, string, string, string, React.ReactNode][]).map(([, step, title, text, screen]) => (
+					{(
+						[
+							['exam', '1', t('Deneme çöz', 'Take an exam'), t('Türkiye geneli denemeye katıl; netini ve sıralamanı gör.', 'Join a nationwide exam; see your score and rank.'), <ExamResultScreen key="a" />],
+							['tests', '2', t('Eksiğini gör', 'See your gaps'), t('Hangi konuda kaç net kaybettiğini tek ekranda gör.', 'See exactly where you lost points.'), <ExamAnalysisScreen key="b" />],
+							['studyPlan', '3', t('Planla kapat', 'Close them with a plan'), t('Eksik konular günlük planına ders ve testle eklenir.', 'Gaps become lessons and quizzes in your daily plan.'), <PlanTodayScreen key="c" />],
+						] as [ModuleKey, string, string, string, React.ReactNode][]
+					).map(([, step, title, text, screen]) => (
 						<div key={step} style={{borderRadius: 28, background: colors.card, border: `1px solid ${colors.line}`, overflow: 'hidden'}}>
 							<div style={{height: 300, background: colors.line2, display: 'flex', justifyContent: 'center', paddingTop: 30, overflow: 'hidden'}}>
 								<DevicePhone width={210}>{screen}</DevicePhone>
@@ -175,7 +179,11 @@ export const SiteHomeScreen: React.FC = () => {
 			<Section>
 				<SiteTitle center title={t('Öğrencilerin deneyimi', 'What students say')} lead={t('Kısa geri bildirimler — gerçek sınav hazırlık dilinde.', 'Short notes, in real exam-prep words.')} size={38} />
 				<Grid columns="repeat(3, 1fr)" gap={24} style={{marginTop: 36}}>
-					{[[t('Hangi konudan net kaybettiğimi görünce ne çalışacağımı düşünmeyi bıraktım.', 'Seeing where I lose points ended the guessing.'), 'Ece K.', t('YKS adayı', 'YKS candidate')], [t('Günlük plan kısa parçalar halinde; işten sonra bile yetişebiliyorum.', 'Short daily tasks fit after work.'), 'Mert A.', t('KPSS hazırlık', 'KPSS prep')], [t('Fotoğrafla soru sormak beklemekten çok daha hızlı.', 'Asking with a photo is much faster.'), 'Zeynep T.', t('11. sınıf', 'Year 11')]].map(([quote, name, sub]) => (
+					{[
+						[t('Hangi konudan net kaybettiğimi görünce ne çalışacağımı düşünmeyi bıraktım.', 'Seeing where I lose points ended the guessing.'), 'Ece K.', t('YKS adayı', 'YKS candidate')],
+						[t('Günlük plan kısa parçalar halinde; işten sonra bile yetişebiliyorum.', 'Short daily tasks fit after work.'), 'Mert A.', t('KPSS hazırlık', 'KPSS prep')],
+						[t('Fotoğrafla soru sormak beklemekten çok daha hızlı.', 'Asking with a photo is much faster.'), 'Zeynep T.', t('11. sınıf', 'Year 11')],
+					].map(([quote, name, sub]) => (
 						<div key={name} style={{borderRadius: 24, padding: 26, background: colors.card, border: `1px solid ${colors.line}`}}>
 							<Text role="body" size={16.5} color={colors.ink2} style={{lineHeight: '26px'}}>
 								“{quote}”
@@ -283,7 +291,11 @@ export const SiteExamLandingScreen: React.FC = () => {
 							<Chip tone="outline">{t('Haziran 2027', 'June 2027')}</Chip>
 						</Stack>
 						<Grid columns="1fr 1fr 1fr" gap={12} style={{marginTop: 16}}>
-							{[['~245', t('gün', 'days')], ['35', t('hafta', 'weeks')], ['~735', t('saat', 'hours')]].map(([value, label]) => (
+							{[
+								['~245', t('gün', 'days')],
+								['35', t('hafta', 'weeks')],
+								['~735', t('saat', 'hours')],
+							].map(([value, label]) => (
 								<Card key={label} tone="flat" padding={16}>
 									<Text role="num" size={30} align="center">
 										{value}
@@ -303,7 +315,11 @@ export const SiteExamLandingScreen: React.FC = () => {
 			<Section>
 				<SiteTitle title={t('Oturumlar', 'Sessions')} size={34} />
 				<Grid columns="repeat(3, 1fr)" gap={20} style={{marginTop: 24}}>
-					{[['TYT', t('120 soru · 165 dk', '120 questions · 165 min'), t('Türkçe 40 · Sosyal 20 · Matematik 40 · Fen 20', 'Turkish 40 · Social 20 · Maths 40 · Science 20')], ['AYT', t('160 soru · 180 dk', '160 questions · 180 min'), t('Matematik, Fen, Edebiyat-Sosyal 1, Sosyal 2', 'Maths, Science, Literature-Social')], ['YDT', t('80 soru · 120 dk', '80 questions · 120 min'), t('İngilizce, Almanca, Arapça, Fransızca, Rusça', 'English, German, Arabic, French, Russian')]].map(([name, meta, sub]) => (
+					{[
+						['TYT', t('120 soru · 165 dk', '120 questions · 165 min'), t('Türkçe 40 · Sosyal 20 · Matematik 40 · Fen 20', 'Turkish 40 · Social 20 · Maths 40 · Science 20')],
+						['AYT', t('160 soru · 180 dk', '160 questions · 180 min'), t('Matematik, Fen, Edebiyat-Sosyal 1, Sosyal 2', 'Maths, Science, Literature-Social')],
+						['YDT', t('80 soru · 120 dk', '80 questions · 120 min'), t('İngilizce, Almanca, Arapça, Fransızca, Rusça', 'English, German, Arabic, French, Russian')],
+					].map(([name, meta, sub]) => (
 						<Card key={name} padding={24} radius={24}>
 							<Stack gap={10}>
 								<Tile module="lessons" size={48} />
@@ -360,7 +376,12 @@ export const SiteNetCalcScreen: React.FC = () => {
 					<Stack gap={18} style={{width: 640}}>
 						<SiteTitle over={t('Net hesaplama', 'Score calculator')} title={t('TYT net ve puan hesaplama', 'TYT score calculator')} lead={t('Doğru ve yanlışlarını gir; netini ve tahmini puanını gör. 4 yanlış 1 doğruyu götürür.', 'Enter rights and wrongs; see your score. 4 wrong cancel 1 right.')} size={40} />
 						<Card padding={10}>
-							{[['Türkçe', 'Turkish', 40, 33, 2, '32,5'], ['Sosyal Bilimler', 'Social', 20, 15, 3, '14,25'], ['Temel Matematik', 'Basic Maths', 40, 24, 9, '21,75'], ['Fen Bilimleri', 'Science', 20, 11, 4, '10']].map(([tr, en, total, right, wrong, net], index) => (
+							{[
+								['Türkçe', 'Turkish', 40, 33, 2, '32,5'],
+								['Sosyal Bilimler', 'Social', 20, 15, 3, '14,25'],
+								['Temel Matematik', 'Basic Maths', 40, 24, 9, '21,75'],
+								['Fen Bilimleri', 'Science', 20, 11, 4, '10'],
+							].map(([tr, en, total, right, wrong, net], index) => (
 								<Stack key={tr as string} row gap={14} style={{padding: '12px 14px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
 									<Text role="headline" style={{flex: 1}}>
 										{t(tr as string, en as string)}
@@ -383,22 +404,16 @@ export const SiteNetCalcScreen: React.FC = () => {
 					</Stack>
 					<Stack gap={16} style={{flex: 1}}>
 						<div style={{borderRadius: 28, padding: 28, background: colors.bg, border: `1px solid ${colors.line}`}}>
-							<Text role="over">
-								{t('Sonucun', 'Your result')}
-							</Text>
+							<Text role="over">{t('Sonucun', 'Your result')}</Text>
 							<Stack row justify="space-between" style={{marginTop: 10}}>
 								<Stack gap={2}>
-									<Text role="small">
-										{t('Toplam net', 'Total')}
-									</Text>
+									<Text role="small">{t('Toplam net', 'Total')}</Text>
 									<Text role="num" size={54}>
 										78,5
 									</Text>
 								</Stack>
 								<Stack gap={2} align="flex-end">
-									<Text role="small">
-										{t('Tahmini TYT puanı', 'Estimated score')}
-									</Text>
+									<Text role="small">{t('Tahmini TYT puanı', 'Estimated score')}</Text>
 									<Text role="num" size={54}>
 										~362
 									</Text>
@@ -436,7 +451,11 @@ export const SitePlansScreen: React.FC = () => {
 				<Grid columns="repeat(3, 1fr)" gap={24}>
 					{plans.map(([name, price, sub, features, popular]) => (
 						<div key={name} style={{position: 'relative', borderRadius: 28, padding: 30, background: colors.card, border: `${popular ? 2 : 1}px solid ${popular ? colors.ink : colors.line}`, boxShadow: popular ? '0 20px 40px -24px rgba(15,23,42,0.35)' : undefined}}>
-							{popular ? <Chip tone="dark" style={{position: 'absolute', top: -14, left: 28}}>{t('En çok seçilen', 'Most popular')}</Chip> : null}
+							{popular ? (
+								<Chip tone="dark" style={{position: 'absolute', top: -14, left: 28}}>
+									{t('En çok seçilen', 'Most popular')}
+								</Chip>
+							) : null}
 							<Stack gap={14}>
 								<Text role="section" size={20}>
 									{name}
@@ -708,7 +727,12 @@ export const SiteAboutScreen: React.FC = () => {
 			</Section>
 			<Section padding="0 112px 56px">
 				<Grid columns="repeat(4, 1fr)" gap={18}>
-					{[['[sayı]', t('haftalık aktif öğrenci', 'weekly active students')], ['[sayı]', t('çözülen deneme sorusu', 'exam questions solved')], ['7', t('modül, tek uygulama', 'modules, one app')], ['4', t('dil: TR, EN, DE, NL', 'languages')]].map(([value, label]) => (
+					{[
+						['[sayı]', t('haftalık aktif öğrenci', 'weekly active students')],
+						['[sayı]', t('çözülen deneme sorusu', 'exam questions solved')],
+						['7', t('modül, tek uygulama', 'modules, one app')],
+						['4', t('dil: TR, EN, DE, NL', 'languages')],
+					].map(([value, label]) => (
 						<Card key={label} padding={28} radius={24} style={{textAlign: 'center'}}>
 							<Text role="num" size={38} align="center">
 								{value}
@@ -722,7 +746,13 @@ export const SiteAboutScreen: React.FC = () => {
 			</Section>
 			<Section bg={colors.bg}>
 				<Grid columns="1fr 1fr 1fr" gap={20}>
-					{([['target', t('Ölç', 'Measure'), t('Tahmin değil, öğrencinin kendi verisi.', 'The student’s own data, not guesses.')], ['book', t('Öğren', 'Learn'), t('Kısa, net ve sınava dönük içerik.', 'Short, clear, exam-focused content.')], ['trend', t('Geliş', 'Grow'), t('Her gün tek bir net adım.', 'One clear step every day.')]] as [UIIconName, string, string][]).map(([icon, title, text]) => (
+					{(
+						[
+							['target', t('Ölç', 'Measure'), t('Tahmin değil, öğrencinin kendi verisi.', 'The student’s own data, not guesses.')],
+							['book', t('Öğren', 'Learn'), t('Kısa, net ve sınava dönük içerik.', 'Short, clear, exam-focused content.')],
+							['trend', t('Geliş', 'Grow'), t('Her gün tek bir net adım.', 'One clear step every day.')],
+						] as [UIIconName, string, string][]
+					).map(([icon, title, text]) => (
 						<Card key={title} padding={28} radius={24}>
 							<Stack gap={12}>
 								<Tile icon={icon} size={48} color={colors.ink2} />
@@ -837,7 +867,7 @@ const SinoGuest: React.FC = () => {
 					{t('Soruyu yaz ya da fotoğrafını ekle. Misafir olarak günde 3 soru; hesapla hedefini bilerek anlatır.', 'Type or add a photo. 3 a day as a guest; with an account it knows your goal.')}
 				</Text>
 				<div style={{width: 760, borderRadius: 28, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: '0 20px 40px -28px rgba(15,23,42,0.3)', padding: '18px 14px 12px 22px', boxSizing: 'border-box'}}>
-					<Text role="body" size={16} color={colors.subtle}>
+					<Text role="body" size={16} color={colors.subtle} ui="placeholder">
 						{t("f(x) = (3x² − 2)⁴ için f'(1) kaçtır?", "What is f'(1) for f(x) = (3x² − 2)⁴?")}
 					</Text>
 					<Stack row gap={8} style={{marginTop: 14}}>

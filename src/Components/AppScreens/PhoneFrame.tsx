@@ -18,27 +18,12 @@ export const PHONE_GEOMETRY = {
 } as const;
 
 /** iOS: Dynamic Island; Android: a centred punch-hole camera (for Google Play listings). */
-export type PhoneVariant = 'ios' | 'android';
+type PhoneVariant = 'ios' | 'android';
 
-/**
- * The screen inside the phone. Drawn app screens use the app canvas (390 × 844);
- * a real capture brings its own shape and its own status bar, so the camera
- * cutout is centred in that bar instead of covering the content.
- */
-export type PhoneScreenShape = {
-	/** Screen height / screen width. */
-	aspect: number;
-	/** Height of the status bar, as a fraction of the screen width. */
-	statusBar: number;
-};
-
-const APP_CANVAS_SCREEN: PhoneScreenShape = {aspect: APP_SCREEN.height / APP_SCREEN.width, statusBar: 0.115};
-
+/** Status bar height of the drawn app canvas, as a fraction of the screen width. */
 type PhoneFrameProps = {
 	/** Outer width of the phone, in actual pixels. Its height follows from the app's screen shape. */
 	width: number;
-	/** The screen's shape; defaults to the drawn app canvas. */
-	screen?: PhoneScreenShape;
 	/** A lit metal rim and side buttons: the showcase finish for promotional films. */
 	rim?: boolean;
 	/** The app theme the screens inside are drawn in. */
@@ -52,29 +37,25 @@ type PhoneFrameProps = {
 };
 
 /** Height of a phone of the given width, for layouts that need to reserve the space. */
-export const phoneHeight = (width: number, screen: PhoneScreenShape = APP_CANVAS_SCREEN, variant: PhoneVariant = 'ios'): number => {
+export const phoneHeight = (width: number, variant: PhoneVariant = 'ios'): number => {
 	const bezel = width * (variant === 'android' ? 0.028 : 0.034);
-	return screen.aspect * (width - bezel * 2) + bezel * 2;
+	return (APP_SCREEN.height / APP_SCREEN.width) * (width - bezel * 2) + bezel * 2;
 };
 
 /**
  * The one phone of this project: videos and images both show app screens in
  * it. Whatever is drawn on the 390x844 app canvas is scaled to fit.
  */
-export const PhoneFrame: React.FC<PhoneFrameProps> = ({width, screen = APP_CANVAS_SCREEN, rim = false, mode = 'light', lang = 'tr', variant = 'ios', style, children}) => {
+export const PhoneFrame: React.FC<PhoneFrameProps> = ({width, rim = false, mode = 'light', lang = 'tr', variant = 'ios', style, children}) => {
 	const bezel = width * (variant === 'android' ? 0.028 : 0.034);
 	const inner = width - bezel * 2;
 	const scale = inner / APP_SCREEN.width;
-	const height = phoneHeight(width, screen, variant);
+	const height = phoneHeight(width, variant);
 	const outerRadius = width * (variant === 'android' ? 0.11 : 0.15);
-	// Cutouts sit in the middle of the status bar: on a capture its bar is its own, on drawn screens the app's.
-	const bar = screen.statusBar * inner;
 	const hole = width * 0.038;
-	// Drawn screens keep the cutout exactly where it always was; captures centre it in their own bar.
-	const drawn = screen === APP_CANVAS_SCREEN;
-	const island = drawn ? {width: width * 0.3, height: width * 0.075} : {width: width * 0.27, height: Math.min(width * 0.075, bar * 0.72)};
-	const holeTop = drawn ? width * 0.035 : Math.max(width * 0.01, (bar - hole) / 2);
-	const islandTop = drawn ? width * 0.03 : Math.max(width * 0.012, (bar - island.height) / 2);
+	const island = {width: width * 0.3, height: width * 0.075};
+	const holeTop = width * 0.035;
+	const islandTop = width * 0.03;
 	return (
 		<div
 			style={{

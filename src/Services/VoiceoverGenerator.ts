@@ -19,6 +19,8 @@ type VoiceoverOptions = {
 	onProgress?: (done: number, total: number) => void;
 	/** Replaces ElevenLabs. Used by tests. */
 	speech?: SpeechBackend;
+	/** Only reuse narration that is already cached: nothing is generated or paid for (`validate --narration`). */
+	cachedOnly?: boolean;
 };
 
 type Voiceover = {clips: VoiceClips; cast: VoiceCast};
@@ -96,7 +98,7 @@ const storedSegments = async (file: string, audio: string): Promise<{segments: L
 export const generateVoiceover = async (
 	lines: readonly VoiceLine[],
 	request: VoiceoverRequest,
-	{publicDirectory, onProgress, speech = ELEVENLABS_SPEECH}: VoiceoverOptions,
+	{publicDirectory, onProgress, speech = ELEVENLABS_SPEECH, cachedOnly = false}: VoiceoverOptions,
 ): Promise<Voiceover> => {
 	let cast: VoiceCast;
 	try {
@@ -125,6 +127,7 @@ export const generateVoiceover = async (
 
 	const cached = (group: (typeof planned)[number]) => existsSync(group.audio) && existsSync(group.segments);
 	const needed = planned.filter((group) => !cached(group)).reduce((total, group) => total + group.script.length, 0);
+	if (cachedOnly && needed > 0) throw new VoiceoverError(`This narration is not cached yet (${needed} characters); nothing was generated.`);
 	const remaining = needed > 0 ? await speech.remainingCharacters() : null;
 	if (remaining !== null && needed > remaining) {
 		throw new VoiceoverError(

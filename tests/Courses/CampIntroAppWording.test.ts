@@ -1,6 +1,7 @@
 import {readFileSync, readdirSync} from 'node:fs';
 import path from 'node:path';
 import {describe, expect, it} from 'vitest';
+import {ChecklistSchema} from '../../src/Courses/Curriculum';
 import {ROOT} from '../Support/Paths';
 
 /**
@@ -15,40 +16,11 @@ const RULES: {name: string; field: 'narration' | 'caption'; pattern: RegExp; why
 	{name: 'Bütün modüller', field: 'caption', pattern: /bütün modüller/iu, why: 'the home screen opens on Bugün (today\'s plan) since 5 Nov 2026, not on the module grid'},
 ];
 
-/** Published before these rules; left as they went out. A new or rewritten episode 0 is not listed. */
-const PUBLISHED = new Set([
-	'kpss-cografya-kampi/00-cografya-kampi-tanitim-youtube.json',
-	'kpss-geometri-kampi/00-geometri-kampi-tanitim-youtube.json',
-	'kpss-matematik-kampi/00-matematik-kampi-tanitim-youtube.json',
-	'kpss-tarih-kampi/00-tarih-kampi-tanitim-youtube.json',
-	'kpss-turkce-kampi/00-turkce-kampi-tanitim-youtube.json',
-	'kpss-vatandaslik-kampi/00-vatandaslik-kampi-tanitim-youtube.json',
-	'yks-ayt-biyoloji-kampi/00-biyoloji-kampi-tanitim-youtube.json',
-	'yks-ayt-cografya-kampi/00-cografya-kampi-tanitim-youtube.json',
-	'yks-ayt-din-kulturu-kampi/00-din-kulturu-kampi-tanitim-youtube.json',
-	'yks-ayt-edebiyat-kampi/00-ayt-kampi-tanitim-youtube.json',
-	'yks-ayt-edebiyat-kampi/00-edebiyat-kampi-tanitim-youtube.json',
-	'yks-ayt-felsefe-kampi/00-felsefe-kampi-tanitim-youtube.json',
-	'yks-ayt-fizik-kampi/00-fizik-kampi-tanitim-youtube.json',
-	'yks-ayt-geometri-kampi/00-geometri-kampi-tanitim-youtube.json',
-	'yks-ayt-kimya-kampi/00-kimya-kampi-tanitim-youtube.json',
-	'yks-ayt-mantik-kampi/00-mantik-kampi-tanitim-youtube.json',
-	'yks-ayt-matematik-kampi/00-matematik-kampi-tanitim-youtube.json',
-	'yks-ayt-psikoloji-kampi/00-psikoloji-kampi-tanitim-youtube.json',
-	'yks-ayt-sosyoloji-kampi/00-sosyoloji-kampi-tanitim-youtube.json',
-	'yks-ayt-tarih-kampi/00-tarih-kampi-tanitim-youtube.json',
-	'yks-tyt-biyoloji-kampi/00-biyoloji-kampi-tanitim-youtube.json',
-	'yks-tyt-cografya-kampi/00-cografya-kampi-tanitim-youtube.json',
-	'yks-tyt-din-kulturu-ve-ahlak-bilgisi-kampi/00-din-kulturu-ve-ahlak-bilgisi-kampi-tanitim-youtube.json',
-	'yks-tyt-felsefe-kampi/00-felsefe-kampi-tanitim-youtube.json',
-	'yks-tyt-fizik-kampi/00-fizik-kampi-tanitim-youtube.json',
-	'yks-tyt-geometri-kampi/00-geometri-kampi-tanitim-youtube.json',
-	'yks-tyt-kimya-kampi/00-kimya-kampi-tanitim-youtube.json',
-	'yks-tyt-matematik-kampi/00-matematik-kampi-tanitim-youtube.json',
-	'yks-tyt-tarih-kampi/00-tarih-kampi-tanitim-youtube.json',
-	'yks-tyt-turkce-kampi/00-turkce-kampi-tanitim-youtube.json',
-	'yks-tyt-turkce-kampi/00-tyt-kampi-tanitim-youtube.json',
-]);
+/**
+ * Episode 0 videos already on YouTube are left as they went out: the checklist records them
+ * (`npm run curriculum -- mark INTRO:<camp> --stage published`). Every other episode 0 follows the rules.
+ */
+const PUBLISHED_CAMPS = new Set(Object.entries(ChecklistSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'Curriculum', 'Production', 'Checklist.json'), 'utf8'))).intros).filter(([, intro]) => intro.published).map(([camp]) => camp));
 
 const JOBS = path.join(ROOT, 'Curriculum', 'Jobs');
 const intros = readdirSync(JOBS).flatMap((camp) =>
@@ -69,14 +41,14 @@ const texts = (value: unknown, out: {field: string; text: string}[] = []): {fiel
 };
 
 describe('episode 0 speaks about the app as it is (owner, 14 Nov 2026)', () => {
-	it('lists only episode 0 files that exist', () => {
-		const refs = new Set(intros.map((intro) => intro.ref));
-		expect([...PUBLISHED].filter((ref) => !refs.has(ref))).toEqual([]);
+	it('records only camps that exist', () => {
+		const camps = new Set(intros.map((intro) => intro.ref.split('/')[0]));
+		expect([...PUBLISHED_CAMPS].filter((camp) => !camps.has(camp))).toEqual([]);
 	});
 
-	it('follows the app wording rules in every episode 0 not yet published', () => {
+	it('follows the app wording rules in every episode 0 not yet on YouTube', () => {
 		const broken = intros
-			.filter((intro) => !PUBLISHED.has(intro.ref))
+			.filter((intro) => !PUBLISHED_CAMPS.has(intro.ref.split('/')[0]))
 			.flatMap((intro) =>
 				texts(intro.content).flatMap(({field, text}) =>
 					RULES.filter((rule) => rule.field === field && rule.pattern.test(text)).map((rule) => `${intro.ref}: ${rule.name}: ${rule.why}`),

@@ -31,6 +31,8 @@ import {BlockWeek} from './Advertisements/BlockWeek/BlockWeek';
 import {CampTrailer} from './Advertisements/CampTrailer/CampTrailer';
 import {DualScreen} from './Advertisements/DualScreen/DualScreen';
 import {LevelSelect} from './Advertisements/LevelSelect/LevelSelect';
+import {SoruyaCevirdik} from './Advertisements/SoruyaCevirdik/SoruyaCevirdik';
+import {StudyDeskStory} from './Advertisements/StudyDeskStory/StudyDeskStory';
 import {AppShowcase} from './Advertisements/AppShowcase/AppShowcase';
 import {CampIntro} from './Camps/CampIntro/CampIntro';
 import {CampLessonIntro} from './Camps/CampLessonIntro/CampLessonIntro';
@@ -88,6 +90,8 @@ export const TEMPLATES: readonly AnyTemplateDefinition[] = [
 	CampTrailer,
 	DualScreen,
 	LevelSelect,
+	SoruyaCevirdik,
+	StudyDeskStory,
 	GoogleVideoAd,
 	AppShowcase,
 	CourseLesson,

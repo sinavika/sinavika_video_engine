@@ -21,7 +21,11 @@ const ExamCard: React.FC<{title: string; sub: string; meta: string; tag?: string
 			<Stack grow gap={2}>
 				<Stack row gap={8}>
 					<Text role="headline">{title}</Text>
-					{tag ? <Chip tone="module" module="exam" size="sm">{tag}</Chip> : null}
+					{tag ? (
+						<Chip tone="module" module="exam" size="sm">
+							{tag}
+						</Chip>
+					) : null}
 				</Stack>
 				<Text role="small">{sub}</Text>
 				<Text role="meta">{meta}</Text>
@@ -33,14 +37,25 @@ const ExamCard: React.FC<{title: string; sub: string; meta: string; tag?: string
 
 export const WebExamHomeScreen: React.FC = () => {
 	const t = useT();
+	const examInk = useModuleColors('exam').ink;
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={0} title={t('Denemeler', 'Practice exams')} sub={t('Türkiye geneli ve konu denemeleri', 'Nationwide and topic exams')} actions={<Button tone="ghost" icon="filter">{t('Filtrele', 'Filter')}</Button>} />
+			<ModuleHead
+				module="exam"
+				tab={0}
+				title={t('Denemeler', 'Practice exams')}
+				sub={t('Türkiye geneli ve konu denemeleri', 'Nationwide and topic exams')}
+				actions={
+					<Button tone="ghost" icon="filter">
+						{t('Filtrele', 'Filter')}
+					</Button>
+				}
+			/>
 			<Grid columns="2fr 1fr">
 				<ModuleBanner module="exam" over={t('Canlı · Türkiye geneli · Cumartesi 10:00', 'Live · nationwide · Saturday 10:00')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('120 soru · 165 dk · 12.480 kişi katılıyor · sonuç 2 saat sonra', '120 questions · 165 min · 12,480 students · results in 2 hours')} action={t('Hatırlat', 'Remind me')} />
 				<Card padding={20} tone="moduleLine" module="exam">
 					<Stack gap={10}>
-						<Text role="over" color={MODULES.exam.color.light}>
+						<Text role="over" color={examInk}>
 							{t('Devam eden', 'In progress')}
 						</Text>
 						<Text role="section">{t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')}</Text>
@@ -117,7 +132,7 @@ export const WebMyExamsScreen: React.FC = () => {
 							const today = day === 15;
 							return (
 								<Stack key={day} align="center" justify="center" gap={3} style={{height: 46, borderRadius: 12, background: today ? colors.ink : exam ? mod.soft : 'transparent'}}>
-									<Text role="headline" size={13.5} color={today ? '#FFFFFF' : day < 1 ? colors.subtle : colors.ink}>
+									<Text role="headline" size={13.5} color={today ? colors.bg : day < 1 ? colors.muted : colors.ink}>
 										{day < 1 ? 29 + day : day > 31 ? day - 31 : day}
 									</Text>
 									{exam ? <div style={{width: 6, height: 6, borderRadius: 3, background: mod.color}} /> : null}
@@ -154,7 +169,12 @@ export const WebExamDetailScreen: React.FC = () => {
 				</WCard>
 				<WCard title={t('Kurallar', 'Rules')}>
 					<Stack gap={12}>
-						{[['clock', t('165 dakika; ara verilebilir, süre işler', '165 min; pausing keeps time running')], ['x', t('4 yanlış 1 doğruyu götürür', '4 wrong cancel 1 right')], ['bookmark', t('Emin olmadığın soruyu işaretle', 'Flag questions you are unsure of')], ['wifi', t('Bağlantı koparsa cevapların saklanır', 'Answers are kept offline')]].map(([icon, text]) => (
+						{[
+							['clock', t('165 dakika; ara verilebilir, süre işler', '165 min; pausing keeps time running')],
+							['x', t('4 yanlış 1 doğruyu götürür', '4 wrong cancel 1 right')],
+							['bookmark', t('Emin olmadığın soruyu işaretle', 'Flag questions you are unsure of')],
+							['wifi', t('Bağlantı koparsa cevapların saklanır', 'Answers are kept offline')],
+						].map(([icon, text]) => (
 							<Stack key={text} row gap={12}>
 								<Tile module="exam" icon={icon as 'clock'} size={34} />
 								<Text role="small" color="var(--ui-ink2)">
@@ -227,7 +247,7 @@ export const WebExamSolveScreen: React.FC = () => {
 						{t('Sonraki', 'Next')}
 					</Button>
 					<Text role="meta" style={{marginLeft: 12}}>
-						{t('Klavye: A–E seç · → sonraki · B işaretle', 'Keys: A–E choose · → next · B flag')}
+						{t('Klavye: A–E seç · → sonraki · M işaretle', 'Keys: A–E choose · → next · M flag')}
 					</Text>
 				</Stack>
 			</Stack>
@@ -239,8 +259,8 @@ export const WebExamSolveScreen: React.FC = () => {
 						const done = number < 46;
 						const now = number === 46;
 						return (
-							<Stack key={number} align="center" justify="center" style={{height: 36, borderRadius: 10, background: now ? mod.color : done ? colors.card : 'transparent', border: now ? undefined : done ? `1px solid ${colors.line}` : `1px dashed ${colors.line}`, position: 'relative'}}>
-								<Text role="meta" weight={800} color={now ? '#FFFFFF' : done ? colors.ink : colors.subtle}>
+							<Stack key={number} align="center" justify="center" style={{height: 36, borderRadius: 10, background: now ? mod.action : done ? colors.card : 'transparent', border: now ? undefined : done ? `1px solid ${colors.line}` : `1px dashed ${colors.line}`, position: 'relative'}}>
+								<Text role="meta" weight={800} color={now ? '#FFFFFF' : done ? colors.ink : colors.muted}>
 									{number}
 								</Text>
 								{number === 43 ? <div style={{position: 'absolute', top: 4, right: 4, width: 6, height: 6, borderRadius: 3, background: colors.warning}} /> : null}
@@ -261,7 +281,22 @@ export const WebResultScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Panel active="exam" crumb={t('Sonuçlar ›', 'Results ›')}>
-			<ModuleHead module="exam" tab={2} title={t('TYT Deneme 4', 'TYT Exam 4')} sub={t('12 Ekim · Türkiye geneli · 12.480 katılımcı', '12 Oct · nationwide · 12,480 students')} actions={<><Button tone="ghost" icon="chart">{t('Karşılaştır', 'Compare')}</Button><Button tone="moduleSoft" module="exam" icon="checkCircle">{t('Çözümler', 'Solutions')}</Button></>} />
+			<ModuleHead
+				module="exam"
+				tab={2}
+				title={t('TYT Deneme 4', 'TYT Exam 4')}
+				sub={t('12 Ekim · Türkiye geneli · 12.480 katılımcı', '12 Oct · nationwide · 12,480 students')}
+				actions={
+					<>
+						<Button tone="ghost" icon="chart">
+							{t('Karşılaştır', 'Compare')}
+						</Button>
+						<Button tone="moduleSoft" module="exam" icon="checkCircle">
+							{t('Çözümler', 'Solutions')}
+						</Button>
+					</>
+				}
+			/>
 			<Grid columns="1fr 1.4fr">
 				<Stack gap={18}>
 					<Card padding={20}>
@@ -326,7 +361,7 @@ export const WebResultScreen: React.FC = () => {
 										{t(lessonTr, lessonEn)} · D/Y/B {dyb}
 									</Text>
 								</Stack>
-								<Text role="headline" color={colors.error} style={{width: 90}}>
+								<Text role="headline" color={colors.errorInk} style={{width: 90}}>
 									−{loss} net
 								</Text>
 								<Chip tone="module" module="lessons" icon="book" size="sm">
@@ -349,7 +384,17 @@ export const WebSolutionsScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Panel active="exam" crumb={t('Sonuçlar ›', 'Results ›')}>
-			<ModuleHead module="exam" tab={2} title={t('Çözümler · TYT Deneme 4', 'Solutions · TYT Exam 4')} sub={t('Temel Matematik', 'Basic Maths')} actions={<div style={{width: 320}}><Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 12', 'Wrong · 12'), t('Boşlar', 'Blank')]} active={1} module="exam" /></div>} />
+			<ModuleHead
+				module="exam"
+				tab={2}
+				title={t('Çözümler · TYT Deneme 4', 'Solutions · TYT Exam 4')}
+				sub={t('Temel Matematik', 'Basic Maths')}
+				actions={
+					<div style={{width: 320}}>
+						<Segmented items={[t('Tümü', 'All'), t('Yanlışlar · 12', 'Wrong · 12'), t('Boşlar', 'Blank')]} active={1} module="exam" />
+					</div>
+				}
+			/>
 			<Grid columns="240px 1fr" style={{flex: 1}}>
 				<Card padding={16}>
 					<Text role="over">{t('Soru haritası', 'Question map')}</Text>
@@ -359,7 +404,7 @@ export const WebSolutionsScreen: React.FC = () => {
 							const empty = [7, 18, 29].includes(index);
 							return (
 								<Stack key={index} align="center" justify="center" style={{height: 34, borderRadius: 9, background: wrong ? colors.errorSoft : empty ? colors.line2 : colors.successSoft, outline: index === 5 ? `2.5px solid ${colors.ink}` : undefined}}>
-									<Text role="meta" weight={800} color={wrong ? colors.error : empty ? colors.muted : colors.success}>
+									<Text role="meta" weight={800} color={wrong ? colors.errorInk : empty ? colors.muted : colors.successInk}>
 										{index + 41}
 									</Text>
 								</Stack>
@@ -390,7 +435,7 @@ export const WebSolutionsScreen: React.FC = () => {
 						<Text role="section">{t('Çözüm', 'Solution')}</Text>
 						<Text role="body">{t('6 kız katılınca hem kızlar hem toplam 6 artar: (0,4x + 6) / (x + 6) = 0,5 → x = 30.', 'Both grow by 6: (0.4x + 6) / (x + 6) = 0.5 → x = 30.')}</Text>
 						<Card padding={12} style={{background: colors.warningSoft, border: 0}}>
-							<Text role="small" color="#92400E">
+							<Text role="small" color={colors.warningInk}>
 								{t('Sık hata: paydayı (toplamı) artırmayı unutmak.', 'Common mistake: forgetting the total grows too.')}
 							</Text>
 						</Card>

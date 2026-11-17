@@ -2,7 +2,7 @@ import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {Button, Chip, Field, OptionRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {Button, Chip, Field, OptionRow, Pct, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {ActionCard, EntryRow, FilterChips, HEATMAP_SAMPLE, KpiCard, NetBars, PlanTaskCard, StateBlock, StudyBars, StudyDonut, StudyHeatmap, TodayCard, WeekStrip, type HubState} from '../../Parts/Study';
 import {Grid, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
 import {UI_SHADOW} from '../../Tokens';
@@ -82,19 +82,29 @@ const WebHomeBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 					<Stack gap={14}>
 						<WeekStrip done={state === 'noPlan' ? [] : state === 'done' ? [0, 1, 2, 3] : [0, 1, 2]} share={state === 'done' ? 1 : state === 'noPlan' ? 0 : 0.4} />
 						<Stack row gap={10}>
-							<KpiCard compact icon="clock" label={t('Bu hafta', 'This week')} value={state === 'noPlan' ? '—' : t('4 sa 10 dk', '4 h 10 m')} delta={state === 'noPlan' ? undefined : '%22'} />
-							<KpiCard compact icon="target" label={t('Doğru oranı', 'Accuracy')} value={state === 'noPlan' ? '—' : '%62'} delta={state === 'noPlan' ? undefined : '%6'} />
+							<KpiCard compact icon="clock" label={t('Bu hafta', 'This week')} value={state === 'noPlan' ? '—' : t('4 sa 10 dk', '4 h 10 m')} delta={state === 'noPlan' ? undefined : t('%22', '22%')} />
+							<KpiCard compact icon="target" label={t('Doğru oranı', 'Accuracy')} value={state === 'noPlan' ? '—' : t('%62', '62%')} delta={state === 'noPlan' ? undefined : t('%6', '6%')} />
 						</Stack>
 					</Stack>
 				</WCard>
 			</Grid>
 			<Grid columns="1fr 1fr 1.1fr">
-				{state === 'noPlan' ? (
-					<ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · ilk mikro ders', 'TYT Turkish · first micro-lesson')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('6 adım · 4 dk', '6 steps · 4 min')}} />
-				) : (
-					<ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.4, label: t('2 / 5 adım', '2 / 5 steps')}} />
-				)}
-				<ActionCard module="exam" over={t('Sıradaki deneme', 'Next exam')} title={t('TYT Deneme 5', 'TYT Exam 5')} line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')} action={t('Hatırlat', 'Remind me')} icon="exam" meter={{countdown: [['2', t('gün', 'days')], ['4', t('saat', 'hours')], ['15', t('dk', 'min')]]}} />
+				{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Gerçek anlam', 'Literal meaning')} line={t('TYT Türkçe · ilk mikro ders', 'TYT Turkish · first micro-lesson')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('6 adım · 4 dk', '6 steps · 4 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Mecaz anlam', 'Figurative meaning')} line={t('Sözcükte Anlam · 4 dk kaldı', 'Word meaning · 4 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.4, label: t('2 / 5 adım', '2 / 5 steps')}} />}
+				<ActionCard
+					module="exam"
+					over={t('Sıradaki deneme', 'Next exam')}
+					title={t('TYT Deneme 5', 'TYT Exam 5')}
+					line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')}
+					action={t('Hatırlat', 'Remind me')}
+					icon="exam"
+					meter={{
+						countdown: [
+							['2', t('gün', 'days')],
+							['4', t('saat', 'hours')],
+							['15', t('dk', 'min')],
+						],
+					}}
+				/>
 				<ReviewCard />
 			</Grid>
 			<Grid columns="1.3fr 1fr">
@@ -102,16 +112,36 @@ const WebHomeBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 					<StudyBars
 						height={tablet ? 56 : 110}
 						active={3}
-						tooltip={state === 'noPlan' ? undefined : {title: t('Perşembe', 'Thursday'), rows: [[t('Planlanan', 'Planned'), t('90 dk', '90 min')], [t('Çalışılan', 'Studied'), t('45 dk', '45 min')]]}}
-						bars={DAYS(t).map((label, day) => ({label, parts: (state === 'noPlan' ? [['lessons', 0]] : [['lessons', [30, 20, 40, 25, 0, 0, 0][day]], ['tests', [10, 25, 0, 20, 0, 0, 0][day]], ['exam', [0, 0, 55, 0, 0, 0, 0][day]], ['flashcards', [5, 10, 0, 0, 0, 0, 0][day]]]) as [ModuleKey, number][]}))}
+						tooltip={
+							state === 'noPlan'
+								? undefined
+								: {
+										title: t('Perşembe', 'Thursday'),
+										rows: [
+											[t('Planlanan', 'Planned'), t('90 dk', '90 min')],
+											[t('Çalışılan', 'Studied'), t('45 dk', '45 min')],
+										],
+									}
+						}
+						bars={DAYS(t).map((label, day) => ({
+							label,
+							parts: (state === 'noPlan'
+								? [['lessons', 0]]
+								: [
+										['lessons', [30, 20, 40, 25, 0, 0, 0][day]],
+										['tests', [10, 25, 0, 20, 0, 0, 0][day]],
+										['exam', [0, 0, 55, 0, 0, 0, 0][day]],
+										['flashcards', [5, 10, 0, 0, 0, 0, 0][day]],
+									]) as [ModuleKey, number][],
+						}))}
 					/>
 				</WCard>
 				<WCard title={t('Modüller', 'Modules')} action={t('Tümü', 'All')}>
 					<Grid columns="1fr 1fr 1fr" gap={10}>
 						{(['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards'] as ModuleKey[]).map((key) => (
-							<Stack key={key} row gap={10} style={{padding: '9px 10px', borderRadius: 14, border: `1px solid ${colors.line}`}}>
-								<Tile module={key} size={32} />
-								<Text role="headline" size={13.5}>
+							<Stack key={key} row gap={8} style={{padding: '9px 10px', borderRadius: 14, border: `1px solid ${colors.line}`}}>
+								<Tile module={key} size={30} />
+								<Text role="headline" size={13.5} style={{whiteSpace: 'nowrap'}}>
 									{t(MODULES[key].name)}
 								</Text>
 							</Stack>
@@ -152,7 +182,7 @@ export const WebTourScreen: React.FC = () => {
 		<Panel
 			active="home"
 			overlay={
-				<div style={{position: 'absolute', inset: 0, zIndex: 30}}>
+				<div data-ui="scrim" style={{position: 'absolute', inset: 0, zIndex: 30}}>
 					<div style={{position: 'absolute', left: 282, top: 196, width: 640, height: 300, borderRadius: 28, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11,28,48,0.6)'}} />
 					<div style={{position: 'absolute', left: 300, top: 520, width: 440, borderRadius: 22, background: colors.card, padding: 20}}>
 						<div style={{position: 'absolute', left: 60, top: -8, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
@@ -273,7 +303,16 @@ export const WebResultsScreen: React.FC = () => {
 								<Segmented items={['TYT', 'AYT']} module="exam" />
 							</div>
 						</Stack>
-						<NetBars height={200} items={[[t('Deneme 2', 'Exam 2'), 64], [t('Deneme 3', 'Exam 3'), 72], [t('Yayın', 'Pub.'), 69.5, true], [t('Deneme 4', 'Exam 4'), 78.5], [t('Deneme 5', 'Exam 5'), 84.25]]} />
+						<NetBars
+							height={200}
+							items={[
+								[t('Deneme 2', 'Exam 2'), 64],
+								[t('Deneme 3', 'Exam 3'), 72],
+								[t('Yayın', 'Pub.'), 69.5, true],
+								[t('Deneme 4', 'Exam 4'), 78.5],
+								[t('Deneme 5', 'Exam 5'), 84.25],
+							]}
+						/>
 					</Stack>
 				</WCard>
 				<Stack gap={12}>
@@ -298,11 +337,14 @@ export const WebResultsScreen: React.FC = () => {
 const ResultsTable: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
-	const rows = [
+	// The tablet page is shorter (834 pt): two rows end above the home indicator, a third was cut.
+	const tablet = useInTablet();
+	const all = [
 		[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim', '19 Oct'), '84,25', '6.870', '+5,75'],
 		[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim', '12 Oct'), '78,5', '8.214', '+9'],
 		[t('Örnek Yayınları TYT 3', 'Sample Publishing TYT 3'), t('2 Kasım', '2 Nov'), '69,5', '—', ''],
 	];
+	const rows = tablet ? all.slice(0, 2) : all;
 	const cell: React.CSSProperties = {padding: '10px 8px', borderBottom: `1px solid ${colors.line2}`};
 	return (
 		<table style={{width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit'}}>
@@ -358,11 +400,51 @@ export const WebStatsScreen: React.FC = () => {
 	const colors = useColors();
 	const tablet = useInTablet();
 	const weeks = [
-		{label: t('1. hf', 'W1'), parts: [['lessons', 80], ['tests', 60], ['exam', 40], ['flashcards', 20]] as [ModuleKey, number][]},
-		{label: t('2. hf', 'W2'), parts: [['lessons', 110], ['tests', 70], ['exam', 0], ['flashcards', 30]] as [ModuleKey, number][]},
-		{label: t('3. hf', 'W3'), parts: [['lessons', 90], ['tests', 85], ['exam', 165], ['flashcards', 25]] as [ModuleKey, number][]},
-		{label: t('4. hf', 'W4'), parts: [['lessons', 130], ['tests', 70], ['exam', 0], ['flashcards', 50]] as [ModuleKey, number][]},
-		{label: t('Bu hf', 'Now'), parts: [['lessons', 110], ['tests', 85], ['exam', 55], ['flashcards', 0]] as [ModuleKey, number][]},
+		{
+			label: t('1. hf', 'W1'),
+			parts: [
+				['lessons', 80],
+				['tests', 60],
+				['exam', 40],
+				['flashcards', 20],
+			] as [ModuleKey, number][],
+		},
+		{
+			label: t('2. hf', 'W2'),
+			parts: [
+				['lessons', 110],
+				['tests', 70],
+				['exam', 0],
+				['flashcards', 30],
+			] as [ModuleKey, number][],
+		},
+		{
+			label: t('3. hf', 'W3'),
+			parts: [
+				['lessons', 90],
+				['tests', 85],
+				['exam', 165],
+				['flashcards', 25],
+			] as [ModuleKey, number][],
+		},
+		{
+			label: t('4. hf', 'W4'),
+			parts: [
+				['lessons', 130],
+				['tests', 70],
+				['exam', 0],
+				['flashcards', 50],
+			] as [ModuleKey, number][],
+		},
+		{
+			label: t('Bu hf', 'Now'),
+			parts: [
+				['lessons', 110],
+				['tests', 85],
+				['exam', 55],
+				['flashcards', 0],
+			] as [ModuleKey, number][],
+		},
 	];
 	return (
 		<Panel active="stats">
@@ -383,17 +465,39 @@ export const WebStatsScreen: React.FC = () => {
 				</Stack>
 			</Stack>
 			<Stack row gap={14}>
-				<KpiCard icon="clock" label={t('Çalışma süresi', 'Study time')} value={t('19 sa 40 dk', '19 h 40 m')} delta="%22" period={t('geçen 30 güne göre', 'vs previous 30 days')} />
-				<KpiCard icon="quiz" label={t('Çözülen soru', 'Questions')} value="742" delta="%31" period={t('geçen 30 güne göre', 'vs previous 30 days')} />
-				<KpiCard icon="target" label={t('Doğru oranı', 'Accuracy')} value="%62" delta="%6" period={t('geçen 30 güne göre', 'vs previous 30 days')} />
+				<KpiCard icon="clock" label={t('Çalışma süresi', 'Study time')} value={t('19 sa 40 dk', '19 h 40 m')} delta={t('%22', '22%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
+				<KpiCard icon="quiz" label={t('Çözülen soru', 'Questions')} value="742" delta={t('%31', '31%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
+				<KpiCard icon="target" label={t('Doğru oranı', 'Accuracy')} value={t('%62', '62%')} delta={t('%6', '6%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
 				<KpiCard icon="trend" label={t('TYT net', 'TYT net')} value="84,25" delta="5,75" period={t('son denemeye göre', 'vs last exam')} />
 			</Stack>
 			<Grid columns="1.35fr 1fr">
 				<WCard title={t('Haftalık çalışma', 'Weekly study')} action={t('modüllere göre', 'by module')}>
-					<StudyBars height={tablet ? 96 : 150} bars={weeks} active={2} tooltip={{title: t('3. hafta', 'Week 3'), rows: [[t('Planlanan', 'Planned'), t('6 sa', '6 h')], [t('Çalışılan', 'Studied'), t('6 sa 5 dk', '6 h 5 m')], [t('Deneme', 'Exam'), t('2 sa 45 dk', '2 h 45 m')]]}} />
+					<StudyBars
+						height={tablet ? 96 : 150}
+						bars={weeks}
+						active={2}
+						tooltip={{
+							title: t('3. hafta', 'Week 3'),
+							rows: [
+								[t('Planlanan', 'Planned'), t('6 sa', '6 h')],
+								[t('Çalışılan', 'Studied'), t('6 sa 5 dk', '6 h 5 m')],
+								[t('Deneme', 'Exam'), t('2 sa 45 dk', '2 h 45 m')],
+							],
+						}}
+					/>
 				</WCard>
 				<WCard title={t('Nerede çalıştın?', 'Where did you study?')}>
-					<StudyDonut size={tablet ? 110 : 140} center={t('19 sa', '19 h')} sub={t('toplam', 'total')} parts={[['lessons', 520], ['tests', 370], ['exam', 260], ['flashcards', 125]]} />
+					<StudyDonut
+						size={tablet ? 110 : 140}
+						center={t('19 sa', '19 h')}
+						sub={t('toplam', 'total')}
+						parts={[
+							['lessons', 520],
+							['tests', 370],
+							['exam', 260],
+							['flashcards', 125],
+						]}
+					/>
 				</WCard>
 			</Grid>
 			<Grid columns="1.35fr 1fr">
@@ -417,10 +521,10 @@ const SubjectTable: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const rows: [string, string, number, string, string, boolean][] = [
-		[t('Türkçe', 'Turkish'), '214', 0.75, t('6 sa 10 dk', '6 h 10 m'), '+%8', false],
-		[t('Matematik', 'Maths'), '296', 0.58, t('7 sa 5 dk', '7 h 5 m'), '+%11', false],
-		[t('Fizik', 'Physics'), '118', 0.4, t('3 sa', '3 h'), '−%3', true],
-		[t('Kimya', 'Chemistry'), '114', 0.52, t('2 sa 20 dk', '2 h 20 m'), '+%4', false],
+		[t('Türkçe', 'Turkish'), '214', 0.75, t('6 sa 10 dk', '6 h 10 m'), t('+%8', '+8%'), false],
+		[t('Matematik', 'Maths'), '296', 0.58, t('7 sa 5 dk', '7 h 5 m'), t('+%11', '+11%'), false],
+		[t('Fizik', 'Physics'), '118', 0.4, t('3 sa', '3 h'), t('−%3', '−3%'), true],
+		[t('Kimya', 'Chemistry'), '114', 0.52, t('2 sa 20 dk', '2 h 20 m'), t('+%4', '+4%'), false],
 	];
 	const cell: React.CSSProperties = {padding: '9px 8px', borderBottom: `1px solid ${colors.line2}`, fontSize: 14};
 	return (
@@ -445,7 +549,7 @@ const SubjectTable: React.FC = () => {
 									<div style={{width: `${share * 100}%`, height: '100%', borderRadius: 3, background: share < 0.5 ? colors.warning : colors.success}} />
 								</div>
 								<Text role="small" weight={700} color={colors.ink}>
-									%{Math.round(share * 100)}
+									<Pct value={Math.round(share * 100)} />
 								</Text>
 							</Stack>
 						</td>
@@ -466,7 +570,7 @@ const SubjectTable: React.FC = () => {
 const Modal: React.FC<{width?: number; children: React.ReactNode}> = ({width = 520, children}) => {
 	const colors = useColors();
 	return (
-		<div style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 40}}>
+		<div data-ui="scrim" style={{position: 'absolute', inset: 0, background: 'rgba(11, 28, 48, 0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 40}}>
 			<div style={{width, boxSizing: 'border-box', borderRadius: 26, background: colors.card, boxShadow: UI_SHADOW.float, padding: 26, display: 'flex', flexDirection: 'column', gap: 16}}>{children}</div>
 		</div>
 	);
@@ -478,52 +582,52 @@ export const SubmitDialog: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
 	return (
-			<Modal>
-				<Stack align="center" gap={8}>
-					<Tile module="exam" icon="checkCircle" size={56} solid />
-					<Text role="section" size={21} align="center">
-						{t('Denemeyi teslim et?', 'Hand in the exam?')}
-					</Text>
-					<Text role="small" align="center">
-						{t('Teslim edince cevaplar değişmez; sonuç ve çözümler hemen açılır.', 'Answers lock; results open at once.')}
-					</Text>
-				</Stack>
-				<Stack row gap={10}>
-					{[
-						['116', t('cevaplı', 'answered'), colors.ink],
-						['4', t('boş', 'blank'), colors.warningInk],
-						['2', t('işaretli', 'flagged'), mod.ink],
-					].map(([value, label, color]) => (
-						<Stack key={label} align="center" gap={1} style={{flex: 1, padding: '10px 0', borderRadius: 16, background: colors.line2}}>
-							<Text role="num" size={24} color={color}>
-								{value}
-							</Text>
-							<Text role="meta">{label}</Text>
-						</Stack>
-					))}
-				</Stack>
-				<Stack row gap={8} wrap>
-					<Text role="meta">{t('Boş:', 'Blank:')}</Text>
-					{['12', '27', '83', '98'].map((number) => (
-						<div key={number} style={{padding: '4px 12px', borderRadius: 10, border: `1.5px solid ${colors.warning}`, background: colors.warningSoft}}>
-							<Text role="headline" size={14} color={colors.warningInk}>
-								{number}
-							</Text>
-						</div>
-					))}
-				</Stack>
-				<Stack row gap={10}>
-					<Button tone="ghost" size="lg" style={{flex: 1}}>
-						{t('Boşlara dön', 'Back to blanks')}
-					</Button>
-					<Button tone="module" module="exam" size="lg" style={{flex: 1}}>
-						{t('Teslim et', 'Hand in')}
-					</Button>
-				</Stack>
-				<Text role="meta" align="center">
-					{t('Klavye: Enter teslim eder, Esc kapatır', 'Keyboard: Enter hands in, Esc closes')}
+		<Modal>
+			<Stack align="center" gap={8}>
+				<Tile module="exam" icon="checkCircle" size={56} solid />
+				<Text role="section" size={21} align="center">
+					{t('Denemeyi teslim et?', 'Hand in the exam?')}
 				</Text>
-			</Modal>
+				<Text role="small" align="center">
+					{t('Teslim edince cevaplar değişmez; sonuç ve çözümler hemen açılır.', 'Answers lock; results open at once.')}
+				</Text>
+			</Stack>
+			<Stack row gap={10}>
+				{[
+					['116', t('cevaplı', 'answered'), colors.ink],
+					['4', t('boş', 'blank'), colors.warningInk],
+					['2', t('işaretli', 'flagged'), mod.ink],
+				].map(([value, label, color]) => (
+					<Stack key={label} align="center" gap={1} style={{flex: 1, padding: '10px 0', borderRadius: 16, background: colors.line2}}>
+						<Text role="num" size={24} color={color}>
+							{value}
+						</Text>
+						<Text role="meta">{label}</Text>
+					</Stack>
+				))}
+			</Stack>
+			<Stack row gap={8} wrap>
+				<Text role="meta">{t('Boş:', 'Blank:')}</Text>
+				{['12', '27', '83', '98'].map((number) => (
+					<div key={number} style={{padding: '4px 12px', borderRadius: 10, border: `1.5px solid ${colors.warning}`, background: colors.warningSoft}}>
+						<Text role="headline" size={14} color={colors.warningInk}>
+							{number}
+						</Text>
+					</div>
+				))}
+			</Stack>
+			<Stack row gap={10}>
+				<Button tone="ghost" size="lg" style={{flex: 1}}>
+					{t('Boşlara dön', 'Back to blanks')}
+				</Button>
+				<Button tone="module" module="exam" size="lg" style={{flex: 1}}>
+					{t('Teslim et', 'Hand in')}
+				</Button>
+			</Stack>
+			<Text role="meta" align="center">
+				{t('Klavye: Enter teslim eder, Esc kapatır', 'Keyboard: Enter hands in, Esc closes')}
+			</Text>
+		</Modal>
 	);
 };
 
@@ -540,7 +644,17 @@ export const WebExamDoneDetailScreen: React.FC = () => {
 	const mod = useModuleColors('exam');
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={1} title={t('TYT Temel Matematik Denemesi · Kasım 2026', 'TYT Basic Maths · November 2026')} sub={t('Tamamlandı · 3 Kasım · 52 dk', 'Done · 3 Nov · 52 min')} actions={<Chip tone="success" icon="check">{t('Tamamlandı', 'Done')}</Chip>} />
+			<ModuleHead
+				module="exam"
+				tab={1}
+				title={t('TYT Temel Matematik Denemesi · Kasım 2026', 'TYT Basic Maths · November 2026')}
+				sub={t('Tamamlandı · 3 Kasım · 52 dk', 'Done · 3 Nov · 52 min')}
+				actions={
+					<Chip tone="success" icon="check">
+						{t('Tamamlandı', 'Done')}
+					</Chip>
+				}
+			/>
 			<Grid columns="1fr 1.2fr">
 				<WCard>
 					<Stack gap={14}>
@@ -666,7 +780,16 @@ export const WebExamAddScreen: React.FC = () => {
 /* ------------------------------------------------------------------ Dersler · new step types in the web player */
 
 export const WebLessonGroupScreen: React.FC = () => (
-	<StudyPlayer done={2} step="adım 3 / 6" nav={<><Back /><Main>Kontrol et</Main></>}>
+	<StudyPlayer
+		done={2}
+		step="adım 3 / 6"
+		nav={
+			<>
+				<Back />
+				<Main>Kontrol et</Main>
+			</>
+		}
+	>
 		<EmbedStep>
 			<LessonGroupScreen />
 		</EmbedStep>
@@ -674,7 +797,16 @@ export const WebLessonGroupScreen: React.FC = () => (
 );
 
 export const WebLessonMatchScreen: React.FC = () => (
-	<StudyPlayer done={3} step="adım 4 / 6" nav={<><Back /><Main>Kontrol et</Main></>}>
+	<StudyPlayer
+		done={3}
+		step="adım 4 / 6"
+		nav={
+			<>
+				<Back />
+				<Main>Kontrol et</Main>
+			</>
+		}
+	>
 		<EmbedStep>
 			<LessonMatchScreen />
 		</EmbedStep>
@@ -682,7 +814,16 @@ export const WebLessonMatchScreen: React.FC = () => (
 );
 
 export const WebLessonFormulaScreen: React.FC = () => (
-	<StudyPlayer done={1} step="adım 2 / 5" nav={<><Back /><Main>Devam</Main></>}>
+	<StudyPlayer
+		done={1}
+		step="adım 2 / 5"
+		nav={
+			<>
+				<Back />
+				<Main>Devam</Main>
+			</>
+		}
+	>
 		<EmbedStep>
 			<LessonFormulaScreen />
 		</EmbedStep>
@@ -690,7 +831,17 @@ export const WebLessonFormulaScreen: React.FC = () => (
 );
 
 export const WebLessonSectionScreen: React.FC = () => (
-	<StudyPlayer done={0} current={false} step="bölüm 2 / 4" nav={<><Back>Önceki bölüm</Back><Main>Başla</Main></>}>
+	<StudyPlayer
+		done={0}
+		current={false}
+		step="bölüm 2 / 4"
+		nav={
+			<>
+				<Back>Önceki bölüm</Back>
+				<Main>Başla</Main>
+			</>
+		}
+	>
 		<EmbedStep>
 			<LessonSectionScreen />
 		</EmbedStep>

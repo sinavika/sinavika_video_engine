@@ -1,7 +1,7 @@
 import React from 'react';
 import {useColors, useModuleColors, useT} from '../../Context';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
-import {Bar, Bars, Button, Card, Chip, List, ListRow, Ring, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Bar, Bars, Button, Card, Chip, List, ListRow, Pct, Ring, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
 
 /** Web Ders Planı: today, schedule, suggestions, statistics, progress, settings and the focus session. */
@@ -12,17 +12,61 @@ export const WebPlanScheduleScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const days: [string, number, [ModuleKey, string, boolean][]][] = [
-		[t('Pzt', 'Mon'), 12, [['lessons', t('Paragraf', 'Reading'), true], ['tests', t('Rasyonel', 'Rationals'), true]]],
+		[
+			t('Pzt', 'Mon'),
+			12,
+			[
+				['lessons', t('Paragraf', 'Reading'), true],
+				['tests', t('Rasyonel', 'Rationals'), true],
+			],
+		],
 		[t('Sal', 'Tue'), 13, [['exam', t('AYT Deneme 3', 'AYT Exam 3'), true]]],
-		[t('Çar', 'Wed'), 14, [['lessons', t('Problemler', 'Problems'), true], ['flashcards', t('Kimya kartları', 'Chemistry cards'), true]]],
-		[t('Per', 'Thu'), 15, [['lessons', t('Ana fikir', 'Main idea'), true], ['tests', t('Problemler S2', 'Problems L2'), false], ['flashcards', t('Kimya kartları', 'Chemistry cards'), false]]],
-		[t('Cum', 'Fri'), 16, [['lessons', t('Kuvvet', 'Force'), false], ['tests', t('Paragraf S4', 'Reading L4'), false]]],
+		[
+			t('Çar', 'Wed'),
+			14,
+			[
+				['lessons', t('Problemler', 'Problems'), true],
+				['flashcards', t('Kimya kartları', 'Chemistry cards'), true],
+			],
+		],
+		[
+			t('Per', 'Thu'),
+			15,
+			[
+				['lessons', t('Ana fikir', 'Main idea'), true],
+				['tests', t('Problemler S2', 'Problems L2'), false],
+				['flashcards', t('Kimya kartları', 'Chemistry cards'), false],
+			],
+		],
+		[
+			t('Cum', 'Fri'),
+			16,
+			[
+				['lessons', t('Kuvvet', 'Force'), false],
+				['tests', t('Paragraf S4', 'Reading L4'), false],
+			],
+		],
 		[t('Cmt', 'Sat'), 17, [['exam', t('TYT Deneme 5', 'TYT Exam 5'), false]]],
 		[t('Paz', 'Sun'), 18, [['studyPlan', t('Haftalık tekrar', 'Weekly review'), false]]],
 	];
 	return (
 		<Panel active="studyPlan">
-			<ModuleHead module="studyPlan" tab={1} tabs={PLAN_TABS(t)} title={t('Bu hafta', 'This week')} sub={t('12–18 Ekim · hedef 21 saat · 11 sa 20 dk tamam', '12–18 Oct · goal 21 h · 11 h 20 min done')} actions={<><Button tone="ghost" size="sm" icon="left" /><Button tone="ghost" size="sm" icon="right" /><Button tone="ghost" icon="edit">{t('Düzenle', 'Edit')}</Button></>} />
+			<ModuleHead
+				module="studyPlan"
+				tab={1}
+				tabs={PLAN_TABS(t)}
+				title={t('Bu hafta', 'This week')}
+				sub={t('12–18 Ekim · hedef 21 saat · 11 sa 20 dk tamam', '12–18 Oct · goal 21 h · 11 h 20 min done')}
+				actions={
+					<>
+						<Button tone="ghost" size="sm" icon="left" />
+						<Button tone="ghost" size="sm" icon="right" />
+						<Button tone="ghost" icon="edit">
+							{t('Düzenle', 'Edit')}
+						</Button>
+					</>
+				}
+			/>
 			<Grid columns="repeat(7, 1fr)" gap={10}>
 				{days.map(([day, date, items]) => (
 					<Card key={day} padding={12} style={{minHeight: 300, border: date === 15 ? `2px solid ${MODULES.studyPlan.color.light}` : undefined}}>
@@ -34,7 +78,7 @@ export const WebPlanScheduleScreen: React.FC = () => {
 						</Stack>
 						<Stack gap={8}>
 							{items.map(([key, title, done]) => (
-								<div key={title} style={{padding: '9px 10px', borderRadius: 12, background: `${MODULES[key].color.light}1F`, borderLeft: `3px solid ${MODULES[key].color.light}`, opacity: done ? 0.55 : 1}}>
+								<div data-ui={done ? 'disabled' : undefined} key={title} style={{padding: '9px 10px', borderRadius: 12, background: `${MODULES[key].color.light}1F`, borderLeft: `3px solid ${MODULES[key].color.light}`, opacity: done ? 0.55 : 1}}>
 									<Text role="headline" size={12.5} style={{textDecoration: done ? 'line-through' : undefined}}>
 										{title}
 									</Text>
@@ -65,14 +109,16 @@ export const WebPlanSuggestionsScreen: React.FC = () => {
 		<Panel active="studyPlan">
 			<ModuleHead module="studyPlan" tab={2} tabs={PLAN_TABS(t)} title={t('Öneriler', 'Suggestions')} sub={t('Denemelerine ve tekrar zamanına göre', 'Based on your exams and review timing')} />
 			<Grid columns="1fr 1fr 1fr">
-				{([
-					['exam', t('Denemeden', 'From your exam'), t('Problemler', 'Problems'), t('Son denemede −3,25 net. 2 mikro ders + 1 test.', '−3.25 last exam. 2 lessons + 1 quiz.')],
-					['studyPlan', t('Tekrar zamanı', 'Due for review'), t('Türev · Zincir kuralı', 'Chain rule'), t('3 gün önce %45 başarı. 15 dk tekrar.', '45% three days ago. 15-minute review.')],
-					['flashcards', t('Unutma eğrisi', 'Forgetting curve'), t('Osmanlı kartları', 'Ottoman cards'), t('10 kart unutulmak üzere.', '10 cards about to slip.')],
-					['lessons', t('Dersler’den', 'From Lessons'), t('Sözcükte Anlam · Terim anlam', 'Word meaning · Terms'), t('Sıradaki mikro ders, 2 dakika.', 'Your next micro-lesson, 2 minutes.')],
-					['tests', t('Seviye atla', 'Level up'), t('Paragraf · Zor', 'Reading · Hard'), t('Orta seviyeyi %90 ile geçtin.', 'You passed Medium with 90%.')],
-					['sinoAi', 'SinoAI', t('Kişisel deneme', 'Personal exam'), t('Eksiklerinden 30 soruluk deneme.', 'A 30-question exam on your gaps.')],
-				] as [ModuleKey, string, string, string][]).map(([key, over, title, text]) => (
+				{(
+					[
+						['exam', t('Denemeden', 'From your exam'), t('Problemler', 'Problems'), t('Son denemede −3,25 net. 2 mikro ders + 1 test.', '−3.25 last exam. 2 lessons + 1 quiz.')],
+						['studyPlan', t('Tekrar zamanı', 'Due for review'), t('Türev · Zincir kuralı', 'Chain rule'), t('3 gün önce %45 başarı. 15 dk tekrar.', '45% three days ago. 15-minute review.')],
+						['flashcards', t('Unutma eğrisi', 'Forgetting curve'), t('Osmanlı kartları', 'Ottoman cards'), t('10 kart unutulmak üzere.', '10 cards about to slip.')],
+						['lessons', t('Dersler’den', 'From Lessons'), t('Sözcükte Anlam · Terim anlam', 'Word meaning · Terms'), t('Sıradaki mikro ders, 2 dakika.', 'Your next micro-lesson, 2 minutes.')],
+						['tests', t('Seviye atla', 'Level up'), t('Paragraf · Zor', 'Reading · Hard'), t('Orta seviyeyi %90 ile geçtin.', 'You passed Medium with 90%.')],
+						['sinoAi', 'SinoAI', t('Kişisel deneme', 'Personal exam'), t('Eksiklerinden 30 soruluk deneme.', 'A 30-question exam on your gaps.')],
+					] as [ModuleKey, string, string, string][]
+				).map(([key, over, title, text]) => (
 					<Card key={title} padding={18} tone="moduleLine" module={key}>
 						<Stack gap={10}>
 							<Stack row gap={10}>
@@ -107,7 +153,12 @@ export const WebPlanStatsScreen: React.FC = () => {
 		<Panel active="studyPlan">
 			<ModuleHead module="studyPlan" tab={3} tabs={PLAN_TABS(t)} title={t('İstatistik', 'Statistics')} sub={t('Süre, uyum ve modül dağılımı', 'Time, adherence and module mix')} />
 			<Grid columns="repeat(4, 1fr)" gap={14}>
-				{[[t('Bu hafta', 'This week'), t('11 sa 20 dk', '11 h 20 m')], [t('Plana uyum', 'On plan'), '%86'], [t('En uzun seri', 'Longest streak'), t('12 gün', '12 days')], [t('Odak turu', 'Focus rounds'), '38']].map(([label, value]) => (
+				{[
+					[t('Bu hafta', 'This week'), t('11 sa 20 dk', '11 h 20 m')],
+					[t('Plana uyum', 'On plan'), t('%86', '86%')],
+					[t('En uzun seri', 'Longest streak'), t('12 gün', '12 days')],
+					[t('Odak turu', 'Focus rounds'), '38'],
+				].map(([label, value]) => (
 					<Card key={label} padding={18}>
 						<Text role="meta">{label}</Text>
 						<Text role="num" size={28}>
@@ -130,7 +181,7 @@ export const WebPlanStatsScreen: React.FC = () => {
 								</Text>
 								<Bar value={[0.42, 0.24, 0.18, 0.1, 0.06][index]} color={MODULES[key].color.light} />
 								<Text role="meta" style={{width: 34, textAlign: 'right'}}>
-									%{[42, 24, 18, 10, 6][index]}
+									<Pct value={[42, 24, 18, 10, 6][index]} />
 								</Text>
 							</Stack>
 						))}
@@ -165,7 +216,12 @@ export const WebPlanProgressScreen: React.FC = () => {
 				</WCard>
 				<Stack gap={18}>
 					<Grid columns="1fr 1fr" gap={12}>
-						{[['38', t('Tamamlandı', 'Done'), colors.success], ['12', t('Devam', 'Active'), mod.color], ['6', t('Tekrar', 'Review'), colors.warning], ['55', t('Başlanmadı', 'Not started'), colors.muted]].map(([value, label, color]) => (
+						{[
+							['38', t('Tamamlandı', 'Done'), colors.success],
+							['12', t('Devam', 'Active'), mod.color],
+							['6', t('Tekrar', 'Review'), colors.warning],
+							['55', t('Başlanmadı', 'Not started'), colors.muted],
+						].map(([value, label, color]) => (
 							<Card key={label} padding={16}>
 								<Text role="num" size={26} color={color}>
 									{value}
@@ -190,7 +246,18 @@ export const WebPlanSettingsScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="studyPlan">
-			<ModuleHead module="studyPlan" tab={5} tabs={PLAN_TABS(t)} title={t('Plan ayarları', 'Plan settings')} sub={t('Hedef, tempo ve günler', 'Goal, pace and days')} actions={<Button tone="module" module="studyPlan" icon="refresh">{t('Planı yeniden oluştur', 'Rebuild plan')}</Button>} />
+			<ModuleHead
+				module="studyPlan"
+				tab={5}
+				tabs={PLAN_TABS(t)}
+				title={t('Plan ayarları', 'Plan settings')}
+				sub={t('Hedef, tempo ve günler', 'Goal, pace and days')}
+				actions={
+					<Button tone="module" module="studyPlan" icon="refresh">
+						{t('Planı yeniden oluştur', 'Rebuild plan')}
+					</Button>
+				}
+			/>
 			<Grid columns="1fr 1fr">
 				<WCard title={t('Hedef ve tempo', 'Goal and pace')}>
 					<List>
@@ -205,7 +272,7 @@ export const WebPlanSettingsScreen: React.FC = () => {
 						<ListRow title={t('Denemeden sonra planı güncelle', 'Update after exams')} subtitle={t('Eksik konular eklenir', 'Gaps are added')} trailing={<Toggle on module="studyPlan" />} chevron={false} />
 						<ListRow title={t('Tekrar zamanı gelenleri ekle', 'Add reviews when due')} subtitle={t('Unutma eğrisine göre', 'By the forgetting curve')} trailing={<Toggle on module="studyPlan" />} chevron={false} />
 						<ListRow title={t('Pazar tekrar günü', 'Sunday review day')} trailing={<Toggle on module="studyPlan" />} chevron={false} />
-						<ListRow title={t('Günlük hatırlatma', 'Daily reminder')} subtitle="08:00" trailing={<Toggle on module="studyPlan" />} chevron={false} />
+						<ListRow title={t('Günlük hatırlatma', 'Daily reminder')} subtitle="08:30" trailing={<Toggle on module="studyPlan" />} chevron={false} />
 					</List>
 				</WCard>
 			</Grid>
@@ -218,7 +285,16 @@ export const WebPlanFocusScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
 	return (
-		<Immersive module="studyPlan" title={t('Odak · Problemler · Orta', 'Focus · Problems · Medium')} sub={t('Görev 2/3', 'Task 2/3')} right={<Button tone="ghost" icon="check">{t('Görevi bitir', 'Finish task')}</Button>}>
+		<Immersive
+			module="studyPlan"
+			title={t('Odak · Problemler · Orta', 'Focus · Problems · Medium')}
+			sub={t('Görev 2/3', 'Task 2/3')}
+			right={
+				<Button tone="ghost" icon="check">
+					{t('Görevi bitir', 'Finish task')}
+				</Button>
+			}
+		>
 			<Stack align="center" justify="center" gap={22} style={{flex: 1, background: `radial-gradient(60% 60% at 50% 40%, ${mod.wash} 0%, ${colors.card} 70%)`}}>
 				<Ring value={0.62} size={340} stroke={20} color={mod.color} track={mod.track}>
 					<Stack align="center" gap={6}>

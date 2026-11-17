@@ -1,9 +1,10 @@
 import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, PageTitle, Phone, SectionTitle} from '../../Parts/Mobile';
-import {Button, Card, Chip, OptionRow, Stack, Text, Tile} from '../../Parts/Shared';
+import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, PageTitle, Phone, SectionTitle} from '../../Parts/Mobile';
+import {Button, Card, Chip, List, ListRow, OptionRow, Stack, Text, Tile} from '../../Parts/Shared';
 import {PlanTaskCard, StateBlock, WeekStrip} from '../../Parts/Study';
+import {WORK_LESSONS} from './Lessons';
 
 /**
  * The states every screen needs besides "full" (gap pass, 5 Nov 2026): no
@@ -11,7 +12,6 @@ import {PlanTaskCard, StateBlock, WeekStrip} from '../../Parts/Study';
  * Rule: no state is a dead end; each says why it is so, what happens next
  * and offers one action. Numbers that are zero are not shown as zero.
  */
-
 
 /* ------------------------------------------------------------------ Ders Planı */
 
@@ -25,10 +25,14 @@ export const PlanNoneScreen: React.FC = () => {
 				<PageTitle module="studyPlan" title={t('Bugün', 'Today')} />
 				<StateBlock module="studyPlan" icon="calendar" title={t('Henüz planın yok', 'No plan yet')} text={t('Sınav tarihine, boş günlerine ve zorlandığın derslere göre her güne görev koyarız; denemeden sonra kendini günceller.', 'We put tasks on each day from your exam date, free days and weak subjects; it updates after every exam.')} action={t('Planımı hazırla · 1 dk', 'Build my plan · 1 min')} second={t('Kendi planımı kuracağım', 'I’ll make my own')} />
 				<SectionTitle title={t('Örnek bir gün', 'A sample day')} sub={t('Kayıttaki cevaplarına göre', 'From your sign-up answers')} />
-				<Stack gap={8} style={{opacity: 0.85}}>
-					<PlanTaskCard module="lessons" source={t('TYT Matematik · Dersler', 'TYT Maths · Lessons')} title={t('Temel Kavramlar', 'Basic concepts')} amount={t('3 mikro ders · 12 dk', '3 micro-lessons · 12 min')} />
-					<PlanTaskCard module="tests" source={t('TYT Fizik · Testler', 'TYT Physics · Quizzes')} title={t('Fizik Bilimine Giriş · Kolay', 'Intro to physics · Easy')} amount={t('20 soru · 25 dk', '20 q · 25 min')} />
-				</Stack>
+				<FitList gap={8}>
+					<div style={{opacity: 0.85}}>
+						<PlanTaskCard module="lessons" source={t('TYT Matematik · Dersler', 'TYT Maths · Lessons')} title={t('Temel Kavramlar', 'Basic concepts')} amount={t('3 mikro ders · 12 dk', '3 micro-lessons · 12 min')} />
+					</div>
+					<div style={{opacity: 0.85}}>
+						<PlanTaskCard module="tests" source={t('TYT Fizik · Testler', 'TYT Physics · Quizzes')} title={t('Fizik Bilimine Giriş · Kolay', 'Intro to physics · Easy')} amount={t('20 soru · 25 dk', '20 q · 25 min')} />
+					</div>
+				</FitList>
 				<Text role="meta" align="center" color={colors.muted}>
 					{t('Plan hazırlanınca bu görevler takvimine yerleşir.', 'These go into your calendar once the plan is ready.')}
 				</Text>
@@ -168,7 +172,7 @@ export const LessonsFirstVisitScreen: React.FC = () => {
 					<Text role="small" color="#FFFFFF">
 						{t('Matematik’te zorlandığını söyledin. İlk mikro ders 4 dk, 6 adım.', 'You said maths is hard for you. First micro-lesson: 4 min, 6 steps.')}
 					</Text>
-					<Button tone="white" icon="play" style={{alignSelf: 'flex-start', marginTop: 8, color: mod.ink}}>
+					<Button tone="white" icon="play" style={{alignSelf: 'flex-start', marginTop: 8, color: mod.action}}>
 						{t('İlk mikro dersi başlat', 'Start the first micro-lesson')}
 					</Button>
 				</div>
@@ -190,6 +194,11 @@ export const LessonsFirstVisitScreen: React.FC = () => {
 					</Stack>
 				</Card>
 				<SectionTitle title="TYT" sub={t('10 ders · 168 konu', '10 subjects · 168 topics')} action={t('Tümü', 'All')} />
+				<List>
+					{WORK_LESSONS.map(([tr, en, , , topics]) => (
+						<ListRow key={tr} module="lessons" icon="book" title={t(tr, en)} subtitle={t(`${topics} konu · henüz başlamadın`, `${topics} topics · not started yet`)} />
+					))}
+				</List>
 			</Content>
 		</ModuleScreen>
 	);
@@ -247,7 +256,15 @@ export const SummaryQuotaScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="smartSummary" tab={0}>
 			<Content gap={12}>
-				<PageTitle module="smartSummary" title={t('Akıllı Özet', 'Smart Summary')} right={<Chip tone="module" module="smartSummary">{t('Bu ay 30 / 30', '30 / 30 this month')}</Chip>} />
+				<PageTitle
+					module="smartSummary"
+					title={t('Akıllı Özet', 'Smart Summary')}
+					right={
+						<Chip tone="module" module="smartSummary">
+							{t('Bu ay 30 / 30', '30 / 30 this month')}
+						</Chip>
+					}
+				/>
 				<StateBlock module="smartSummary" icon="clock" title={t('Bu ayın analiz hakkı doldu', 'This month’s analyses are used up')} text={t('Hakların 1 Aralık’ta yenilenir. Geçmiş analizlerin ve çözümlerin açık kalır.', 'They renew on 1 December. Past analyses stay open.')} action={t('Geçmiş analizlerim', 'My past analyses')} second={t('Bu arada SinoAI’ye sor', 'Ask SinoAI meanwhile')} />
 			</Content>
 		</ModuleScreen>
@@ -300,7 +317,7 @@ export const SinoLimitScreen: React.FC = () => {
 					</Card>
 				</Content>
 				<div style={{padding: '0 18px 30px'}}>
-					<div style={{height: 50, borderRadius: 25, background: colors.line2, display: 'flex', alignItems: 'center', padding: '0 18px', opacity: 0.6}}>
+					<div data-ui="disabled" style={{height: 50, borderRadius: 25, background: colors.line2, display: 'flex', alignItems: 'center', padding: '0 18px', opacity: 0.6}}>
 						<Text role="small">{t('Yarın yeniden sorabilirsin', 'You can ask again tomorrow')}</Text>
 					</div>
 				</div>

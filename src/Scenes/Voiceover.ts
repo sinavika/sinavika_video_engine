@@ -32,12 +32,45 @@ export type VoiceClips = z.infer<typeof VoiceClipsSchema>;
  */
 export const VoiceScriptSchema = z.record(z.string(), z.string().trim().min(1).max(700)).default({});
 
-/** One spoken line and the time reserved for it. A scene plays its slots one after another. */
-export type VoiceSlot = {id: string; text: string; seconds: number};
+/**
+ * One spoken line and the time reserved for it. A scene plays its slots one after another; the voice starts `lead`
+ * seconds into its slot (VOICE_LEAD_SECONDS unless the template set a line gap of its own).
+ */
+export type VoiceSlot = {id: string; text: string; seconds: number; lead?: number};
 
 /** Silence before a line starts (covers the scene transition) and after it ends. Kept short: longer gaps between scenes sounded like the narrator hesitating (owner feedback, 20 Oct 2026). */
 export const VOICE_LEAD_SECONDS = 0.3;
 export const VOICE_TAIL_SECONDS = 0.15;
+
+/**
+ * The silence a template leaves around its lines: `lead` before each, `tail` after it, and with `trimTail` the
+ * recording's own silence after its last word cut to TRIM_KEEP_SECONDS. Lessons and camps keep the defaults; story
+ * reels set a tight gap (SINAVIKA_TR_TEMPO.lineGap): with the defaults 0.6–0.95 s of silence followed every line,
+ * about a fifth of a reel (Sosyal Medya, 15 Nov 2026).
+ */
+type LineGap = {lead: number; tail: number; trimTail?: boolean};
+
+/** Silence kept after a line's last word when its tail is trimmed. */
+const TRIM_KEEP_SECONDS = 0.1;
+
+/** Seconds a spoken word lasts at most per letter, and at least: for telling where a line's last word ends. */
+const WORD_SECONDS_PER_LETTER = 0.075;
+const WORD_MIN_SECONDS = 0.25;
+
+/**
+ * How long a clip speaks: up to the end of its last word plus a breath (TRIM_KEEP_SECONDS), never longer than the
+ * clip. The last word's end is estimated from its letters, generously, so a word is never cut. Without word timings
+ * the whole clip counts.
+ */
+export const spokenSeconds = (clip: VoiceClip): number => {
+	const last = clip.words?.at(-1);
+	if (!last) return clip.durationSeconds;
+	const letters = last.text.replace(/[^\p{L}\p{N}]/gu, '').length;
+	return Math.min(clip.durationSeconds, last.startSeconds + Math.max(WORD_MIN_SECONDS, letters * WORD_SECONDS_PER_LETTER) + TRIM_KEEP_SECONDS);
+};
+
+/** Where in its slot a line's voice starts. */
+export const slotLead = (slot: Pick<VoiceSlot, 'lead'>): number => slot.lead ?? VOICE_LEAD_SECONDS;
 
 /**
  * The brand voice's pace in letters of spoken text per second (numbers, abbreviations and formulas as they are
@@ -66,14 +99,20 @@ export type Narrator = (
  * Decides text and duration of every voice line. With a clip, the audio
  * length drives the duration; without one, the reading-time estimate does.
  */
-export const createNarrator = (clips: VoiceClips, script: Record<string, string> = {}): Narrator =>
+export const createNarrator = (clips: VoiceClips, script: Record<string, string> = {}, gap?: LineGap): Narrator =>
 	(id, text, estimateSeconds, floorSeconds = 0) => {
 		const clip = clips[id];
-		const spoken = clip ? clip.durationSeconds + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS : estimateSeconds;
+		const lead = gap?.lead ?? VOICE_LEAD_SECONDS;
+		const tail = gap?.tail ?? VOICE_TAIL_SECONDS;
+		const voice = clip ? (gap?.trimTail ? spokenSeconds(clip) : clip.durationSeconds) : 0;
+		const spoken = clip ? voice + lead + tail : estimateSeconds;
+		// A tight gap is timed to the frame, not to a tenth of a second: rounding up alone added up to 0.1 s a line.
+		const step = gap ? 30 : 10;
 		return {
 			id,
 			text: script[id] ?? text,
-			seconds: Math.round(Math.max(spoken, clip ? floorSeconds : 0) * 10) / 10,
+			seconds: Math.round(Math.max(spoken, clip ? floorSeconds : 0) * step) / step,
+			...(gap ? {lead} : {}),
 		};
 	};
 
@@ -90,7 +129,7 @@ export const voiceTracksOf = (slots: readonly VoiceSlot[], clips: VoiceClips) =>
 	let offset = 0;
 	return slots.flatMap((slot) => {
 		const clip = clips[slot.id];
-		const start = offset + VOICE_LEAD_SECONDS;
+		const start = offset + slotLead(slot);
 		offset += slot.seconds;
 		return clip ? [{src: clip.src, fileStartSeconds: clip.startSeconds, sceneStartSeconds: start, durationSeconds: clip.durationSeconds, playbackRate: clip.playbackRate}] : [];
 	});
@@ -118,21 +157,21 @@ const CUE_LEAD_SECONDS = 0.08;
  * Templates use it so that what is drawn arrives with the words that name it,
  * never before (owner, 26 Oct 2026: "söylemler olurken bir sonraki kart çıkıyor").
  */
-export const phraseCues = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], fallback: readonly number[], estimateSeconds?: number): number[] =>
-	phraseTimes(clip, lineText, phrases, estimateSeconds).map((at, index) => at ?? fallback[index] ?? 0);
+export const phraseCues = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], fallback: readonly number[], estimateSeconds?: number, lead = VOICE_LEAD_SECONDS): number[] =>
+	phraseTimes(clip, lineText, phrases, estimateSeconds, lead).map((at, index) => at ?? fallback[index] ?? 0);
 
 /**
  * When each phrase is heard, searched in order as phraseCues does; undefined for a phrase the line never says, so a
  * scene can tell a named item from one it only shows (the bars ÖSYM data adds after the narrated ones).
  */
-export const phraseTimes = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], estimateSeconds?: number): (number | undefined)[] => {
+export const phraseTimes = (clip: VoiceClip | undefined, lineText: string, phrases: readonly string[], estimateSeconds?: number, lead = VOICE_LEAD_SECONDS): (number | undefined)[] => {
 	const spoken = spokenWords(clip, lineText, estimateSeconds);
 	let from = 0;
 	return phrases.map((phrase) => {
 		const at = spoken ? findTokens(spoken.tokens, spokenTokens(phrase), from) : -1;
 		if (!spoken || at < 0) return undefined;
 		from = at + spokenTokens(phrase).length;
-		return Math.max(0, VOICE_LEAD_SECONDS + spoken.seconds[at] - CUE_LEAD_SECONDS);
+		return Math.max(0, lead + spoken.seconds[at] - CUE_LEAD_SECONDS);
 	});
 };
 

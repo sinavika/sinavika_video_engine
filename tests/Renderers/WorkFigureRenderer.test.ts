@@ -1,5 +1,12 @@
 import {describe, expect, it} from 'vitest';
-import {checkSvg, compactPathData, compactSvg, frameSvg, layoutFinding, raisedCount, simplifyPolylines, smallTextSize, spoilsStill, stillCrop, stillSize, stillTextSizes} from '../../src/Renderers/WorkFigureRenderer';
+import {existsSync} from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import type {HeadlessBrowser} from '@remotion/renderer';
+import {CourseVisualSchema} from '../../src/Components/Visuals/VisualSchema';
+import {geoLayerNames} from '../../src/Courses/GeoName';
+import {mapVisualNameIssues} from '../../src/Courses/LessonScript';
+import {checkSvg, compactPathData, compactSvg, frameSvg, layoutFinding, raisedCount, renderWorkFigure, simplifyPolylines, smallTextSize, spoilsStill, stillCrop, stillSize, stillTextSizes} from '../../src/Renderers/WorkFigureRenderer';
 
 const PAGE = {width: 1920, height: 1080};
 
@@ -97,5 +104,17 @@ describe('what a still reports about its text', () => {
 		expect(layoutFinding('Failed to load resource')).toBeUndefined();
 		expect(raisedCount('[TextFloor] 3: Magma 14→20 | Tortul 14→20 | Başkalaşım 14→20')).toBe(3);
 		expect(raisedCount('[LayoutGuard] kare 1: x')).toBeUndefined();
+	});
+});
+
+describe('map figures name real areas', () => {
+	it.runIf(existsSync(path.resolve(import.meta.dirname, '../../public/Geo/World.json')))('refuses an English or unknown area name before drawing (Quiz, 14 Nov 2026)', async () => {
+		const visual = CourseVisualSchema.parse({kind: 'map', base: 'countries', highlights: [{name: 'Türkiye'}], shades: [{label: 'İncelenen alan', names: ['Turkey', 'Azerbaycan']}]});
+		const issues = mapVisualNameIssues(visual, geoLayerNames);
+		expect(issues).toHaveLength(1);
+		expect(issues[0]).toContain('shades names "Turkey"');
+		// Nothing is bundled or rendered: the browser is never touched.
+		await expect(renderWorkFigure({pointer: '#harita', name: 'harita', visual}, os.tmpdir(), {} as HeadlessBrowser)).rejects.toThrow(/"Turkey"/);
+		expect(mapVisualNameIssues(CourseVisualSchema.parse({kind: 'map', base: 'countries', focus: ['Türkiye', 'Azerbaycan']}), geoLayerNames)).toEqual([]);
 	});
 });

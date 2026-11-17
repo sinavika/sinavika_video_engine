@@ -18,16 +18,16 @@ Bu derste:
 ✅ İşareti bilinen ifadelerde mutlak değer
 ✅ Mutlak değerli denklemler, çözümsüz durum
 ✅ Aralık ↔ mutlak değer: orta nokta, yarı genişlik
-✅ 8 TYT tarzı soru, adım adım çözümle
+✅ 16 TYT tarzı soru, adım adım çözümle
 
 🎯 Kamp görevi:
 1. Odanın sıcaklığının bir gün içindeki en düşük ve en yüksek değerini mutlak değerle yaz.
 2. |x - 3| = |x + 5| denklemini uzaklık düşünerek, hesap yapmadan çöz.
 3. Sınavika'da Mutlak Değer testinden 20 soru çöz, yanlışlarını bu dersin adımlarıyla yeniden çöz.
 
-⏮️ Önceki ders, Basit Eşitsizlikler: (yayın linki)
+⏮️ Önceki ders, Basit Eşitsizlikler: https://youtu.be/uDPIUK7XmL0
 ⏭️ Sıradaki ders: Üslü Sayılar. Kanala abone ol, hiçbir dersi kaçırma! 🔔
-🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/-YSeFFxDOhM
+🗺️ Kampı baştan izle, Bölüm 0: https://youtu.be/S9bPjvzsidk
 
 📲 Kampın testleri ve Ders Planı Sınavika'da:
 App Store: https://apps.apple.com/tr/app/id6762061768?l=tr
@@ -35,7 +35,15 @@ Google Play: https://play.google.com/store/apps/details?id=com.sinavika.mobile
 Web: https://sinavika.com
 
 Bölümler:
-(render sonrası `Mutlak_Deger_YouTube.chapters.txt` buraya yapıştırılır; bölüm başlıkları: Giriş, Mutlak değer bir uzaklıktır, Mutlak değerli ifadeler, Mutlak değerli denklemler, Mutlak değerli eşitsizlikler, Özet, Kamp görevi)
+0:00 Giriş
+0:28 Mutlak değerin tanımı
+4:12 Sayı doğrusunda uzaklık
+9:31 Mutlak değerli ifadeler
+15:23 Mutlak değerli denklemler
+21:27 Mutlak değerli eşitsizlikler
+25:56 Aralığı mutlak değerle yaz
+32:31 Özet
+33:03 Kamp görevi
 
 #TYT #YKS #TYTMatematik #MutlakDeğer #Sınavika
 
@@ -50,3 +58,7 @@ TYT Matematik Kampı | Sınavika · YKS Kampı | Sınavika
 ## Ayarlar
 
 Kategori Eğitim · dil Türkçe · çocuklara özel değil · ücretli tanıtım yok · yapay zekâ beyanı önceki derslerle aynı · yayın saati sahibin kararı (öneri: sahibin kararı).
+
+## Yükleme (14 Kasım 2026)
+
+Video sahibin yüklemesi: https://youtu.be/lklhuJrqsV8 · herkese açık **18 Kasım 2026 17:15** (sahip her gün 18:00 istedi; 18:00, kanaldaki bir Short'a 90 dakikadan yakınsa saat kaydırıldı). Studio'da girildi ve açıklama dosyayla karakter karakter karşılaştırıldı: başlık A, yukarıdaki açıklama (16 soru, önceki ders bağlantısı, Bölüm 0 bağlantısı Matematik kampının), kamp kapağı, iki oynatma listesi, etiketler, ücretli tanıtım yok, yapay zekâ beyanı "Hayır", bitiş ekranı (abone ol + en son yükleme).

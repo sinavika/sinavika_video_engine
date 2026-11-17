@@ -2,7 +2,7 @@ import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {Bar, Button, Card, Chip, List, ListRow, Ring, Stack, Text, Tile} from '../../Parts/Shared';
+import {Bar, Button, Card, Chip, List, ListRow, Pct, Ring, Stack, Text, Tile} from '../../Parts/Shared';
 
 /**
  * Dersler (Works): a topic is taught as micro-lessons, each a short run of
@@ -168,8 +168,9 @@ export const Choice: React.FC<{letter?: string; text: React.ReactNode; look?: Op
 	const colors = useColors();
 	const tone = {
 		idle: {line: colors.line, fill: colors.card, box: colors.line2, boxInk: colors.muted},
-		ok: {line: colors.success, fill: colors.successSoft, box: colors.success, boxInk: '#FFFFFF'},
-		no: {line: colors.error, fill: colors.errorSoft, box: colors.error, boxInk: '#FFFFFF'},
+		// Solid boxes keep the light theme's strong colour in both themes: white reads on them (4.5:1).
+		ok: {line: colors.success, fill: colors.successSoft, box: '#047857', boxInk: '#FFFFFF'},
+		no: {line: colors.error, fill: colors.errorSoft, box: '#DC2626', boxInk: '#FFFFFF'},
 	}[look];
 	return (
 		<Stack row gap={12} align="flex-start" justify={center ? 'center' : undefined} style={{padding: '13px 14px', borderRadius: 16, border: `1.5px solid ${tone.line}`, background: tone.fill}}>
@@ -255,7 +256,7 @@ export const MapRow: React.FC<{index: number; name: string; state: MicroState; m
 	return (
 		<div style={{position: 'relative', display: 'flex', alignItems: 'center', gap: 12, height}}>
 			{last ? null : <div style={{position: 'absolute', left: dot / 2 - 1, top: height / 2 + dot / 2 - 2, height: height - dot + 4, width: 2, background: state === 'done' ? mod.color : colors.line}} />}
-			<div style={{width: dot, height: dot, borderRadius: dot / 2, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box', background: state === 'done' ? mod.color : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, zIndex: 1}}>
+			<div style={{width: dot, height: dot, borderRadius: dot / 2, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box', background: state === 'done' ? mod.action : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2px solid ${mod.color}` : undefined, zIndex: 1}}>
 				{state === 'done' ? (
 					<Icon name="check" size={dot * 0.48} color="#FFFFFF" />
 				) : (
@@ -328,7 +329,7 @@ export const TopicBadge: React.FC<{index: number; state: MicroState; size?: numb
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
 	return (
-		<div style={{width: size, height: size, borderRadius: size / 2, flexShrink: 0, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', background: state === 'done' ? mod.color : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2.5px solid ${mod.color}` : undefined}}>
+		<div style={{width: size, height: size, borderRadius: size / 2, flexShrink: 0, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', background: state === 'done' ? mod.action : state === 'now' ? colors.card : colors.line2, border: state === 'now' ? `2.5px solid ${mod.color}` : undefined}}>
 			{state === 'done' ? (
 				<Icon name="check" size={size * 0.48} color="#FFFFFF" />
 			) : (
@@ -352,14 +353,14 @@ export const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; ga
 	React.useContext(EmbedContext) ? (
 		<div style={{display: 'flex', flexDirection: 'column', gap}}>{children}</div>
 	) : (
-	<UIProvider module="lessons">
-		<Phone overlay={overlay}>
-			{bar}
-			<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '8px 20px 12px', display: 'flex', flexDirection: 'column', gap, justifyContent: center ? 'center' : undefined}}>{children}</div>
-			{foot ? <div style={{padding: '10px 20px 30px', display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0}}>{foot}</div> : null}
-		</Phone>
-	</UIProvider>
-);
+		<UIProvider module="lessons">
+			<Phone overlay={overlay}>
+				{bar}
+				<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '8px 20px 12px', display: 'flex', flexDirection: 'column', gap, justifyContent: center ? 'center' : undefined}}>{children}</div>
+				{foot ? <div style={{padding: '10px 20px 30px', display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0}}>{foot}</div> : null}
+			</Phone>
+		</UIProvider>
+	);
 
 export const StepBar: React.FC<{done: number; count?: number}> = ({done, count}) => (
 	<Stack row gap={14} style={{padding: '6px 18px 10px', flexShrink: 0}}>
@@ -414,7 +415,7 @@ export const LessonsHomeScreen: React.FC = () => {
 				</Card>
 				<SectionTitle title="TYT" sub={t('10 ders · 168 konu', '10 subjects · 168 topics')} />
 				<List>
-					{WORK_LESSONS.slice(0, 4).map(([tr, en, done, total, topics]) => (
+					{WORK_LESSONS.map(([tr, en, done, total, topics]) => (
 						<ListRow
 							key={tr}
 							module="lessons"
@@ -454,7 +455,7 @@ export const LessonsTopicsScreen: React.FC = () => {
 						</Stack>
 						<Ring value={0.11} size={48} stroke={5} color={mod.color} track={mod.track}>
 							<Text role="meta" weight={800}>
-								%11
+								<Pct value={11} />
 							</Text>
 						</Ring>
 					</Stack>
@@ -508,7 +509,16 @@ export const LessonsReviewScreen: React.FC = () => {
 				</Card>
 				<List>
 					{REVIEWS.map(([kind, micro, topic, stage]) => (
-						<ListRow key={`${kind}${micro}`} title={kind} subtitle={`${micro} · ${topic}`} trailing={<Chip tone="module" module="lessons" size="sm">{t(`${stage}. tekrar`, `Round ${stage}`)}</Chip>} />
+						<ListRow
+							key={`${kind}${micro}`}
+							title={kind}
+							subtitle={`${micro} · ${topic}`}
+							trailing={
+								<Chip tone="module" module="lessons" size="sm">
+									{t(`${stage}. tekrar`, `Round ${stage}`)}
+								</Chip>
+							}
+						/>
 					))}
 				</List>
 				<Stack row gap={8} style={{padding: '0 4px'}}>
@@ -610,12 +620,7 @@ export const LessonExampleScreen: React.FC = () => (
 
 /* ------------------------------------------------------------------ Rule · kural */
 
-export const RULE_ITEMS = [
-	'Yazılışı ve okunuşu aynı, anlamı farklı sözcüklerdir: **yüz** (surat) – **yüz** (sayı).',
-	'Anlamları arasında **bağ yoktur**; sözlükte ayrı maddelerdir.',
-	'Çok anlamlı sözcükte anlamlar arasında **bağ vardır**: kolumuz ve gömleğin **kolu**.',
-	'Soruda iki anlamı karşılaştır: bağ varsa çok anlamlı, yoksa eş sesli.',
-];
+export const RULE_ITEMS = ['Yazılışı ve okunuşu aynı, anlamı farklı sözcüklerdir: **yüz** (surat) – **yüz** (sayı).', 'Anlamları arasında **bağ yoktur**; sözlükte ayrı maddelerdir.', 'Çok anlamlı sözcükte anlamlar arasında **bağ vardır**: kolumuz ve gömleğin **kolu**.', 'Soruda iki anlamı karşılaştır: bağ varsa çok anlamlı, yoksa eş sesli.'];
 
 export const RuleContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const colors = useColors();
@@ -767,8 +772,7 @@ export const FillContent: React.FC<{size?: number}> = ({size = 1}) => {
 			<Title size={24 * size}>Cümleyi mecaz anlamla tamamla</Title>
 			<PlainCard>
 				<Text role="headline" size={18 * size} weight={800} style={{lineHeight: `${32 * size}px`}}>
-					Arkadaşının söylediği sözler ona çok{' '}
-					<span style={{display: 'inline-block', minWidth: 64, textAlign: 'center', borderBottom: `2.5px solid ${colors.success}`, color: colors.successInk, padding: '0 4px'}}>ağır</span> geldi; o gün kimseyle konuşmadı.
+					Arkadaşının söylediği sözler ona çok <span style={{display: 'inline-block', minWidth: 64, textAlign: 'center', borderBottom: `2.5px solid ${colors.success}`, color: colors.successInk, padding: '0 4px'}}>ağır</span> geldi; o gün kimseyle konuşmadı.
 				</Text>
 			</PlainCard>
 			<Stack row gap={10} wrap>
@@ -913,7 +917,7 @@ export const TriangleFigure: React.FC<{width?: number}> = ({width = 280}) => {
 	const label = {fontFamily: 'inherit', fontSize: 15, fontWeight: 800, fill: colors.ink};
 	const angle = {fontFamily: 'inherit', fontSize: 14, fontWeight: 700, fill: mod.ink};
 	return (
-		<svg width={width} height={(width * 246) / 280} viewBox="0 0 280 246" style={{display: 'block', alignSelf: 'center'}}>
+		<svg width={width} height={(width * 246) / 280} viewBox="0 0 280 246" style={{display: 'block', alignSelf: 'center', overflow: 'visible'}}>
 			<polygon points="117,14 40,224 240,224" fill={mod.wash} stroke={colors.ink} strokeWidth={2.2} strokeLinejoin="round" />
 			<text x={111} y={10} style={label}>
 				A

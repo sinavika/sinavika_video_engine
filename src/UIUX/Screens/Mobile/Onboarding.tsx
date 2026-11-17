@@ -1,7 +1,7 @@
 import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {alpha, MODULES, moduleGradient, moduleInk, type ModuleKey} from '../../ModuleIdentity';
+import {alpha, MODULES, moduleGradient, type ModuleKey} from '../../ModuleIdentity';
 import {BottomBar, Content, Phone} from '../../Parts/Mobile';
 import {Button, Card, Chip, Stack, Steps, Text, Tile} from '../../Parts/Shared';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
@@ -73,9 +73,7 @@ const Pick: React.FC<{on?: boolean; icon?: UIIconName; title: string; sub?: stri
 				</Stack>
 				{sub ? <Text role="small">{sub}</Text> : null}
 			</Stack>
-			<div style={{width: 22, height: 22, borderRadius: radio ? 11 : 7, border: on ? undefined : `2px solid ${colors.line}`, background: on ? colors.ink : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-				{on ? radio ? <div style={{width: 8, height: 8, borderRadius: 4, background: colors.bg}} /> : <Icon name="check" size={14} color={colors.bg} /> : null}
-			</div>
+			<div style={{width: 22, height: 22, borderRadius: radio ? 11 : 7, border: on ? undefined : `2px solid ${colors.line}`, background: on ? colors.ink : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>{on ? radio ? <div style={{width: 8, height: 8, borderRadius: 4, background: colors.bg}} /> : <Icon name="check" size={14} color={colors.bg} /> : null}</div>
 		</Stack>
 	);
 };
@@ -209,9 +207,30 @@ export const OnbTempoScreen: React.FC = () => {
 export const OnbWeakScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
-	const lessons: [string, string, boolean][] = [['Matematik', 'Maths', true], ['Türkçe', 'Turkish', false], ['Geometri', 'Geometry', true], ['Fizik', 'Physics', false], ['Kimya', 'Chemistry', true], ['Biyoloji', 'Biology', false], ['Tarih', 'History', false], ['Coğrafya', 'Geography', false], ['Felsefe', 'Philosophy', false]];
+	const lessons: [string, string, boolean][] = [
+		['Matematik', 'Maths', true],
+		['Türkçe', 'Turkish', false],
+		['Geometri', 'Geometry', true],
+		['Fizik', 'Physics', false],
+		['Kimya', 'Chemistry', true],
+		['Biyoloji', 'Biology', false],
+		['Tarih', 'History', false],
+		['Coğrafya', 'Geography', false],
+		['Felsefe', 'Philosophy', false],
+	];
 	return (
-		<OnbFrame step={4} over={t('Dersler', 'Subjects')} title={t('Hangi derslerde daha çok desteğe ihtiyacın var?', 'Where do you need more support?')} text={t('Planında bu derslere daha çok yer ayırırız. Seçmesen de olur.', 'We give these more room in your plan. Optional.')} cta={t('Planımı hazırla', 'Build my plan')} extra={<Text role="small" align="center"><b style={{color: colors.ink}}>3</b> {t('ders seçildi', 'selected')}</Text>}>
+		<OnbFrame
+			step={4}
+			over={t('Dersler', 'Subjects')}
+			title={t('Hangi derslerde daha çok desteğe ihtiyacın var?', 'Where do you need more support?')}
+			text={t('Planında bu derslere daha çok yer ayırırız. Seçmesen de olur.', 'We give these more room in your plan. Optional.')}
+			cta={t('Planımı hazırla', 'Build my plan')}
+			extra={
+				<Text role="small" align="center">
+					<b style={{color: colors.ink}}>3</b> {t('ders seçildi', 'selected')}
+				</Text>
+			}
+		>
 			<Stack row wrap gap={8}>
 				{lessons.map(([tr, en, on]) => (
 					<Chip key={tr} tone="outline" icon={on ? 'check' : undefined} style={{height: 44, padding: '0 16px', fontSize: 14, color: on ? colors.ink : colors.ink2, border: `${on ? 2 : 1.5}px solid ${on ? colors.ink : colors.line}`}}>
@@ -282,6 +301,7 @@ export const WeekPlan: React.FC<{compact?: boolean}> = ({compact}) => {
 export const OnbPlanScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	const lessonsInk = useModuleColors('lessons').ink;
 	return (
 		<OnbFrame step={5} over={t('Hazır', 'Ready')} title={t('YKS planın hazır', 'Your YKS plan is ready')} text={t('48 netten 78 nete, günde 3 saatlik dengeli tempoyla.', 'From 48 to 78, at a balanced 3 hours a day.')} cta={t('Planımı kaydet', 'Save my plan')}>
 			<WeekPlan />
@@ -289,7 +309,7 @@ export const OnbPlanScreen: React.FC = () => {
 				<Stack row gap={12}>
 					<Tile module="lessons" size={42} />
 					<Stack grow gap={1}>
-						<Text role="over" color={moduleInk('lessons')}>
+						<Text role="over" color={lessonsInk}>
 							{t('Bugünkü ilk görevin', 'Your first task today')}
 						</Text>
 						<Text role="headline">{t('Türkçe · Sözcükte Anlam', 'Turkish · Word meaning')}</Text>
@@ -311,7 +331,17 @@ export const OnbTrialScreen: React.FC = () => {
 		['card', t('3. gün', 'Day 3'), t('YKS Aylık ₺299 ile devam eder. Öncesinde iptal edersen ücret yok.', 'Continues as YKS Monthly ₺299. Cancel before and pay nothing.')],
 	];
 	return (
-		<OnbFrame over={t('3 gün ücretsiz', '3 days free')} title={t('Tüm özellikleri 3 gün ücretsiz dene', 'Try everything free for 3 days')} text={t('Bugün ödeme yok. İstediğin an iptal edebilirsin.', 'No payment today. Cancel any time.')} cta={t('3 gün ücretsiz başla', 'Start 3 free days')} extra={<Text role="small" align="center" weight={700} color={colors.ink}>{t('Paketleri karşılaştır', 'Compare plans')}</Text>}>
+		<OnbFrame
+			over={t('3 gün ücretsiz', '3 days free')}
+			title={t('Tüm özellikleri 3 gün ücretsiz dene', 'Try everything free for 3 days')}
+			text={t('Bugün ödeme yok. İstediğin an iptal edebilirsin.', 'No payment today. Cancel any time.')}
+			cta={t('3 gün ücretsiz başla', 'Start 3 free days')}
+			extra={
+				<Text role="small" align="center" weight={700} color={colors.ink}>
+					{t('Paketleri karşılaştır', 'Compare plans')}
+				</Text>
+			}
+		>
 			<Card padding={6}>
 				{steps.map(([icon, title, text], index) => (
 					<Stack key={title} row gap={12} align="flex-start" style={{padding: '12px 10px', borderTop: index ? `1px solid ${colors.line2}` : undefined}}>
@@ -328,7 +358,7 @@ export const OnbTrialScreen: React.FC = () => {
 					<Text role="headline">{t('YKS Aylık Paket', 'YKS Monthly')}</Text>
 					<Text role="small">{t('3 gün ücretsiz, sonra aylık', '3 days free, then monthly')}</Text>
 				</Stack>
-				<Text role="section">₺299/ay</Text>
+				<Text role="section">{t('₺299/ay', '₺299/mo')}</Text>
 			</Stack>
 		</OnbFrame>
 	);
@@ -400,14 +430,19 @@ const NotificationsAsk: React.FC = () => {
 					{t('İlk mikro dersin bitti', 'First micro-lesson done')}
 				</Chip>
 				<Text role="hero" align="center">
-					{t('Yarın 08:00’de hatırlatalım mı?', 'Shall we remind you at 08:00 tomorrow?')}
+					{t('Yarın 08:30’da hatırlatalım mı?', 'Shall we remind you at 08:30 tomorrow?')}
 				</Text>
 				<Text role="body" align="center">
-					{t('Günün planını sabah, deneme sonucunu açıklanınca haber veririz. Gece 23:00–07:00 sessiz.', 'Your plan in the morning, exam results when ready. Quiet 23:00–07:00.')}
+					{t('Günün planını sabah, deneme sonucunu açıklanınca haber veririz. Gece 22:00–08:00 sessiz.', 'Your plan in the morning, exam results when ready. Quiet 22:00–08:00.')}
 				</Text>
 				<Card padding={12} style={{width: '100%', textAlign: 'left'}}>
 					<Stack gap={8}>
-						{([['studyPlan', 'Bugünün planı hazır', 'Today’s plan is ready', '08:00'], ['exam', 'Sonucun hazır: TYT Deneme 4', 'Your result: TYT Exam 4', '12:24']] as [ModuleKey, string, string, string][]).map(([key, tr, en, time]) => (
+						{(
+							[
+								['studyPlan', 'Bugünün planı hazır', 'Today’s plan is ready', '08:30'],
+								['exam', 'Sonucun hazır: TYT Deneme 4', 'Your result: TYT Exam 4', '12:24'],
+							] as [ModuleKey, string, string, string][]
+						).map(([key, tr, en, time]) => (
 							<Stack key={tr} row gap={10}>
 								<Tile module={key} size={32} />
 								<Text role="headline" size={13.5} style={{flex: 1}}>

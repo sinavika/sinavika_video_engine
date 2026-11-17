@@ -25,7 +25,16 @@ export const LessonStep: React.FC<{done: number; count?: number; title: string; 
 	const mod = useModuleColors('lessons');
 	return (
 		<Tablet module="lessons" wash>
-			<SolveBar title={title} sub={`${topic} · ${done + 1} / ${count}`} center={<div style={{width: 300}}><Steps count={count} done={done + 1} color={mod.color} /></div>} overlay={overlay} />
+			<SolveBar
+				title={title}
+				sub={`${topic} · ${done + 1} / ${count}`}
+				center={
+					<div style={{width: 300}}>
+						<Steps count={count} done={done + 1} color={mod.color} />
+					</div>
+				}
+				overlay={overlay}
+			/>
 			<Stack row gap={18} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				{toolbar}
 				<div style={{position: 'relative', flex: 1, display: 'flex', borderRadius: UI_RADIUS.xl, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.card, overflow: 'hidden'}}>
@@ -91,7 +100,7 @@ export const LessonsHomeTabletScreen: React.FC = () => {
 							</Text>
 							<div style={{flex: 1}} />
 							<Stack row gap={10}>
-								<Button tone="white" icon="play" style={{color: mod.ink}}>
+								<Button tone="white" icon="play" style={{color: mod.action}}>
 									{t('Devam et', 'Continue')}
 								</Button>
 								<Chip tone="glass" icon="pen">
@@ -276,35 +285,69 @@ export const LessonNotesTabletScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	const states = microStates(1);
 	const notes: [string, string, string, (ink: string) => React.ReactNode][] = [
-		['Mecaz anlam', 'Tanım · kenar notu', 'Bugün', () => (
-			<>
-				<HandText text="kırmak =" x={18} y={22} size={18} color="blue" seed={3} />
-				<HandText text="azaltmak" x={18} y={52} size={18} color="blue" seed={5} />
-				<HandText text="kalp kırıldı" x={18} y={92} size={16} color="red" seed={13} />
-			</>
-		)],
-		['Mecaz anlam', 'TYT tarzı soru · eleme', 'Bugün', () => (
-			<>
-				<InkLine points={[[16, 30], [120, 26], [220, 22]]} color="red" />
-				<InkLine points={[[16, 62], [120, 58], [220, 55]]} color="red" />
-				<InkLoop cx={34} cy={96} rx={18} ry={15} color="blue" />
-				<HandText text="B" x={28} y={86} size={18} seed={2} />
-			</>
-		)],
-		['Gerçek anlam', 'Taslak', 'Dün', () => (
-			<>
-				<HandText text="ilk anlam" x={18} y={22} size={18} seed={7} />
-				<HandText text="= sözlükte 1." x={18} y={56} size={18} seed={9} />
-				<InkUnderline x1={18} x2={150} y={84} color="green" />
-			</>
-		)],
-		['Terim anlam', 'Örnek · vurgu', 'Dün', () => (
-			<>
-				<rect x={16} y={24} width={160} height={18} rx={4} fill={PEN.yellow.light} />
-				<HandText text="hipotenüs" x={18} y={56} size={18} color="blue" seed={4} />
-				<InkCheck x={150} y={60} size={20} />
-			</>
-		)],
+		[
+			'Mecaz anlam',
+			'Tanım · kenar notu',
+			'Bugün',
+			() => (
+				<>
+					<HandText text="kırmak =" x={18} y={22} size={18} color="blue" seed={3} />
+					<HandText text="azaltmak" x={18} y={52} size={18} color="blue" seed={5} />
+					<HandText text="kalp kırıldı" x={18} y={92} size={16} color="red" seed={13} />
+				</>
+			),
+		],
+		[
+			'Mecaz anlam',
+			'TYT tarzı soru · eleme',
+			'Bugün',
+			() => (
+				<>
+					<InkLine
+						points={[
+							[16, 30],
+							[120, 26],
+							[220, 22],
+						]}
+						color="red"
+					/>
+					<InkLine
+						points={[
+							[16, 62],
+							[120, 58],
+							[220, 55],
+						]}
+						color="red"
+					/>
+					<InkLoop cx={34} cy={96} rx={18} ry={15} color="blue" />
+					<HandText text="B" x={28} y={86} size={18} seed={2} />
+				</>
+			),
+		],
+		[
+			'Gerçek anlam',
+			'Taslak',
+			'Dün',
+			() => (
+				<>
+					<HandText text="ilk anlam" x={18} y={22} size={18} seed={7} />
+					<HandText text="= sözlükte 1." x={18} y={56} size={18} seed={9} />
+					<InkUnderline x1={18} x2={150} y={84} color="green" />
+				</>
+			),
+		],
+		[
+			'Terim anlam',
+			'Örnek · vurgu',
+			'Dün',
+			() => (
+				<>
+					<rect x={16} y={24} width={160} height={18} rx={4} fill={PEN.yellow.light} />
+					<HandText text="hipotenüs" x={18} y={56} size={18} color="blue" seed={4} />
+					<InkCheck x={150} y={60} size={20} />
+				</>
+			),
+		],
 	];
 	return (
 		<Tablet module="lessons" wash>
@@ -346,7 +389,9 @@ export const LessonNotesTabletScreen: React.FC = () => {
 							{notes.map(([lesson, step, day, draw], index) => (
 								<Card key={step} padding={0} style={{overflow: 'hidden'}}>
 									<div style={{position: 'relative', height: 140, borderBottom: `1px solid ${colors.line2}`, backgroundImage: `radial-gradient(${colors.line} 1.2px, transparent 1.3px)`, backgroundSize: '20px 20px'}}>
-										<InkLayer width={320} height={140}>{draw(colors.ink)}</InkLayer>
+										<InkLayer width={320} height={140}>
+											{draw(colors.ink)}
+										</InkLayer>
 									</div>
 									<Stack row gap={10} style={{padding: '12px 16px'}}>
 										<Stack gap={1} grow>
@@ -376,7 +421,17 @@ export const CardWriteTabletScreen: React.FC = () => {
 	const mod = useModuleColors('flashcards');
 	return (
 		<Tablet module="flashcards" wash>
-			<SolveBar pen={false} title={t('Kart oturumu', 'Card session')} sub={t('Kimya · Mol', 'Chemistry · Mole')} center={<div style={{width: 300, height: 5, borderRadius: 3, background: colors.line2}}><div style={{width: '37%', height: '100%', borderRadius: 3, background: mod.color}} /></div>} right={<Text role="meta">7 / 19</Text>} />
+			<SolveBar
+				pen={false}
+				title={t('Kart oturumu', 'Card session')}
+				sub={t('Kimya · Mol', 'Chemistry · Mole')}
+				center={
+					<div style={{width: 300, height: 5, borderRadius: 3, background: colors.line2}}>
+						<div style={{width: '37%', height: '100%', borderRadius: 3, background: mod.color}} />
+					</div>
+				}
+				right={<Text role="meta">7 / 19</Text>}
+			/>
 			<Stack row gap={24} align="stretch" style={{flex: 1, minHeight: 0, padding: '10px 40px 34px'}}>
 				<div style={{position: 'relative', flex: 1}}>
 					<div style={{position: 'absolute', inset: '22px 16px -12px', borderRadius: 30, background: colors.card, opacity: 0.55}} />
@@ -446,9 +501,7 @@ const SwatchRow: React.FC<{active: PenColor}> = ({active}) => {
 	);
 };
 
-const SwatchDot: React.FC<{color: PenColor; on: boolean; ring: string; card: string}> = ({color, on, ring, card}) => (
-	<div style={{width: 28, height: 28, borderRadius: 14, background: usePen(color), boxShadow: on ? `0 0 0 2px ${card}, 0 0 0 4px ${ring}` : undefined}} />
-);
+const SwatchDot: React.FC<{color: PenColor; on: boolean; ring: string; card: string}> = ({color, on, ring, card}) => <div style={{width: 28, height: 28, borderRadius: 14, background: usePen(color), boxShadow: on ? `0 0 0 2px ${card}, 0 0 0 4px ${ring}` : undefined}} />;
 
 /** Profil → Kalem ve çizim: how the pen behaves everywhere in the app. A brand surface (profile), so no module colour. */
 export const PenSettingsScreen: React.FC = () => {
@@ -510,7 +563,16 @@ export const PenSettingsScreen: React.FC = () => {
 						<SettingRow icon="eye" title={t('Çözümlerde notlarımı göster', 'Show my notes in solutions')} right={<Toggle on />} />
 					</Group>
 					<Group title={t('Notlar', 'Notes')}>
-						<SettingRow icon="globe" title={t('Notlar hesabına kaydedilir', 'Notes are saved to your account')} sub={t('Her cihazda açılır. Bir soruyu sıfırlayınca o sorunun notları da silinir.', 'They open on every device.')} right={<Text role="small" weight={700} color={colors.brandDeep}>{t('128 not', '128 notes')}</Text>} />
+						<SettingRow
+							icon="globe"
+							title={t('Notlar hesabına kaydedilir', 'Notes are saved to your account')}
+							sub={t('Her cihazda açılır. Bir soruyu sıfırlayınca o sorunun notları da silinir.', 'They open on every device.')}
+							right={
+								<Text role="small" weight={700} color={colors.brandDeep}>
+									{t('128 not', '128 notes')}
+								</Text>
+							}
+						/>
 					</Group>
 				</Stack>
 			</Stack>

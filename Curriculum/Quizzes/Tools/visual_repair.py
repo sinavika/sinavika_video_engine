@@ -8,11 +8,13 @@ Kullanım (Curriculum/Quizzes/Tools içinden):
   python visual_repair.py paket|gonder|topla <ad> --duzelt   şema ya da çözüm hatası çıkanları hatalarıyla birlikte yeniden yazdırır
   python visual_repair.py gonder <ad>       paketi Batch olarak gönderir (ücretli; SINAVIKA_ALLOW_SONNET=1)
   python visual_repair.py topla <ad>        sonuçları bekler, Revisions/<ders>/<KONU>_00_gorsel.jsonl dosyalarına yazar
-  python visual_repair.py coz <ad>          onarılan soruları cevapsız çözdürür (ücretli), topla-coz ile karşılaştırır
+  python visual_repair.py coz <ad> [--sadece id,…]  onarılan soruları cevapsız çözdürür (ücretli), topla-coz ile karşılaştırır
   python visual_repair.py topla-coz <ad>
+  python visual_repair.py mikro <ad> [--hepsi]  alt konuyu sorunun kendi konusunun listesinden yeniden seçtirir (ücretli, küçük)
   python visual_repair.py denetle <ad>      konu konu check_revisions (metin, çözüm, API'nin figür denetimi)
   python visual_repair.py ciz <ad> [--tur map,gears]  tablo dışı figürleri motora çizdirir, dersin stills.json'una ekler
   python visual_repair.py yukle <ad>        hazır resimleri API'nin kabına yükler (canlı yazımdan önce; onayla)
+  python visual_repair.py kuru|canli <ad> [--ders FIZ,KIM]   ders ders yazım (dışa aktarım ve kayıtlar ders ekiyle saklanır)
   python visual_repair.py kuru <ad>         canlıdan dışa aktarır, revizyonu dryRun gönderir
   python visual_repair.py canli <ad>        revizyonu yazar ve geri okuyup doğrular (sahibin o parti için onayıyla)
   python visual_repair.py rapor <ad>        sayılar ve soru soru önce/sonra (rapor.md)
@@ -30,7 +32,7 @@ MODEL = "claude-sonnet-5-5"
 IS = os.path.join(OUTPUT, "Work", "GorselOnarim")
 YONERGE = os.path.join(ROOT, "GorselOnarimYonergesi.md")
 SEMA_TS = os.path.join(ENGINE, "Curriculum", "Tools", "VisualSchemas.ts")
-TURLER = ["table", "plot", "pie", "climate", "regime", "pyramid", "windRose", "map", "timeline", "lever", "pulley", "gears", "circuit"]
+TURLER = ["table", "geometry", "plot", "pie", "climate", "regime", "pyramid", "windRose", "map", "timeline", "lever", "pulley", "gears", "circuit", "connectedBlocks"]
 DUSUNEN = {"MAT", "GEO", "FIZ", "KIM", "BIO"}  # hesap ağırlıklı dersler yüksek eforla
 SINAV_KODU = {"AYT": "YKS/YKS_AYT", "TYT": "YKS/YKS_TYT", "KPSS Lisans": "KPSS/KPSS_LISANS",
               "KPSS Önlisans": "KPSS/KPSS_ONLISANS", "KPSS Ortaöğretim": "KPSS/KPSS_ORTAOGRETIM"}
@@ -94,12 +96,16 @@ def sec(argv):
         if qid in revize or rep in revize:
             atlanan["konusu tam revize edildi (o revizyonla düzelir)"] += 1
             continue
-        if (qid in onarilan or rep in onarilan) and "--yeniden" not in argv:
+        # Aynı dersteki kopya temsilciyle birlikte yazılır; başka kategorideki kopya (Ortaöğretim → Önlisans) kendi partisinde yazılır.
+        if (qid in onarilan or (rep in onarilan and veri[rep][0] == veri[qid][0])) and "--yeniden" not in argv:
             atlanan["daha önce onarıldı"] += 1
             continue
         ders, q = veri[rep]
+        kendi_ders, kendi_q = veri[qid]
         hedef.append({"id": qid, "temsilci": rep, "ders": ders, "konu": q["hierarchy"]["lessonSubCode"],
-                      "konuAdi": q["hierarchy"]["lessonSubName"], "testler": r["Testler"], "tur": tur_ipucu(r["Kok"])})
+                      "konuAdi": q["hierarchy"]["lessonSubName"], "testler": r["Testler"], "tur": tur_ipucu(r["Kok"]),
+                      # Soru başka kategorideki bir temsilcinin kopyasıysa (KPSS Ortaöğretim → Önlisans) kendi dersinde yazılır.
+                      "yazDers": kendi_ders, "yazKonu": kendi_q["hierarchy"]["lessonSubCode"]})
     # Aynı temsilciye düşen kopyalar tek istekle onarılır.
     tekil = {}
     for h in hedef:
@@ -141,6 +147,61 @@ def kaynak_ornekleri(ders, konu, adet=6):
     L.sort(key=lambda d: (not ATIF.search(d.get("question") or ""), "ösym" not in ((d.get("source") or {}).get("title") or "").lower()))
     return [{"id": d.get("id"), "soru": temizle(d.get("question"))[-1200:], "siklar": [f"{o['key']}) {temizle(o['text'])[:160]}" for o in d.get("options", [])],
              "cevap": d.get("answer")} for d in L[:adet]]
+
+
+def alt_konu_listeleri(hiy):
+    """Konunun alt konuları, konu KİMLİĞİNE göre. Aynı konu kodu birden çok sınavda (KPSS Lisans/Önlisans/Ortaöğretim, TYT) farklı
+    alt konularla geçer; koda göre kurulan liste başka sınavın alt konularını verir (14 Kasım hatası)."""
+    return {sb["id"]: [{"kod": mk["code"], "ad": mk["name"]} for mk in sb["mikros"]] for m in hiy for sb in m["subs"]}
+
+
+def mikro(argv):
+    """Alt konu seçimini sorunun kendi konusunun listesine göre yeniden yaptırır (yalnız listesi yanlış verilmiş kayıtlar ya da --hepsi).
+    Küçük, ucuz istek: kök, şıklar ve doğru liste → {"mikro": kod}. Bekler, sonucu Revisions kayıtlarına yazar."""
+    ad = argv[0]
+    k = klasor(ad)
+    hiy, veri = hiyerarsi(), sorular()
+    dogru = alt_konu_listeleri(hiy)
+    kod_ile = {sb["code"]: [{"kod": mk["code"], "ad": mk["name"]} for mk in sb["mikros"]] for m in hiy for sb in m["subs"]}
+    istekler, kayit = [], onarim_kayitlari(k)
+    for rep, (h, r) in kayit.items():
+        liste = dogru.get(veri[rep][1]["hierarchy"]["lessonSubId"], [])
+        if "--hepsi" not in argv and kod_ile.get(h["konu"]) == liste:
+            continue
+        sikler = "\n".join(f"{'ABCDE'[i]}) {o}" for i, o in enumerate(r["options"]))
+        metin = (f"Konu: {h['konuAdi']}\nAlt konular: {json.dumps(liste, ensure_ascii=False)}\n\nSoru:\n{r['stem']}\n{sikler}\n\n"
+                 'Bu soru en çok hangi alt konuyu ölçer? Yalnız şu JSON\'u yaz: {"mikro": "<listedeki kod>"}')
+        p = api.params(MODEL, 2000, messages=[{"role": "user", "content": metin}])
+        p["output_config"]["effort"] = "low"
+        istekler.append({"custom_id": rep, "params": p})
+    if not istekler:
+        print(f"{ad}: alt konu listesi yanlış verilmiş kayıt yok")
+        return
+    yaz_jsonl(os.path.join(k, "mikro-istekler.jsonl"), istekler)
+    gonder([ad], "mikro-istekler.jsonl", "mikro-batch.json")
+    sonuc, toplam = sonuclari_al(k, "mikro-batch.json", "gorsel-onarim-mikro")
+    paket = sonuc.pop("_paket")
+    degisen, gecersiz = 0, []
+    dosyalar = defaultdict(list)
+    for rep, (h, r) in kayit.items():
+        dosyalar[os.path.join(REVIZYON, *h["ders"].split("/"), f"{h['konu']}_00_gorsel.jsonl")].append(rep)
+    for yol, reps in dosyalar.items():
+        satirlar = oku(yol)
+        for r in satirlar:
+            rep = r["id"].upper()
+            if rep not in sonuc:
+                continue
+            kod = (sonuc[rep].get("json") or {}).get("mikro")
+            gecerli = {x["kod"] for x in dogru.get(veri[rep][1]["hierarchy"]["lessonSubId"], [])}
+            if kod not in gecerli:
+                gecersiz.append(rep)
+                continue
+            if r.get("mikro") != kod:
+                r["mikro"] = kod
+                degisen += 1
+        yaz_jsonl(yol, satirlar)
+    m = maliyet_ekle(k, "mikro", toplam, paket)
+    print(f"{ad}: {len(istekler)} soruda alt konu yeniden seçildi, {degisen} değişti, {len(gecersiz)} geçersiz {gecersiz[:5]} · {toplam:.2f} $ · toplam {m['toplam']:.2f} $")
 
 
 def tasan_hucreler(figurler):
@@ -198,7 +259,7 @@ def paket(argv):
         onceki = {rep: r for rep, (_, r) in onarim_kayitlari(k).items()}
         hedef = [h for h in hedef if h["temsilci"] in duzelt]
     veri, hiy = sorular(), hiyerarsi()
-    mikrolar = {sb["code"]: [{"kod": mk["code"], "ad": mk["name"]} for mk in sb["mikros"]] for m in hiy for sb in m["subs"]}
+    mikrolar = alt_konu_listeleri(hiy)
     sistem = sistem_metni()
     istekler = []
     for h in hedef:
@@ -206,7 +267,7 @@ def paket(argv):
         zorluk = sorted({z.get("difficulty") for z in q.get("quizzes") or []} - {None})
         girdi = {
             "konu": f"{h['konuAdi']} ({h['konu']})", "sinav": ders.split("/")[1], "ders": ders.split("/")[2],
-            "altKonular": mikrolar.get(h["konu"], []), "testZorlugu": ["Kolay", "Orta", "Zor"][zorluk[0]] if zorluk else None,
+            "altKonular": mikrolar.get(q["hierarchy"]["lessonSubId"], []), "testZorlugu": ["Kolay", "Orta", "Zor"][zorluk[0]] if zorluk else None,
             "soru": {"stem": q["stem"], "options": [{"key": o["key"], "text": o["text"]} for o in q["options"]],
                      "correctKey": q["correctKey"], "eskiCozum": temizle((q.get("solutions") or [{}])[0].get("ContentText") or "")[:2500]},
             "kaynakOrnekleri": kaynak_ornekleri(ders, h["konu"]),
@@ -258,6 +319,35 @@ def tablo_dolar_kacir(v):
     v["rows"] = [[kacir(x) for x in r] for r in v.get("rows") or []]
 
 
+def js_ozeti(visual):
+    """RenderFigures.ts'nin manifest `input`'u: sha256(JSON.stringify(visual)). JS tam sayı değerli ondalığı tam sayı yazar (5.0 → 5)."""
+    def js(x):
+        if isinstance(x, float) and x.is_integer():
+            return int(x)
+        if isinstance(x, dict):
+            return {k: js(v) for k, v in x.items()}
+        if isinstance(x, list):
+            return [js(v) for v in x]
+        return x
+    return hashlib.sha256(json.dumps(js(visual), ensure_ascii=False, separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
+def harita_adlari():
+    """Motorun haritalarında geçen bütün ad (ülke, il, ilçe, bölge, su) — public/Geo/*.json."""
+    adlar = set()
+    for p in glob.glob(os.path.join(ENGINE, "public", "Geo", "*.json")):
+        try:
+            d = json.load(open(p, encoding="utf-8"))
+        except ValueError:
+            continue
+        for nesne in (d.get("objects") or {}).values():
+            for g in nesne.get("geometries") or []:
+                ad = (g.get("properties") or {}).get("name")
+                if ad:
+                    adlar.add(ad)
+    return adlar
+
+
 def figur_paragrafi(kok):
     """{{fig:kod}} kendi paragrafında durur: önünde ve arkasında boş satır."""
     kok = re.sub(r"[ \t]*\n?[ \t]*(\{\{fig:[A-Za-z0-9_\-]+\}\})[ \t]*\n?[ \t]*", r"\n\n\1\n\n", kok)
@@ -274,13 +364,24 @@ def json_al(metin):
     a, b = metin.find("{"), metin.rfind("}")
     if a < 0 or b < a:
         raise ValueError("JSON yok")
-    return json.loads(metin[a:b + 1])
+    try:
+        return json.loads(metin[a:b + 1])
+    except ValueError as hata:
+        # Açıklamada küme ya da formül parantezi olabilir ("{2, 4, 6}"): son "}"te biten, ayrıştırılabilen en uzun nesne alınır.
+        for i in [m.start() for m in re.finditer(r"\{", metin[:b])]:
+            try:
+                nesne = json.loads(metin[i:b + 1])
+                if isinstance(nesne, dict):
+                    return nesne
+            except ValueError:
+                continue
+        raise hata
 
 
 def sonuclari_al(k, durum, tur):
     b = json.load(open(os.path.join(k, durum), encoding="utf-8"))
     api.wait_batch(b["id"], poll=30)
-    sonuc, toplam = {}, 0.0
+    sonuc, toplam = {"_paket": b["id"]}, 0.0
     for r in api.batch_results(b["id"]):
         cid = r["custom_id"]
         if r["result"]["type"] != "succeeded":
@@ -297,11 +398,15 @@ def sonuclari_al(k, durum, tur):
     return sonuc, toplam
 
 
-def maliyet_ekle(k, tur, tutar):
+def maliyet_ekle(k, tur, tutar, paket):
+    """Paketin maliyetini bir kez sayar (aynı paketin sonuçları yeniden okunursa eklenmez)."""
     yol = os.path.join(k, "maliyet.json")
     m = json.load(open(yol, encoding="utf-8")) if os.path.exists(yol) else {}
-    m[tur] = round(m.get(tur, 0) + tutar, 4)
-    m["toplam"] = round(sum(v for x, v in m.items() if x != "toplam"), 4)
+    sayilan = m.setdefault("paketler", [])
+    if paket not in sayilan:
+        sayilan.append(paket)
+        m[tur] = round(m.get(tur, 0) + tutar, 4)
+    m["toplam"] = round(sum(v for x, v in m.items() if x not in ("toplam", "paketler")), 4)
     yaz_json(yol, m)
     return m
 
@@ -313,6 +418,7 @@ def topla(argv):
     hedef = {h["temsilci"]: h for h in json.load(open(os.path.join(k, "hedefler.json"), encoding="utf-8"))}
     veri = sorular()
     sonuc, toplam = sonuclari_al(k, "duzelt-batch.json" if tur == "duzelt" else "batch.json", "gorsel-onarim")
+    paket = sonuc.pop("_paket")
     yaz_json(os.path.join(k, f"yanitlar-{tur}.json"), sonuc)
     dosyalar, sorunlu = defaultdict(list), []
     for rep, s in sonuc.items():
@@ -332,7 +438,7 @@ def topla(argv):
             if (f.get("visual") or {}).get("kind") in ("pulley", "gears", "lever") and "motion" in f["visual"]:
                 f["visual"]["motion"] = False
         kayit = {"id": q["id"], "karar": j.get("karar"), "sorun": j.get("sorun", ""), "kaynak": j.get("kaynak") or [],
-                 "mikro": j.get("mikro"), "stem": figur_paragrafi(j.get("stem") or ""), "options": j.get("options"), "correct": j.get("correct"),
+                 "mikro": j.get("mikro"), "stem": figur_paragrafi(j.get("stem") or ""), "options": [o.get("text") if isinstance(o, dict) else o for o in j.get("options") or []], "correct": j.get("correct"),
                  "cozum": j.get("cozum"), "figures": figurler, "onarim": "eksik-gorsel-2026-11-13"}
         if j.get("motorIstegi"):
             kayit["motorIstegi"] = j["motorIstegi"]
@@ -343,7 +449,7 @@ def topla(argv):
         eski = {r["id"]: r for r in oku(yol)} if os.path.exists(yol) else {}
         eski.update({r["id"]: r for r in kayitlar})
         yaz_jsonl(yol, sorted(eski.values(), key=lambda r: r["id"]))
-    m = maliyet_ekle(k, tur, toplam)
+    m = maliyet_ekle(k, tur, toplam, paket)
     yaz_json(os.path.join(k, "sorunlu.json"), sorunlu)
     print(f"{ad}: {sum(len(v) for v in dosyalar.values())} kayıt yazıldı, {len(sorunlu)} sorunlu · bu paket {toplam:.2f} $ · toplam {m['toplam']:.2f} $")
     for rep, neden in sorunlu:
@@ -376,7 +482,10 @@ def coz(argv):
     ad = argv[0]
     k = klasor(ad)
     istekler = []
+    sadece = {x.upper() for x in argv[argv.index("--sadece") + 1].split(",")} if "--sadece" in argv else None
     for rep, (h, r) in onarim_kayitlari(k).items():
+        if sadece and rep not in sadece and rep[:8] not in sadece:
+            continue
         kok = r["stem"]
         for f in r.get("figures") or []:
             kok = kok.replace("{{fig:" + f["code"] + "}}", "\n" + gorsel_metni(f) + "\n")
@@ -393,14 +502,17 @@ def topla_coz(argv):
     k = klasor(ad)
     kayit = onarim_kayitlari(k)
     sonuc, toplam = sonuclari_al(k, "coz-batch.json", "gorsel-onarim-coz")
-    out = {}
+    paket = sonuc.pop("_paket")
+    # Seçili sorular çözdürüldüyse öbürlerinin önceki sonucu korunur.
+    yol = os.path.join(k, "cozum-denetimi.json")
+    out = json.load(open(yol, encoding="utf-8")) if os.path.exists(yol) else {}
     for rep, s in sonuc.items():
         h, r = kayit[rep]
         j = s.get("json") or {}
         out[rep] = {"beklenen": r["correct"], "cevap": j.get("cevap"), "emin": j.get("emin"), "tekDogru": j.get("tekDogru"),
                     "not": j.get("not"), "tutar": j.get("cevap") == r["correct"] and j.get("tekDogru") is not False}
     yaz_json(os.path.join(k, "cozum-denetimi.json"), out)
-    m = maliyet_ekle(k, "cozum-denetimi", toplam)
+    m = maliyet_ekle(k, "cozum-denetimi", toplam, paket)
     tutmayan = {x: v for x, v in out.items() if not v["tutar"]}
     yaz_json(os.path.join(k, "cozum-hatalari.json"), {
         x: [f"Bağımsız çözümde cevap {v['cevap']} bulundu (anahtar {v['beklenen']}), tek doğru: {v['tekDogru']}. Not: {v['not'] or '-'}"]
@@ -411,10 +523,33 @@ def topla_coz(argv):
 
 
 # ---------------------------------------------------------------- denetle
+def kopya_resimleri(hedef):
+    """Başka dersteki temsilcinin kopyası olan sorular için temsilcinin hazır resim kayıtlarını kendi dersin stills.json'una ekler
+    (check_revisions resmi sorunun kendi dersinde arar; resimler aynı adreste, yeniden çizilmez ve yüklenmez)."""
+    for yaz in sorted({h["yazDers"] for h in hedef if h.get("yazDers", h["ders"]) != h["ders"]}):
+        hedef_yol = os.path.join(SONUC, *yaz.split("/"), "stills.json")
+        hedef_st = json.load(open(hedef_yol, encoding="utf-8")) if os.path.exists(hedef_yol) else {}
+        eklenen = 0
+        for kaynak in sorted({h["ders"] for h in hedef if h.get("yazDers") == yaz}):
+            kaynak_yol = os.path.join(SONUC, *kaynak.split("/"), "stills.json")
+            if not os.path.exists(kaynak_yol):
+                continue
+            reps = {h["temsilci"] for h in hedef if h.get("yazDers") == yaz and h["ders"] == kaynak}
+            for x, v in json.load(open(kaynak_yol, encoding="utf-8")).items():
+                if x.split("_")[0].upper() in reps and hedef_st.get(x) != v:
+                    hedef_st[x] = v
+                    eklenen += 1
+        os.makedirs(os.path.dirname(hedef_yol), exist_ok=True)
+        yaz_json(hedef_yol, hedef_st)
+        print(f"{yaz}: temsilcilerden {eklenen} hazır resim kaydı alındı")
+
+
 def denetle(argv):
     ad = argv[0]
     k = klasor(ad)
-    konular = sorted({(h["ders"], h["konu"]) for h in json.load(open(os.path.join(k, "hedefler.json"), encoding="utf-8"))})
+    hedef = json.load(open(os.path.join(k, "hedefler.json"), encoding="utf-8"))
+    konular = sorted({(h.get("yazDers", h["ders"]), h.get("yazKonu", h["konu"])) for h in hedef})
+    kopya_resimleri(hedef)
     arac = os.path.join(ENGINE, "Curriculum", "Tools", "check_revisions.py")
     hatalar = {}
     for ders, konu in konular:
@@ -454,7 +589,8 @@ def ciz(argv):
         p = subprocess.run(["node", TSX, paths.RENDER_FIGURES_TS, liste, cikti, "--concurrency", "4"] + (["--force"] if "--force" in argv else []), cwd=ENGINE,
                            capture_output=True, text=True, encoding="utf-8")
         for satir in (p.stdout + p.stderr).splitlines():
-            m = re.match(r"\s*✗ ([0-9A-Fa-f-]{36})_(\S+): (.*)", satir)
+            # Çizici iki biçimde yazar: "✗ <id>_<kod>: hata" (şema) ve "✗ <id>_<kod> (tür): hata" (çizim).
+            m = re.match(r"\s*✗ ([0-9A-Fa-f-]{36})_([A-Za-z0-9_\-]+)(?: \([^)]*\))?: (.*)", satir)
             if m:
                 hatalar.setdefault(m.group(1).upper(), []).append(f"figür {m.group(2)}: {m.group(3)}")
                 print(satir[:300])
@@ -464,8 +600,10 @@ def ciz(argv):
         resimler, eksik = {}, []
         for x, v in gorseller.items():
             m = man.get(x)
-            if not m:
+            # Manifestteki çizim bu görselden mi? Çizim başarısızsa eski kayıt kalır; eski resim yeni görselin resmi sayılmaz.
+            if not m or m.get("input") != js_ozeti(v):
                 eksik.append(x)
+                stills.pop(x, None)
                 continue
             kayit = {"hash": gorsel_ozeti(v), "width": m["width"], "height": m["height"], "files": {}}
             for tema in ("light", "dark"):
@@ -483,6 +621,32 @@ def ciz(argv):
                     resimler[st[tema]] = {"url": st[tema], "dosya": st["files"][tema], "ad": st[tema].rsplit("/", 1)[1]}
         yaz_json(os.path.join(sonuc_d, "_gorsel-onarim", "yuklenecek-resimler.json"), sorted(resimler.values(), key=lambda r: r["ad"]))
         print(f"{ders}: {len(gorseller) - len(eksik)} figür çizildi, {len(eksik)} çizilemedi · yüklenecek {len(resimler)} dosya")
+    # Geometri görünümü [minX, minY, maxX, maxY]; model sık sık [minX, maxX, minY, maxY] yazıyor (çizim boş ya da kırpık çıkar).
+    for rep, (h, r) in onarim_kayitlari(k).items():
+        for f in r.get("figures") or []:
+            g = f["visual"].get("view") if f["visual"].get("kind") == "geometry" else None
+            if not (isinstance(g, list) and len(g) == 4):
+                continue
+            noktalar = [p.get("at") for p in f["visual"].get("points") or [] if isinstance(p.get("at"), list)]
+            disarida = [p for p in noktalar if not (g[0] <= p[0] <= g[2] and g[1] <= p[1] <= g[3])]
+            if g[2] <= g[0] or g[3] <= g[1] or disarida:
+                hatalar.setdefault(r["id"].upper(), []).append(
+                    f"figür {f['code']}: geometry view {g} ya [minX, minY, maxX, maxY] sırasında değil ya da {len(disarida)} nokta görünümün dışında; "
+                    "view bütün noktaları kapsayan [minX, minY, maxX, maxY] olmalı.")
+    # Motor haritada bilinmeyen adı hata vermeden atlar (boyanacak alan boş kalır): adlar motorun coğrafya verisiyle karşılaştırılır.
+    bilinen = harita_adlari()
+    for rep, (h, r) in onarim_kayitlari(k).items():
+        for f in r.get("figures") or []:
+            v = f["visual"]
+            if v.get("kind") != "map":
+                continue
+            adlar = ([n for s in v.get("shades") or [] for n in s.get("names") or []] + [x.get("name") for x in v.get("highlights") or []]
+                     + list(v.get("focus") or []) + [n for o in v.get("overlays") or [] for n in o.get("names") or []])
+            yok = sorted({n for n in adlar if n and n not in bilinen})
+            if yok:
+                hatalar.setdefault(r["id"].upper(), []).append(
+                    f"figür {f['code']}: haritada bilinmeyen adlar {yok}; motor bunları çizmez. Ülke, il ve bölge adlarını Türkçe yaz "
+                    "(ör. Türkiye, Azerbaycan, Kazakistan, Rusya, Almanya).")
     yaz_json(os.path.join(k, "sema-hatalari.json"), hatalar)
     if hatalar:
         print(f"Şeması tutmayan {len(hatalar)} soru: python visual_repair.py paket {ad} --duzelt → gonder/topla --duzelt")
@@ -492,7 +656,8 @@ def yukle(argv):
     """Hazır resimleri API'nin kabına yükler (yazımdan ÖNCE; aynı içerik aynı adrese gider) ve hepsinin var olduğunu denetler."""
     ad = argv[0]
     k = klasor(ad)
-    dersler = sorted({h["ders"] for h, _ in onarim_kayitlari(k).values()})
+    secim = ders_secimi(argv)
+    dersler = sorted({h["ders"] for h, _ in onarim_kayitlari(k).values() if not secim or h["ders"].split("/")[-1] in secim})
     arac = os.path.join(ENGINE, "Curriculum", "Tools", "upload_stills.py")
     for ders in dersler:
         if not os.path.exists(os.path.join(SONUC, *ders.split("/"), "_gorsel-onarim", "yuklenecek-resimler.json")):
@@ -509,15 +674,22 @@ def stem_ozeti(stem):
     return hashlib.sha256(stem.encode("utf-16-le")).hexdigest().upper()
 
 
-def revizyon_istegi(k):
+def ders_secimi(argv):
+    """--ders FIZ,KIM: yalnız bu derslerin soruları (canlıya ders ders, her parti ayrı onayla yazılır)."""
+    return set(argv[argv.index("--ders") + 1].upper().split(",")) if "--ders" in argv else None
+
+
+def revizyon_istegi(k, dersler=None, ek=""):
     hedef = json.load(open(os.path.join(k, "hedefler.json"), encoding="utf-8"))
+    if dersler:
+        hedef = [h for h in hedef if h.get("yazDers", h["ders"]).split("/")[-1] in dersler]
     durum = {}
     cozum_d = os.path.join(k, "cozum-denetimi.json")
     tutmayan = {x for x, v in json.load(open(cozum_d, encoding="utf-8")).items() if not v["tutar"]} if os.path.exists(cozum_d) else None
     if tutmayan is None:
         sys.exit("Önce coz / topla-coz: anahtarla tutarlılık denetlenmeden yazılmaz.")
     kayitlar = {}
-    for ders, konu in {(h["ders"], h["konu"]) for h in hedef}:
+    for ders, konu in {(h.get("yazDers", h["ders"]), h.get("yazKonu", h["konu"])) for h in hedef}:
         yol = os.path.join(SONUC, *ders.split("/"), "_konu", konu, "sonuc.jsonl")
         if os.path.exists(yol):
             for r in oku(yol):
@@ -529,10 +701,11 @@ def revizyon_istegi(k):
         if rep in tutmayan:
             durum[h["id"]] = "çözüm denetimi tutmadı"
             continue
-        if rep not in kayitlar:
+        kendisi = h["id"].upper() if h["id"].upper() in kayitlar else rep
+        if kendisi not in kayitlar:
             durum[h["id"]] = "denetimden geçmedi ya da onarılmadı"
             continue
-        secilen.append(rep)
+        secilen.append(kendisi)
         # Aynı konudaki kopyalar da aynı içerikle yazılır (check_revisions temsilcinin revizyonunu kopyaya uygular).
         secilen += [x for x, r in kayitlar.items() if r["kaynak"].upper() == rep and x != rep]
     secilen = sorted(set(secilen))
@@ -541,7 +714,7 @@ def revizyon_istegi(k):
     kod, disari = cagir("POST", "/api/claude/questions/export", {"ids": secilen})
     if kod != 200:
         sys.exit(f"Dışa aktarma başarısız ({kod}): {str(disari)[:800]}")
-    yaz_json(os.path.join(k, "disa-aktarim.json"), disari)
+    yaz_json(os.path.join(k, f"disa-aktarim{ek}.json"), disari)  # geri alma verisi: ders başına ayrı
     canli = {q["id"].upper(): q for q in (disari if isinstance(disari, list) else disari.get("questions") or disari.get("items"))}
     istek = []
     for qid in secilen:
@@ -568,13 +741,15 @@ def revizyon_istegi(k):
 def yaz(argv, canli):
     ad = argv[0]
     k = klasor(ad)
-    istek, durum = revizyon_istegi(k)
+    secim = ders_secimi(argv)
+    tur_eki = "-" + "-".join(sorted(secim)).lower() if secim else ""
+    istek, durum = revizyon_istegi(k, secim, tur_eki)
     govde = {"questions": istek, "usageKind": 2, "dryRun": not canli}
     tur = "canli" if canli else "kuru"
-    yaz_json(os.path.join(k, f"revizyon-{tur}.json"), govde)
+    yaz_json(os.path.join(k, f"revizyon-{tur}{tur_eki}.json"), govde)
     kod, yanit = cagir("POST", "/api/claude/questions/revisions", govde)
-    yaz_json(os.path.join(k, f"yanit-{tur}.json"), yanit)
-    yaz_json(os.path.join(k, f"atlanan-{tur}.json"), durum)
+    yaz_json(os.path.join(k, f"yanit-{tur}{tur_eki}.json"), yanit)
+    yaz_json(os.path.join(k, f"atlanan-{tur}{tur_eki}.json"), durum)
     if kod != 200:
         sys.exit(f"Revizyon {'yazılmadı' if canli else 'kuru çalıştırması geçmedi'} ({kod}): {json.dumps(yanit, ensure_ascii=False)[:3000]}")
     raporlar = yanit.get("questions") if isinstance(yanit, dict) else yanit
@@ -587,7 +762,12 @@ def yaz(argv, canli):
         kod, disari = cagir("POST", "/api/claude/questions/export", {"ids": [q["questionId"] for q in istek]})
         geri = {q["id"].upper(): q for q in (disari if isinstance(disari, list) else disari.get("questions") or disari.get("items"))}
         hata = [q["questionId"] for q in istek if geri[q["questionId"].upper()]["stem"] != q["stem"] or len(geri[q["questionId"].upper()]["figures"]) != len(q["figures"])]
-        yaz_json(os.path.join(k, "canli-yazim.json"), {"zaman": time.strftime("%Y-%m-%d %H:%M"), "soru": len(istek), "geriOkumaHatasi": hata})
+        kayit_yolu = os.path.join(k, "canli-yazim.json")
+        gunluk = json.load(open(kayit_yolu, encoding="utf-8")) if os.path.exists(kayit_yolu) else []
+        gunluk = gunluk if isinstance(gunluk, list) else [gunluk]
+        gunluk.append({"zaman": time.strftime("%Y-%m-%d %H:%M"), "parti": tur_eki.strip("-") or "hepsi", "soru": len(istek),
+                       "figur": sum(len(q["figures"]) for q in istek), "geriOkumaHatasi": hata})
+        yaz_json(kayit_yolu, gunluk)
         if hata:
             sys.exit(f"Geri okumada {len(hata)} soru beklenen değil: {hata[:5]}")
         print(f"Doğrulandı: {len(istek)} sorunun kökü ve figürleri canlıda beklenen hâlde.")
@@ -628,4 +808,4 @@ if __name__ == "__main__":
     komut, argv = sys.argv[1], sys.argv[2:]
     {"sec": sec, "paket": paket,
      "gonder": lambda a: gonder(a, "duzelt-istekler.jsonl", "duzelt-batch.json") if "--duzelt" in a else gonder(a), "topla": topla, "coz": coz, "topla-coz": topla_coz, "denetle": denetle,
-     "ciz": ciz, "yukle": yukle, "kuru": lambda a: yaz(a, False), "canli": lambda a: yaz(a, True), "rapor": rapor}[komut](argv)
+     "ciz": ciz, "yukle": yukle, "mikro": mikro, "kuru": lambda a: yaz(a, False), "canli": lambda a: yaz(a, True), "rapor": rapor}[komut](argv)

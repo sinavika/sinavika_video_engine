@@ -1,3 +1,4 @@
+import {SINAVIKA_TR_TEMPO} from '../../src/Configurations/SocialTempo';
 import {COURSE_DESIGN} from '../../src/Courses/CourseDesign';
 import {CAMP_SCRIPT_SAMPLE} from '../../src/Courses/LessonScriptSample';
 import {mkdtempSync, readdirSync, readFileSync} from 'node:fs';
@@ -6,7 +7,7 @@ import path from 'node:path';
 import {describe, expect, it} from 'vitest';
 import {BRAND_VOICES, VOICES, VOICE_PROFILES, VOICE_PROFILE_KEYS, type VoiceKey} from '../../src/Configurations/Voices';
 import {resolveVideoJob, voiceLines, withEstimatedNarration, withVoiceClips} from '../../src/Renderers/VideoJob';
-import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, estimateNarrationSeconds, type VoiceClips} from '../../src/Scenes/Voiceover';
+import {VOICE_LEAD_SECONDS, VOICE_TAIL_SECONDS, createNarrator, estimateNarrationSeconds, phraseCues, slotLead, spokenSeconds, voiceTracksOf, type VoiceClips} from '../../src/Scenes/Voiceover';
 import {lowerFirst, pronounceAbbreviations, sentences, spokenPremiseNumbers, toSpokenText, turkishNumber, turkishNumberOrdinal, verbalizeLatex} from '../../src/Schemas/SpokenText';
 import {SpeechError, type SpeechBackend} from '../../src/Services/ElevenLabsSpeech';
 import {groupLines, joinScript, segmentLines} from '../../src/Services/NarrationScript';
@@ -216,7 +217,11 @@ describe.each(TEMPLATES.map((template) => [template.id, template] as const))('%s
 			const roundThink = template.id === 'CampFlash' ? COURSE_DESIGN.camp.flashThinkSeconds : COURSE_DESIGN.camp.roundThinkSeconds;
 			// A prediction and a practice board ("Sıra sende") keep their card's countdown.
 			const think = (scene.voice?.some((slot) => slot.id.endsWith('-read')) ? COURSE_DESIGN.pacing.questionThinkSeconds : 0) + (scene.voice?.some((slot) => /^round-\d+-q$/.test(slot.id)) ? roundThink : 0) + cardThinkSeconds(narrated.inputProps.content, scene.id);
-			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS) + think, 5);
+			// A template with a line gap of its own (the story reels: SINAVIKA_TR_TEMPO.lineGap) leaves that silence instead
+			// of the lesson default; these clips have no word timings, so nothing is trimmed.
+			const ownGap = scene.voice?.[0]?.lead !== undefined;
+			const gap = ownGap ? SINAVIKA_TR_TEMPO.lineGap.lead + SINAVIKA_TR_TEMPO.lineGap.tail : VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS;
+			expect(scene.seconds, scene.id).toBeCloseTo(lines * (12.25 + gap) + think, ownGap ? 1 : 5);
 		});
 	});
 });
@@ -425,6 +430,17 @@ describe('generateVoiceover', () => {
 		expect(brisk.clips.outro.durationSeconds).toBeCloseTo(natural.clips.outro.durationSeconds / 1.25, 5);
 	});
 
+	it('reuses a cached narration without asking for anything, and generates nothing when told to use the cache only', async () => {
+		const directory = publicDirectory();
+		const {speech, spoken} = fakeSpeech();
+		await expect(generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech, cachedOnly: true})).rejects.toThrow(/not cached yet/);
+		expect(spoken).toHaveLength(0);
+		await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech});
+		const cached = await generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: directory, speech, cachedOnly: true});
+		expect(spoken).toHaveLength(1);
+		expect(Object.keys(cached.clips)).toEqual(['intro', 'outro']);
+	});
+
 	it('stops before generating anything when the account is short of characters', async () => {
 		const {speech, spoken} = fakeSpeech({remainingCharacters: async () => 5});
 		await expect(generateVoiceover(lines, {profile: 'Teacher'}, {publicDirectory: publicDirectory(), speech})).rejects.toThrow(
@@ -608,5 +624,38 @@ describe('narration estimate', () => {
 		// Rendered lessons ran about 1.55 times the reading-time estimate (1 Nov 2026).
 		expect(narrated.durationInFrames / lesson.durationInFrames).toBeGreaterThan(1.3);
 		expect(withEstimatedNarration({...lesson, voiceover: null})).toEqual({...lesson, voiceover: null});
+	});
+});
+
+describe('line gaps (Sosyal Medya, 15 Nov 2026: a fifth of a reel was silence)', () => {
+	const clip = {src: 'Voiceovers/x.wav', startSeconds: 0, durationSeconds: 2.6, playbackRate: 1, words: [{text: 'Plan?', startSeconds: 0.05}, {text: 'Yok.', startSeconds: 0.7}, {text: 'Hiç', startSeconds: 1.3}, {text: 'yok.', startSeconds: 1.6}]};
+
+	it('keeps the lesson defaults when a template sets no gap of its own', () => {
+		const slot = createNarrator({a: clip})('a', 'Plan? Yok. Hiç yok.', 2);
+		expect(slot.seconds).toBe(Math.round((2.6 + VOICE_LEAD_SECONDS + VOICE_TAIL_SECONDS) * 10) / 10);
+		expect(slot.lead).toBeUndefined();
+		expect(slotLead(slot)).toBe(VOICE_LEAD_SECONDS);
+	});
+
+	it('times a story line to its last word plus a breath, with a tight lead and tail', () => {
+		// The recording runs on 0.7 s after "yok."; trimmed, it ends a breath after the word.
+		// "yok." is short: it counts the shortest word (0.25 s), then a breath (0.1 s).
+		expect(spokenSeconds(clip)).toBeCloseTo(1.6 + 0.25 + 0.1);
+		expect(spokenSeconds({...clip, words: undefined})).toBe(2.6);
+		const slot = createNarrator({a: clip}, {}, {lead: 0.1, tail: 0.05, trimTail: true})('a', 'Plan? Yok. Hiç yok.', 2);
+		expect(slot.lead).toBe(0.1);
+		expect(slot.seconds).toBeCloseTo(2 + 0.15, 1);
+		expect(slot.seconds).toBeLessThan(2.6);
+	});
+
+	it('plays and cues each line at its own lead', () => {
+		const slots = [
+			{id: 'a', text: 'a', seconds: 2.2, lead: 0.1},
+			{id: 'b', text: 'b', seconds: 2.2, lead: 0.1},
+		];
+		const tracks = voiceTracksOf(slots, {a: clip, b: clip});
+		expect(tracks[0].sceneStartSeconds).toBeCloseTo(0.1);
+		expect(tracks[1].sceneStartSeconds).toBeCloseTo(2.3);
+		expect(phraseCues(clip, 'Plan? Yok.', ['Yok'], [0], undefined, 0.1)[0]).toBeCloseTo(0.1 + 0.7 - 0.08);
 	});
 });
