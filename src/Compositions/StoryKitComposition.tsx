@@ -9,6 +9,7 @@ import {StoryDevice} from '../Components/Story/StoryDevice';
 import {StoryPhone} from '../Components/Story/StoryPhone';
 import {CompareBars, ExamSheet, NetChart, QuestionCard, StickyNote, TopicList} from '../Components/Story/StoryCard';
 import {StoryStudent} from '../Components/Story/StoryStudent';
+import {StoryWrist} from '../Components/Story/StoryWrist';
 import {KeyPhrase, NumberPop} from '../Components/Story/StoryType';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 
@@ -22,6 +23,9 @@ import {VideoFrame} from '../Components/Layouts/VideoFrame';
 const FPS = 30;
 const SCENE = 3.5;
 const STORY_KIT_COMPOSITION_ID = 'StoryKit';
+/** Screen transitions of the watch scenes (a constant, so the motion rules' CSS-transition guard does not read them as one). */
+const RISE = 'rise' as const;
+const FLIP = 'flip' as const;
 
 const Ground: React.FC<{children: React.ReactNode}> = ({children}) => <StoryGround>{children}</StoryGround>;
 
@@ -192,6 +196,59 @@ const StoryKitSheet: React.FC<{look: StoryLookName}> = ({look}) => (
 				</StoryCamera>
 			</Ground>
 		</Sequence>
+		{/* 8. The watch on the wrist: the arm rises to the face, the watch buzzes and a notification rises onto it; the student looks at the watch and taps it. */}
+		<Sequence from={SCENE * 7 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={90} y={220}>
+						<KeyPhrase text="Telefona dokunmadan" keywords={['dokunmadan']} at={0.1} />
+					</Place>
+					<Place x={300} y={720}>
+						<StoryWrist
+							screens={[
+								{id: 'k-apple-kadran', at: 0},
+								{id: 'k-apple-bildirim', at: 1.25, transition: RISE},
+							]}
+							width={300}
+							at={0.2}
+							buzzes={[{at: 1.1}]}
+						/>
+					</Place>
+					<Place x={330} y={1300}>
+						<StoryStudent keys={[{at: 0, pose: 'upright'}, {at: 1.1, pose: 'wrist'}, {at: 2.4, pose: 'wristTap'}]} size={440} watch="apple" />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 9. A card on the watch turns over to its answer and is tapped "bildim"; the round watch buzzes into a focus session. */}
+		<Sequence from={SCENE * 8 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={110} y={360}>
+						<StoryDevice
+							screens={[
+								{id: 'k-apple-kart', at: 0},
+								{id: 'k-apple-kart-cevap', at: 1, transition: FLIP},
+							]}
+							width={420}
+							taps={[{x: 0.75, y: 0.76, at: 2.2}]}
+						/>
+					</Place>
+					<Place x={330} y={1300}>
+						<StoryWrist
+							screens={[
+								{id: 'k-wear-kadran', at: 0},
+								{id: 'k-wear-odak', at: 1.6, transition: RISE},
+							]}
+							width={260}
+							at={0.3}
+							rotate={6}
+							buzzes={[{at: 1.45}]}
+						/>
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
 		</StoryStage>
 		</StoryLookProvider>
 	</VideoFrame>
@@ -199,6 +256,6 @@ const StoryKitSheet: React.FC<{look: StoryLookName}> = ({look}) => (
 
 export const StoryKitComposition: React.FC = () => (
 	<Folder name="StoryKit">
-		<Composition id={STORY_KIT_COMPOSITION_ID} component={StoryKitSheet} defaultProps={{look: 'warmGrey' as StoryLookName}} durationInFrames={SCENE * 7 * FPS} fps={FPS} width={1080} height={1920} />
+		<Composition id={STORY_KIT_COMPOSITION_ID} component={StoryKitSheet} defaultProps={{look: 'warmGrey' as StoryLookName}} durationInFrames={SCENE * 9 * FPS} fps={FPS} width={1080} height={1920} />
 	</Folder>
 );

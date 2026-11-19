@@ -14,6 +14,14 @@ type UIState = {
 	calm?: boolean;
 	/** Web panel pages: body, small and meta text one point larger than on the phone (read at arm's length on 1440 px). */
 	web?: boolean;
+	/** Canvas size override: the foldable iPhone draws the phone and tablet screens at its own sizes. */
+	canvas?: {width: number; height: number};
+	/** No stylus (foldable iPhone): the pen toolbar draws with a finger and shows Kaydır / Çiz. */
+	noPencil?: boolean;
+	/** iPhone Duo: outer display (bars in the trailing rail), inner display, or a phone screen shown as a centred sheet on the inner display. */
+	duo?: 'outer' | 'inner' | 'sheet';
+	/** iPhone Duo partly open: the folding region splits the inner display; panes keep clear of it. */
+	fold?: boolean;
 };
 
 const UIContext = createContext<UIState>({mode: 'light', lang: 'tr'});
@@ -24,6 +32,9 @@ export const UIProvider: React.FC<Partial<UIState> & {children: React.ReactNode}
 };
 
 export const useUI = (): UIState => useContext(UIContext);
+
+/** True on a wide layout narrower than an iPad 11" (foldable iPhone inside, 904 pt; iPad mini): side panels and thumbnails make way. */
+export const useNarrowWide = (): boolean => (useUI().canvas?.width ?? 1194) < 1000;
 
 export const useColors = (): UIColors => UI_COLORS[useUI().mode];
 

@@ -111,7 +111,7 @@ export const PlanTodayScreen: React.FC = () => {
 					<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('Kaldığın yerden · 8 dk', 'From where you left off · 8 min')} done />
 					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} now />
 					<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} />
-					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} />
+					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} />
 					<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" />
 				</FitList>
 			</Content>
@@ -416,7 +416,7 @@ export const PlanLessonProgressScreen: React.FC = () => {
 				<Card padding={14}>
 					<Stack gap={10}>
 						{[
-							['Türkçe', 'Turkish', 0.64],
+							['Türkçe', 'Reading & Writing', 0.64],
 							['Matematik', 'Maths', 0.38],
 							['Fen', 'Science', 0.3],
 						].map(([tr, en, value]) => (
@@ -490,7 +490,7 @@ export const PlanScheduleScreen: React.FC = () => {
 					))}
 				</Card>
 				<Stack row wrap gap={10}>
-					{(['lessons', 'tests', 'exam', 'flashcards', 'studyPlan'] as ModuleKey[]).map((key) => (
+					{(['studyPlan', 'lessons', 'tests', 'exam', 'flashcards'] as ModuleKey[]).map((key) => (
 						<Stack key={key} row gap={5}>
 							<div style={{width: 9, height: 9, borderRadius: 3, background: MODULES[key].color.light}} />
 							<Text role="meta">{t(MODULES[key].name)}</Text>
@@ -498,7 +498,7 @@ export const PlanScheduleScreen: React.FC = () => {
 					))}
 				</Stack>
 				<List>
-					<ListRow module="exam" title={t('TYT Deneme 5', 'TYT Exam 5')} subtitle={t('Cumartesi 17 Ekim · 10:00', 'Sat 17 Oct · 10:00')} />
+					<ListRow module="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} subtitle={t('Cumartesi 17 Ekim · 10:00', 'Sat 17 Oct · 10:00')} />
 					<ListRow module="studyPlan" icon="refresh" title={t('Haftalık tekrar', 'Weekly review')} subtitle={t('Pazar · 60 dk', 'Sunday · 60 min')} />
 				</List>
 			</Content>

@@ -93,7 +93,7 @@ export const ExamResultsEmptyScreen: React.FC = () => {
 					<Stack row gap={12}>
 						<Tile module="exam" size={42} solid />
 						<Stack grow gap={1}>
-							<Text role="headline">{t('TYT Deneme 5', 'TYT Exam 5')}</Text>
+							<Text role="headline">{t('TYT Deneme 5', 'SAT Practice Test 5')}</Text>
 							<Text role="small">{t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')}</Text>
 						</Stack>
 						<Button tone="module" module="exam" size="sm">
@@ -333,7 +333,7 @@ export const NotificationsEmptyScreen: React.FC = () => {
 		<Phone>
 			<AppHeader left="back" title={t('Bildirimler', 'Notifications')} right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={12}>
-				<StateBlock icon="bell" title={t('Bildirimin yok', 'No notifications')} text={t('Deneme sonucun, günün planı ve SinoAI yanıtları geldiğinde burada görünür.', 'Exam results, your daily plan and SinoAI replies show up here.')} action={t('Bildirim ayarları', 'Notification settings')} />
+				<StateBlock icon="bell" tone="success" title={t('Bildirimin yok', 'No notifications')} text={t('Deneme sonucun, günün planı ve SinoAI yanıtları geldiğinde burada görünür.', 'Exam results, your daily plan and SinoAI replies show up here.')} action={t('Bildirim ayarları', 'Notification settings')} />
 			</Content>
 		</Phone>
 	);

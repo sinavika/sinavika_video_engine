@@ -185,7 +185,7 @@ export const AppleExamScreen: React.FC = () => {
 			<Stack gap={8} style={{padding: '0 4px'}}>
 				<Stack gap={0}>
 					<Text role="headline" size={16} color={WATCH_INK}>
-						{t('TYT Deneme 5', 'TYT Exam 5')}
+						{t('TYT Deneme 5', 'SAT Practice Test 5')}
 					</Text>
 					<Text role="meta" size={12} color={WATCH_MUTED}>
 						{t('Cumartesi 10:00 · Türkiye geneli', 'Saturday 10:00 · nationwide')}
@@ -301,7 +301,7 @@ export const AppleSmartStackScreen: React.FC = () => {
 					</SysRing>,
 				)}
 				<div data-ui="disabled" style={{opacity: 0.55, transform: 'scale(0.94)', transformOrigin: 'top center'}}>
-					{widget(exam, t('CANLI DENEME', 'LIVE EXAM'), t('Cumartesi 10:00', 'Saturday 10:00'), t('TYT Deneme 5', 'TYT Exam 5'), <Icon name="exam" size={22} color={exam} stroke={2.2} />)}
+					{widget(exam, t('CANLI DENEME', 'LIVE EXAM'), t('Cumartesi 10:00', 'Saturday 10:00'), t('TYT Deneme 5', 'SAT Practice Test 5'), <Icon name="exam" size={22} color={exam} stroke={2.2} />)}
 				</div>
 			</Stack>
 		</div>

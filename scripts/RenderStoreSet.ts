@@ -16,12 +16,13 @@
  * picture that fails is deleted and the run stops (fix the source, run again).
  */
 import path from 'node:path';
-import {existsSync, mkdirSync, rmSync} from 'node:fs';
+import {existsSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {parseArgs} from 'node:util';
 import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
+import {PNG} from 'pngjs';
 import {bundleProject} from '../src/Renderers/VideoRenderer';
 import {checkShot} from '../src/Store/StoreShotCheck';
-import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_FORMATS, STORE_LANGUAGES, STORE_SLIDES, WATCH_SHOTS} from '../src/Store/StoreListing';
+import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_FORMATS, STORE_LANGUAGES, STORE_SLIDES, SUBSCRIPTION_ICON_SIZE, SUBSCRIPTION_ICONS, WATCH_SHOTS} from '../src/Store/StoreListing';
 import {STORE_LOOKS, STORE_SET_ID, type StoreSetProps} from '../src/Store/StoreProps';
 
 const {values} = parseArgs({options: {out: {type: 'string'}, lang: {type: 'string'}, only: {type: 'string'}, resume: {type: 'boolean', default: false}, look: {type: 'string', default: 'turuncu'}}});
@@ -54,6 +55,12 @@ for (const lang of langs) {
 		}
 	}
 }
+// Play subscription icons: one per product, the same in every language, main look only.
+if (look === 'turuncu' && langs.includes('tr')) {
+	for (const icon of SUBSCRIPTION_ICONS) {
+		jobs.push({file: `android/abonelik-simgeleri/${icon.file}.png`, props: {look, slide: 0, textless: false, lang: 'tr', width: SUBSCRIPTION_ICON_SIZE, height: SUBSCRIPTION_ICON_SIZE, device: 'iphone', kind: 'subicon', product: icon.id}});
+	}
+}
 const selected = (values.only ? jobs.filter((job) => job.file.split('/').slice(1).join('/').startsWith(values.only!)) : jobs).filter((job) => !values.resume || !existsSync(path.join(out, job.file)));
 
 const serveUrl = await bundleProject();
@@ -63,6 +70,11 @@ for (const job of selected) {
 	const output = path.join(out, job.file);
 	mkdirSync(path.dirname(output), {recursive: true});
 	await renderStill({composition, serveUrl, output, inputProps: job.props, imageFormat: 'png', puppeteerInstance: browser, chromiumOptions: {gl: 'angle'}});
+	// Play asks 32-bit PNG for subscription icons: rewrite as RGBA (opaque alpha), same pixels.
+	if (job.props.kind === 'subicon') {
+		const png = PNG.sync.read(readFileSync(output));
+		writeFileSync(output, PNG.sync.write(png, {colorType: 6}));
+	}
 	const problems = checkShot(output, job.props);
 	if (problems.length > 0) {
 		rmSync(output);

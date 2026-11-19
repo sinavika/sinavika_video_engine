@@ -38,6 +38,20 @@ Bugün ekranında sahibin tasarım hatası saydığı yerler. Her yeni ve deği�
   Örnek: `m/w/t-test-yanlislar-son`, `m-test-yanlislar-dogru`, `m-test-baglanti`, `m-test-bitir-bekliyor`.
 - **Cevap tek dokunuş:** test ve deneme şıkkına dokunmak cevaptır; hiçbir platformda "Cevapla" düğmesi çizilmez (tablet dahil).
 - **Ders listesi çubuklu:** Dersler ve Testler vitrininde dersler çubuklu listeyle gösterilir; halkalı ızgara yok.
+- **Modül sırası:** Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI; her listede (18 Kasım 2026).
+- **Web kabuğu (18 Kasım 2026):**
+  - Üst çubuk ve sol menü aynı zeminde (`card`), aralarında çizgi yok. İçerik `bg` zeminde ayrı bir yüzey, sol üst köşesi 26 px.
+  - Üst çubuk üç sütun (1fr / 32rem / 1fr): arama ortada; sağda tema düğmesi ve hesap menüsü. Zil, destek ve hedef çipi üst çubukta yok.
+  - Logo sol menüde, 68 px satırda tek başına. Altta "Çıkış yap" ve yanında daralt düğmesi.
+- **Alt sayfa başlığı (B5, 18 Kasım 2026):** her yerde 40 pt yuvarlak geri, ortalı başlık; modal ekranlarda çarpı. Başlık sağdaki eylemden bağımsız ortadadır (`AppHeader` üç sütun).
+- **Vaat yok:** API'nin vermediği süre, sayı ya da seçenek yazılmaz (ör. destekte "birkaç saat içinde", API'de olmayan "Öneri" konusu, uygulamada olmayan "soru hata bildirimi" satırı).
+- **iPhone Duo (18 Kasım 2026; ölçüler 19 Kasım'da Xcode simülatörüyle düzeltildi):**
+  - Katlanabilir iPhone'da ayrı düzen yoktur. Dış ekran (dik, 466 × 678) telefon, iç ekran (951 × 669) tablet düzenini kullanır.
+  - İki ekranda da sağda iOS'un 84 pt şeridi vardır: ada, saat ve durum simgeleri iOS'un; sekme ve araç simgelerimiz bu şeritte, yalnız simgeyle. Altta 34 pt güvenli alan. Metinli düğme içerikte kalır.
+  - Şerit kararı ölçüyle değil, iOS'un `verticalBarEdge` bilgisiyle verilir.
+  - Katlayınca ya da açınca açık olan soru, şık, süre, taslak ve kaydırma yeri korunur.
+  - Yarı açıkken düğme ve önemli içerik katın (ekranın ortasındaki 40 pt; yeri iOS'tan okunur) üstüne gelmez.
+  - Ayrıntı: [Kodlama/12-iPhone-Duo.md](Kodlama/12-iPhone-Duo.md).
 - **Önce karar kontrolü:** sahibin verdiği bir kararla çelişebilecek ekran çizilmeden önce karar kontrol edilir: bu bölüm, ilgili Kodlama belgesinin üstündeki karar kutusu ve web deposundaki `docs/UIUX/Tasarim-Uyum-Plani.md` §9.
 
 ## Hiyerarşi kuralı (Dersler, Testler, Bilgi Kartları)
@@ -57,7 +71,7 @@ Her modülün içinde: modül tab bar'ı (5 yuva) · Profil yuva 5'te
 Bildirimler: üst sağdaki zil · Profil: üst soldaki kişi simgesi ve yuva 5
 ```
 
-Modül sırası her yerde aynıdır: Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları, SinoAI.
+Modül sırası her yerde aynıdır (sahip, 18 Kasım 2026): **Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI**. Hub ızgarası, Modüller, web sol menü, istatistik grafiği ve halka dilimleri, arama ve süzgeçler bu sıradadır; tek kaynak `MODULE_ORDER`.
 
 ## 2. Gezinme
 
@@ -141,11 +155,11 @@ Kaynak: `src/UIUX/Parts`. Web ve mobil aynı adları ve varyantları kullanır. 
 
 ### 5.3 Onboarding
 
-- **Mobil:** Karşılama → sınav ve oturum → mevcut ve hedef net ("Netimi bilmiyorum" seçeneğiyle) → tempo ve günler → zorlanılan dersler → **planın hazır** (6. ekran) → planını kaydet (Apple ve Google önde) → 3 gün ücretsiz → bugünkü ilk konu.
+- **Mobil:** Karşılama → sınav ve oturum → mevcut ve hedef net ("Netimi bilmiyorum" seçeneğiyle) → tempo ve günler → zorlanılan dersler → **planın hazır** (ayrı adım, 5/5) → 3 gün ücretsiz (mağaza alımı hesapsız) → ana ekran; ilk konu kendiliğinden açılmaz. Hesap ve bildirim isteği uygulama içinde gelir (18 Kasım 2026).
 - İlerleme çubuğu yalnız planı kuran beş adımı sayar.
-- Plan, hesap ve ödemeden önce gösterilir. "Hesabın hazır" ara ekranı ve ön tanıtım turu yoktur.
+- Plan, ödemeden önce gösterilir; onboarding'de hesap adımı yoktur. "Hesabın hazır" ara ekranı ve ön tanıtım turu yoktur.
 - Bildirim izni ilk çalışmadan sonra, kendi açıklama ekranımızla istenir.
-- **Web:** aynı beş adım ve paket seçimi. Web'de deneme süresi yoktur; "Şimdilik paket seçme" seçeneği vardır.
+- **Web:** aynı beş adım ve paket seçimi. Web'de deneme süresi yoktur; "Şimdilik paket seçme" yoktur (paketsiz panel açılmaz).
 
 ### 5.4 Analizden eyleme
 
@@ -286,6 +300,10 @@ Parçalar kendini `data-ui` ile işaretler:
 **Hareket**
 - Bütün değerler ve kurallar: [`Hareket-Standardi.md`](Hareket-Standardi.md) (jetonlar `src/UIUX/Tokens.ts` → `UI_MOTION`, `UI_MOTION_MOMENTS`).
 - Bir ekranda en çok 1–2 öğe hareket eder; sürekli animasyon yalnız yükleniyor göstergesinde ve SinoAI'nin "düşünüyor" noktalarında.
+- **Yükleme hâli (sahip, 18 Kasım 2026):**
+  - Kartlardan oluşan ekranda ilk yüklemede ortada tek logo döner; sonra bütün kartlar son yerlerinde birlikte çizilir.
+  - Geç kalan kart boş kart çerçevesi olarak durur, içinde logo olmaz; içeriği aynı yerde yalnız saydamlıkla gelir.
+  - Kartın içinde logo dönmez.
 - Süreler ortak hareket jetonlarından gelir; giriş ve çıkış yavaş biten eğriyle (ease-in yok, 10 Kasım 2026), çıkış girişten kısa.
 - Sistemde "hareketi azalt" açıksa geçişler kısalır, paralaks ve sürekli animasyon durur.
 - Hiçbir içerik kendiliğinden dönmez ya da kaymaz.

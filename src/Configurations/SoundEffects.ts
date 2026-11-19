@@ -75,6 +75,8 @@ export const SOUND_EFFECTS = {
 	unlock: {file: 'SoundEffects/promo-unlock.wav', description: 'A small metal key turning in a lock and the lock clicking open, short, close microphone, no music.', seconds: 0.8, peakDb: -12},
 	chalk: {file: 'SoundEffects/promo-chalk.wav', description: 'Chalk writing quickly on a school blackboard, scratchy taps and strokes, about two seconds, no music.', seconds: 2, peakDb: -15},
 	star: {file: 'SoundEffects/promo-star.wav', description: 'A tiny sparkling celesta chime for a star being earned in a game, short and bright, no music.', seconds: 0.6, peakDb: -15},
+	/** A watch's haptic buzz, two short motor pulses (Sosyal Medya, 19 Nov 2026: the watch reels). Synthesised, not ElevenLabs: a 172 Hz motor tone with its harmonics and a 43 Hz rattle, 0.12 s twice, peak -14 dBFS; ElevenLabs makes it again from the description only if the file is deleted. */
+	hapticBuzz: {file: 'SoundEffects/promo-haptic-buzz.wav', description: 'A smartwatch vibrating on a wrist, two short low buzzes of its haptic motor, dry, close microphone, no music.', seconds: 0.5, peakDb: -14},
 } as const satisfies Record<string, SoundEffect>;
 
 export type SoundEffectId = keyof typeof SOUND_EFFECTS;

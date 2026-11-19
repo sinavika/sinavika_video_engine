@@ -41,7 +41,7 @@ export const WebTestsHomeScreen: React.FC = () => {
 				</Stack>
 				<Grid columns="1fr 1fr" gap={14}>
 					{[
-						['Türkçe', 'Turkish', 12, 30],
+						['Türkçe', 'Reading & Writing', 12, 30],
 						['Matematik', 'Maths', 9, 35],
 						['Geometri', 'Geometry', 3, 20],
 						['Fizik', 'Physics', 5, 18],
@@ -194,7 +194,7 @@ export const WebTestSolveWrongScreen: React.FC = () => {
 					))}
 				</Stack>
 				<Text role="body" size={20} weight={600} color={colors.ink} style={{lineHeight: '30px', marginTop: 10}}>
-					{t('Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', 'Ali finishes a job in 6 days, Ayşe in 12. How many days do they need together?')}
+					{t('Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', 'Ali finishes a job in 6 days, Emma in 12. How many days do they need together?')}
 				</Text>
 				<Grid columns="1fr 1fr" gap={12} style={{maxWidth: 760}}>
 					<OptionRow letter="A" text="3" />

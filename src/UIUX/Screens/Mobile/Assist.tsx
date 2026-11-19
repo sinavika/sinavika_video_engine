@@ -182,7 +182,7 @@ export const SummaryResultScreen: React.FC = () => {
 					<Chip tone="module" module="smartSummary" icon="scan">
 						{t('Akıllı Özet', 'Smart Summary')}
 					</Chip>
-					<Chip>{t('AYT Matematik', 'AYT Maths')}</Chip>
+					<Chip>{t('AYT Matematik', 'SAT Math')}</Chip>
 					<Chip tone="success" icon="check">
 						{t('Cevap: B', 'Answer: B')}
 					</Chip>
@@ -514,7 +514,7 @@ export const CardsTodayScreen: React.FC = () => {
 					{[
 						['Kimya · Mol', 'Chemistry · Mole', 12],
 						['Tarih · Osmanlı', 'History · Ottoman', 10],
-						['Türkçe · Ses bilgisi', 'Turkish · Phonetics', 6],
+						['Türkçe · Ses bilgisi', 'Reading · Vocabulary', 6],
 						['Coğrafya · İklim', 'Geography · Climate', 4],
 					].map(([tr, en, count]) => (
 						<ListRow key={tr as string} module="flashcards" title={t(tr as string, en as string)} subtitle={`${count} ${t('kart', 'cards')}`} />
@@ -546,7 +546,7 @@ const FlashcardFace: React.FC<{back?: boolean}> = ({back}) => {
 				{back ? (
 					<>
 						<Text role="hero" align="center">
-							6,02 × 10²³ {t('tanecik', 'particles')}
+							{t('6,02', '6.02')} × 10²³ {t('tanecik', 'particles')}
 						</Text>
 						<Text role="body" align="center">
 							{t('Avogadro sayısı kadar atom, molekül ya da iyon içeren madde miktarı.', 'The amount containing Avogadro’s number of particles.')}
@@ -631,7 +631,7 @@ export const CardsSavedScreen: React.FC = () => {
 			<Content gap={12}>
 				<PageTitle module="flashcards" title={t('Kaydedilenler', 'Saved')} sub={t('Kaydettiğin 24 kart', '24 saved cards')} />
 				<Stack row gap={8}>
-					{[t('Tümü', 'All'), t('Kimya', 'Chemistry'), t('Tarih', 'History'), t('Türkçe', 'Turkish')].map((label, index) => (
+					{[t('Tümü', 'All'), t('Kimya', 'Chemistry'), t('Tarih', 'History'), t('Türkçe', 'Reading & Writing')].map((label, index) => (
 						<Chip key={label} tone={index ? 'outline' : 'moduleSolid'} module="flashcards">
 							{label}
 						</Chip>

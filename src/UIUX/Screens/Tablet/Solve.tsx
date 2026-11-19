@@ -5,6 +5,7 @@ import {HandText, Highlight, InkArrow, InkCheck, InkLayer, InkLine, InkLoop, Ink
 import {Button, Card, Chip, OptionRow, Stack, Text, Toggle} from '../../Parts/Shared';
 import {InkNote, PenToolbar, QuestionStrip, RoundButton, Scratchpad, SolveBar, Tablet, TimerProgress} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
+import {DUO_FOLD_PANE, DUO_FOLD_SPACE} from '../../Parts/Duo';
 
 /**
  * Solving with the pen on a tablet: Denemeler (exam) and Testler (tests).
@@ -127,30 +128,37 @@ const ExamWorking: React.FC<{scale?: number}> = ({scale = 1}) => {
 export const ExamScratchScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	// iPhone Duo partly open: the scratch paper takes the trailing half, clear of the fold.
+	// Inner display open (867 × 635 pt for the page, shorter than an iPad): a
+	// narrower paper and a tighter question so the foot stays inside the card.
+	const {fold, duo} = useUI();
+	const duoInner = duo === 'inner';
 	return (
 		<Tablet module="exam">
-			<SolveBar title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Temel Matematik', 'Basic Maths')} center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />} scratch right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
-			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
-				<QuestionCard style={{flex: 1}}>
+			<SolveBar title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Temel Matematik', 'Basic Maths')} center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />} scratch right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
+			<Stack row gap={fold ? 0 : 20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
+				<QuestionCard style={duoInner ? {flex: 1, gap: 12, padding: '18px 22px'} : {flex: 1}}>
 					<Stack row justify="space-between">
 						<Chip>{t('Soru 46 / 120', 'Question 46 / 120')}</Chip>
 						<Chip tone="outline" icon="bookmark">
 							{t('İşaretle', 'Flag')}
 						</Chip>
 					</Stack>
-					<Text role="body" size={19} weight={600} color={colors.ink} style={{lineHeight: '30px'}}>
+					<Text role="body" size={duoInner ? 17 : 19} weight={600} color={colors.ink} style={{lineHeight: duoInner ? '26px' : '30px'}}>
 						{t(EXAM_STEM.tr, EXAM_STEM.en)}
 					</Text>
-					<Stack gap={9}>
+					<Stack gap={duoInner ? 7 : 9}>
 						{EXAM_OPTIONS.map((option, index) => (
 							<OptionRow key={option} letter={'ABCDE'[index]} text={option} state={index === 1 ? 'selected' : 'idle'} module="exam" />
 						))}
 					</Stack>
-					<SolveFoot states={[1, 3, 1, 4, 2, 0, 0]} start={42} />
+					{/* On the Duo inner display the card is narrow (and partly open it stays on the leading side of the fold): three bubbles, no Skip. */}
+					<SolveFoot states={duoInner ? [1, 4, 2] : [1, 3, 1, 4, 2, 0, 0]} start={duoInner ? 44 : 42} skip={!duoInner} />
 				</QuestionCard>
-				<Scratchpad width={454} height="100%" page={t('Soru 46 · 1 / 1', 'Q 46 · 1 / 1')}>
+				<Scratchpad width={fold ? DUO_FOLD_PANE : duoInner ? 400 : 454} height="100%" page={t('Soru 46 · 1 / 1', 'Q 46 · 1 / 1')} style={fold ? {marginLeft: DUO_FOLD_SPACE} : undefined}>
+					{/* Partly open the paper is 349 pt: the working is drawn smaller so it stays clear of the pen toolbar. */}
 					<InkLayer width={380} height={620}>
-						<ExamWorking />
+						<ExamWorking scale={fold ? 0.8 : 1} />
 					</InkLayer>
 					<PenToolbar vertical tool="pen" color="ink" width="medium" style={{position: 'absolute', right: 10, top: 10}} />
 					<div style={{position: 'absolute', left: 16, bottom: 14}}>
@@ -181,7 +189,7 @@ export const ExamMarkupScreen: React.FC = () => {
 	const options = PARAGRAPH_OPTIONS[lang];
 	return (
 		<Tablet module="exam">
-			<SolveBar title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Türkçe', 'Turkish')} center={<TimerProgress time="2:31:04" value={0.06} label={t('kaldı', 'left')} />} overlay right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
+			<SolveBar title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Türkçe', 'Reading & Writing')} center={<TimerProgress time="2:31:04" value={0.06} label={t('kaldı', 'left')} />} overlay right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
 			<Stack row gap={18} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<PenToolbar vertical tool="highlighter" color="yellow" width="thick" clear={false} style={{alignSelf: 'center'}} />
 				<QuestionCard style={{flex: 1, flexDirection: 'row', gap: 22}}>
@@ -230,7 +238,7 @@ export const ExamPortraitScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Tablet module="exam" portrait>
-			<SolveBar compact title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Temel Matematik', 'Basic Maths')} center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />} scratch right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
+			<SolveBar compact title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Temel Matematik', 'Basic Maths')} center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />} scratch right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
 			<Stack gap={16} style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<QuestionCard>
 					<Stack row justify="space-between">
@@ -272,7 +280,7 @@ export const ExamSolutionNotesScreen: React.FC = () => {
 	const mod = useModuleColors('exam');
 	return (
 		<Tablet module="exam">
-			<SolveBar pen={false} title={t('TYT Deneme 5 · Çözümler', 'TYT Exam 5 · Solutions')} sub={t('Temel Matematik', 'Basic Maths')} center={<QuestionStrip states={[1, 1, 3, 1, 4, 2, 0, 0, 0, 0]} start={41} />} right={<RoundButton icon="eye" on label={t('Notlarım', 'My notes')} />} />
+			<SolveBar pen={false} title={t('TYT Deneme 5 · Çözümler', 'SAT Practice Test 5 · Solutions')} sub={t('Temel Matematik', 'Basic Maths')} center={<QuestionStrip states={[1, 1, 3, 1, 4, 2, 0, 0, 0, 0]} start={41} />} right={<RoundButton icon="eye" on label={t('Notlarım', 'My notes')} />} />
 			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<QuestionCard style={{flex: 1}}>
 					<Stack row justify="space-between">
@@ -320,7 +328,7 @@ export const ExamSolutionNotesScreen: React.FC = () => {
 
 /* ------------------------------------------------------------------ Testler */
 
-const WORK_STEM = {tr: 'Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', en: 'Ali finishes a job in 6 days, Ayşe in 12. How many days do they need together?'};
+const WORK_STEM = {tr: 'Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', en: 'Ali finishes a job in 6 days, Emma in 12. How many days do they need together?'};
 
 /** A test with immediate feedback: the right answer, the working on the scratchpad next to it. */
 export const TestScratchScreen: React.FC = () => {
@@ -560,7 +568,7 @@ export const PenTipScreen: React.FC = () => {
 				</div>
 			}
 		>
-			<SolveBar title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Türkçe', 'Turkish')} center={<TimerProgress time="2:44:59" value={0.0} label={t('kaldı', 'left')} />} right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
+			<SolveBar title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Türkçe', 'Reading & Writing')} center={<TimerProgress time="2:44:59" value={0.0} label={t('kaldı', 'left')} />} right={<Button size="sm">{t('Bitir', 'Finish')}</Button>} />
 			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<QuestionCard style={{flex: 1}}>
 					<Chip>{t('Soru 1 / 120', 'Question 1 / 120')}</Chip>

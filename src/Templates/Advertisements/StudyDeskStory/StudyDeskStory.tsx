@@ -12,6 +12,7 @@ import {cardGround, StoryLookFieldSchema, StoryLookProvider, storyTone, type Sto
 import {StoryGround} from '../../../Components/Story/StoryMaterial';
 import {HOME_APPS, StoryPhone} from '../../../Components/Story/StoryPhone';
 import {STUDENT_POSES, StoryStudent} from '../../../Components/Story/StoryStudent';
+import {StoryWrist} from '../../../Components/Story/StoryWrist';
 import {subBeats} from '../../../Components/Story/StoryTiming';
 import {KeyPhrase, NumberPop} from '../../../Components/Story/StoryType';
 import {Text} from '../../../Components/Typography/Text';
@@ -44,19 +45,25 @@ const place = {x: z.number().min(-200).max(1080), y: z.number().min(-200).max(19
 const timing = {on: line.optional(), at: z.number().min(0).max(8).default(0)};
 const screenId = z.string().regex(/^[mtkw]-[a-z0-9-]+$/);
 const homeApp = z.enum(Object.keys(HOME_APPS) as [keyof typeof HOME_APPS, ...(keyof typeof HOME_APPS)[]]);
+const transition = z.enum(['slide', 'morph', 'rise', 'flip']);
+/** A watch's buzzes and the fingertip's taps on its glass (x, y: 0–1 of the screen). */
+const watchMoves = {buzzes: z.array(z.object(timing)).max(4).default([]), taps: z.array(z.object({x: z.number().min(0).max(1), y: z.number().min(0).max(1), ...timing})).max(4).default([])};
+const shownScreens = z.array(z.object({id: screenId, transition: transition.optional(), ...timing}));
 const pose = z.enum(Object.keys(STUDENT_POSES) as [keyof typeof STUDENT_POSES, ...(keyof typeof STUDENT_POSES)[]]);
 
 const ItemSchema = z.discriminatedUnion('kind', [
 	z.object({kind: z.literal('phrase'), text: line, keywords: z.array(line).default([]), size: z.number().min(40).max(160).default(92), width: z.number().min(300).max(1000).default(900), ...place, ...timing}),
-	z.object({kind: z.literal('student'), poses: z.array(z.object({pose, ...timing})).min(1).max(4), size: z.number().min(200).max(700).default(440), ...place}),
+	z.object({kind: z.literal('student'), poses: z.array(z.object({pose, ...timing})).min(1).max(4), size: z.number().min(200).max(700).default(440), watch: z.enum(['apple', 'wear']).optional(), ...place}),
 	z.object({kind: z.literal('exam'), title: line, rows: z.array(z.object({number: z.number().int().min(1).max(200), choice: z.string().max(2), result: z.enum(['right', 'wrong', 'blank']), ...timing})).min(2).max(8), net: z.object({text: line, ...timing}).optional(), width: z.number().default(640), tilt: z.number().default(2), ...place, ...timing}),
 	z.object({kind: z.literal('sticky'), text: line, width: z.number().default(420), tilt: z.number().default(-4), ...place, ...timing}),
 	z.object({kind: z.literal('topics'), title: line, items: z.array(z.object({text: line, ok: z.boolean(), ...timing})).min(2).max(6), width: z.number().default(640), ...place, ...timing}),
 	z.object({kind: z.literal('chart'), title: line, values: z.array(z.number()).min(2).max(8), labels: z.array(line).optional(), width: z.number().default(760), ...place, ...timing}),
 	z.object({kind: z.literal('bars'), title: line, rows: z.array(z.object({label: line, value: z.number().min(0).max(1), text: line, tone: z.enum(['accent', 'muted']).default('accent'), ...timing})).min(2).max(3), width: z.number().default(760), ...place, ...timing}),
 	z.object({kind: z.literal('number'), to: z.number(), from: z.number().default(0), suffix: z.string().max(12).default(''), size: z.number().default(170), ...place, ...timing}),
-	/** A real UI/UX screen on its own device (m-… phone, t-… tablet, k-… watch); `screens` slides one device through several pages of the same kind. */
-	z.object({kind: z.literal('device'), id: screenId, width: z.number().min(150).max(1000), rotate: z.number().default(0), transition: z.enum(['slide', 'morph']).default('slide'), screens: z.array(z.object({id: screenId, ...timing})).min(2).max(5).optional(), ...place, ...timing}),
+	/** A real UI/UX screen on its own device (m-… phone, t-… tablet, k-… watch); `screens` steps one device through several pages of the same kind, each by its transition (the item's when not set). A watch also buzzes and takes taps. */
+	z.object({kind: z.literal('device'), id: screenId, width: z.number().min(150).max(1000), rotate: z.number().default(0), transition: transition.default('slide'), screens: shownScreens.min(2).max(5).optional(), ...watchMoves, ...place, ...timing}),
+	/** The watch on the student's wrist, close up: the arm rises into place on its cue; k-… screens only. */
+	z.object({kind: z.literal('wrist'), id: screenId, width: z.number().min(150).max(700), rotate: z.number().min(-30).max(30).default(-8), transition: transition.default('slide'), screens: shownScreens.min(2).max(5).optional(), ...watchMoves, ...place, ...timing}),
 	/** The phone's home screen (no real apps but Sınavika): the thumb's touches, and the app the last tap opens into `screens`. */
 	z.object({kind: z.literal('home'), width: z.number().min(250).max(800), touches: z.array(z.object({app: homeApp, touch: z.enum(['hover', 'tap']), ...timing})).min(1).max(4), screens: z.array(z.object({id: screenId, ...timing})).max(4).default([]), wallpaper: z.enum(['dark', 'light']).default('dark'), rotate: z.number().default(0), ...place, ...timing}),
 	/** A small label in the look's chip colours (what the screen shows). */
@@ -112,7 +119,11 @@ const cueResolver = (beat: Beat, clip: VoiceClip | undefined, seconds: number) =
 		}
 		if (item.kind === 'topics') item.items.forEach(collect);
 		if (item.kind === 'bars') item.rows.forEach(collect);
-		if (item.kind === 'device') item.screens?.forEach(collect);
+		if (item.kind === 'device' || item.kind === 'wrist') {
+			item.screens?.forEach(collect);
+			item.buzzes.forEach(collect);
+			item.taps.forEach(collect);
+		}
 		if (item.kind === 'cursor') item.clicks.forEach(collect);
 		if (item.kind === 'home') {
 			item.touches.forEach(collect);
@@ -133,7 +144,7 @@ const ItemView: React.FC<{item: Item; when: When; look: StoryLook}> = ({item, wh
 		case 'phrase':
 			return <KeyPhrase text={item.text} keywords={item.keywords} at={at} size={item.size} width={item.width} />;
 		case 'student':
-			return <StoryStudent keys={item.poses.map((key) => ({pose: key.pose, at: when(key)}))} size={item.size} />;
+			return <StoryStudent keys={item.poses.map((key) => ({pose: key.pose, at: when(key)}))} size={item.size} watch={item.watch} watchColor={look.accent} />;
 		case 'exam':
 			return <ExamSheet title={item.title} at={at} width={item.width} tilt={item.tilt} rows={item.rows.map((row) => ({number: row.number, choice: row.choice, result: row.result, at: when(row)}))} net={item.net ? {text: item.net.text, at: when(item.net)} : undefined} />;
 		case 'sticky':
@@ -149,7 +160,13 @@ const ItemView: React.FC<{item: Item; when: When; look: StoryLook}> = ({item, wh
 		case 'device':
 			return (
 				<div style={landing(seconds, at, item.rotate)}>
-					<StoryDevice id={item.id} screens={item.screens?.map((screen) => ({id: screen.id, at: when(screen)}))} width={item.width} transition={item.transition} />
+					<StoryDevice id={item.id} screens={item.screens?.map((screen) => ({id: screen.id, at: when(screen), transition: screen.transition}))} width={item.width} transition={item.transition} buzzes={item.buzzes.map((buzz) => ({at: when(buzz)}))} taps={item.taps.map((tap) => ({x: tap.x, y: tap.y, at: when(tap)}))} />
+				</div>
+			);
+		case 'wrist':
+			return (
+				<div style={{opacity: seconds < at ? 0 : 1}}>
+					<StoryWrist id={item.id} screens={item.screens?.map((screen) => ({id: screen.id, at: when(screen), transition: screen.transition}))} width={item.width} at={at} rotate={item.rotate} transition={item.transition} buzzes={item.buzzes.map((buzz) => ({at: when(buzz)}))} taps={item.taps.map((tap) => ({x: tap.x, y: tap.y, at: when(tap)}))} />
 				</div>
 			);
 		case 'home':
@@ -287,7 +304,7 @@ export const StudyDeskStory = defineTemplate({
 	id: 'StudyDeskStory',
 	category: 'Advertisements',
 	title: 'Masa başı hikâyesi',
-	description: 'sinavika.tr için problem odaklı reels, hikâye kitiyle: video başına görünüm (look: sıcak gri, kâğıt, canlı renk, kömür, lacivert), kâğıt kartlar (deneme kâğıdı, not, konu listesi, net grafiği, karşılaştırma), pozlu öğrenci, sese bağlı anahtar ifadeler ve sayılar, gerçek UI/UX ekranları kendi cihazında (telefon, tablet, saat; kayarak ya da yaylı dönüşümle), tıklayan imleç; her alt vuruşta kamera yakınlaşması, onaylı tempo; sonda 2 sn sade kart (logo ve mağaza rozetleri, çağrı yok).',
+	description: 'sinavika.tr için problem odaklı reels, hikâye kitiyle: video başına görünüm (look: sıcak gri, kâğıt, canlı renk, kömür, lacivert), kâğıt kartlar (deneme kâğıdı, not, konu listesi, net grafiği, karşılaştırma), pozlu öğrenci, sese bağlı anahtar ifadeler ve sayılar, gerçek UI/UX ekranları kendi cihazında (telefon, tablet, saat; kayarak, yaylı dönüşümle, bildirim gibi yükselerek ya da kart gibi dönerek), bilekte saat yakın planı (titreşim, parmak dokunuşu), tıklayan imleç; her alt vuruşta kamera yakınlaşması, onaylı tempo; sonda 2 sn sade kart (logo ve mağaza rozetleri, çağrı yok).',
 	contentSchema: StudyDeskStorySchema,
 	sampleContent: SAMPLE,
 	defaultTheme: 'SinavikaDark',

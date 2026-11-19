@@ -1,5 +1,5 @@
 import React from 'react';
-import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
+import {UIProvider, useColors, useModuleColors, useT, useUI} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle, Sheet} from '../../Parts/Mobile';
 import {FilterChips, ModuleWeekCard} from '../../Parts/Study';
@@ -66,11 +66,21 @@ export const CONCEPT = {
 	note: 'Ortada kırılan bir nesne yok. Kırmak burada azaltmak, yok etmek anlamında.',
 };
 
-export const AGIR_QUESTION = {
+const AGIR_QUESTION = {
 	stem: 'Aşağıdaki cümlelerin hangisinde **ağır** sözcüğü mecaz anlamda kullanılmıştır?',
 	options: ['Ağır bavulu tek başına merdivenlerden çıkaramadı.', 'Arkadaşının söylediği sözler ona çok ağır geldi.', 'Kamyon, ağır yükü yüzünden yokuşu zor çıktı.', 'Demir, aynı büyüklükteki tahtadan daha ağırdır.', 'Bahçedeki ağır taşı iki kişi kenara çekti.'],
 	hint: 'Her seçenekte sor: **ağır** burada tartıyla ölçülebilen bir ağırlık mı?',
 };
+
+/** The same step for the English drawings (store set, SAT/ACT): words in context, never the Turkish lesson. */
+const AGIR_QUESTION_EN = {
+	stem: 'In which sentence is the word **heavy** used figuratively?',
+	options: ['She could not carry the heavy suitcase up the stairs alone.', 'His friend’s words felt very heavy to him.', 'The truck climbed the hill slowly because of its heavy load.', 'Iron is heavier than a piece of wood the same size.', 'Two people moved the heavy stone to the side of the garden.'],
+	hint: 'Ask of each option: is **heavy** a weight you could put on a scale?',
+};
+
+/** The sample exam-style question in the drawing's language. */
+export const useAgirQuestion = () => (useUI().lang === 'en' ? AGIR_QUESTION_EN : AGIR_QUESTION);
 
 export const SUMMARY = {
 	points: ['**Gerçek anlam:** sözcüğün akla gelen ilk anlamı.', '**Somut** beş duyuyla algılanır; **nitel** nasıl, **nicel** ne kadar olduğunu söyler.', '**Eş sesli** sözcüklerin anlamları arasında bağ yoktur (çay); **çok anlamlıda** vardır (kol).', 'Bağlam sorularında sözcüğün yerine **karşılık koy** ve şıklarda dene.'],
@@ -81,7 +91,7 @@ export const SUMMARY = {
 
 /** Lesson mains of the student's exams: name, done and total steps (drawn as a percentage), topics (GET lessons). */
 export const WORK_LESSONS: [string, string, number, number, number][] = [
-	['Türkçe', 'Turkish', 14, 125, 15],
+	['Türkçe', 'Reading & Writing', 14, 125, 15],
 	['Matematik', 'Maths', 6, 164, 23],
 	['Tarih', 'History', 0, 120, 22],
 	['Coğrafya', 'Geography', 0, 98, 19],
@@ -315,8 +325,9 @@ export const Screen: React.FC<{bar?: React.ReactNode; foot?: React.ReactNode; ga
 		<UIProvider module="lessons">
 			<Phone overlay={overlay}>
 				{bar}
-				<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '8px 20px 12px', display: 'flex', flexDirection: 'column', gap, justifyContent: center ? 'center' : undefined}}>{children}</div>
-				{foot ? <div style={{padding: '10px 20px 30px', display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0}}>{foot}</div> : null}
+				{/* iPhone Duo outer display (shorter than a phone): the step's body scrolls, drawn from its top. */}
+				<div data-ui={useUI().duo === 'outer' ? 'scroll-y' : undefined} style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '8px 20px 12px', display: 'flex', flexDirection: 'column', gap, justifyContent: center ? 'center' : undefined}}>{children}</div>
+				{foot ? <div style={{padding: useUI().duo === 'outer' ? '10px 20px 8px' : '10px 20px 30px', display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0}}>{foot}</div> : null}
 			</Phone>
 		</UIProvider>
 	);
@@ -842,22 +853,24 @@ export const LessonOrderScreen: React.FC = () => (
 /** After a wrong answer the next solution step opens; the student picks again (steps + 1 tries). */
 export const QuestionContent: React.FC<{size?: number; grid?: boolean}> = ({size = 1, grid}) => {
 	const colors = useColors();
+	const t = useT();
+	const question = useAgirQuestion();
 	return (
 		<>
-			<Kind size={12.5 * size}>Sınav tarzı</Kind>
+			<Kind size={12.5 * size}>{t('Sınav tarzı', 'Exam style')}</Kind>
 			<Text role="headline" size={16 * size} weight={700} color={colors.ink} style={{lineHeight: `${22 * size}px`}}>
-				<Rich text={AGIR_QUESTION.stem} />
+				<Rich text={question.stem} />
 			</Text>
 			<div style={{display: 'grid', gridTemplateColumns: grid ? '1fr 1fr' : '1fr', gap: 8}}>
-				{AGIR_QUESTION.options.map((option, index) => (
+				{question.options.map((option, index) => (
 					<Choice key={option} letter={'ABCDE'[index]} text={option} look={index === 2 ? 'no' : 'idle'} size={14 * size} />
 				))}
 			</div>
-			<Feedback tone="hint" title="Çözüm adımı 1 / 3" size={14.5 * size}>
-				<Rich text={AGIR_QUESTION.hint} />
+			<Feedback tone="hint" title={t('Çözüm adımı 1 / 3', 'Solution step 1 / 3')} size={14.5 * size}>
+				<Rich text={question.hint} />
 			</Feedback>
 			<Text role="meta" size={13 * size} color={colors.ink2}>
-				Başka bir şık seç · 3 deneme hakkın kaldı
+				{t('Başka bir şık seç · 3 deneme hakkın kaldı', 'Pick another option · 3 tries left')}
 			</Text>
 		</>
 	);

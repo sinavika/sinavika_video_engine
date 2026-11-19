@@ -36,6 +36,44 @@ const tabletHeight = (width: number): number => {
 	return (width - bezel * 2) * (UI_CANVAS.tablet.height / UI_CANVAS.tablet.width) + bezel * 2;
 };
 
+/**
+ * Manrope's vertical metrics in em, read from the font file
+ * (@fontsource-variable/manrope, head/hhea/OS2, unitsPerEm 2000) on 18 Nov 2026:
+ * ascent 2132, descent 600, deepest glyph yMin -510, cap height 1440.
+ * `accent` is the allowance above cap height for Ü, Ö, İ, Ğ.
+ */
+export const MANROPE_METRICS = {ascent: 1.066, descent: 0.3, deepest: 0.255, capHeight: 0.72, accent: 0.17} as const;
+
+/**
+ * The headline and the box behind its key words (owner, 18 Nov 2026: the box
+ * on "çalışacağını" cut into "Bugün ne" above it, no gap). The box hugs the
+ * glyphs (top `top` em above the baseline, bottom `bottom` em below) instead of
+ * the font's whole content area, and the lines stand far enough apart that the
+ * box keeps `minGap` em from the letters above and below it.
+ */
+export const MARK = {lineHeight: 1.2, top: 0.86, bottom: 0.27, minGap: 0.035} as const;
+
+/** Room in em between the box and the deepest letter of the line above, and between the box and the tallest letter of the line below. */
+export const markGaps = (mark: {lineHeight: number; top: number; bottom: number} = MARK): {above: number; below: number} => ({
+	above: mark.lineHeight - mark.top - MANROPE_METRICS.deepest,
+	below: mark.lineHeight - mark.bottom - (MANROPE_METRICS.capHeight + MANROPE_METRICS.accent),
+});
+
+/** CSS for the box: an inline block whose inner line height puts the baseline `top` em under its top edge. */
+export const markBoxStyle = (mark: {top: number; bottom: number} = MARK) => {
+	const {ascent, descent} = MANROPE_METRICS;
+	// In a line of height h the baseline sits h/2 + (ascent - descent)/2 below the top.
+	const inner = 2 * (mark.top - (ascent - descent) / 2);
+	return {display: 'inline-block', lineHeight: inner, paddingTop: 0, paddingBottom: `${mark.bottom - (inner - mark.top)}em`} as const;
+};
+
+/** How much a line holding the box grows (em): the box may reach below the line's own strut. */
+export const markLineGrowth = (mark: {lineHeight: number; bottom: number} = MARK): number => {
+	const {ascent, descent} = MANROPE_METRICS;
+	const strutBottom = descent + (mark.lineHeight - ascent - descent) / 2;
+	return Math.max(0, mark.bottom - strutBottom);
+};
+
 /** The headline and subline block. */
 export type TextBlock = {x: number; y: number; width: number; size: number; subSize: number; subGap: number; subWidth: number; lineHeight: number; subLineHeight: number; maxLines: number; maxSubLines: number};
 
@@ -45,7 +83,7 @@ export const GAP = {textToDevice: 50, bottom: 70} as const;
 export const PHONE_STAGE = {
 	width: 1206,
 	height: 2622,
-	text: {x: 96, y: 170, width: 1014, size: 124, subSize: 46, subGap: 34, subWidth: 940, lineHeight: 1.12, subLineHeight: 1.3, maxLines: 2, maxSubLines: 2} satisfies TextBlock,
+	text: {x: 96, y: 170, width: 1014, size: 124, subSize: 46, subGap: 34, subWidth: 940, lineHeight: MARK.lineHeight, subLineHeight: 1.3, maxLines: 2, maxSubLines: 2} satisfies TextBlock,
 	/** The phone: one size and place for every shot, centred. */
 	phoneWidth: 880,
 	phoneTop: 690,
@@ -56,7 +94,7 @@ export const PHONE_STAGE = {
 export const TABLET_STAGE = {
 	width: 2064,
 	height: 2752,
-	text: {x: 130, y: 190, width: 1800, size: 176, subSize: 68, subGap: 44, subWidth: 1600, lineHeight: 1.12, subLineHeight: 1.3, maxLines: 2, maxSubLines: 2} satisfies TextBlock,
+	text: {x: 130, y: 190, width: 1800, size: 176, subSize: 68, subGap: 44, subWidth: 1600, lineHeight: MARK.lineHeight, subLineHeight: 1.3, maxLines: 2, maxSubLines: 2} satisfies TextBlock,
 	tabletWidth: 1880,
 	tabletTop: 1060,
 	/** A slide without a tablet drawing shows the phone, centred. */
@@ -145,5 +183,5 @@ const sublineLines = (subline: string, box: number, size: number): number => {
 export const textBottom = (text: TextBlock, headline: string, subline: string): {bottom: number; lines: number; subLines: number} => {
 	const lines = headlineLines(headline, text.width, text.size);
 	const subLines = sublineLines(subline, text.subWidth, text.subSize);
-	return {lines, subLines, bottom: text.y + lines * text.size * text.lineHeight + text.subGap + subLines * text.subSize * text.subLineHeight};
+	return {lines, subLines, bottom: text.y + lines * text.size * text.lineHeight + text.size * markLineGrowth() + text.subGap + subLines * text.subSize * text.subLineHeight};
 };

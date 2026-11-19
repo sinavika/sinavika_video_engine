@@ -1,11 +1,20 @@
 # Giriş, kayıt ve onboarding · kodlama belgesi (mobil ve web)
 
-Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Auth.tsx`, `Screens/Mobile/Onboarding.tsx`, `Screens/Mobile/Gaps.tsx` (`OnbWelcomeScreen`, `OnbRegionScreen`), `Screens/Web/OnboardingWeb.tsx` (web giriş, kayıt, şifre ve onboarding), `Parts/Web.tsx` (`AuthLayout`, `WebOnboarding`, `DevicePhone`), `Parts/Mobile.tsx` (`Phone`, `AppHeader`, `BottomBar`, `Sheet`, `FocusHeader`, `ModuleSlide`), `Parts/Shared.tsx` (`Button`, `Chip`, `Field`, `Card`, `Tile`, `Steps`)
+Güncelleme: 18 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Auth.tsx`, `Screens/Mobile/Onboarding.tsx`, `Screens/Mobile/Gaps.tsx` (`OnbWelcomeScreen`, `OnbRegionScreen`), `Screens/Web/OnboardingWeb.tsx` (web giriş, kayıt, şifre ve onboarding), `Parts/Web.tsx` (`AuthLayout`, `WebOnboarding`, `DevicePhone`), `Parts/Mobile.tsx` (`Phone`, `AppHeader`, `BottomBar`, `Sheet`, `FocusHeader`, `ModuleSlide`), `Parts/Shared.tsx` (`Button`, `Chip`, `Field`, `Card`, `Tile`, `Steps`)
+> **Sahip kararları (18 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 18, §9.3 madde 25.
+> - **Akış:** "Planın hazır" ayrı adımdır, ödemeden önce (mobil 5/5, web 5/6). Onboarding'de hesap adımı yoktur: `m-onb-6-hesap` kaldırıldı. Mobilde mağaza satın alması hesapsızdır; hesap ve bildirim isteği uygulama içinde gelir. Web onboarding'de "Şimdilik paket seçme" yoktur (paketsiz panel açılmaz).
+> - **`m-onb-5-plan`:** ilk görev kartında ok yoktur; ödeme öncesi görev açılamaz. Düğme "Devam et".
+> - **Ödeme sonrası (mobil):** ana ekran açılır; bugünkü ilk konu kendiliğinden açılmaz.
+> - **`m-giris-oturum-ac`:** e-posta + şifreyle açılır; "E-postama kod gönder" ikincildir. Yeni hesapta ad soran ekran yoktur: `m-kayit-bilgiler` kaldırıldı.
+> - **`w-kayit`:** şifre kuralı "En az 6 karakter" (sunucu kuralı). Koşullar + KVKK onay kutusunun altında ayrı, işaretsiz ticari ileti izni kutusu (İYS). `w-giris`'te ticari ileti kutusu yoktur. Giriş ve kayıt altında küçük yasal satır: Google/Apple ile ilk girişte hesap açılır.
+> - **`m-giris-sayfa` (misafir):** her bağlamda aynı alt sayfa: simge kutusu marka tonunda, kişi simgesi (modül simgesi yok). Başlık "Devam etmek için hesabın olsun", alt satır "Kaydettiklerin hesabında saklanır. 30 saniye sürer."
+> - **İlk ekran:** uygulamanın ilk ekranı `m-onb-0-karsilama`; alt bağlantı "Hesabım var".
+
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
 ## 1. Modül özeti
 
-- **Ne işe yarar:** Öğrencinin uygulamaya ilk girişi ve hesabı. Mobilde karşılama, planı kuran beş adım, planın hazır ekranı, planı kaydeden hesap, 3 günlük mağaza denemesi, bugünkü ilk konu ve ilk çalışmadan sonra bildirim izni. Ayrıca oturum açma (Apple, Google, e-posta kodu), kod ekranı, kayıt, şifremi unuttum ve misafir için hesap alt sayfası. Web'de giriş/kayıt iki yarım düzende, onboarding beş adım ve paket seçimiyle.
+- **Ne işe yarar:** Öğrencinin uygulamaya ilk girişi ve hesabı. Mobilde karşılama, planı kuran beş adım, planın hazır ekranı, 3 günlük mağaza denemesi (hesapsız), ana ekran; hesap ve bildirim izni uygulama içinde. Ayrıca oturum açma (Apple, Google, e-posta + şifre; kod ikincil), kod ekranı, kayıt, şifremi unuttum ve misafir için hesap alt sayfası. Web'de giriş/kayıt iki yarım düzende, onboarding beş adım ve paket seçimiyle.
 - **Öğrencinin ana işi:** İki dakikada kendi planını görmek, sonra hesabını ve denemesini başlatmak. Plan, hesap ve ödemeden önce gösterilir (UIUX-Rehberi §5.3).
 - **Renk:** Marka yüzeyi (Modul-Kimligi §1). Modül rengi yok; vurgu marka turuncusu:
   - `brand` `#EA580C` / koyu `#F97316`: logo, odaklı alan kenarı, kod kutusu odağı, ilerleme çubuğu, karşılama başlığının ikinci satırı.
@@ -35,7 +44,6 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | `w-onb-4-dersler` | web | Web onboarding 4 · Dersler | `/student/baslangic` | `OnboardingPage.tsx` (adım 4) | dolu |
 | `m-onb-5-plan` | mobil | Onboarding 5 · Planın hazır | `Onboarding · plan özeti` | yok (özet ödeme ekranının üstünde: `OnboardingTrialStep.tsx`) | dolu |
 | `w-onb-5-plan` | web | Web onboarding 5 · Planın hazır | `/student/baslangic` | yok (özet paket adımının üstünde `PlanSummaryCard`) | dolu |
-| `m-onb-6-hesap` | mobil | Planını kaydet | `AuthRegister` | yok | dolu |
 | `w-onb-6-paket` | web | Web onboarding 6 · Paketini seç | `/student/baslangic` | `OnboardingPage.tsx` (adım 5) | dolu |
 | `m-onb-7-deneme` | mobil | 3 gün ücretsiz | `Onboarding · OnboardingTrialStep` | `.../steps/OnboardingTrialStep.tsx` (paket ekranı) | dolu |
 | `m-onb-8-bildirim` | mobil | Bildirim izni · ilk çalışmadan sonra | — | yok (izin modülden dönüşte: `NotificationStudyPlanPromptHost`) | dolu |
@@ -45,7 +53,6 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 | `w-giris-kod` | web | Giriş kodu | `/student/login` | `src/features/auth/pages/_components/LoginCodeStep.tsx` | dolu |
 | `m-kayit-eposta` | mobil | Hesap oluştur | `AuthRegister` | `AuthLoginScreen.tsx` (aynı ekran) | dolu |
 | `w-kayit` | web | Kayıt ol | `/student/register` | `LoginPage.tsx` (`showcase="register"`) | dolu |
-| `m-kayit-bilgiler` | mobil | Hesap oluştur · adın | `AuthRegister` | yok | dolu |
 | `m-sifre-unuttum` | mobil | Şifremi unuttum | `AuthForgotPassword` | `.../guest/screens/AuthForgotPasswordScreen.tsx` (`request`) | dolu |
 | `w-sifre-unuttum` | web | Şifremi unuttum | `/student/forgot-password` | `src/features/auth/pages/ForgotPasswordPage.tsx` | dolu |
 | `m-sifre-yeni` | mobil | Kod ve yeni şifre | `AuthForgotPassword` | `AuthForgotPasswordScreen.tsx` (`verify`) | dolu |
@@ -57,27 +64,22 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 Geçiş türleri: adımlar arası **replace** (onboarding tek ekran içinde adım değiştirir, yığın büyümez), giriş ekranları **push** (tam ekran akış, `UI_MOTION.duration.screen` 280 ms), sistem pencereleri (Apple, Google, mağaza, bildirim izni) **modal**.
 
 ### 3.1 Mobil ilk açılış (yeni öğrenci)
-1. Uygulama ilk kez açılır → `m-giris-karsilama`.
+1. Uygulama ilk kez açılır → `m-onb-0-karsilama` (alt bağlantı "Hesabım var").
 2. "Başlayalım / Let's start" → (cihaz bölgesi belirsizse) `m-onb-0-bolge` → "Devam / Continue".
 3. `m-onb-1-sinav`: sınav kartı ve oturum seç → "Devam et / Continue". API: öğrencinin hedef sınavı (profil kategori) kaydedilir. Hata: alan altında "Kaydedemedik. Tekrar dene." ve düğme yeniden açılır.
 4. `m-onb-2-net` → "Devam et". `m-onb-3-tempo` → "Devam et".
 5. `m-onb-4-dersler` → "Planımı hazırla / Build my plan". API: plan girdisi + müsaitlik + onboarding tamamla (web kodu: `POST student/study-plan/intake`, `PUT student/study-plan/availabilities`, `POST student/study-plan/onboarding/complete`). Düğme loading; hata: "Planını hazırlayamadık. Tekrar dene."
-6. `m-onb-5-plan` → "Planımı kaydet / Save my plan".
-7. `m-onb-6-hesap`:
-   - "Apple ile devam et" → Apple sistem penceresi [modal] → `POST StudentAuth/apple/register` (yoksa `apple/login`) → 8. adım.
-   - "Google ile devam et" → Google penceresi → `POST StudentAuth/google/register` → 8. adım.
-   - "E-posta ile devam et" → `m-kayit-eposta` [push] → "Devam et" → `POST StudentAuth/email-login` (`email`) → `m-giris-kod` → 6 hane → `POST StudentAuth/email-login` (`email`, `code`) → yeni hesapsa `m-kayit-bilgiler` → "Hesabımı oluştur" (`name` ile) → 8. adım.
-   - Sistem penceresinden vazgeçilirse hata gösterilmez; ekran yerinde kalır.
-8. `m-onb-7-deneme` → "3 gün ücretsiz başla / Start 3 free days" → mağaza alım penceresi [modal, Profil belgesi]. Başarı → bugünkü planın ilk konusu, oynatıcıda ilk adımdan (`WorkMikro`, ör. `m-ders-tanim`) [replace: onboarding kapanır]. Vazgeçme → ekran yerinde. "Paketleri karşılaştır / Compare plans" → `m-profil-paketler` [push].
-9. İlk çalışma biter (öğrenci oynatıcıdan ilk kez çıkar ya da ilk konu sonuna ulaşır; ara "bitti" ekranı yok) → `m-onb-8-bildirim` [push]. "Bildirimleri aç" → sistem izin penceresi; "Şimdi değil" → izin sorulmaz. Sonraki ekran çizimde tanımlı değil (doğrulanmadı); bugünkü kod ana ekrana girer.
+6. `m-onb-5-plan` → "Devam et / Continue" → 7. adım (hesap adımı yok).
+7. `m-onb-7-deneme` → "3 gün ücretsiz başla / Start 3 free days" → mağaza alım penceresi [modal, Profil belgesi]. Başarı → ana ekran [replace: onboarding kapanır]; bugünkü ilk konu kendiliğinden açılmaz. Mağaza alımı hesapsızdır; hesap, hesap gerektiren ilk işte misafir alt sayfasıyla (`m-giris-sayfa`) istenir. Vazgeçme → ekran yerinde. "Paketleri karşılaştır / Compare plans" → `m-profil-paketler` [push].
+8. Bildirim izni uygulama içinde, ilk çalışmadan sonra sorulur → `m-onb-8-bildirim` [push]. "Bildirimleri aç" → sistem izin penceresi; "Şimdi değil" → izin sorulmaz. Sonraki ekran çizimde tanımlı değil (doğrulanmadı); bugünkü kod ana ekrana girer.
 - **Geri:** Karşılamadan geri yok (Android geri uygulamayı kapatır). Diğer adımlarda sol üstteki geri ve sistem geri bir önceki adıma döner; cevaplar korunur. Ödeme ekranından cevaplara dönülebilir.
 - **Yarıda bırakma:** Adım ve cevaplar her değişimde cihaza yazılır (karşılama hariç); uygulama kapanırsa aynı adımdan devam edilir. Sınav kataloğu değiştiyse geçersiz seçimler düşer. Plan bir kez kurulur; geri dönülüp yeniden ilerlenirse yeniden kurulmaz.
 
 ### 3.2 Mobil, hesabı olan öğrenci
-1. `m-giris-karsilama` → "Zaten hesabım var / I already have an account" → `m-giris-oturum-ac` [push].
+1. `m-onb-0-karsilama` → "Hesabım var / I have an account" → `m-giris-oturum-ac` [push].
 2. Apple / Google → sistem penceresi → `POST StudentAuth/apple/login` / `google/login` → ana ekran `m-hub-moduller` [replace].
-3. E-posta → "Kod gönder / Send code" → `POST StudentAuth/email-login` (`email`) → `m-giris-kod` [aynı ekranda adım]. Kod 6 hane dolunca "Doğrula" etkinleşir → `POST StudentAuth/email-login` (`email`, `code`) → ana ekran. Hesap yoksa aynı akış hesabı oluşturur → `m-kayit-bilgiler`.
-4. `m-giris-kod` "Şifrenle giriş yap" → şifre alanı → `POST StudentAuth/login` (`email`, `password`). Şifre ekranının ayrı çizimi yok (doğrulanmadı).
+3. E-posta + şifre → "Giriş yap" → `POST StudentAuth/login` (`email`, `password`) → ana ekran.
+4. İkincil: "E-postama kod gönder" → `POST StudentAuth/email-login` (`email`) → `m-giris-kod`. Kod 6 hane dolunca "Doğrula" → `POST StudentAuth/email-login` (`email`, `code`) → ana ekran. Hesap yoksa aynı akış hesabı açar; ad soran ekran yok.
 5. "Farklı bir e-posta mı? · Değiştir" ya da geri → `m-giris-oturum-ac`, e-posta alanı dolu ve düzenlenebilir.
 - Hata: yanlış kod → kutuların altında alan hatası ("Kod geçersiz veya süresi dolmuş. Yeni kod isteyin."), kutular temizlenmez; kapalı hesap → "Hesabın kapatılmış. Destek ile iletişime geç."
 
@@ -94,8 +96,8 @@ Geçiş türleri: adımlar arası **replace** (onboarding tek ekran içinde adı
 
 ### 3.5 Web, kayıt ve onboarding
 1. `/student/register` (`w-kayit`) → Google / Apple ya da form → "Hesabımı oluştur" → yeni hesap → `/student/baslangic` adım 1 (`w-onb-1-sinav`) [sayfa geçişi].
-2. Adım 1 "Devam et" (hedef sınav kaydı) → 2 → 3 → 4 "Planımı hazırla" (plan kurulur, 3.1/5 ile aynı API) → 5 `w-onb-5-plan` "Planımı kaydet" → 6 `w-onb-6-paket`.
-3. "Ödemeye geç / Go to payment" → `w-panel-odeme` (`/student/odeme`, Profil/ödeme belgesi). "Şimdilik paket seçme / Not now" → panel ana sayfası; ödeme yoksa erişim yok, öğrenci `w-panel-anasayfa-abonelik-bitti` görür (doğrulanmadı).
+2. Adım 1 "Devam et" (hedef sınav kaydı) → 2 → 3 → 4 "Planımı hazırla" (plan kurulur, 3.1/5 ile aynı API) → 5 `w-onb-5-plan` "Planımı kaydet" (5/6) → 6 `w-onb-6-paket`.
+3. "Ödemeye geç / Go to payment" → `w-panel-odeme` (`/student/odeme`, Profil/ödeme belgesi). "Şimdilik paket seçme" yok: paketsiz panel açılmaz (sahip, 18 Kasım 2026).
 4. "Geri / Back" ve tarayıcı geri bir önceki adıma döner. Adım ve cevaplar tarayıcıya yazılır; sayfa kapanırsa aynı adımdan devam edilir. Planı zaten olan öğrenci `/student/baslangic`'e gelirse ana sayfaya yönlenir.
 
 ### 3.6 Web, giriş
@@ -195,22 +197,11 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 - **Görseller:** `acik/mobil/m-onb-5-plan.png`, `koyu/...`, `en/...`; `acik/web-panel/w-onb-5-plan.png`
 - **Yerleşim:** Adım 5/5. Çip "Hazır" / "Ready"; başlık "YKS planın hazır" / "Your YKS plan is ready" (sınav adı veriden); metin "48 netten 78 nete, günde 3 saatlik dengeli tempoyla." / "From 48 to 78, at a balanced 3 hours a day."
   - `WeekPlan` kartı (`Card` iç 14): üst satır `section` 15 "Bu hafta" / "This week" + `Chip` "12–18 Ekim" / "12–18 Oct"; yedi sütun (genişlik 44, aralık 5): gün `meta` (bugün `ink`), tarih dairesi 30 (bugün `ink` dolgu, `bg` yazı; `headline` 13), altında en çok 3 görev bloğu (38 × 24, köşe 8, modül rengi %16 zemin, solda 3 pt modül rengi çizgi). Altta açıklama: 8 pt kare (köşe 3) + `meta` modül adı: Dersler, Testler, Denemeler, Bilgi Kartları.
-  - İlk görev kartı `Card tone="moduleLine"` Dersler (iç 14; `card` zemin, 1,5 pt Dersler `line`, gölge): `Tile` Dersler 42; `over` Dersler `ink` "Bugünkü ilk görevin" / "Your first task today"; `headline` "Türkçe · Sözcükte Anlam" / "Turkish · Word meaning"; `small` "Dersler · ilk konu · 8 dk" / "Lessons · first topic · 8 min"; sağda ok.
-  - Düğme "Planımı kaydet" / "Save my plan".
+  - İlk görev kartı `Card tone="moduleLine"` Dersler (iç 14; `card` zemin, 1,5 pt Dersler `line`, gölge): `Tile` Dersler 42; `over` Dersler `ink` "Bugünkü ilk görevin" / "Your first task today"; `headline` "Türkçe · Sözcükte Anlam" / "Turkish · Word meaning"; `small` "Dersler · ilk konu · 8 dk" / "Lessons · first topic · 8 min"; ok yok.
+  - Düğme "Devam et" / "Continue".
 - **Veri:** Plan tamamlama yanıtı (haftalık saat, ilk hafta görev sayısı, sınava kalan gün, günlere göre görevler). Modül renkleri görev türünden.
-- **Etkileşimler:** İlk görev kartı dokunulmaz (bilgi; hesap ve deneme önce gelir). "Planımı kaydet" → `m-onb-6-hesap` (zaten oturum açıksa `m-onb-7-deneme`; doğrulanmadı).
+- **Etkileşimler:** İlk görev kartı dokunulmaz (bilgi; ödeme öncesi görev açılmaz). "Devam et" → `m-onb-7-deneme`. Web'de düğme "Planımı kaydet" → `w-onb-6-paket` (web'de hesap kayıtta açılmıştır).
 - **Web farkı:** Metin sonuna "Telefonda da aynı plan." / "Same plan on your phone."; ilk görev kartı (iç 16, `Tile` 44) `over` Dersler kimlik rengiyle, "Paragraf · Ana fikir · 25 dk" / "Reading · Main idea · 25 min". Sağ önizleme: telefon içinde Ders Planı Bugün ekranı (`DevicePhone` genişlik 300, −3°) ve altında `Chip outline` "Mobilde aynı plan" / "Same plan on mobile".
-
-### `m-onb-6-hesap` Planını kaydet
-
-- **Görseller:** `acik/mobil/m-onb-6-hesap.png`, `koyu/...`, `en/...`
-- **Çerçeve:** `OnbFrame`, adım çubuğu yok (yalnız geri).
-- **Yerleşim:** Çip "Hesap" / "Account"; başlık "Planını kaydedelim" / "Let's save your plan"; metin "Hesabınla planın, netlerin ve ilerlemen web ve mobilde aynı kalır." / "Your plan, scores and progress stay the same on web and mobile."
-  - Ders Planı gradyan kartı (yükseklik 260, köşe 26, iç 18): `over` beyaz %85 "Kaydedilecek" / "Will be saved"; 12 pt altta üç satır (aralık 8; iç 10/12, köşe 14, beyaz %18 zemin): `check` 16 beyaz + `headline` beyaz: "Haftalık plan · 21 saat" / "Weekly plan · 21 hours", "Hedef · 48 → 78 net" / "Goal · 48 → 78", "Zorlandığın dersler · 3" / "Weak subjects · 3".
-  - `BottomBar`: `dark` `lg` `apple` "Apple ile devam et" / "Continue with Apple"; `ghost` `lg` `google` "Google ile devam et" / "Continue with Google"; ortalı `small` 700 `ink` bağlantı (dikey 6) "E-posta ile devam et" / "Continue with e-mail".
-- **Veri:** Kart satırları onboarding cevapları ve plan özetinden.
-- **Etkileşimler:** §3.1/7. Android'de Apple düğmesi gösterilir mi: doğrulanmadı (bugünkü kod: "Apple ile giriş yalnızca iOS cihazlarda kullanılabilir.").
-- **Kurallar:** Hesap ödeme ekranından önce gelir: önce emek güvene alınır. "Hesabın hazır" ara ekranı yok.
 
 ### `m-onb-7-deneme` 3 gün ücretsiz
 
@@ -243,13 +234,13 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 - **Görseller:** `acik/mobil/m-giris-oturum-ac.png`, `koyu/...`, `en/...`; `acik/web-panel/w-giris.png`, `koyu/web-panel/w-giris.png`
 - **Çerçeve:** `AppHeader`: solda geri (40 pt daire, `card`, `line` kenar, `left`), ortada logo 24, sağda boş 40. Tab bar yok. `BottomBar` var. Zemin `bg`.
 - **Yerleşim:** İçerik aralık 18:
-  1. `AuthTitle`: "Oturum aç veya kaydol" / "Sign in or sign up"; "Devam etmek için e-posta adresini gir. Hesabın varsa kod göndeririz, yoksa birlikte oluştururuz." / "Enter your e-mail. If you have an account we send a code; if not, we create one together."
+  1. `AuthTitle`: "Oturum aç" / "Sign in"; "Kaldığın yerden devam et." / "Pick up where you left off."
   2. Sosyal düğmeler (aralık 10): `dark` `lg` `apple` "Apple ile devam et" / "Continue with Apple"; `ghost` `lg` `google` "Google ile devam et" / "Continue with Google".
   3. Ayırıcı: iki 1 pt `line` çizgi arasında `meta` "ya da e-posta ile" / "or with e-mail".
-  4. `Field` "E-posta" / "E-mail", `mail` ikonu, odaklı (örnek değer "ayse@ornek.com").
-  5. `BottomBar`: birincil `lg` "Kod gönder" / "Send code"; ortalı satır `small` "Hesabın yok mu?" / "No account?" + `small` 800 `brandDeep` "Hesap oluştur" / "Create one".
-- **Veri:** `POST StudentAuth/email-login` (`email`, `installationId`, `registerPlatform`) → `codeSent`. Apple/Google: kimlik jetonu ile `apple/login`, `google/login` (yoksa `register`).
-- **Etkileşimler:** "Kod gönder" → `m-giris-kod` (geçersiz e-postada alan hatası "Geçerli bir e-posta adresi gir."; boşsa "E-posta gerekli."). "Hesap oluştur" → `m-kayit-eposta`. Geri → önceki ekran (karşılama ya da misafirin geldiği yer).
+  4. `Field` "E-posta" / "E-mail", `mail` ikonu (örnek değer "ayse@ornek.com"); `Field` "Şifre" / "Password", `lock`, sağda `eye`, odaklı; satır: solda `small` 700 `ink2` "E-postama kod gönder" / "E-mail me a code" (ikincil), sağda `small` 700 `brandDeep` "Şifremi unuttum".
+  5. `BottomBar`: birincil `lg` "Giriş yap" / "Sign in"; ortalı satır `small` "Hesabın yok mu?" / "No account?" + `small` 800 `brandDeep` "Hesap oluştur" / "Create one".
+- **Veri:** `POST StudentAuth/login` (`email`, `password`). İkincil yol: `POST StudentAuth/email-login` (`email`, `installationId`, `registerPlatform`) → `codeSent`. Apple/Google: kimlik jetonu ile `apple/login`, `google/login` (yoksa `register`).
+- **Etkileşimler:** "Giriş yap" → ana ekran. "E-postama kod gönder" → `m-giris-kod` (geçersiz e-postada alan hatası "Geçerli bir e-posta adresi gir."; boşsa "E-posta gerekli."). "Hesap oluştur" → `m-kayit-eposta`. Geri → önceki ekran (karşılama ya da misafirin geldiği yer).
 - **Kurallar:** Klavye e-posta türü, otomatik doldurma `email`, büyük harf ve düzeltme kapalı. Doğrulama alandan çıkınca yapılır, yazarken uyarılmaz. Gönderilirken düğme loading ve kilitli.
 - **Web farkı (`w-giris`):** `AuthLayout` iki yarım: sol 720 px (üst satır yükseklik 64, yan 28: solda `left` + `small` 700 "Ana sayfa" / "Home" (200 px), ortada logo 30, sağda 38 pt tema düğmesi `bulb`); form kartı ortada (genişlik 440, iç 30, köşe 26, `card`, `line` kenar, gölge `float`). Sağ yarım: kenarlardan 16, köşe 32, `radial-gradient(120% 100% at 100% 0%, brandSoft 0%, card 62%)`, `line` kenar, iç 48/52, aralık 18: `Chip brand` "Tekrar hoş geldin" / "Welcome back"; `display` 32/38 "Kaldığın yerden devam et" / "Pick up where you left off"; `body` 16 "Planın, denemelerin ve SinoAI geçmişin seni bekliyor. Telefonda da aynı hesap." / "Your plan, practice tests and SinoAI history are waiting. Same account on your phone."; üç madde (`check` 18 `brand` + `headline`): "Gerçek sınav gibi denemeler, net ve konu analizi", "Eksik konularına göre günlük Ders Planı", "Takıldığın soruda SinoAI ile adım adım çözüm" / "Real exam-style practice tests with score and topic analysis", "A daily study plan built around your weak topics", "Stuck on a question? SinoAI solves it step by step"; `dark` "App Store" ve "Google Play" düğmeleri; altta telefon içinde ana ekran (`DevicePhone` 280, −4°, alttan −190 taşar). Panel yalnız geniş ekranda (dar ekranda form tek).
   - Kart içeriği: `title` 28 ortalı "Giriş yap" / "Sign in"; altında "Hesabın yok mu?" + `brandDeep` 800 "Kayıt ol" / "Sign up" (18 alt boşluk); aralık 14: `ghost` `md` Google, `ghost` `md` Apple (web'de Google önce); ayırıcı "veya" / "or"; `Field` E-posta (odaklı); `Field` "Şifre" / "Password" (`lock`, sağda `eye`); satır: solda `small` 700 `ink2` "E-postama kod gönder" / "E-mail me a code", sağda `small` 700 `brandDeep` "Şifremi unuttum" / "Forgot password"; birincil `lg` "Giriş yap" / "Sign in".
@@ -265,7 +256,6 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
   3. `Chip tone="outline"` `note` ikonlu "Kodu yapıştır" / "Paste code".
   4. Satır: `small` "Kod gelmedi mi?" / "No code?" ve sağda `small` 700 `brandDeep` "Tekrar gönder · 0:42" / "Resend · 0:42" (geri sayım; bitince yalnız "Tekrar gönder").
   5. `Card tone="soft"` (iç 14): `info` 18 `muted` + "Kod 10 dakika geçerli. Spam klasörüne de bak." / "The code is valid for 10 minutes. Check spam too."
-  6. `small` 700 `ink2` "Şifrenle giriş yap" / "Sign in with your password".
   7. `BottomBar`: "Doğrula" / "Verify" (6 hane dolana kadar `disabled`); "Farklı bir e-posta mı?" / "Different e-mail?" + "Değiştir" / "Change".
 - **Veri:** `POST StudentAuth/email-login` (`email`, `code`) → `auth` (oturum). Tekrar gönder aynı uca kodsuz.
 - **Etkileşimler:** Kod alanı tek gizli giriş olarak çalışır; otomatik doldurma `one-time-code`; yapıştırılan 6 hane kutulara dağılır; 6. hane girilince doğrulama kendiliğinden başlayabilir (doğrulanmadı). "Kodu yapıştır" panodan okur. "Değiştir" ve geri → e-posta adımı.
@@ -276,16 +266,8 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 
 - **Görseller:** `acik/mobil/m-kayit-eposta.png`, `koyu/...`, `en/...`; `acik/web-panel/w-kayit.png`
 - **Yerleşim (mobil):** `m-giris-oturum-ac` ile aynı yerleşim; farklar: `AuthTitle` üstünde `Chip brand` "Planını kaydet" / "Save your plan"; başlık "Hesap oluştur" / "Create account"; metin "Planın, netlerin ve ilerlemen web ve mobilde aynı hesapta kalır." / "Your plan, scores and progress stay in one account on web and mobile."; düğme "Devam et" / "Continue"; alt satır "Zaten hesabın var mı?" / "Have an account?" + "Oturum aç" / "Sign in".
-- **Etkileşimler:** "Devam et" → kod gönderilir → `m-giris-kod` → `m-kayit-bilgiler`. "Oturum aç" → `m-giris-oturum-ac`.
-- **Web farkı (`w-kayit`):** Tanıtım paneli kayıt metinleriyle: "Sınavika’ya katıl" / "Join Sınavika"; "Ne çalışacağını bil, her gün ilerle" / "Know what to study, move forward every day"; "Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın." / "Choose your exam and goal; your first day's plan is ready in two minutes."; aynı üç madde. Kart (aralık 12): `title` 28 "Kayıt ol" / "Sign up" + "Zaten hesabın var mı? · Giriş yap"; Google, Apple; "veya"; iki sütun `Field` (yükseklik 46) "Ad" / "First name", "Soyad" / "Last name"; `Field` E-posta (46); `Field` Şifre (46, odaklı) ipucu "En az 8 karakter ve bir rakam" / "At least 8 characters and a number"; 20 pt `ink` onay kutusu (köşe 6) + `meta` "Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum." / "I have read the Terms and Privacy Notice."; `lg` "Hesabımı oluştur" / "Create my account"; ortalı `meta` "Kayıttan sonra 2 dakikada planını hazırlıyoruz." / "After sign-up we build your plan in 2 minutes." Kayıtta paket yok: önce plan, sonra paket.
-
-### `m-kayit-bilgiler` Hesap oluştur · adın
-
-- **Görseller:** `acik/mobil/m-kayit-bilgiler.png`, `koyu/...`, `en/...`
-- **Yerleşim:** aralık 14: `AuthTitle` "Seni tanıyalım" / "Tell us about you"; "Adın, SinoAI ve e-postalarda sana hitap etmemiz için. Şifre gerekmez: her girişte e-postana kod gelir." / "Your name is how SinoAI and our e-mails address you. No password needed: each sign-in sends a code."; `Field` "Adın" / "First name" (odaklı, örnek "Ayşe"); onay satırı (aralık 10): 22 pt kutu (köşe 7, seçiliyse `ink` dolgu ve `bg` tik) + `small` "Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum." / "I have read the Terms and the Privacy Notice." (iki ad bağlantıdır). `BottomBar`: "Hesabımı oluştur" / "Create my account".
-- **Veri:** `POST StudentAuth/email-login` (`email`, `code`, `name`) ile yeni hesap (DTO'da `name` alanı var; çağrı sırası API'de doğrulanmalı).
-- **Etkileşimler:** Ad boşsa ya da onay yoksa düğme pasif. Bağlantılar yasal sayfayı uygulama içi tarayıcıda açar.
-- **Kurallar:** Yalnız ad ve onay. Şifre sonra Hesap güvenliği'nden eklenir (`m-profil-guvenlik`).
+- **Etkileşimler:** "Devam et" → kod gönderilir → `m-giris-kod` → ana ekran (ad soran ekran yok). "Oturum aç" → `m-giris-oturum-ac`.
+- **Web farkı (`w-kayit`):** Tanıtım paneli kayıt metinleriyle: "Sınavika’ya katıl" / "Join Sınavika"; "Ne çalışacağını bil, her gün ilerle" / "Know what to study, move forward every day"; "Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın." / "Choose your exam and goal; your first day's plan is ready in two minutes."; aynı üç madde. Kart (aralık 12): `title` 28 "Kayıt ol" / "Sign up" + "Zaten hesabın var mı? · Giriş yap"; Google, Apple; "veya"; iki sütun `Field` (yükseklik 46) "Ad" / "First name", "Soyad" / "Last name"; `Field` E-posta (46); `Field` Şifre (46, odaklı) ipucu "En az 6 karakter" / "At least 6 characters" (sunucu kuralı); 20 pt `ink` onay kutusu (köşe 6) + `meta` "Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum." / "I have read the Terms and Privacy Notice."; altında ayrı, işaretsiz 20 pt kutu (`line` kenar) + `meta` "Kampanya ve duyuruları e-postayla almak istiyorum (ticari ileti, isteğe bağlı)." (İYS; girişte yok); `lg` "Hesabımı oluştur" / "Create my account"; ortalı `meta` yasal satır "Google ya da Apple ile ilk girişte hesabın açılır; Kullanım Koşulları ve KVKK metni geçerlidir." (girişte de aynı satır) Kayıtta paket yok: önce plan, sonra paket.
 
 ### `m-sifre-unuttum` Şifremi unuttum · web: `w-sifre-unuttum`
 
@@ -324,7 +306,6 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 - **Görseller:** `acik/web-panel/w-onb-6-paket.png`, `koyu/web-panel/w-onb-6-paket.png`
 - **Yerleşim:** Adım 6/6. Çip "Paket" / "Plan"; başlık "Paketini seç" / "Pick your plan"; metin "Ödemeden sonra bütün modüller açılır. İstediğin an iptal edebilirsin; iptal, dönemin sonunda geçerli olur." / "Every module opens after payment. Cancel any time; it takes effect at the end of the period."
   - Paket satırları (aralık 10; iç 16, köşe 18, seçili 2 pt `ink` kenar, değilse 1,5 pt `line`; solda 22 pt radyo): "YKS Yıllık" / "YKS Yearly" · "₺249/ay · yıllık ₺2.990 · 2 ay hediye" / "₺249/mo · ₺2,990 a year" + sağda `Chip brand` "En çok seçilen" / "Most popular" (seçili); "YKS Aylık" / "YKS Monthly" · "₺299/ay".
-  - `small` 700 `ink2` bağlantı "Şimdilik paket seçme" / "Not now".
   - Yedi modülün `Tile` 34 sırası (aralık 8).
   - Düğme "Ödemeye geç" / "Go to payment".
   - Sağ önizleme: telefon içinde ana ekran ve `Chip outline` "Tüm modüller açık" / "Every module open".
@@ -378,9 +359,9 @@ Ortak ölçüler (mobil): tuval 390 × 844 pt, durum çubuğu 50. `BottomBar`: i
 
 Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src`. Web kök: `C:\Users\onurc\source\repos\sinavika_frontend_student\src`.
 
-1. **Mobil onboarding sırası farklı.** `app/onboarding/config/onboardingSteps.ts`: karşılama → (bölge) → sınav → net → tempo → dersler → ödeme. Ayrı "Planın hazır" ekranı (`m-onb-5-plan`) yok; plan özeti ödeme ekranının üstünde (`OnboardingTrialStep.tsx`, `StudyPlanOnboardingSummaryCard`). Hesap ekranı (`m-onb-6-hesap`) yok: satın alma hesapsız yapılır, erişim cihaza bağlanır; hesap isteği sonra uygulama içinde gelir (`registerReminderStore`). İlerleme çubuğu planı değil ödeme adımını 5. sayar.
+1. **Mobil onboarding sırası farklı.** `app/onboarding/config/onboardingSteps.ts`: karşılama → (bölge) → sınav → net → tempo → dersler → ödeme. Ayrı "Planın hazır" ekranı (`m-onb-5-plan`) yok (sahip kararı: ayrı adım kalır, mobil 5/5); plan özeti ödeme ekranının üstünde (`OnboardingTrialStep.tsx`, `StudyPlanOnboardingSummaryCard`). Hesap adımı yok (çizimden de kaldırıldı, 18 Kasım): satın alma hesapsız yapılır, erişim cihaza bağlanır; hesap isteği sonra uygulama içinde gelir (`registerReminderStore`). İlerleme çubuğu planı değil ödeme adımını 5. sayar.
 2. **İlk konu ve bildirim izni.** Satın almadan sonra ana ekrana girilir, ilk konu açılmaz. Bildirim izni ilk çalışmadan hemen sonra değil, öğrenci bir modülden ana ekrana döndüğünde sorulur (`infrastructure/engagement/inAppAskQueue.ts`, `app/navigation/RootNavigator.tsx`). Metinler farklı: "Çalışma planını sana hatırlatalım mı?" / "Evet, hatırlat" / "Şimdi değil" (`catalogs/tr-TR/onboarding.ts`).
-3. **Tek giriş ekranı, varsayılan şifre.** `AuthLogin` ve `AuthRegister` aynı ekranı açar (`RootNavigator.tsx`). `AuthLoginScreen.tsx` varsayılan adımı e-posta + şifre (`step = 'password'`); kod yolu "Şifren yok mu? Kodla devam et" bağlantısıyla ikincil (kod adımından dönüş "Şifrenle giriş yap"). Çizimde e-posta kodu varsayılan, şifre ikincil ("Şifrenle giriş yap"). Ad soran `m-kayit-bilgiler` ekranı kodda yok (DTO'da `name` var). "Hesap oluştur" alt satırı ve "Planını kaydet" çipi yok; ekranda yasal onay cümlesi ve "Paketlere dön" bağlantısı var.
+3. **Tek giriş ekranı, varsayılan şifre.** `AuthLogin` ve `AuthRegister` aynı ekranı açar (`RootNavigator.tsx`). `AuthLoginScreen.tsx` varsayılan adımı e-posta + şifre (`step = 'password'`); kod yolu "Şifren yok mu? Kodla devam et" bağlantısıyla ikincil (kod adımından dönüş "Şifrenle giriş yap"). Çizim 18 Kasım'dan beri kodla aynı: e-posta + şifre varsayılan, kod ikincil; ad soran ekran kaldırıldı. "Hesap oluştur" alt satırı ve "Planını kaydet" çipi yok; ekranda yasal onay cümlesi ve "Paketlere dön" bağlantısı var.
 4. **Misafir alt sayfası.** `AuthEntrySheet.tsx` ortalı bir pencere (`AppDialog`, en çok 380 pt), alt sayfa değil; metin "Devam etmek için giriş yap" / "Hesabınla giriş yapabilir veya ücretsiz kayıt oluşturabilirsin."
 5. **Gün kısaltmaları.** Mobil tempo adımında günler tek harf: "P S Ç P C C P" (EN "M …") (`catalogs/tr-TR/onboarding.ts` `dayMon…daySun`); çizimde "Pzt … Paz".
 6. **Karşılama metinleri.** Kod slaytları `m-onb-0-karsilama`'nın önizleme metinlerini kullanır (Dersler "DEVAM ET · Sözcükte Anlam", Denemeler "DENEME · Hedefine bilgiyle yaklaş"); Akıllı Özet slaytı "Soruyu çek, videoyu özetle · Adım adım soru çözümü ve YouTube özeti; ikisi de PDF olarak iner." Çizimde (`m-giris-karsilama`) slaytlar `MODULES.*.slide` metinleri ve beyaz eylem düğmeleriyle; kodda düğme yok.

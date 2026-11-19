@@ -49,7 +49,7 @@ export const StatisticsScreen: React.FC = () => {
 								],
 							}}
 							bars={[0, 1, 2, 3, 4, 5, 6].map((day) => ({
-								label: ['P', 'S', 'Ç', 'P', 'C', 'C', 'P'][day],
+								label: [t('P', 'M'), t('S', 'T'), t('Ç', 'W'), t('P', 'T'), t('C', 'F'), t('C', 'S'), t('P', 'S')][day],
 								parts: DAY_MODULES.map(
 									(key, part) =>
 										[
@@ -82,12 +82,12 @@ export const StatisticsScreen: React.FC = () => {
 						<Stack row justify="space-between" align="flex-end">
 							<Stack gap={1}>
 								<Text role="headline" size={16}>
-									{t('TYT net gelişimi', 'TYT net trend')}
+									{t('TYT net gelişimi', 'SAT score trend')}
 								</Text>
 								<Text role="small">{t('5 deneme', '5 exams')}</Text>
 							</Stack>
 							<Text role="section" color={useModuleColors('exam').ink}>
-								84,25
+								{t('84,25', '1,360')}
 							</Text>
 						</Stack>
 						<Sparkline points={[0.3, 0.42, 0.38, 0.58, 0.72]} width={318} height={70} color={MODULES.exam.color.light} />
@@ -112,7 +112,7 @@ export const StatisticsScreen: React.FC = () => {
 					<Stack gap={12}>
 						{[
 							[t('Matematik', 'Maths'), t('82 soru · %58 doğru · 1 sa 30 dk', '82 q · 58% · 1 h 30 m'), 0.58],
-							[t('Türkçe', 'Turkish'), t('64 soru · %75 doğru · 1 sa 50 dk', '64 q · 75% · 1 h 50 m'), 0.75],
+							[t('Türkçe', 'Reading & Writing'), t('64 soru · %75 doğru · 1 sa 50 dk', '64 q · 75% · 1 h 50 m'), 0.75],
 							[t('Fizik', 'Physics'), t('30 soru · %40 doğru · 50 dk', '30 q · 40% · 50 m'), 0.4],
 						].map(([name, sub, value]) => (
 							<Stack key={name as string} gap={5}>
@@ -177,7 +177,7 @@ export const StatisticsFirstWeekScreen: React.FC = () => {
 				</Card>
 				<Step module="lessons" title={t('İlk konuna başla', 'Start your first topic')} sub={t('Dersler · kısa adımlarla başla', 'Lessons · start in short steps')} done action={t('Başla', 'Start')} />
 				<Step module="tests" title={t('Bir test çöz', 'Solve a quiz')} sub={t('Testler · Kolay seviyeden başla', 'Quizzes · start at Easy')} action={t('Başla', 'Start')} />
-				<Step module="exam" title={t('İlk denemene katıl', 'Join your first exam')} sub={t('TYT Deneme 5 · Cumartesi 10:00', 'TYT Exam 5 · Saturday 10:00')} action={t('Hatırlat', 'Remind')} />
+				<Step module="exam" title={t('İlk denemene katıl', 'Join your first exam')} sub={t('TYT Deneme 5 · Cumartesi 10:00', 'SAT Practice Test 5 · Saturday 10:00')} action={t('Hatırlat', 'Remind')} />
 			</Content>
 		</Phone>
 	);

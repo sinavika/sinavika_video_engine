@@ -1,6 +1,16 @@
 # Bildirimler, destek ve durumlar · kodlama belgesi (mobil ve web)
 
-Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Account.tsx` (`NotificationsScreen`, `SupportHubScreen`, `SupportNewScreen`, `SupportTicketScreen`, `EmptyStateScreen`, `ErrorStateScreen`), `Screens/Mobile/Notifications.tsx` (ayarlar, kilit ekranı, canlı etkinlik, widget), `Screens/Mobile/States.tsx` (`NotificationsEmptyScreen`, `ForceUpdateScreen` ve modül durumları), `Screens/Mobile/Gaps.tsx` (`SupportTicketsScreen`), `Screens/Mobile/Onboarding.tsx` (`OnbNotificationsScreen`), `Screens/Web/Panel.tsx` (`WebNotificationsScreen`, `WebSupportScreen`, `WebSupportTicketScreen`, `WebStatesScreen`), `Parts/Study.tsx` (`StateBlock`), `Parts/Shared.tsx` (`LoadingLogo`, `Field`, `Button`), `Parts/System.tsx`
+Güncelleme: 18 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çizim kodu: `sinavika_video_engine/src/UIUX/Screens/Mobile/Account.tsx` (`NotificationsScreen`, `SupportHubScreen`, `SupportNewScreen`, `SupportTicketScreen`, `EmptyStateScreen`, `ErrorStateScreen`), `Screens/Mobile/Notifications.tsx` (ayarlar, kilit ekranı, canlı etkinlik, widget), `Screens/Mobile/States.tsx` (`NotificationsEmptyScreen`, `ForceUpdateScreen` ve modül durumları), `Screens/Mobile/Gaps.tsx` (`SupportTicketsScreen`), `Screens/Mobile/Onboarding.tsx` (`OnbNotificationsScreen`), `Screens/Web/Panel.tsx` (`WebNotificationsScreen`, `WebSupportScreen`, `WebSupportNewScreen`, `WebSupportTicketScreen`, `WebStatesScreen`), `Parts/Study.tsx` (`StateBlock`), `Parts/Shared.tsx` (`LoadingLogo`, `Field`, `Button`), `Parts/System.tsx`
+> **Sahip kararları (18 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.3 madde 24.
+> - **`m-destek`:** karşılama kartı düz `action` (`#C2410C`), gradyan yok (beyaz yazı açık turuncuda 4,5:1'in altına düşer). Alt yazı süre vaat etmez: "Talebini aç, yanıtı e-postana ve buraya gelsin." Web (`w-panel-destek`): "Talebini aç; yanıt buraya ve e-postana gelir." "Genelde birkaç saat içinde" yazılmaz; API beklenen süre vermez.
+> - **Konular:** API'nin altı konusu: Hesap · Ödeme · Deneme · İçerik · Teknik sorun · Diğer. "Öneri" yoktur. Taleplerim satırında uzun ad yazılır ("Abonelik ve ödeme · 2 Kas").
+> - **`m-destek-yeni`:** seçilen ekran görüntüleri 72 pt küçük kutu, sağ üstte kaldır düğmesi; en çok 3 görsel ("Ekran görüntüsü · 2/3"). Giriş yapmış öğrencide e-posta alanı yoktur.
+> - **`m-destek-talep`:** başlığın sağında "Çözüldü" metin düğmesi (web "Sorun çözüldü"nün karşılığı). Talep no kimliğin ilk 8 hanesidir (#85A0DA78).
+> - **`w-panel-destek-yeni` (yeni):** sayfa içi form: Konu çipleri, Başlık, Açıklama, Ekran görüntüsü ekle, Gönder / Vazgeç. Pencere açılmaz.
+> - **Geri bildirimlerim (`m-geri-bildirim`):** yıldız kartı yoktur. Satırlar içerik tepkileri ve SinoAI işaretleridir; SinoAI "hatalı" işareti "Hata bildirimi" yazar. Soru hata bildirimi satırı yoktur (uygulamada böyle akış yok).
+> - **Bildirimler (`m-bildirimler`, `w-panel-bildirimler`):** son iki gün başlıksız, sonra "BU HAFTA" ve "DAHA ÖNCE". Haftalık özet bildirimi nötr grafik simgesiyle (`line2` kutu, `chart`, `ink2`), modül rengi almaz. Boş kutuda yeşil zil kutusu (`StateBlock tone="success"`) ve "Bildirim ayarları".
+> - **Alt sayfa başlığı (B5):** her yerde 40 pt yuvarlak geri ve ortalı başlık; modal ekranlarda (yeni talep gibi) çarpı. Başlık sağdaki eylemden bağımsız ortadadır (`AppHeader` üç sütun).
+
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 
 **Bu dosyanın §4.6 bölümü bütün modül dosyalarının başvurduğu ortak durum tanımıdır** (yükleniyor, boş, hata, çevrimdışı, form hatası, gönderiliyor, klavye odağı, hak doldu, zorunlu güncelleme, zaman aşımı). Modül dosyaları yalnız kendi metinlerini ve kendi durum ekranlarını (`-bos`, `-ilk`, `-hak`, `-baglanti` …) yazar.
@@ -105,7 +115,7 @@ Bilinmeyen tür → `m-bildirimler` / `w-panel-bildirimler`; boş ya da kırık 
 ### 3.5 Destek talebi açma ve yanıtlama
 1. Girişler: `m-profil-devam` › `Destek`; ana ekran Destek kartı; ödeme hatası `Destek` düğmesi → `m-destek` [push]. Web: menü `Destek` → `/student/destek`.
 2. `Yeni talep` → `m-destek-yeni` [modal, sol üstte kapat]. Konu çipi seçilir, başlık ve açıklama yazılır, isteğe bağlı ekran görüntüsü.
-3. `Gönder` → `POST StudentSupport` → başarı: "Talebin alındı" ve talep no (#4821), `Talebi görüntüle` → `m-destek-talep` [replace]. Hata: alan hataları ya da üstte "Talep gönderilemedi. Bağlantını kontrol edip tekrar dene." Yazılanlar kaybolmaz.
+3. `Gönder` → `POST StudentSupport` → başarı: "Talebin alındı" ve talep no (#85A0DA78, kimliğin ilk 8 hanesi), `Talebi görüntüle` → `m-destek-talep` [replace]. Hata: alan hataları ya da üstte "Talep gönderilemedi. Bağlantını kontrol edip tekrar dene." Yazılanlar kaybolmaz.
 4. Yarıda bırakılırsa: kapatırken metin varsa "Taslağı sil?" onayı (çizilmedi, doğrulanmadı).
 5. `Taleplerim` → `m-destek-talepler` (`GET StudentSupport/my-tickets`) → satır → `m-destek-talep` (`GET StudentSupport/{id}`; açılınca `POST StudentSupport/{id}/read`).
 6. Yanıt: alttaki alan → gönder → `POST StudentSupport/{id}/reply` → balon listeye eklenir. Kapanmış talepte alan yerine "Bu talep kapatıldı; yeni yanıt eklenemez."
@@ -275,10 +285,10 @@ Kaynak: UIUX-Rehberi §5.5 ve §8, `UI_MOTION_MOMENTS.loading` / `refreshing`, �
 - **Görseller:** `acik/mobil/m-destek.png`, `koyu/…`, `en/acik/…`; `acik/web-panel/w-panel-destek.png`, `koyu/…`, `en/acik/…`
 - **Çerçeve:** geri + `Destek`/`Support`; tab bar yok; düz zemin; bloklar arası 12.
 - **Yerleşim (mobil):**
-  1. Karşılama kartı: köşe 24, boşluk 18, zemin `linear-gradient(135deg, #EA580C, #F97316)`. `section` beyaz "Nasıl yardımcı olabiliriz?" / "How can we help?"; `small` beyaz %90 "Genelde birkaç saat içinde yanıtlıyoruz." / "We usually reply within a few hours." (süre sunucudan, bugünkü katalog "Genellikle {{hours}} saat içinde yanıtlıyoruz"); `Button tone="white" size="sm" icon="plus"` `Yeni talep`/`New request`, yazı `#C2410C`, üstten 12.
+  1. Karşılama kartı: köşe 24, boşluk 18, zemin düz `action` `#C2410C`, gradyan yok. `section` beyaz "Nasıl yardımcı olabiliriz?" / "How can we help?"; `small` beyaz %90 "Talebini aç, yanıtı e-postana ve buraya gelsin." / "Open a request; the reply comes to your e-mail and here." (süre vaat edilmez; API beklenen süre vermez); `Button tone="white" size="sm" icon="plus"` `Yeni talep`/`New request`, yazı `action`, üstten 12.
   2. `List`: `list` (gri kutu) `Taleplerim`/`My requests` alt "2 açık · 1 yanıt bekliyor" / "2 open · 1 awaiting you"; `sparkles` SinoAI renkli `Tile` `Ders sorusu mu?`/`A study question?` alt `SinoAI çok daha hızlı yanıtlar`/`SinoAI answers much faster`.
   3. `SectionTitle` `Sık sorulanlar`/`FAQ` + `List`: "Deneme sonucum ne zaman açıklanır?", "Aboneliğimi nasıl iptal ederim?", "Akıllı Özet hakkım ne zaman yenilenir?", "Web ve mobilde aynı hesap" (EN: "When are results out?", "How do I cancel?", "When does my quota reset?", "Same account on web and mobile"); her satırda ok.
-- **Web (`w-panel-destek`):** sol menü `Destek` etkin. Başlık satırı: `title` 30 `Destek` + `small` 14 "Genelde birkaç saat içinde yanıtlıyoruz."; sağda `Button icon="plus"` `Yeni talep` (`action`). `Grid 1.4fr 1fr`: sol `List` talepler (`chat` gri kutu, başlık, alt "Ödeme · Bugün 11:20", sağda durum çipi: `success` "Yanıtlandı", `warning` "İnceleniyor", `neutral` "Kapandı"); sağ `WCard` `Sık sorulanlar` (3 soru, satır başına `headline` 14 + aşağı ok 16, açılır-kapanır) ve kart (köşe 22, boşluk 18, `line` kenar): SinoAI `Tile` 40, "Ders sorusu mu?", "SinoAI çok daha hızlı yanıtlar.", `Button size="sm" tone="dark"` "SinoAI".
+- **Web (`w-panel-destek`):** sol menü `Destek` etkin. Başlık satırı: `title` 30 `Destek` + `small` 14 "Talebini aç; yanıt buraya ve e-postana gelir."; sağda `Button icon="plus"` `Yeni talep` (`action`). `Grid 1.4fr 1fr`: sol `List` talepler (`chat` gri kutu, başlık, alt "Abonelik ve ödeme · Bugün 11:20" (konunun uzun adı), sağda durum çipi: `success` "Yanıtlandı", `warning` "İnceleniyor", `neutral` "Kapandı"); sağ `WCard` `Sık sorulanlar` (3 soru, satır başına `headline` 14 + aşağı ok 16, açılır-kapanır) ve kart (köşe 22, boşluk 18, `line` kenar): SinoAI `Tile` 40, "Ders sorusu mu?", "SinoAI çok daha hızlı yanıtlar.", `Button size="sm" tone="dark"` "SinoAI".
 - **Veri:** SSS `GET StudentSupport/faqs?lang=tr|en`; talepler `GET StudentSupport/my-tickets` (açık ve yanıt bekleyen sayısı buradan).
 - **Etkileşimler:** `Yeni talep` → `m-destek-yeni` [modal] / web yeni talep (çizilmedi; bugün sayfa içi form); `Taleplerim` → `m-destek-talepler` [push]; `Ders sorusu mu?` → SinoAI; SSS satırı → mobilde cevap ekranı ya da satır içi açılma (çizimde ok; doğrulanmadı), web'de satır içi açılır (`aria-expanded`); "Aboneliğimi nasıl iptal ederim?" cevabında mağaza yönetimine tek dokunuş bağlantısı.
 - **Hâller:** SSS yüklenemedi: SSS bölümü gizlenir, talep yolu çalışır. Hesapsız öğrenci: `Taleplerim` yerine "Giriş yap — taleplerim" ve "Son talebimi gör" (bugünkü kod).
@@ -299,20 +309,20 @@ Kaynak: UIUX-Rehberi §5.5 ve §8, `UI_MOTION_MOMENTS.loading` / `refreshing`, �
 - **Çerçeve:** `AppHeader left="close"` (x) + `Yeni talep`/`New request`; tab bar yok; `BottomBar` `Button size="lg" block` `Gönder`/`Send`.
 - **Yerleşim (aralık 12):**
   1. `small` 700 `Konu`/`Topic`.
-  2. Çipler (sarmalı satır, aralık 8; her çip 38 yükseklik, yan 14, 13 pt): `Ödeme`/`Payment` (seçili: `tone="brand"`), `Hesap`/`Account`, `Deneme`/`Exam`, `Teknik sorun`/`Bug`, `Öneri`/`Idea` (seçili değil: `outline`).
+  2. Çipler (sarmalı satır, aralık 8; her çip 38 yükseklik, yan 14, 13 pt): API'nin altı konusu: `Hesap`/`Account`, `Ödeme`/`Payment` (seçili: `tone="brand"`), `Deneme`/`Exam`, `İçerik`/`Content`, `Teknik sorun`/`Bug`, `Diğer`/`Other` (seçili değil: `outline`). Ekran görüntüleri: "Ekran görüntüsü · 2/3", 72 pt kutular (köşe 14, `line2` zemin), sağ üstte 24 pt koyu kaldır düğmesi, en çok 3; boş yer kesik çizgili `+` kutusu. Giriş yapmış öğrencide e-posta alanı yok.
   3. `Field` `Başlık`/`Title` "Ödeme iki kez çekildi".
   4. `Field` `Açıklama`/`Details`, 120 yükseklik, çok satırlı.
   5. `Card tone="soft"` boşluk 14: `image` 18 + `small` "Ekran görüntüsü ekle (isteğe bağlı)" / "Add a screenshot (optional)".
 - **Veri:** `POST StudentSupport` (konu, başlık, mesaj, e-posta; hesapsızken e-posta zorunlu). Ek dosya alanı API'de doğrulanmalı.
 - **Etkileşimler:** çip → seçer (tek seçim); ekran görüntüsü → sistem galeri seçicisi; `Gönder` → §3.5. Klavye açıkken `Gönder` klavyenin üstünde.
-- **Hâller:** zorunlu alan boş: alan hatası ("Konu zorunludur.", "Mesaj zorunludur."); gönderiliyor; başarı: "Talebin alındı", "Onay e-postası … adresine gönderildi.", "Talep no: #4821".
+- **Hâller:** zorunlu alan boş: alan hatası ("Konu zorunludur.", "Mesaj zorunludur."); gönderiliyor; başarı: "Talebin alındı", "Onay e-postası … adresine gönderildi.", "Talep no: #85A0DA78" (kimliğin ilk 8 hanesi).
 
 ### 4.11 `m-destek-talep` Talep detayı · web: `w-panel-destek-talep`
 
 - **Görseller:** `acik/mobil/m-destek-talep.png`, `koyu/…`, `en/acik/…`; `acik/web-panel/w-panel-destek-talep.png`, `koyu/…`, `en/acik/…`
 - **Çerçeve (mobil):** geri + talep başlığı ("Ödeme iki kez çekildi" / "Charged twice"); tab bar yok; `BottomBar border` (üstte `line2`, `card` zemin) içinde yanıt alanı.
 - **Yerleşim (mobil, aralık 12):**
-  1. Çip satırı (aralık 8): durum `Chip tone="success"` `Yanıtlandı`; nötr `Chip` "Ödeme · #4821" / "Payment · #4821" (konu · talep no).
+  1. Çip satırı (aralık 8): durum `Chip tone="success"` `Yanıtlandı`; nötr `Chip` "Ödeme · #85A0DA78" / "Payment · #85A0DA78" (konu · kimliğin ilk 8 hanesi). Başlık satırının sağında `small` 700 `brandDeep` "Çözüldü" / "Resolved" metin düğmesi.
   2. Öğrencinin balonu, sağa yaslı: en çok 280 genişlik, boşluk 12 × 14, köşe 20 20 6 20, zemin `action`, `body` beyaz; altında `meta` "Sen · 12 Ekim 10:02" / "You · 12 Oct 10:02" (üstten 4).
   3. Ekibin balonu, sola yaslı: `Avatar` "SD" 32 + `Card` boşluk 14 köşe 20 (sol üst 6); `body` "Merhaba Ayşe, kontrol ettik: ikinci çekim 3 iş günü içinde kartına iade edilecek. Kusura bakma."; altında `meta` "Sınavika Destek · bugün 11:20" / "Sınavika Support · today 11:20".
   4. `BottomBar`: `Field` yer tutucu "Yanıt yaz…" / "Write a reply…", sağda `send` 18 `brand`.
@@ -386,7 +396,7 @@ Mobil kök: `C:\Users\onurc\Desktop\sinavika_mobile_reactnative\src\`. Web kök:
 
 **Destek**
 9. `m-destek`: kodda çizimde olmayan `WhatsApp ile yaz` satırı var; `Ders sorusu mu?` (SinoAI) satırı yok (`modules/support/presentation/screens/SupportHubScreen.tsx`).
-10. `m-destek-yeni`: kod konuları "Hesap ve giriş, Abonelik ve ödeme, Denemeler, İçerik, Teknik sorun, Diğer"; çizim "Ödeme, Hesap, Deneme, Teknik sorun, Öneri". Kodda e-posta, ad, telefon alanları var; ekran görüntüsü ekleme yok. Düğme metni kodda `Talebi gönder`, çizimde `Gönder`.
+10. `m-destek-yeni`: kod konuları "Hesap ve giriş, Abonelik ve ödeme, Denemeler, İçerik, Teknik sorun, Diğer"; çizim 18 Kasım'dan beri aynı altı konu (kısa adlarla). Ekran görüntüsü ekleme (en çok 3) ve e-posta alanının kalkması uygulamada yerelde bitti (plan §9.3 madde 24). Düğme metni kodda `Talebi gönder`, çizimde `Gönder`.
 11. Durumlar: kodda 8 durum etiketi (`supportStatusLabels.ts`: alındı, yanıtladı, inceleniyor, yanıtın iletildi, belge bekleniyor, iade sürecinde, tamamlandı, kapatıldı); çizimde 3. Kod "Siz", çizim "Sen".
 12. `w-panel-destek`: kodda yeni talep formu sayfanın içinde açılıyor (`features/support/pages/student/SupportTicketsPage.tsx`); SSS kartı ve SinoAI kartı yok. `w-panel-destek-talep`'teki `Sorun çözüldü` düğmesi kodda doğrulanmadı.
 

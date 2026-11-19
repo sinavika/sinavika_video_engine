@@ -3,7 +3,7 @@ import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {Card, Chip, List, ListRow, Segmented, Stack, Text} from '../../Parts/Shared';
 import {StateBlock} from '../../Parts/Study';
-import {Panel} from '../../Parts/Web';
+import {Panel, useInTablet} from '../../Parts/Web';
 import {UI_SHADOW} from '../../Tokens';
 
 /**
@@ -24,7 +24,7 @@ const HistoryColumn: React.FC<{active?: 'chat' | 'study' | 'library'}> = ({activ
 		</Stack>
 	);
 	return (
-		<div style={{width: 250, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 2, paddingRight: 16, borderRight: `1px solid ${colors.line}`}}>
+		<div style={{width: useInTablet() ? 196 : 250, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 2, paddingRight: 16, borderRight: `1px solid ${colors.line}`}}>
 			<Row icon="newChat" label={t('Yeni sohbet', 'New chat')} strong />
 			<Row icon="layers" label={t('Çalışma üret', 'Create study work')} on={active === 'study'} />
 			<Row icon="bookmark" label={t('Kütüphanen', 'Your library')} on={active === 'library'} />
@@ -108,7 +108,7 @@ export const WebSinoChatScreen: React.FC = () => {
 					<Icon name="more" size={20} color={colors.muted} stroke={3} />
 				</Stack>
 			</Stack>
-			<div style={{width: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 22, paddingTop: 16}}>
+			<div style={{width: '100%', maxWidth: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 22, paddingTop: 16}}>
 				<Stack align="flex-end">
 					<div style={{maxWidth: 520, padding: '12px 18px', borderRadius: 22, background: colors.line2}}>
 						<Text role="body" size={15.5} color={colors.ink}>
@@ -164,7 +164,7 @@ export const WebSinoStudyScreen: React.FC = () => {
 	];
 	return (
 		<SinoFrame active="study">
-			<div style={{width: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 70}}>
+			<div style={{width: '100%', maxWidth: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 70}}>
 				<Stack gap={8} align="center">
 					<Icon name="sparkles" size={32} color={colors.ink} stroke={1.6} />
 					<Text role="display" size={30} align="center">
@@ -195,7 +195,7 @@ export const WebSinoLibraryScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<SinoFrame active="library">
-			<div style={{width: 760, display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 10}}>
+			<div style={{width: '100%', maxWidth: 760, display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 10}}>
 				<Stack row justify="space-between">
 					<Text role="title" size={26}>
 						{t('Kütüphanen', 'Your library')}
@@ -222,7 +222,7 @@ export const WebSinoLimitScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<SinoFrame>
-			<div style={{width: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 40}}>
+			<div style={{width: '100%', maxWidth: 720, flex: 1, display: 'flex', flexDirection: 'column', gap: 16, paddingTop: 40}}>
 				<StateBlock module="sinoAi" icon="clock" title={t('Bu ayın SinoAI hakkın doldu', 'This month’s SinoAI quota is used up')} text={t('1 Aralık’ta yenilenir; hak Akıllı Özet ile ortaktır. Sohbetlerin ve ürettiklerin kütüphanende duruyor.', 'It renews on 1 December and is shared with Smart Summary. Your chats and work stay in your library.')} action={t('Kütüphaneme git', 'Open my library')} />
 				<Card padding={16} tone="soft">
 					<Stack gap={6}>

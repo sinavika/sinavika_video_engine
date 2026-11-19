@@ -9,11 +9,13 @@ export const STORE_LOOKS = ['turuncu', 'krem', 'lacivert', 'seritli'] as const;
 
 export const StoreSetPropsSchema = z.object({
 	look: z.enum(STORE_LOOKS).default('turuncu'),
-	kind: z.enum(['shot', 'search', 'header', 'feature', 'watch']).default('shot'),
+	kind: z.enum(['shot', 'search', 'header', 'feature', 'watch', 'subicon']).default('shot'),
+	/** Subscription icons: the Play product id (SUBSCRIPTION_ICONS). */
+	product: z.string().optional(),
 	/** Watch screenshots: the UI/UX drawing id (k-…). */
 	screen: z.string().optional(),
 	/** Shots only: the device drawn (iPad shows the tablet drawing, desktop the web page). */
-	device: z.enum(['iphone', 'android', 'ipad', 'desktop']).default('iphone'),
+	device: z.enum(['iphone', 'android', 'ipad', 'desktop', 'duoOuter', 'duoInner']).default('iphone'),
 	/** Index in STORE_SLIDES. */
 	slide: z.number().int().min(0).max(STORE_SLIDES.length - 1).default(0),
 	/** App Store header and search: leave the phrase out. */

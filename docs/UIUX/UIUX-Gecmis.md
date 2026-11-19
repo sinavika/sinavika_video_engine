@@ -172,6 +172,52 @@ Uygulama oturumu ("api+web+mobil", web deposu `docs/UIUX/Tasarim-Uyum-Plani.md` 
 - **Tekrar süresi:** API'de (`reviews/summary` → `estimatedMinutes`; adım 45 sn, kart 15 sn, yukarı yuvarlanır).
 - **Testler:** dersler çubuklu liste (27 Ekim halkalı ızgara kararı kalktı; §7'deki açık soru kapandı); mobil vitrin kaydırılan slaytlar + noktalar; seviye ekranında ders çipleri, "Bu dersteki haftan" kartı ve satır düğmeleri (Tekrar / Devam et / Başla / kilit); mobil Konular bütün derslerin açılır ağacı; Yanlışlarım'da "Bu soruyu paylaş" ve "SinoAI'ye sor"; soru işaretleme (`FlagButton`) çözme ekranında ve Yanlışlarım'da; Çözümler'de "İşaretli" ve "Yanlışlarından tekrar testi" kalır; tablet şekilli soruda "Cevapla" kalktı, tablet yanlış cevapta "Devam" var.
 - **Testler uç hâlleri (17 Kasım, §9.3 madde 12–14):** Yanlışlarım son yanlışta "Bitti" (`m/w/t-test-yanlislar-son`); yanlış yoksa ilk boş, o da yoksa 1. soru "Tümü" ile (`m-test-yanlislar-dogru`); içi boş süzgeç soluk ve dokunulmaz; web/tablet ızgarası bütün sorular, telefon numara satırı yalnız süzgeç. Çözümler › İşaretli (`m/w-test-cozumler-isaretli`), bitmemiş testin sorusu "Test bitince açılır"; web Çözümler'de süzgeç ve tekrar testi kartı; tekrar testi satırı "Konu · Tekrar". Testler çevrimdışı notu ve "Testi bitir" uyarısı (`m-test-baglanti`, `m-test-bitir-bekliyor`, `w-test-baglanti`). Web ders sayfasında ders çipleri yok, "Tüm dersler". Kalıcı kural: UIUX-Rehberi §0 "Uç hâller de çizilir".
+- **18 Kasım (plan §9.1 madde 15–16, §9.3 madde 22–23):**
+  - **Modül sırası:** Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI (`MODULE_ORDER`).
+  - **Web kabuğu:**
+    - Üst çubuk ve sol menü tek yüzey; içerik ayrı yüzey, sol üst köşesi 26 px.
+    - Arama ortada; zil, destek ve hedef çipi üst çubuktan kalktı.
+    - Logo 68 px satırda; altta "Çıkış yap" ve daralt düğmesi.
+  - **Web ana sayfa:** hedef ve seri selamın karşısında, aynı satırda.
+  - **Yükleme hâli:** ortada tek logo; geç kalan kart boş çerçeve olarak durur; kartın içinde logo dönmez.
+  - **Profil ve abonelik:** `m-hakkinda-lisanslar` eklendi; web abonelikte altta paket seçimi var.
+  - **Site:**
+    - Üst menüde "Sınavlar" yok; `s-sinavlar` çizimi kaldırıldı (kayıt `Outputs/Checks/Temizlik-2026-11-18-UIUX-Sinavlar.md`).
+    - Alt bilgi beş sütun: Kaynaklar sütunu ve "Çerez tercihleri" eklendi; ödeme logoları ve ETBİS var, dil listesi yok.
+    - Paketler: sınav çipleri ve Aylık/Yıllık, aynı kartlar, rozet yok.
+    - Blog: 12 yazı ve "Daha fazla yazı"; arama çiplerin sağında.
+    - Hakkımızda: sayı satırı yok.
+- **18 Kasım, bildirim, destek ve durumlar (plan §9.3 madde 24):**
+  - **Destek:** karşılama kartı düz `action`, gradyan yok; süre vaadi yok ("Talebini aç, yanıtı e-postana ve buraya gelsin."). Konular API'nin altısı (Öneri yok); Taleplerim'de uzun konu adı. Yeni talepte 72 pt ekran görüntüsü kutuları ve kaldır düğmesi, en çok 3; e-posta alanı yok. Talep detayında "Çözüldü" metin düğmesi; talep no kimliğin ilk 8 hanesi. Web için sayfa içi yeni talep formu eklendi (`w-panel-destek-yeni`).
+  - **Geri bildirimlerim:** yıldız kartı ve soru hata bildirimi kalktı; yalnız içerik tepkileri ve SinoAI işaretleri.
+  - **Bildirimler:** son iki gün başlıksız, sonra "BU HAFTA" ve "DAHA ÖNCE"; haftalık özet nötr grafik simgesi; boş kutuda yeşil zil.
+  - **Alt sayfa başlığı (B5):** `AppHeader` üç sütun; başlık her zaman ortada, 40 pt yuvarlak geri, modalda çarpı.
+- **18 Kasım, giriş ve onboarding (plan §9.1 madde 18, §9.3 madde 25):**
+  - **Akış:** "Planın hazır" ayrı adım kalır (mobil 5/5, web 5/6); `m-onb-6-hesap` kaldırıldı (mobilde satın alma hesapsız). Ödemeden sonra ana ekran. "Planın hazır" ilk görev kartında ok yok, düğme "Devam et". Web'de "Şimdilik paket seçme" kalktı.
+  - **Giriş:** mobil e-posta + şifreyle açılır, "E-postama kod gönder" ikincil; `m-kayit-bilgiler` kaldırıldı. Web kayıtta "En az 6 karakter", işaretsiz ticari ileti (İYS) kutusu; giriş ve kayıt altında yasal satır.
+  - **Misafir alt sayfası:** tek görünüm, marka tonunda kişi simgesi; "Devam etmek için hesabın olsun".
+- **18 Kasım, iPhone Duo (sahip: "iphone duo için tüm ekranların uı ux lerini çiz eksiksiz detaylı"):** Apple'ın katlanabilir telefonu iPhone Duo (9 Eylül 2026) için bütün ekranlar çizildi; belge [Kodlama/12-iPhone-Duo.md](Kodlama/12-iPhone-Duo.md).
+  - **Ölçüler:** dış ekran 678 × 466 (telefon düzeni), iç ekran 890 × 626 enine ve 626 × 890 dik (tablet düzeni).
+  - **Apple kuralı:** dış ekranda ve enine iç ekranda ada, durum, araç ve sekme çubuğu sağ kenarda tek dikey şeritte.
+  - **Çizimler:** 152 dış ekran (`f-dis-*`), 100 iç ekran (`f-ic-*`; telefon akışları ortada 430 pt sütun), 5 poz (yarı açık, dik, taslak kâğıdı). Ana çizimlerden üretilir.
+  - **Dış ekranda iki sütun:** sığmayan içerik ikiye bölünür, şıklı ekranlarda soru solda, şıklar sağda.
+  - **Kalem yok:** taslak parmakla çizilir (Kaydır / Çiz).
+  - **Mağaza:** `iphone-duo-dis-ekran` 2034 × 1398 (kapalı Duo), `iphone-duo-ic-ekran` 2853 × 2007 (açık Duo + kapalı Duo).
+  - **Düzeltme:** öğleden sonraki söylenti ölçülü taslak (`katlanabilir`, 474 × 696 / 904 × 640) kaldırıldı.
+- **19 Kasım, iPhone Duo ölçü düzeltmesi (mac-iphone, Xcode 27.2 simülatörü; sahip: "Evet, düzelt"):** 18 Kasım ölçüleri tanıtım haberlerindendi ve yanlıştı.
+  - **Doğru ölçüler:** dış ekran **dik** 466 × 678 (içerik 382 × 644), iç ekran 951 × 669 (içerik 867 × 635), dik tutuşta 669 × 951. App Store görüntü boyutlarının üçte biriyle aynı.
+  - **Şerit:** sağdaki 84 pt şerit iOS'un güvenli alanıdır; ada, saat ve durum simgelerini iOS çizer. Bizim olan yalnız sekme ve araç simgeleri. Altta 34 pt güvenli alan.
+  - **Dış ekranda iki sütun kalktı:** dış ekran telefondan biraz kısa; sayfa tek sütun ve kayar, çizim sayfanın üstünü gösterir.
+  - **Yarı açık:** kat 951 / 2'de; sağ bölme 357 pt. Deneme taslak pozunda alt çubuk katın solunda kalır (üç baloncuk, Boş bırak yok).
+  - **Mağaza:** `iphone-duo-dis-ekran` artık dik 1398 × 2034; `iphone-duo-ic-ekran` 2853 × 2007 yeni iç ekranla. 32 görsel yeniden üretildi; Sosyal Medya Yönetimi'ne bildirildi. Dış ekranda cihazın altı kesiliyordu (Sosyal Medya fark etti): cihaz artık altta GAP.bottom boşlukla, tamamı görselde; `StoreShotCheck` alt kenar kontrolü artık Duo dahil her cihaz görselinde çalışıyor.
+  - **Gözle denetim düzeltmeleri (sahip: "problemli olarak düzeltilmesi gerekenler var onları düzelt"):**
+    - Karşılama (`m-giris-karsilama`, `f-dis-`/`f-ic-giris-karsilama`): kart yığınının kutusu kartların gerçek boyuna göre (kart ~210 pt) ayarlandı; son kart başlığa değmiyor. Telefonda da değiyordu. Kısa ekranlarda (678 ve 669 pt) kartlar daha sık dizilir.
+    - Yanlışlarım (`f-ic-test-yanlislar`, `-son`): tablet boyutlu sayfada sol kart 270 pt, numaralar 36 pt; beşinci sütun ve "Tümü · 20" artık kartın içinde.
+    - Deneme taslak kâğıdı (`f-ic-deneme-taslak`): iç ekranda taslak 400 pt, soru 17 pt; alt çubuk üç baloncuk, Boş bırak yok. Alt çubuk artık kartın içinde, ekran altında kesilmiyor.
+  - Zip'e gerek kalmadı; iki Duo zip'i Geri Dönüşüm Kutusu'nda.
+  - **Katlanma bölgesi 40 pt** (mac-iphone simülatörde ölçtü: x 455,5–495,5; önce 24 pt çizilmişti). Sağ bölme 349 pt, bölmeler arası boşluk katın kendisi; sol bölme artık katın üstüne hiç taşmıyor (24 pt'de 0,5 pt taşıyordu). Odak sayfalarının üst çubuğu katta ikiye bölündü (ilerleme çubuğu katı geçiyordu); yarı açık taslakta yazılar %80'e küçüldü (kalem araç çubuğunun altında kalıyordu).
+  - **Dış ekran araçları 180 pt'den** (mac-iphone: iOS'un sistem öğeleri `reservedRegions(.occlusion)` ile 174 pt; 132 pt Wi‑Fi halkasıyla çakışıyordu). 152 dış ekran, panolar ve dış ekran mağaza görselleri yeniden üretildi; Sosyal Medya'ya bildirildi.
+  - **Şeritte çift Profil kalktı** (Sosyal Medya fark etti): sekmeli modül ekranlarında Profil hem üst araçlarda hem alttaki sekmelerdeydi. Artık yalnız altta; üstte yalnız Zil. Modüller hub'ında (sekmesiz) Profil üstte kalır. Dış ekranlar, panolar ve dış ekran mağaza görselleri yeniden üretildi.
 - **Vitrin istatistik kartı:** her modül vitrininde aynı çerçeveli kart (`ModuleWeekCard`). **Çevrimdışı:** adım kilitli + nötr satır (`PendingSyncNote`), Testler ve Denemeler de aynı. **Web `/student/ders-cal/ders`** Konular sekmesi; `w-ders-dersler` kaldırıldı.
 - **Deneme çıkışı:** mobil de kaldığı yerden devam ettirir ("Ara ver"); arka planda 5 dakika sonra otomatik bitirme kalkar.
 

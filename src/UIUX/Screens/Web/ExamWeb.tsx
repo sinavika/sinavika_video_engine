@@ -4,12 +4,12 @@ import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {Bar, Button, Card, Chip, List, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {ModuleWeekCard} from '../../Parts/Study';
-import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
+import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
 
 /** Web Denemeler: exams, my exams with calendar, details, solving, results, analysis, solutions and statistics. */
 
 const LESSONS: [string, string, number, number, string][] = [
-	['Türkçe', 'Turkish', 32.5, 40, '#0284C7'],
+	['Türkçe', 'Reading & Writing', 32.5, 40, '#0284C7'],
 	['Sosyal Bilimler', 'Social sciences', 14.25, 20, '#0D9488'],
 	['Temel Matematik', 'Basic Maths', 21.75, 40, '#4F46E5'],
 	['Fen Bilimleri', 'Science', 10, 20, '#DB2777'],
@@ -53,7 +53,7 @@ export const WebExamHomeScreen: React.FC = () => {
 				}
 			/>
 			<Grid columns="1.5fr 1fr 1fr">
-				<ModuleBanner module="exam" over={t('Yaklaşan · Türkiye geneli · Cumartesi 10:00', 'Upcoming · nationwide · Saturday 10:00')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('120 soru · 165 dk · 2 gün 4 saat kaldı', '120 questions · 165 min · 2 days 4 hours left')} action={t('Hatırlat', 'Remind me')} />
+				<ModuleBanner module="exam" over={t('Yaklaşan · Türkiye geneli · Cumartesi 10:00', 'Upcoming · nationwide · Saturday 10:00')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} text={t('120 soru · 165 dk · 2 gün 4 saat kaldı', '120 questions · 165 min · 2 days 4 hours left')} action={t('Hatırlat', 'Remind me')} />
 				<Card padding={20} tone="moduleLine" module="exam">
 					<Stack gap={10}>
 						<Text role="over" color={examInk}>
@@ -87,9 +87,9 @@ export const WebExamHomeScreen: React.FC = () => {
 			<Grid columns="repeat(3, 1fr)" gap={14}>
 				<ExamCard title={t('TYT Fen Bilimleri', 'TYT Science')} sub={t('Bölüm denemesi · 31 Ekim’e kadar açık', 'Section exam · open until 31 Oct')} meta="20 · 30 dk" tag={t('Canlı', 'Live')} />
 				<ExamCard title={t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')} sub={t('Matematik, Fen', 'Maths, Science')} meta="80 · 180 dk" />
-				<ExamCard title={t('Paragraf Branş', 'Reading Subject')} sub={t('Türkçe', 'Turkish')} meta="40 · 50 dk" />
+				<ExamCard title={t('Paragraf Branş', 'Reading Subject')} sub={t('Türkçe', 'Reading & Writing')} meta="40 · 50 dk" />
 				<ExamCard title={t('Problemler Branş', 'Problems Subject')} sub={t('Matematik', 'Maths')} meta="30 · 45 dk" tag={t('Ücretsiz', 'Free')} />
-				<ExamCard title={t('TYT Deneme 3', 'TYT Exam 3')} sub={t('Arşiv · sıralama açık', 'Archive')} meta="120 · 165 dk" />
+				<ExamCard title={t('TYT Deneme 3', 'SAT Practice Test 3')} sub={t('Arşiv · sıralama açık', 'Archive')} meta="120 · 165 dk" />
 				<ExamCard title={t('Fen Branş', 'Science Subject')} sub={t('Fizik, Kimya, Biyoloji', 'Physics, Chemistry, Biology')} meta="20 · 30 dk" />
 			</Grid>
 		</Panel>
@@ -109,7 +109,7 @@ export const WebMyExamsScreen: React.FC = () => {
 					<Segmented items={[t('Yaklaşan · 2', 'Upcoming · 2'), t('Devam eden · 1', 'Active · 1'), t('Biten · 6', 'Done · 6')]} module="exam" />
 					<List>
 						{[
-							['17', t('TYT Deneme 5', 'TYT Exam 5'), t('Cumartesi 10:00 · Türkiye geneli', 'Sat 10:00 · nationwide'), t('Hatırlatma açık', 'Reminder on'), 'success'],
+							['17', t('TYT Deneme 5', 'SAT Practice Test 5'), t('Cumartesi 10:00 · Türkiye geneli', 'Sat 10:00 · nationwide'), t('Hatırlatma açık', 'Reminder on'), 'success'],
 							['26', t('KPSS GY-GK Deneme 2', 'KPSS Exam 2'), t('Pazartesi 14:00', 'Mon 14:00'), t('Hatırlat', 'Remind me'), 'outline'],
 						].map(([day, title, sub, state, tone]) => (
 							<Stack key={title} row gap={14} style={{padding: '14px 16px'}}>
@@ -162,7 +162,7 @@ export const WebExamDetailScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="exam" crumb={t('Denemeler ›', 'Exams ›')}>
-			<ModuleBanner module="exam" over={t('TYT · Türkiye geneli', 'TYT · Nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('Cumartesi 17 Ekim, 10:00. Sonuçlar 2 saat sonra açıklanır.', 'Saturday 17 Oct, 10:00. Results in 2 hours.')} action={t('Hatırlat', 'Remind me')} />
+			<ModuleBanner module="exam" over={t('TYT · Türkiye geneli', 'TYT · Nationwide')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} text={t('Cumartesi 17 Ekim, 10:00. Sonuçlar 2 saat sonra açıklanır.', 'Saturday 17 Oct, 10:00. Results in 2 hours.')} action={t('Hatırlat', 'Remind me')} />
 			<Grid columns="1.3fr 1fr">
 				<WCard title={t('Bölümler', 'Sections')}>
 					<List>
@@ -214,7 +214,7 @@ export const WebExamSolveScreen: React.FC = () => {
 	return (
 		<Immersive
 			module="exam"
-			title={t('TYT Deneme 5', 'TYT Exam 5')}
+			title={t('TYT Deneme 5', 'SAT Practice Test 5')}
 			sub={t('Temel Matematik · 2. oturum', 'Basic Maths · section 2')}
 			progress={0.38}
 			right={
@@ -296,7 +296,7 @@ export const WebResultScreen: React.FC = () => {
 			<ModuleHead
 				module="exam"
 				tab={2}
-				title={t('TYT Deneme 4', 'TYT Exam 4')}
+				title={t('TYT Deneme 4', 'SAT Practice Test 4')}
 				sub={t('12 Ekim · Türkiye geneli · 12.480 katılımcı', '12 Oct · nationwide · 12,480 students')}
 				actions={
 					<>
@@ -394,12 +394,14 @@ export const WebResultScreen: React.FC = () => {
 export const WebSolutionsScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	// iPhone Duo inner display (867 pt for the page): narrower map and solution column.
+	const embedded = useInTablet();
 	return (
 		<Panel active="exam" crumb={t('Çözümler ›', 'Solutions ›')}>
 			<ModuleHead
 				module="exam"
 				tab={3}
-				title={t('Çözümler · TYT Deneme 4', 'Solutions · TYT Exam 4')}
+				title={t('Çözümler · TYT Deneme 4', 'Solutions · SAT Practice Test 4')}
 				sub={t('Temel Matematik', 'Basic Maths')}
 				actions={
 					<div style={{width: 320}}>
@@ -407,7 +409,7 @@ export const WebSolutionsScreen: React.FC = () => {
 					</div>
 				}
 			/>
-			<Grid columns="240px 1fr" style={{flex: 1}}>
+			<Grid columns={embedded ? '190px minmax(0, 1fr)' : '240px 1fr'} style={{flex: 1}}>
 				<Card padding={16}>
 					<Text role="over">{t('Soru haritası', 'Question map')}</Text>
 					<Grid columns="repeat(5, 1fr)" gap={6} style={{marginTop: 12}}>
@@ -425,7 +427,7 @@ export const WebSolutionsScreen: React.FC = () => {
 					</Grid>
 				</Card>
 				<Card padding={0} style={{display: 'flex', overflow: 'hidden'}}>
-					<Stack gap={14} style={{flex: 1, padding: 24, borderRight: `1px solid ${colors.line2}`}}>
+					<Stack gap={14} style={{flex: 1, minWidth: 0, padding: embedded ? 18 : 24, borderRight: `1px solid ${colors.line2}`}}>
 						<Stack row gap={8}>
 							<Chip>{t('Soru 46', 'Question 46')}</Chip>
 							<Chip tone="error" icon="x">
@@ -443,7 +445,7 @@ export const WebSolutionsScreen: React.FC = () => {
 						<OptionRow letter="C" text="36" />
 						<OptionRow letter="D" text="40" />
 					</Stack>
-					<Stack gap={14} style={{width: 380, padding: 24}}>
+					<Stack gap={14} style={{width: embedded ? 250 : 380, flexShrink: 0, padding: embedded ? 16 : 24}}>
 						<Text role="section">{t('Çözüm', 'Solution')}</Text>
 						<Text role="body">{t('6 kız katılınca hem kızlar hem toplam 6 artar: (0,4x + 6) / (x + 6) = 0,5 → x = 30.', 'Both grow by 6: (0.4x + 6) / (x + 6) = 0.5 → x = 30.')}</Text>
 						<Card padding={12} style={{background: colors.warningSoft, border: 0}}>

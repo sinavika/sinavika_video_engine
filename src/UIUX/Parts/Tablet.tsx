@@ -1,9 +1,10 @@
 import React from 'react';
-import {useColors, useModuleColors, useT, UIProvider} from '../Context';
+import {useColors, useModuleColors, useT, useUI, UIProvider} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {PEN, usePen, type PenColor} from './Ink';
+import {DUO_BOTTOM, DUO_FOLD, DUO_FOLD_SPACE, DUO_RAIL, DUO_TOOLBAR_TOP, DuoRail, RailButton, RailGroup} from './Duo';
 import {Pct, Stack, Text} from './Shared';
 
 /**
@@ -55,7 +56,27 @@ export const Tablet: React.FC<{module?: ModuleKey; portrait?: boolean; wash?: bo
 const TabletCanvas: React.FC<{portrait?: boolean; wash?: boolean; children: React.ReactNode; overlay?: React.ReactNode}> = ({portrait, wash, children, overlay}) => {
 	const colors = useColors();
 	const mod = useModuleColors();
-	const size = tabletSize(portrait);
+	const {canvas, duo, fold} = useUI();
+	const size = canvas ?? tabletSize(portrait);
+	if (duo === 'inner') {
+		// iPhone Duo inner display held wide: no top status bar; status, toolbar and places in the trailing rail. Partly open, the folding region (24 pt at the display's centre) is shaded and kept clear.
+		return (
+			<div data-ui="screen" style={{position: 'relative', ...size, overflow: 'hidden', display: 'flex', flexDirection: 'column', background: wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 30%), ${colors.bg}` : colors.bg}}>
+				<div data-ui="scroll-y" style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginRight: DUO_RAIL, paddingTop: 12}}>{children}</div>
+				{fold ? <div data-ui="decor" style={{position: 'absolute', top: 0, bottom: 0, left: (size.width - DUO_FOLD) / 2, width: DUO_FOLD, background: 'linear-gradient(90deg, rgba(11,28,48,0) 0%, rgba(11,28,48,0.10) 50%, rgba(11,28,48,0) 100%)', zIndex: 3, pointerEvents: 'none'}} /> : null}
+				<DuoRail>
+					<RailGroup top={DUO_TOOLBAR_TOP} label="duo-toolbar">
+						<RailButton icon="bell" badge="3" />
+					</RailGroup>
+					<RailGroup bottom={DUO_BOTTOM} label="duo-tabbar">
+						<RailButton icon="grid" />
+						<RailButton icon="user" />
+					</RailGroup>
+				</DuoRail>
+				{overlay}
+			</div>
+		);
+	}
 	return (
 		<div data-ui="screen" style={{position: 'relative', ...size, overflow: 'hidden', display: 'flex', flexDirection: 'column', background: wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 30%), ${colors.bg}` : colors.bg}}>
 			<StatusBar />
@@ -87,16 +108,47 @@ export const RoundButton: React.FC<{icon: UIIconName; on?: boolean; size?: numbe
  */
 export const SolveBar: React.FC<{title: string; sub?: string; center?: React.ReactNode; scratch?: boolean; overlay?: boolean; pen?: boolean; compact?: boolean; right?: React.ReactNode}> = ({title, sub, center, scratch, overlay, pen = true, compact, right}) => {
 	const t = useT();
+	const {fold} = useUI();
+	if (fold) {
+		// iPhone Duo partly open: the bar splits at the fold. Close, title and the
+		// centre (timer, progress) stay on the leading side; the tools on the trailing side.
+		const leading = Math.floor((UI_CANVAS.duoInner.width - DUO_FOLD) / 2) - 22;
+		return (
+			<Stack row gap={0} style={{height: 64, padding: '0 22px', flexShrink: 0}}>
+				<Stack row gap={14} style={{width: leading, flexShrink: 0, paddingRight: 8, boxSizing: 'border-box'}}>
+					<RoundButton icon="x" />
+					<Stack gap={1} style={{minWidth: 0}}>
+						{sub ? <Text role="meta">{sub}</Text> : null}
+						<Text role="headline" size={16} style={{whiteSpace: 'nowrap'}}>
+							{title}
+						</Text>
+					</Stack>
+					<div style={{flex: 1, minWidth: 0, display: 'flex', justifyContent: 'center'}}>{center}</div>
+				</Stack>
+				<div style={{width: DUO_FOLD_SPACE, flexShrink: 0}} />
+				<Stack row gap={14} justify="flex-end" style={{flex: 1, minWidth: 0}}>
+					{pen ? (
+						<>
+							<RoundButton icon="notebook" on={scratch} label={compact ? undefined : t('Taslak kâğıdı', 'Scratchpad')} />
+							<RoundButton icon="pen" on={overlay} label={compact ? undefined : t('Soruya yaz', 'Write on question')} />
+						</>
+					) : null}
+					{right}
+				</Stack>
+			</Stack>
+		);
+	}
 	return (
 		<Stack row gap={14} style={{height: 64, padding: '0 22px', flexShrink: 0}}>
 			<RoundButton icon="x" />
-			<Stack gap={1} style={{minWidth: 0}}>
+			{/* The title keeps its width; the centre (timer, progress) narrows when the bar is short (iPhone Duo inner display, a long English title). */}
+			<Stack gap={1} style={{flexShrink: 0}}>
 				{sub ? <Text role="meta">{sub}</Text> : null}
 				<Text role="headline" size={16} style={{whiteSpace: 'nowrap'}}>
 					{title}
 				</Text>
 			</Stack>
-			<div style={{flex: 1, display: 'flex', justifyContent: 'center'}}>{center}</div>
+			<div style={{flex: 1, minWidth: 0, display: 'flex', justifyContent: 'center'}}>{center}</div>
 			{pen ? (
 				<>
 					<RoundButton icon="notebook" on={scratch} label={compact ? undefined : t('Taslak kâğıdı', 'Scratchpad')} />
@@ -113,7 +165,7 @@ export const TimerProgress: React.FC<{time: string; value: number; label: string
 	const colors = useColors();
 	const mod = useModuleColors();
 	return (
-		<Stack gap={5} align="center" style={{width: 260}}>
+		<Stack gap={5} align="center" style={{width: 260, maxWidth: '100%'}}>
 			<Stack row gap={8}>
 				<Icon name="clock" size={16} color={mod.ink} />
 				<Text role="headline" size={16} tnum>
@@ -176,8 +228,13 @@ const WidthDot: React.FC<{width: PenWidth; on?: boolean}> = ({width, on}) => {
  * redo, finger drawing, clear. Floating pill; `vertical` docks it to an edge
  * so it never covers the text.
  */
-export const PenToolbar: React.FC<{tool?: PenTool; color?: PenColor; width?: PenWidth; finger?: boolean; vertical?: boolean; mode?: 'draw' | 'scroll'; clear?: boolean; compact?: boolean; style?: React.CSSProperties}> = ({tool = 'pen', color = 'ink', width = 'medium', finger, vertical, mode, clear = true, compact, style}) => {
+export const PenToolbar: React.FC<{tool?: PenTool; color?: PenColor; width?: PenWidth; finger?: boolean; vertical?: boolean; mode?: 'draw' | 'scroll'; clear?: boolean; compact?: boolean; style?: React.CSSProperties}> = ({tool = 'pen', color = 'ink', width = 'medium', finger: fingerProp, vertical, mode: modeProp, clear = true, compact: compactProp, style}) => {
 	const colors = useColors();
+	// Without a stylus the finger draws: Kaydır / Çiz on top, and the short toolbar so it fits a 640 pt screen.
+	const {noPencil} = useUI();
+	const finger = fingerProp ?? noPencil;
+	const mode = modeProp ?? (noPencil ? 'draw' : undefined);
+	const compact = compactProp ?? noPencil;
 	const t = useT();
 	const swatches = tool === 'highlighter' ? MARKER_SWATCHES : PEN_SWATCHES;
 	return (

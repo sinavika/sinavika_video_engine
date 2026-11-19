@@ -3,7 +3,7 @@ import {useColors, useModuleColors, useT} from '../../Context';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {Bar, Bars, Button, Card, Chip, List, ListRow, Pct, Ring, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {ModuleWeekCard} from '../../Parts/Study';
-import {Grid, Immersive, ModuleHead, Panel, WCard} from '../../Parts/Web';
+import {Grid, Immersive, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
 
 /** Web Ders Planı: today, schedule, suggestions, statistics, progress, settings and the focus session. */
 
@@ -47,7 +47,7 @@ export const WebPlanScheduleScreen: React.FC = () => {
 				['tests', t('Paragraf S4', 'Reading L4'), false],
 			],
 		],
-		[t('Cmt', 'Sat'), 17, [['exam', t('TYT Deneme 5', 'TYT Exam 5'), false]]],
+		[t('Cmt', 'Sat'), 17, [['exam', t('TYT Deneme 5', 'SAT Practice Test 5'), false]]],
 		[t('Paz', 'Sun'), 18, [['studyPlan', t('Haftalık tekrar', 'Weekly review'), false]]],
 	];
 	return (
@@ -93,7 +93,7 @@ export const WebPlanScheduleScreen: React.FC = () => {
 				))}
 			</Grid>
 			<Stack row gap={14}>
-				{(['lessons', 'tests', 'exam', 'flashcards', 'studyPlan'] as ModuleKey[]).map((key) => (
+				{(['studyPlan', 'lessons', 'tests', 'exam', 'flashcards'] as ModuleKey[]).map((key) => (
 					<Stack key={key} row gap={6}>
 						<div style={{width: 10, height: 10, borderRadius: 3, background: MODULES[key].color.light}} />
 						<Text role="small">{t(MODULES[key].name)}</Text>
@@ -200,7 +200,7 @@ export const WebPlanProgressScreen: React.FC = () => {
 	return (
 		<Panel active="studyPlan">
 			<ModuleHead module="studyPlan" tab={4} tabs={PLAN_TABS(t)} title={t('İlerleme', 'Progress')} sub={t('Hedefe giden yol ve konu ilerlemesi', 'Road to your goal and topic progress')} />
-			<Grid columns="1.3fr 1fr">
+			<Grid columns="minmax(0, 1.3fr) minmax(0, 1fr)">
 				<WCard title={t('Hedefe giden yol', 'Road to your goal')}>
 					<Stack row justify="space-between">
 						<Text role="num" size={32}>
@@ -211,7 +211,7 @@ export const WebPlanProgressScreen: React.FC = () => {
 						</Chip>
 					</Stack>
 					<div style={{marginTop: 12}}>
-						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46, 0.55]} width={560} height={150} />
+						<Sparkline points={[0.1, 0.18, 0.24, 0.38, 0.46, 0.55]} width={useInTablet() ? 380 : 560} height={150} />
 					</div>
 					<Text role="small">{t('Bu hızla hedefine sınavdan 3 hafta önce ulaşıyorsun.', 'At this pace you reach it 3 weeks before the exam.')}</Text>
 				</WCard>

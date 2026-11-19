@@ -117,6 +117,24 @@ export const WATCH_SHOTS: Record<'applewatch' | 'wearos', readonly (readonly [st
 	],
 };
 
+/**
+ * Google Play subscription icons (one per subscription product, the same in
+ * every language): 32-bit PNG, 1:1, 512–1080 px, a distinct picture per
+ * product, only the app's own logo (Play Console, 18 Nov 2026). `id` is the
+ * Play product id; `exam` is the big word, `level` the KPSS level in the box.
+ */
+export const SUBSCRIPTION_ICONS = [
+	{id: 'sinavika_yks_monthly', file: 'abonelik-yks', exam: 'YKS'},
+	{id: 'sinavika_kpss_lisans_monthly', file: 'abonelik-kpss-lisans', exam: 'KPSS', level: 'Lisans'},
+	{id: 'sinavika_kpss_onlisans_monthly', file: 'abonelik-kpss-onlisans', exam: 'KPSS', level: 'Önlisans'},
+	{id: 'sinavika_kpss_ortaogretim_monthly', file: 'abonelik-kpss-ortaogretim', exam: 'KPSS', level: 'Ortaöğretim'},
+	{id: 'com.sinavika.sat.monthly', file: 'abonelik-sat', exam: 'SAT'},
+	{id: 'com.sinavika.act.monthly', file: 'abonelik-act', exam: 'ACT'},
+] as const satisfies readonly {id: string; file: string; exam: string; level?: string}[];
+
+/** Play subscription icon size: inside 512–1080, square. */
+export const SUBSCRIPTION_ICON_SIZE = 1024;
+
 /** The Google Play feature graphic (1024 × 500): no device, no white or dark ground, no badge. */
 export const FEATURE_GRAPHIC = {
 	file: 'sinavika-ozellik-grafigi',
@@ -136,7 +154,7 @@ export const STORE_CREATIVE: Record<StoreCreativeKind, {file: string; headline: 
 };
 
 /** What a picture shows. iPad pictures show the tablet drawing; Android tablets (9:16) the phone. */
-type StoreDevice = 'iphone' | 'android' | 'ipad' | 'desktop' | 'feature' | 'applewatch' | 'wearos' | StoreCreativeKind;
+type StoreDevice = 'iphone' | 'android' | 'ipad' | 'desktop' | 'duoOuter' | 'duoInner' | 'feature' | 'applewatch' | 'wearos' | StoreCreativeKind;
 
 type StoreFormat = {
 	platform: 'ios' | 'android';
@@ -152,7 +170,8 @@ export const STORE_FORMATS: readonly StoreFormat[] = [
 	{platform: 'ios', folder: 'iphone-6.3', device: 'iphone', sizes: [[1206, 2622]], note: 'iPhone 6.3" (6.1" de bunu kabul eder)'},
 	{platform: 'ios', folder: 'iphone-6.1', device: 'iphone', sizes: [[1179, 2556]], note: 'iPhone 6.1"'},
 	{platform: 'ios', folder: 'ipad-13-inc', device: 'ipad', sizes: [[2064, 2752], [2048, 2732]], note: 'iPad 12.9" / 13"'},
-	{platform: 'ios', folder: 'ipad-ikinci-grup', device: 'ipad', sizes: [[2007, 2853], [1398, 2034]], note: 'Listede adı yazmayan ikinci grup'},
+	{platform: 'ios', folder: 'iphone-duo-ic-ekran', device: 'duoInner', sizes: [[2853, 2007]], note: 'iPhone Duo iç ekran (açık, enine 2853 × 2007; Apple dik 2007 × 2853 de kabul eder): açık Duo f-ic-* çizimiyle (951 × 669 pt), yanında kapalı Duo. Duo görseli gönderilince ürün sayfasında "iPhone Duo için yapıldı" rozeti çıkar: uygulama Duo çalışması bitmeden yüklenmez'},
+	{platform: 'ios', folder: 'iphone-duo-dis-ekran', device: 'duoOuter', sizes: [[1398, 2034]], note: 'iPhone Duo dış ekran (kapalı, dik 1398 × 2034; uygulama dış ekranda dik açılır, Xcode simülatörü 19 Kasım): kapalı Duo f-dis-* çizimiyle. Uygulama Duo çalışması bitmeden yüklenmez'},
 	{platform: 'ios', folder: 'ust-gorsel', device: 'header', sizes: [[5244, 2950], [3840, 1646]], note: 'App Store Header (iOS 27+): 16:9 ya da 21:9; PNG, alfa yok; metinli ve metinsiz'},
 	{platform: 'ios', folder: 'arama-sonucu', device: 'search', sizes: [[5244, 2950], [3840, 2560], [1920, 1280]], note: 'App Store Search Results (iOS 27+): 16:9 ya da 3:2; PNG, alfa yok; metinli ve metinsiz'},
 	{platform: 'android', folder: 'telefon', device: 'android', sizes: [[1080, 1920]], note: 'Telefon ekran görüntüleri, 9:16 (2–8 adet)'},

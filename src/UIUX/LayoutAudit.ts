@@ -8,6 +8,7 @@
  * - `statusbar`, `tabbar`, `bottombar`: system and app bars; text of the page must not run under them;
  * - `scrim`: a dimmed layer under a sheet or tip, covering the page on purpose;
  * - `scroll-x`, `scroll`: a row or page shown scrolled, cut by the edge on purpose;
+ * - `scroll-y`: a page that scrolls down (iPhone Duo's short inner display): cut at the bottom on purpose, never at the sides;
  * - `decor`: decoration (watermarks), not read as text;
  * - `screen`: a phone or tablet canvas; bars and scrims count only inside their own screen, and a screen
  *   drawn smaller inside a page (a preview on the site) may be cropped on purpose;
@@ -138,7 +139,7 @@ export const auditScreen = (root: HTMLElement, lang: 'tr' | 'en' = 'tr'): AuditF
 			// The line box is taller than the letters: allow its leading (a quarter of the size) above and below.
 			const lead = Math.max(2, parseFloat(getComputedStyle(el).fontSize) * 0.25);
 			const cutX = box.left < clip.left - 2 || box.right > clip.right + 2;
-			const cutY = box.top < clip.top - lead || box.bottom > clip.bottom + lead;
+			const cutY = !marked(el, 'scroll-y') && (box.top < clip.top - lead || box.bottom > clip.bottom + lead);
 			if (cutX || cutY) findings.push({level: isPreview(el) ? 'uyarı' : 'hata', kind: isPreview(el) ? 'önizlemede kesik' : 'kesik metin', text: label, detail: `${cutY ? 'dikey' : 'yatay'}: metin ${Math.round(box.left)},${Math.round(box.top)}–${Math.round(box.right)},${Math.round(box.bottom)}, görünen alan ${Math.round(clip.left)},${Math.round(clip.top)}–${Math.round(clip.right)},${Math.round(clip.bottom)}`});
 		}
 		// 1b. Percent as the language writes it: "%45" in Turkish, "45%" in English.

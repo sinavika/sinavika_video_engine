@@ -1,15 +1,18 @@
 import React from 'react';
 import {UIProvider, useAccent, useColors, useModuleColors, useT} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
-import {alpha, MODULES, MODULE_ORDER, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
+import {MODULES, MODULE_ORDER, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {Avatar, Button, Card, Chip, Logo, Stack, Steps, Text, Tile} from './Shared';
 import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
 
 /**
- * Web parts. The panel keeps the student app's own frame (left menu with
- * "MENU" and collapse, top bar with theme, support, notifications and the
- * user), reorganised around the seven modules. The site keeps its own header.
+ * Web parts. The panel frame (owner, 18 Nov 2026): the top bar and the left
+ * menu share one surface (card) with no line between them; the page is a
+ * separate surface on bg whose top-left corner is rounded 26 px. Top bar:
+ * search in the middle (1fr / 32rem / 1fr), theme and the account menu on the
+ * right; bell and support live in the menu's Hesap group. The site keeps its
+ * own header.
  */
 
 const {width: W, height: H} = UI_CANVAS.web;
@@ -43,10 +46,10 @@ const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
-		<div style={{width: 260, flexShrink: 0, height: H, boxSizing: 'border-box', padding: '18px 14px', background: colors.card, borderRight: `1px solid ${colors.line}`, display: 'flex', flexDirection: 'column', gap: 3}}>
-			<Stack row justify="space-between" style={{padding: '0 8px 14px'}}>
+		<div style={{width: 260, flexShrink: 0, height: H, boxSizing: 'border-box', padding: '0 14px 18px', background: colors.card, display: 'flex', flexDirection: 'column', gap: 3}}>
+			{/* The logo alone in a 68 px row, level with the top bar. */}
+			<Stack row style={{height: 68, flexShrink: 0, padding: '0 8px', marginBottom: 4}}>
 				<Logo height={26} />
-				<Icon name="menu" size={18} color={colors.subtle} />
 			</Stack>
 			<NavRow item="home" active={active === 'home'} label={t('Ana sayfa', 'Home')} icon="home" />
 			<NavRow item="modules" active={active === 'modules'} label={t('Tüm modüller', 'All modules')} icon="apps" />
@@ -74,11 +77,15 @@ const Sidebar: React.FC<{active: PanelItem}> = ({active}) => {
 					{t('Bugün 20 dk çalış, seriyi koru.', 'Study 20 min today to keep it.')}
 				</Text>
 			</div>
-			<Stack row gap={12} style={{height: 40, padding: '0 12px', borderRadius: 12}}>
+			{/* Sign out, with the collapse button beside it (collapsed, the two stack). */}
+			<Stack row gap={12} style={{height: 40, padding: '0 4px 0 12px', borderRadius: 12}}>
 				<Icon name="logout" size={18} color={colors.muted} />
-				<Text role="headline" size={13.5} weight={500} color={colors.ink2}>
+				<Text role="headline" size={13.5} weight={500} color={colors.ink2} style={{flex: 1}}>
 					{t('Çıkış yap', 'Sign out')}
 				</Text>
+				<div style={{width: 34, height: 34, borderRadius: 10, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<Icon name="left" size={16} color={colors.ink2} />
+				</div>
 			</Stack>
 		</div>
 	);
@@ -94,18 +101,20 @@ const TopIcon: React.FC<{icon: UIIconName; dot?: boolean}> = ({icon, dot}) => {
 	);
 };
 
-/** Top bar: search, exam countdown, theme, support, notifications and the user (as the panel has them). */
-const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, countdown}) => {
+/** Top bar: crumb on the left, search in the middle, theme and the account menu on the right. No bell, support or goal chip. */
+const Topbar: React.FC<{crumb?: string}> = ({crumb}) => {
 	const colors = useColors();
 	const t = useT();
 	return (
-		<Stack row gap={12} style={{height: 68, flexShrink: 0, padding: '0 28px', borderBottom: `1px solid ${colors.line}`, background: alpha(colors.card, 0.85)}}>
-			{crumb ? (
-				<Text role="small" weight={700} color={colors.ink2}>
-					{crumb}
-				</Text>
-			) : null}
-			<Stack row gap={10} style={{height: 40, width: 340, padding: '0 14px', borderRadius: 20, background: colors.line2}}>
+		<div style={{height: 68, flexShrink: 0, padding: '0 28px 0 8px', display: 'grid', gridTemplateColumns: '1fr 512px 1fr', alignItems: 'center', gap: 16, background: colors.card}}>
+			<div>
+				{crumb ? (
+					<Text role="small" weight={700} color={colors.ink2}>
+						{crumb}
+					</Text>
+				) : null}
+			</div>
+			<Stack row gap={10} style={{height: 40, padding: '0 14px', borderRadius: 20, background: colors.line2}}>
 				<Icon name="search" size={17} color={colors.muted} />
 				<Text role="small">{t('Ders, konu, deneme ara', 'Search lessons, topics, exams')}</Text>
 				<div style={{flex: 1}} />
@@ -113,26 +122,22 @@ const Topbar: React.FC<{crumb?: string; countdown?: string}> = ({crumb, countdow
 					Ctrl K
 				</Chip>
 			</Stack>
-			<div style={{flex: 1}} />
-			<Chip tone="outline" icon="target">
-				{countdown ?? t('YKS’ye 245 gün', '245 days to YKS')}
-			</Chip>
-			<TopIcon icon="bulb" />
-			<TopIcon icon="headset" />
-			<TopIcon icon="bell" dot />
-			<Stack row gap={10} style={{paddingLeft: 6}}>
-				<Stack gap={0} align="flex-end">
-					<Text role="headline" size={13.5}>
-						{t('Ayşe Yılmaz', 'Emma Carter')}
-					</Text>
-					<Text role="meta" size={11}>
-						{t('ayse@ornek.com', 'emma@example.com')}
-					</Text>
+			<Stack row gap={12} justify="flex-end">
+				<TopIcon icon="moon" />
+				<Stack row gap={10} style={{paddingLeft: 4}}>
+					<Stack gap={0} align="flex-end">
+						<Text role="headline" size={13.5}>
+							{t('Ayşe Yılmaz', 'Emma Carter')}
+						</Text>
+						<Text role="meta" size={11}>
+							{t('ayse@ornek.com', 'emma@example.com')}
+						</Text>
+					</Stack>
+					<Avatar size={36} />
+					<Icon name="down" size={16} color={colors.muted} />
 				</Stack>
-				<Avatar size={36} />
-				<Icon name="down" size={16} color={colors.muted} />
 			</Stack>
-		</Stack>
+		</div>
 	);
 };
 
@@ -148,7 +153,7 @@ export const PanelInTablet: React.FC<{children: React.ReactNode}> = ({children})
 export const useInTablet = (): boolean => React.useContext(PanelEmbedContext);
 
 /** The panel frame: menu, top bar and the page. A module page gets the module's wash at the top. */
-export const Panel: React.FC<{active: PanelItem; children: React.ReactNode; crumb?: string; overlay?: React.ReactNode; countdown?: string}> = ({active, children, crumb, overlay, countdown}) => {
+export const Panel: React.FC<{active: PanelItem; children: React.ReactNode; crumb?: string; overlay?: React.ReactNode; countdown?: string}> = ({active, children, crumb, overlay}) => {
 	const colors = useColors();
 	const isModule = (MODULE_ORDER as readonly string[]).includes(active);
 	const mod = useModuleColors(isModule ? (active as ModuleKey) : 'exam');
@@ -163,11 +168,11 @@ export const Panel: React.FC<{active: PanelItem; children: React.ReactNode; crum
 	}
 	return (
 		<UIProvider module={isModule ? (active as ModuleKey) : undefined} web>
-			<div style={{position: 'relative', width: W, height: H, display: 'flex', background: colors.bg, overflow: 'hidden'}}>
+			<div style={{position: 'relative', width: W, height: H, display: 'flex', background: colors.card, overflow: 'hidden'}}>
 				<Sidebar active={active} />
-				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', background: isModule ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 300px)` : colors.bg}}>
-					<Topbar crumb={crumb} countdown={countdown} />
-					<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '22px 28px 28px', display: 'flex', flexDirection: 'column', gap: 18}}>{children}</div>
+				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column'}}>
+					<Topbar crumb={crumb} />
+					<div style={{flex: 1, minHeight: 0, overflow: 'hidden', padding: '22px 28px 28px', display: 'flex', flexDirection: 'column', gap: 18, borderTopLeftRadius: 26, background: isModule ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 300px), ${colors.bg}` : colors.bg}}>{children}</div>
 				</div>
 				{overlay}
 			</div>
@@ -225,9 +230,11 @@ export const Immersive: React.FC<{module: ModuleKey; title: string; sub?: string
 	const colors = useColors();
 	const t = useT();
 	const mod = useModuleColors(module);
+	// Inside a device frame (iPhone Duo inner display) the focus page fills the frame instead of the 1440 × 900 browser.
+	const embedded = React.useContext(PanelEmbedContext);
 	return (
 		<UIProvider module={module} web>
-			<div style={{width: W, height: H, display: 'flex', flexDirection: 'column', background: colors.card}}>
+			<div style={{width: embedded ? '100%' : W, height: embedded ? undefined : H, flex: embedded ? 1 : undefined, minHeight: 0, display: 'flex', flexDirection: 'column', background: colors.card}}>
 				<Stack row gap={16} style={{height: 70, padding: '0 32px', borderBottom: `1px solid ${colors.line}`, flexShrink: 0}}>
 					<Button tone="ghost" size="sm" icon="x">
 						{t('Ara ver', 'Pause')}
@@ -253,13 +260,12 @@ export const Immersive: React.FC<{module: ModuleKey; title: string; sub?: string
 
 /* ------------------------------------------------------------------ site */
 
-/** The site header, as the site has it: logo, Ürünler · Sınavlar · Paketler · Kaynaklar, theme, SinoAI, Giriş, Kayıt Ol. */
+/** The site header: logo, Ürünler · Paketler · Kaynaklar (no Sınavlar: that page was removed, owner 11 Nov 2026), theme, SinoAI, Giriş, Kayıt Ol. */
 export const SiteHeader: React.FC<{active?: string; open?: 'products'}> = ({active, open}) => {
 	const colors = useColors();
 	const t = useT();
 	const links: [string, boolean][] = [
 		[t('Ürünler', 'Products'), true],
-		[t('Sınavlar', 'Exams'), false],
 		[t('Paketler', 'Plans'), false],
 		[t('Kaynaklar', 'Resources'), true],
 	];
@@ -326,16 +332,18 @@ export const SiteHeader: React.FC<{active?: string; open?: 'products'}> = ({acti
 const SiteFooter: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	// Five columns (18 Nov 2026); Kaynaklar links the topic, net calculator and exam pages inside the site.
 	const columns: [string, string[]][] = [
 		[t('Sınavlar', 'Exams'), ['YKS', 'TYT', 'AYT', 'KPSS Lisans', 'KPSS Ön lisans']],
 		[t('Ürünler', 'Products'), MODULE_ORDER.map((key) => t(MODULES[key].name))],
-		['Sınavika', [t('Hakkımızda', 'About'), t('Yayınevleri', 'Publishers'), 'Blog', t('İletişim', 'Contact')]],
-		[t('Yasal', 'Legal'), [t('Kullanım koşulları', 'Terms'), t('Gizlilik', 'Privacy'), 'KVKK', t('Çerezler', 'Cookies')]],
+		[t('Kaynaklar', 'Resources'), [t('Sınav konuları', 'Exam topics'), t('Net hesaplama', 'Net calculator'), t('Denemeler', 'Practice exams'), 'Blog']],
+		['Sınavika', [t('Hakkımızda', 'About'), t('Yayınevleri', 'Publishers'), t('İletişim', 'Contact')]],
+		[t('Yasal', 'Legal'), [t('Kullanım koşulları', 'Terms'), t('Gizlilik', 'Privacy'), 'KVKK', t('Çerez tercihleri', 'Cookie settings')]],
 	];
 	return (
 		<div style={{background: colors.bg, borderTop: `1px solid ${colors.line}`, padding: '56px 112px 36px'}}>
 			<Stack row justify="space-between" align="flex-start">
-				<Stack gap={14} style={{width: 300}}>
+				<Stack gap={14} style={{width: 260}}>
 					<Logo wordmark height={22} color={colors.ink} />
 					<Text role="small" color={colors.muted}>
 						{t('Ne çalışacağını bil, her gün ilerle. YKS ve KPSS için çalışma platformu.', 'Know what to study, move ahead every day.')}
@@ -366,9 +374,16 @@ const SiteFooter: React.FC = () => {
 				<Text role="meta" color={colors.muted}>
 					© 2026 Sınavika
 				</Text>
-				<Text role="meta" color={colors.muted}>
-					Türkçe · English · Deutsch · Nederlands
-				</Text>
+				{/* Payment logos and ETBİS; no language list (TR and EN only). */}
+				<Stack row gap={8}>
+					{['VISA', 'Mastercard', 'troy', 'ETBİS'].map((mark) => (
+						<div key={mark} style={{height: 26, padding: '0 10px', borderRadius: 6, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center'}}>
+							<Text role="meta" weight={800} color={colors.ink2}>
+								{mark}
+							</Text>
+						</div>
+					))}
+				</Stack>
 			</Stack>
 		</div>
 	);

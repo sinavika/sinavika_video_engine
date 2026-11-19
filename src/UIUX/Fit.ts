@@ -47,8 +47,13 @@ export const useFit = (ref: RefObject<HTMLElement | null>, enabled: boolean) => 
 			continueRender(handle);
 		};
 		document.fonts.ready.then(() => {
-			if (open && ref.current) fitArea(ref.current);
-			done();
+			try {
+				if (open && ref.current) fitArea(ref.current);
+			} catch (error) {
+				console.error('UIUX_FIT', error);
+			} finally {
+				done();
+			}
 		});
 		return done;
 	}, [enabled, ref]);

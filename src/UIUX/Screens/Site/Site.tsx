@@ -2,7 +2,7 @@ import React from 'react';
 import {UIProvider, useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
-import {Button, Card, Chip, Field, List, ListRow, Stack, Text, Tile} from '../../Parts/Shared';
+import {Button, Card, Chip, Field, List, ListRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {DeviceBrowser, DevicePhone, ExamStrip, Grid, Section, Site, SiteHeader, SiteTitle} from '../../Parts/Web';
 import {ExamAnalysisScreen, ExamHomeScreen, ExamResultScreen} from '../Mobile/Exam';
 import {HubScreen} from '../Mobile/Hub';
@@ -216,51 +216,6 @@ export const SiteMenuScreen: React.FC = () => {
 	);
 };
 
-export const SiteExamsScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	const exams: [string, string, string][] = [
-		['YKS', t('TYT · AYT · YDT', 'TYT · AYT · YDT'), t('Haziran 2027', 'June 2027')],
-		['KPSS Lisans', t('GY · GK · Eğitim bilimleri', 'GA · GC · Education'), t('Temmuz 2026', 'July 2026')],
-		['KPSS Ön lisans', t('GY · GK', 'GA · GC'), t('Ekim 2026', 'Oct 2026')],
-		['KPSS Ortaöğretim', t('GY · GK', 'GA · GC'), t('Ekim 2026', 'Oct 2026')],
-		['SAT', t('İngilizce · Matematik', 'English · Maths'), t('Her ay', 'Monthly')],
-		['ACT', t('4 bölüm', '4 sections'), t('Yılda 7 kez', '7 times a year')],
-	];
-	return (
-		<Site active={t('Sınavlar', 'Exams')}>
-			<Section padding="56px 112px 28px">
-				<SiteTitle over={t('Sınavlar', 'Exams')} title={t('Hangi sınava hazırlanıyorsun?', 'Which exam are you preparing for?')} lead={t('Her sınavın kendi denemeleri, konu ağacı ve planı.', 'Every exam has its own exams, topic tree and plan.')} />
-			</Section>
-			<Section padding="12px 112px 72px">
-				<Grid columns="repeat(3, 1fr)" gap={20}>
-					{exams.map(([name, sub, date]) => (
-						<Card key={name} padding={24} radius={24}>
-							<Stack gap={12}>
-								<div style={{width: 52, height: 52, borderRadius: 17, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-									<Icon name="grad" size={26} color={colors.ink2} />
-								</div>
-								<Text role="title">{name}</Text>
-								<Text role="small" size={14}>
-									{sub}
-								</Text>
-								<Stack row justify="space-between">
-									<Chip tone="outline" icon="calendar">
-										{date}
-									</Chip>
-									<Text role="small" weight={700} color={colors.ink}>
-										{t('İncele →', 'Explore →')}
-									</Text>
-								</Stack>
-							</Stack>
-						</Card>
-					))}
-				</Grid>
-			</Section>
-		</Site>
-	);
-};
-
 export const SiteExamLandingScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -336,7 +291,7 @@ export const SiteExamLandingScreen: React.FC = () => {
 					<Stack gap={14} style={{width: 460}}>
 						<SiteTitle title={t('YKS denemeleri', 'YKS exams')} lead={t('Canlı Türkiye geneli denemeler ve arşiv. Sonuç 2 saat içinde, eksikler planına.', 'Live nationwide exams and archive. Results in 2 hours.')} size={34} />
 						<List>
-							<ListRow module="exam" title={t('TYT Deneme 5', 'TYT Exam 5')} subtitle={t('Cumartesi 17 Ekim · canlı', 'Sat 17 Oct · live')} />
+							<ListRow module="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} subtitle={t('Cumartesi 17 Ekim · canlı', 'Sat 17 Oct · live')} />
 							<ListRow module="exam" title={t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')} subtitle={t('Her zaman', 'Anytime')} />
 							<ListRow module="exam" title={t('Paragraf Branş', 'Reading Subject')} subtitle={t('Ücretsiz', 'Free')} />
 						</List>
@@ -377,7 +332,7 @@ export const SiteNetCalcScreen: React.FC = () => {
 						<SiteTitle over={t('Net hesaplama', 'Score calculator')} title={t('TYT net ve puan hesaplama', 'TYT score calculator')} lead={t('Doğru ve yanlışlarını gir; netini ve tahmini puanını gör. 4 yanlış 1 doğruyu götürür.', 'Enter rights and wrongs; see your score. 4 wrong cancel 1 right.')} size={40} />
 						<Card padding={10}>
 							{[
-								['Türkçe', 'Turkish', 40, 33, 2, '32,5'],
+								['Türkçe', 'Reading & Writing', 40, 33, 2, '32,5'],
 								['Sosyal Bilimler', 'Social', 20, 15, 3, '14,25'],
 								['Temel Matematik', 'Basic Maths', 40, 24, 9, '21,75'],
 								['Fen Bilimleri', 'Science', 20, 11, 4, '10'],
@@ -434,28 +389,40 @@ export const SiteNetCalcScreen: React.FC = () => {
 	);
 };
 
+/**
+ * Paketler (18 Nov 2026): exam chips and Aylık / Yıllık under the title; every
+ * package of the chosen exam in the same card, filled button on each. No
+ * "En çok seçilen" badge: the API has no such field.
+ */
 export const SitePlansScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
-	const plans: [string, string, string, string[], boolean][] = [
-		[t('YKS Aylık', 'YKS Monthly'), '₺299', t('/ay · istediğin an iptal', '/mo · cancel any time'), [t('Tüm denemeler ve analiz', 'All exams and analysis'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], false],
-		[t('YKS Yıllık', 'YKS Yearly'), '₺249', t('/ay · yıllık ₺2.990', '/mo · ₺2,990 a year'), [t('Tüm denemeler ve analiz', 'All exams and analysis'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], true],
-		[t('KPSS Yıllık', 'KPSS Yearly'), '₺229', t('/ay · yıllık ₺2.750', '/mo · ₺2,750 a year'), [t('KPSS GY-GK denemeleri', 'KPSS exams'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited')], false],
+	const features = [t('Tüm denemeler ve analiz', 'All exams and analysis'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet ve SinoAI · aylık ortak hak', 'Smart Summary and SinoAI · shared monthly quota')];
+	const plans: [string, string, string][] = [
+		[t('YKS Yıllık', 'YKS Yearly'), '₺2.990', t('/yıl · ayda ₺249', '/yr · ₺249 a month')],
+		[t('TYT Yıllık', 'TYT Yearly'), '₺2.290', t('/yıl · ayda ₺191', '/yr · ₺191 a month')],
 	];
 	return (
 		<Site active={t('Paketler', 'Plans')}>
 			<Section padding="56px 112px 24px">
 				<SiteTitle center title={t('Hedefine uygun paketi seç', 'Pick the plan for your goal')} lead={t('Mobil uygulamada 3 gün ücretsiz dene; web’de paketi seçip kartla ödersin. Gizli ücret yok, istediğin an iptal.', 'Try 3 days free in the mobile app; on the web, pick a plan and pay by card. No hidden fees.')} />
+				<Stack row gap={16} justify="center" style={{marginTop: 24}}>
+					<Stack row gap={8}>
+						{['YKS', 'KPSS Lisans', 'KPSS Ön lisans', 'KPSS Ortaöğretim'].map((label, index) => (
+							<Chip key={label} tone={index ? 'outline' : 'dark'} style={{height: 36, padding: '0 16px', fontSize: 14}}>
+								{label}
+							</Chip>
+						))}
+					</Stack>
+					<div style={{width: 220}}>
+						<Segmented items={[t('Aylık', 'Monthly'), t('Yıllık', 'Yearly')]} active={1} />
+					</div>
+				</Stack>
 			</Section>
 			<Section padding="24px 112px 72px">
-				<Grid columns="repeat(3, 1fr)" gap={24}>
-					{plans.map(([name, price, sub, features, popular]) => (
-						<div key={name} style={{position: 'relative', borderRadius: 28, padding: 30, background: colors.card, border: `${popular ? 2 : 1}px solid ${popular ? colors.ink : colors.line}`, boxShadow: popular ? '0 20px 40px -24px rgba(15,23,42,0.35)' : undefined}}>
-							{popular ? (
-								<Chip tone="dark" style={{position: 'absolute', top: -14, left: 28}}>
-									{t('En çok seçilen', 'Most popular')}
-								</Chip>
-							) : null}
+				<Grid columns="repeat(2, minmax(0, 420px))" gap={24} style={{justifyContent: 'center'}}>
+					{plans.map(([name, price, sub]) => (
+						<div key={name} style={{borderRadius: 28, padding: 30, background: colors.card, border: `1px solid ${colors.line}`}}>
 							<Stack gap={14}>
 								<Text role="section" size={20}>
 									{name}
@@ -466,7 +433,7 @@ export const SitePlansScreen: React.FC = () => {
 									</Text>
 									<Text role="small">{sub}</Text>
 								</Stack>
-								<Button tone={popular ? 'primary' : 'ghost'} size="lg" block>
+								<Button size="lg" block>
 									{t('Paketi seç', 'Choose plan')}
 								</Button>
 								{features.map((feature) => (
@@ -482,7 +449,7 @@ export const SitePlansScreen: React.FC = () => {
 					))}
 				</Grid>
 				<Text role="small" align="center" style={{marginTop: 20}}>
-					{t('Fiyat ve kotalar örnektir; yayında API’den gelir.', 'Prices and quotas are examples; live values come from the API.')}
+					{t('Paketler, fiyatlar ve kotalar örnektir; yayında API’den gelir.', 'Plans, prices and quotas are examples; live values come from the API.')}
 				</Text>
 			</Section>
 		</Site>
@@ -595,6 +562,12 @@ export const SiteBlogScreen: React.FC = () => {
 		['tests', 'YKS', t('TYT matematikte net artıran 7 konu', '7 topics that raise TYT maths')],
 		['flashcards', t('Çalışma teknikleri', 'Study skills'), t('Aralıklı tekrar nasıl çalışır?', 'How spaced repetition works')],
 		['studyPlan', 'YKS', t('Son 8 ayda gerçekçi bir çalışma planı', 'A realistic plan for the last 8 months')],
+		['exam', 'YKS', t('Deneme sonrası analiz nasıl okunur?', 'How to read your exam analysis')],
+		['lessons', 'KPSS', t('KPSS tarihte kronoloji ezberi', 'KPSS history: remembering the timeline')],
+		['tests', 'YKS', t('Paragraf sorularında süre kazanmak', 'Saving time on reading questions')],
+		['smartSummary', t('Ürün', 'Product'), t('Akıllı Özet ile takıldığın soruyu çöz', 'Solve the question you are stuck on with Smart Summary')],
+		['flashcards', 'KPSS', t('Vatandaşlıkta kavram kartları', 'Key-term cards for civics')],
+		['studyPlan', t('Çalışma teknikleri', 'Study skills'), t('Hafta sonu çalışma düzeni', 'A weekend study routine')],
 	];
 	return (
 		<Site active={t('Kaynaklar', 'Resources')}>
@@ -606,6 +579,12 @@ export const SiteBlogScreen: React.FC = () => {
 							{label}
 						</Chip>
 					))}
+					<div style={{flex: 1}} />
+					{/* Search sits to the right of the chips. */}
+					<Stack row gap={10} style={{height: 40, width: 300, padding: '0 14px', borderRadius: 20, background: colors.line2}}>
+						<Icon name="search" size={17} color={colors.muted} />
+						<Text role="small">{t('Yazılarda ara', 'Search posts')}</Text>
+					</Stack>
 				</Stack>
 			</Section>
 			<Section padding="24px 112px 72px">
@@ -648,6 +627,12 @@ export const SiteBlogScreen: React.FC = () => {
 						</Stack>
 					))}
 				</Grid>
+				{/* 12 posts per page, then "Daha fazla yazı (N)". */}
+				<Stack align="center" style={{marginTop: 40}}>
+					<Button tone="ghost" size="lg">
+						{t('Daha fazla yazı (24)', 'More posts (24)')}
+					</Button>
+				</Stack>
 			</Section>
 		</Site>
 	);
@@ -725,26 +710,8 @@ export const SiteAboutScreen: React.FC = () => {
 			<Section padding="70px 112px 40px">
 				<SiteTitle center over={t('Hakkımızda', 'About us')} title={t('Her öğrencinin ne çalışacağını bildiği bir dünya', 'A world where every student knows what to study')} lead={t('Sınavika, “bugün ne çalışmalıyım?” sorusunu verisiyle yanıtlamak için kuruldu. Türkiye’den başladık, Avrupa’ya açılıyoruz.', 'Sınavika answers “what should I study today?” with data. Started in Türkiye, expanding to Europe.')} />
 			</Section>
-			<Section padding="0 112px 56px">
-				<Grid columns="repeat(4, 1fr)" gap={18}>
-					{[
-						['[sayı]', t('haftalık aktif öğrenci', 'weekly active students')],
-						['[sayı]', t('çözülen deneme sorusu', 'exam questions solved')],
-						['7', t('modül, tek uygulama', 'modules, one app')],
-						['4', t('dil: TR, EN, DE, NL', 'languages')],
-					].map(([value, label]) => (
-						<Card key={label} padding={28} radius={24} style={{textAlign: 'center'}}>
-							<Text role="num" size={38} align="center">
-								{value}
-							</Text>
-							<Text role="small" align="center">
-								{label}
-							</Text>
-						</Card>
-					))}
-				</Grid>
-			</Section>
-			<Section bg={colors.bg}>
+			{/* No numbers row (owner): title and the three cards only. */}
+			<Section padding="0 112px 72px">
 				<Grid columns="1fr 1fr 1fr" gap={20}>
 					{(
 						[

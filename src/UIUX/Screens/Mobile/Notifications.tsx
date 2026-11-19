@@ -35,7 +35,7 @@ export const LockLiveExamScreen: React.FC = () => {
 						<Stack row gap={8}>
 							<Icon name="exam" size={18} color={exam} stroke={2.2} />
 							<Text role="headline" size={14} color={m.ink}>
-								{t('TYT Deneme 5 · Türkiye geneli', 'TYT Exam 5 · nationwide')}
+								{t('TYT Deneme 5 · Türkiye geneli', 'SAT Practice Test 5 · nationwide')}
 							</Text>
 						</Stack>
 						<Text role="meta" size={12} color={exam}>
@@ -152,7 +152,7 @@ export const IslandSheetScreen: React.FC = () => {
 										<Stack row justify="space-between">
 											<Stack row gap={8}>
 												<Icon name="exam" size={20} color={exam} stroke={2.2} />
-												<White size={15}>{t('TYT Deneme 5', 'TYT Exam 5')}</White>
+												<White size={15}>{t('TYT Deneme 5', 'SAT Practice Test 5')}</White>
 											</Stack>
 											<White size={22} color={exam}>
 												1:42:18
@@ -181,7 +181,7 @@ export const IslandSheetScreen: React.FC = () => {
 										<Stack grow gap={2}>
 											<White size={15}>{t('Sözcükte Anlam', 'Word meaning')}</White>
 											<White size={13} weight={600} color="rgba(255,255,255,0.7)">
-												{t('Türkçe · 29 dk kaldı', 'Turkish · 29 min left')}
+												{t('Türkçe · 29 dk kaldı', 'Reading & Writing · 29 min left')}
 											</White>
 										</Stack>
 										<div style={{height: 34, padding: '0 14px', borderRadius: 17, background: moduleAction('lessons'), display: 'flex', alignItems: 'center'}}>
@@ -235,7 +235,7 @@ export const LockStreakScreen: React.FC = () => {
 					</Stack>
 				</Stack>
 			</LiveActivity>
-			<Notice stacked={2} time={t('2 sa önce', '2h ago')} title={t('Deneme sonucun hazır', 'Your exam result is ready')} body={t('TYT Deneme 5: 78,5 net. 2 bildirim daha var.', 'TYT Exam 5: 78.5 nets. 2 more notifications.')} />
+			<Notice stacked={2} time={t('2 sa önce', '2h ago')} title={t('Deneme sonucun hazır', 'Your exam result is ready')} body={t('TYT Deneme 5: 78,5 net. 2 bildirim daha var.', 'SAT Practice Test 5: 78.5 nets. 2 more notifications.')} />
 		</LockScreen>
 	);
 };
@@ -259,7 +259,7 @@ export const RichNotificationsScreen: React.FC = () => {
 			<Notice
 				time={t('şimdi', 'now')}
 				title={t('Deneme sonucun hazır', 'Your exam result is ready')}
-				body={t('TYT Deneme 5: 78,5 net, geçen denemeden +6,5. En çok Geometri’de kazandın.', 'TYT Exam 5: 78.5 nets, +6.5 on last time. Your biggest gain: Geometry.')}
+				body={t('TYT Deneme 5: 78,5 net, geçen denemeden +6,5. En çok Geometri’de kazandın.', 'SAT Practice Test 5: 78.5 nets, +6.5 on last time. Your biggest gain: Geometry.')}
 				thumb={
 					<div style={{width: 52, height: 52, borderRadius: 13, background: alpha(MODULES.exam.color.light, 0.14), display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 						<MiniBars values={[0.55, 0.64, 0.72, 0.84]} color={exam} />
@@ -280,7 +280,7 @@ export const ExpandedNotificationScreen: React.FC = () => {
 	const exam = useModule('exam');
 	const {mode} = useUI();
 	const lessons: [string, number, number][] = [
-		[t('Türkçe', 'Turkish'), 31.25, 2.5],
+		[t('Türkçe', 'Reading & Writing'), 31.25, 2.5],
 		[t('Matematik', 'Maths'), 24.5, 3],
 		[t('Fen', 'Science'), 12.75, 1.25],
 		[t('Sosyal', 'Social'), 10, -0.25],
@@ -410,7 +410,7 @@ export const AndroidLiveUpdateScreen: React.FC = () => {
 					))}
 				</Stack>
 			</div>
-			<AndroidCard first icon="exam" color={exam} app="Sınavika" time={t('şimdi', 'now')} title={t('Deneme sonucun hazır', 'Your exam result is ready')} body={t('TYT Deneme 5: 78,5 net, +6,5.', 'TYT Exam 5: 78.5 nets, +6.5.')}>
+			<AndroidCard first icon="exam" color={exam} app="Sınavika" time={t('şimdi', 'now')} title={t('Deneme sonucun hazır', 'Your exam result is ready')} body={t('TYT Deneme 5: 78,5 net, +6,5.', 'SAT Practice Test 5: 78.5 nets, +6.5.')}>
 				<div style={{height: 92, borderRadius: 16, background: alpha(MODULES.exam.color.light, 0.12), display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<MiniBars values={[0.48, 0.58, 0.66, 0.74, 0.86]} color={exam} height={60} />
 				</div>
@@ -513,7 +513,7 @@ export const HomeWidgetsScreen: React.FC = () => {
 										{t('SIRADAKİ DENEME', 'NEXT EXAM')}
 									</Text>
 									<Text role="headline" size={16} color={colors.ink}>
-										{t('TYT Deneme 5', 'TYT Exam 5')}
+										{t('TYT Deneme 5', 'SAT Practice Test 5')}
 									</Text>
 									<div style={{fontSize: 30, fontWeight: 800, color: colors.ink, lineHeight: 1.1}}>{t('2 gün', '2 days')}</div>
 									<Text role="meta" size={12} color={colors.muted}>
@@ -661,7 +661,7 @@ export const AndroidWidgetsScreen: React.FC = () => {
 								{t('SIRADAKİ DENEME', 'NEXT EXAM')}
 							</Text>
 							<Text role="headline" size={14} color={ink}>
-								{t('TYT Deneme 5 · 2 gün', 'TYT Exam 5 · 2 days')}
+								{t('TYT Deneme 5 · 2 gün', 'SAT Practice Test 5 · 2 days')}
 							</Text>
 							<Text role="meta" size={12} color={muted}>
 								{t('Cumartesi 10:00 · canlı', 'Saturday 10:00 · live')}

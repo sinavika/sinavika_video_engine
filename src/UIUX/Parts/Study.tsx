@@ -1,7 +1,7 @@
 import React from 'react';
-import {useAccent, useColors, useModuleColors, useT} from '../Context';
+import {useAccent, useColors, useModuleColors, useT, useUI} from '../Context';
 import {Icon, type UIIconName} from '../Icons';
-import {MODULES, type ModuleKey} from '../ModuleIdentity';
+import {MODULES, MODULE_ORDER, type ModuleKey} from '../ModuleIdentity';
 import {UI_SHADOW} from '../Tokens';
 import {Bar, Button, Pct, Stack, Text, Tile} from './Shared';
 
@@ -177,7 +177,7 @@ const NoPlanCard: React.FC<{wide?: boolean}> = ({wide}) => {
 			</Stack>
 			<Stack gap={6} style={{padding: '10px 12px', borderRadius: 16, background: plan.wash}}>
 				{[
-					[t('Sınavın', 'Exam'), t('TYT · 245 gün', 'TYT · 245 days')],
+					[t('Sınavın', 'Exam'), t('TYT · 245 gün', 'SAT · 245 days')],
 					[t('Haftada', 'Per week'), t('5 gün · günde 90 dk', '5 days · 90 min a day')],
 					[t('Zorlandığın', 'Hard for you'), t('Matematik, Fizik', 'Maths, Physics')],
 				].map(([label, value]) => (
@@ -339,6 +339,18 @@ export const PlanTaskCard: React.FC<{module: ModuleKey | 'own'; source: string; 
 };
 
 /** Net bars with the value on each bar and the exam under it (owner's reference: Deneme Performansım). */
+/** The results chart's bars: TYT nets in Turkish, SAT Math section scores (200–800) in English (the English store shows a SAT student). */
+export const resultBars = (t: (tr: string, en?: string) => string): [string, number, boolean?][] => {
+	const en = t('tr', 'en') === 'en';
+	return [
+		[t('28 Eyl', '28 Sep'), en ? 610 : 64],
+		[t('5 Eki', '5 Oct'), en ? 650 : 72],
+		[t('12 Eki', '12 Oct'), en ? 680 : 78.5],
+		[t('19 Eki', '19 Oct'), en ? 720 : 84.25],
+		[t('Dışarıda', 'Elsewhere'), en ? 640 : 69.5, true],
+	];
+};
+
 export const NetBars: React.FC<{items: [string, number, boolean?][]; max?: number; height?: number}> = ({items, max = 120, height = 150}) => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
@@ -351,7 +363,7 @@ export const NetBars: React.FC<{items: [string, number, boolean?][]; max?: numbe
 				{items.map(([label, value, own]) => (
 					<div key={label} style={{position: 'relative', flex: 1, height: Math.max((value / max) * height, 30), borderRadius: '14px 14px 6px 6px', background: own ? `repeating-linear-gradient(135deg, ${mod.soft} 0 6px, ${mod.track} 6px 12px)` : `linear-gradient(180deg, ${mod.color} 0%, ${mod.action} 100%)`, display: 'flex', justifyContent: 'center', paddingTop: 8, boxSizing: 'border-box'}}>
 						<Text role="headline" size={13.5} color={own ? mod.ink : '#FFFFFF'} tnum>
-							{value.toLocaleString('tr-TR')}
+							{value.toLocaleString(useUI().lang === 'en' ? 'en-US' : 'tr-TR')}
 						</Text>
 					</div>
 				))}
@@ -433,7 +445,9 @@ export const KpiCard: React.FC<{label: string; value: string; delta?: string; do
 };
 
 /** Study minutes per day or week, stacked by module; one bar raised with its tooltip (planned vs studied). */
-export const StudyBars: React.FC<{bars: {label: string; parts: [ModuleKey, number][]}[]; active?: number; tooltip?: {title: string; rows: [string, string][]}; height?: number; max?: number}> = ({bars, active, tooltip, height = 150, max}) => {
+export const StudyBars: React.FC<{bars: {label: string; parts: [ModuleKey, number][]}[]; active?: number; tooltip?: {title: string; rows: [string, string][]}; height?: number; max?: number}> = ({bars: rawBars, active, tooltip, height = 150, max}) => {
+	// Segments follow the module order (owner, 18 Nov 2026).
+	const bars = rawBars.map((bar) => ({...bar, parts: [...bar.parts].sort(([a], [b]) => MODULE_ORDER.indexOf(a) - MODULE_ORDER.indexOf(b))}));
 	const colors = useColors();
 	const top = max ?? Math.max(...bars.map((bar) => bar.parts.reduce((sum, [, value]) => sum + value, 0)), 1);
 	return (
@@ -484,7 +498,8 @@ export const StudyBars: React.FC<{bars: {label: string; parts: [ModuleKey, numbe
 };
 
 /** A donut with its legend: where the study time went (share per module). */
-export const StudyDonut: React.FC<{parts: [ModuleKey, number][]; center: string; sub: string; size?: number; legend?: 'right' | 'below'}> = ({parts, center, sub, size = 150, legend = 'right'}) => {
+export const StudyDonut: React.FC<{parts: [ModuleKey, number][]; center: string; sub: string; size?: number; legend?: 'right' | 'below'}> = ({parts: rawParts, center, sub, size = 150, legend = 'right'}) => {
+	const parts = [...rawParts].sort(([a], [b]) => MODULE_ORDER.indexOf(a) - MODULE_ORDER.indexOf(b));
 	const colors = useColors();
 	const t = useT();
 	const total = parts.reduce((sum, [, value]) => sum + value, 0);

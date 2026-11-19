@@ -1,5 +1,5 @@
 import React from 'react';
-import {useColors, useModuleColors, useT} from '../../Context';
+import {useColors, useModuleColors, useNarrowWide, useT, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {Button, Chip, OptionRow, Segmented, Stack, Text} from '../../Parts/Shared';
@@ -8,7 +8,8 @@ import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
 import {PlanTaskCard} from '../../Parts/Study';
 import {PlanTodayScreen} from '../Mobile/Plan';
 import {SinoTop} from '../Mobile/SinoAI';
-import {AGIR_QUESTION, Kind, Rich, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, WORK_TOPICS} from '../Mobile/Lessons';
+import {Kind, Rich, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, useAgirQuestion, WORK_TOPICS} from '../Mobile/Lessons';
+import {DUO_FOLD_PANE, DUO_FOLD_SPACE} from '../../Parts/Duo';
 
 /**
  * Tablet without the pen: what a big screen adds for every student, with or
@@ -49,7 +50,7 @@ export const ExamKeyboardScreen: React.FC = () => {
 		<Tablet module="exam">
 			<SolveBar
 				pen={false}
-				title={t('TYT Deneme 5', 'TYT Exam 5')}
+				title={t('TYT Deneme 5', 'SAT Practice Test 5')}
 				sub={t('Temel Matematik', 'Basic Maths')}
 				center={<TimerProgress time="1:42:18" value={0.38} label={t('kaldı', 'left')} />}
 				right={
@@ -122,6 +123,8 @@ export const ExamKeyboardScreen: React.FC = () => {
 
 export const LessonSinoPanelScreen: React.FC = () => {
 	const colors = useColors();
+	const t = useT();
+	const question = useAgirQuestion();
 	const Bubble: React.FC<{me?: boolean; children: React.ReactNode}> = ({me, children}) => (
 		<div style={{alignSelf: me ? 'flex-end' : 'flex-start', maxWidth: '88%', padding: '10px 13px', borderRadius: me ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: me ? colors.ink : colors.line2}}>
 			<Text role="body" size={14.5} color={me ? colors.bg : colors.ink} style={{lineHeight: '21px'}}>
@@ -133,44 +136,46 @@ export const LessonSinoPanelScreen: React.FC = () => {
 		<Tablet module="lessons" wash>
 			<SolveBar
 				pen={false}
-				title="Sınav tarzı soru"
-				sub={TOPIC.title}
+				title={t('Sınav tarzı soru', 'Exam-style question')}
+				sub={t(TOPIC.title, 'Words in context')}
 				center={
-					<div style={{width: 300}}>
+					<div style={{width: 300, maxWidth: '100%'}}>
 						<TopicProgress step={26} />
 					</div>
 				}
 				right={<RoundButton icon="sparkles" on label="SinoAI" />}
 			/>
-			<Stack row gap={20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
+			<Stack row gap={useUI().fold ? 0 : 20} align="stretch" style={{flex: 1, minHeight: 0, padding: '4px 22px 26px'}}>
 				<Pane style={{flex: 1}}>
-					<Kind>Sınav tarzı</Kind>
+					<Kind>{t('Sınav tarzı', 'Exam style')}</Kind>
 					<Text role="headline" size={20} weight={700} color={colors.ink} style={{lineHeight: '30px'}}>
-						<Rich text={AGIR_QUESTION.stem} />
+						<Rich text={question.stem} />
 					</Text>
-					<Stack gap={8}>
-						{AGIR_QUESTION.options.map((option, index) => (
+					<Stack data-ui="scroll" gap={8} style={{flex: 1, minHeight: 0, overflow: 'hidden'}}>
+						{question.options.map((option, index) => (
 							<OptionRow key={option} letter={'ABCDE'[index]} text={option} state={index === 2 ? 'wrong' : 'idle'} />
 						))}
 					</Stack>
-					<Stack row justify="flex-end" style={{marginTop: 'auto'}}>
+					<Stack row justify="flex-end" style={{flexShrink: 0}}>
 						<Button tone="module" module="lessons" size="lg" style={{minWidth: 220}}>
-							Yeniden seç
+							{t('Yeniden seç', 'Choose again')}
 						</Button>
 					</Stack>
 				</Pane>
-				<Pane style={{width: 400, flexShrink: 0, padding: 0, gap: 0}}>
+				<Pane style={{width: useUI().fold ? DUO_FOLD_PANE : 400, flexShrink: 0, padding: 0, gap: 0, marginLeft: useUI().fold ? DUO_FOLD_SPACE : 0}}>
 					{/* The chat session's own top bar (SinoAiChatHeader), as in the app's SinoAiSidePanel; the step stays open on the left. The panel closes with the SinoAI button in the step bar. */}
 					<div style={{padding: '10px 6px 0', borderBottom: `1px solid ${colors.line2}`}}>
 						<SinoTop />
 					</div>
 					<Stack gap={10} style={{flex: 1, padding: 16}}>
-						<Bubble me>Neden C yanlış? Kamyon da zor çıkıyor.</Bubble>
+						<Bubble me>{t('Neden C yanlış? Kamyon da zor çıkıyor.', 'Why is C wrong? The truck climbs slowly too.')}</Bubble>
 						<Bubble>
-							C’de <b>ağır</b> yükün tartıyla ölçülen ağırlığını anlatıyor; anlam gerçek. Mecazda ağırlık tartılamaz: B’deki sözler “kırıcı, üzücü” anlamında.
+							{t('C’de ', 'In C, ')}
+							<b>{t('ağır', 'heavy')}</b>
+							{t(' yükün tartıyla ölçülen ağırlığını anlatıyor; anlam gerçek. Mecazda ağırlık tartılamaz: B’deki sözler “kırıcı, üzücü” anlamında.', ' is the load’s real weight, which a scale can measure: literal meaning. A figurative weight cannot be weighed: in B the words are “hurtful, upsetting”.')}
 						</Bubble>
 						<Stack row gap={8} wrap>
-							{['Bir örnek daha ver', 'Gerçek ile yan anlam farkı'].map((chip) => (
+							{[t('Bir örnek daha ver', 'One more example'), t('Gerçek ile yan anlam farkı', 'Literal vs. extended meaning')].map((chip) => (
 								<Chip key={chip} tone="outline" size="sm">
 									{chip}
 								</Chip>
@@ -179,10 +184,10 @@ export const LessonSinoPanelScreen: React.FC = () => {
 					</Stack>
 					<Stack gap={6} style={{padding: '12px 16px 14px', borderTop: `1px solid ${colors.line2}`}}>
 						<div style={{height: 44, borderRadius: 22, background: colors.line2, display: 'flex', alignItems: 'center', padding: '0 16px'}}>
-							<Text role="small">SinoAI’ye sor</Text>
+							<Text role="small">{t('SinoAI’ye sor', 'Ask SinoAI')}</Text>
 						</div>
 						<Text role="meta" align="center">
-							SinoAI hata yapabilir; önemli bilgileri doğrula.
+							{t('SinoAI hata yapabilir; önemli bilgileri doğrula.', 'SinoAI can make mistakes; check important facts.')}
 						</Text>
 					</Stack>
 				</Pane>
@@ -198,11 +203,12 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
 	const states = sectionStates(1);
+	const narrow = useNarrowWide();
 	return (
 		<Tablet module="lessons" wash>
 			<Stack row align="stretch" style={{flex: 1, minHeight: 0}}>
 				<SideRail module="lessons" active={1} />
-				<Stack gap={8} style={{width: 340, flexShrink: 0, padding: '18px 16px', borderRight: `1px solid ${colors.line}`, boxSizing: 'border-box'}}>
+				<Stack gap={8} style={{width: narrow ? 270 : 340, flexShrink: 0, padding: '18px 16px', borderRight: `1px solid ${colors.line}`, boxSizing: 'border-box'}}>
 					<Text role="meta">TYT</Text>
 					<Text role="title" size={24}>
 						Türkçe
@@ -226,7 +232,7 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 						))}
 					</Stack>
 				</Stack>
-				<Stack gap={14} style={{flex: 1, padding: '22px 30px', boxSizing: 'border-box'}}>
+				<Stack gap={14} style={{flex: 1, minWidth: 0, padding: narrow ? '18px 20px' : '22px 30px', boxSizing: 'border-box'}}>
 					<div style={{borderRadius: 24, padding: 22, background: mod.gradient, display: 'flex', gap: 20, alignItems: 'center'}}>
 						<Stack gap={6} grow>
 							<Text role="over" color="rgba(255,255,255,0.9)">
@@ -235,23 +241,23 @@ export const LessonTopicsSplitScreen: React.FC = () => {
 							<Text role="title" size={24} color="#FFFFFF">
 								{TOPIC.hook}
 							</Text>
-							<Stack row gap={10} style={{marginTop: 6}}>
+							<Stack row gap={10} wrap style={{marginTop: 6}}>
 								<Button tone="white" icon="play" style={{color: mod.action}}>
 									{t('Kaldığın yerden devam et', 'Continue where you left off')}
 								</Button>
 								<Chip tone="glass" icon="video">
-									{`Konu videosu · ${TOPIC.video}`}
+									{`${t('Konu videosu', 'Topic video')} · ${TOPIC.video}`}
 								</Chip>
 							</Stack>
 						</Stack>
-						<div style={{width: 200, height: 112, borderRadius: 16, background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+						<div style={{display: narrow ? 'none' : 'flex', width: 200, height: 112, borderRadius: 16, background: 'rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center'}}>
 							<Icon name="playCircle" size={44} color="#FFFFFF" />
 						</div>
 					</div>
 					{/* A topic is one lesson: no list of parts. "Bu konuda" says what the topic teaches; the player opens where the student left off. */}
 					<Text role="section">{t('Bu konuda', 'In this topic')}</Text>
-					<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-						{TOPIC_SECTIONS.slice(0, 10).map(([name], index) => (
+					<div style={{display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 10}}>
+						{TOPIC_SECTIONS.slice(0, narrow ? 8 : 10).map(([name], index) => (
 							<Stack key={name} row gap={10} style={{padding: '10px 12px', borderRadius: 16, background: colors.card, border: `1px solid ${colors.line}`}}>
 								<Icon name={states[index] === 'done' ? 'checkCircle' : 'check'} size={18} color={states[index] === 'done' ? mod.color : colors.subtle} />
 								<Text role="headline" size={14} style={{flex: 1}}>
@@ -273,6 +279,7 @@ export const PlanWeekScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
+	const narrow = useNarrowWide();
 	const days = [t('Pzt 12', 'Mon 12'), t('Sal 13', 'Tue 13'), t('Çar 14', 'Wed 14'), t('Per 15', 'Thu 15'), t('Cum 16', 'Fri 16'), t('Cmt 17', 'Sat 17'), t('Paz 18', 'Sun 18')];
 	const tasks: [number, ModuleKey, string, string, boolean?][] = [
 		[0, 'lessons', t('Gerçek anlam', 'Literal meaning'), t('8 dk', '8 min'), true],
@@ -286,7 +293,7 @@ export const PlanWeekScreen: React.FC = () => {
 		[3, 'flashcards', t('Mol kavramı', 'The mole'), t('20 kart', '20 cards')],
 		[4, 'lessons', t('Söz Yorumu', 'Reading statements'), t('12 dk', '12 min')],
 		[4, 'tests', t('Üslü sayılar', 'Exponents'), t('20 soru', '20 q')],
-		[5, 'exam', t('TYT Deneme 5', 'TYT Exam 5'), '10:00'],
+		[5, 'exam', t('TYT Deneme 5', 'SAT Practice Test 5'), '10:00'],
 		[6, 'lessons', t('Haftalık tekrar', 'Weekly review'), t('30 dk', '30 min')],
 	];
 	return (
@@ -302,7 +309,7 @@ export const PlanWeekScreen: React.FC = () => {
 							<Text role="small">{t('12–18 Ekim · 13 görev · 7 sa 40 dk', '12–18 Oct · 13 tasks · 7 h 40 m')}</Text>
 						</Stack>
 						<Stack row gap={10}>
-							<div style={{width: 230}}>
+							<div style={{width: narrow ? 190 : 230}}>
 								<Segmented items={[t('Gün', 'Day'), t('Hafta', 'Week'), t('Ay', 'Month')]} active={1} module="studyPlan" />
 							</div>
 							<Button tone="module" module="studyPlan" icon="plus">
@@ -310,7 +317,7 @@ export const PlanWeekScreen: React.FC = () => {
 							</Button>
 						</Stack>
 					</Stack>
-					<div style={{flex: 1, display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10, minHeight: 0}}>
+					<div style={{flex: 1, display: 'grid', gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', gap: narrow ? 6 : 10, minHeight: 0}}>
 						{days.map((day, index) => (
 							<Stack key={day} gap={8} style={{padding: 8, borderRadius: 18, background: index === 3 ? colors.card : 'transparent', border: index === 3 ? `1.5px solid ${mod.line}` : `1px dashed ${colors.line}`}}>
 								<Text role="headline" size={13.5} color={index === 3 ? mod.ink : colors.ink2} align="center">
@@ -333,7 +340,8 @@ export const PlanWeekScreen: React.FC = () => {
 					</div>
 					<Text role="meta">{t('Görevi sürükleyip başka güne bırakabilirsin; plan kalan günleri yeniden dağıtır.', 'Drag a task to another day; the plan rebalances.')}</Text>
 				</Stack>
-				<Stack gap={12} style={{width: 330, flexShrink: 0, padding: '18px 20px 24px 0', boxSizing: 'border-box'}}>
+				{/* Narrower than an iPad 11" the week takes the whole width; today is the highlighted column and Sıradakini başlat stays on the day view. */}
+				<Stack gap={12} style={{display: narrow ? 'none' : 'flex', width: 330, flexShrink: 0, padding: '18px 20px 24px 0', boxSizing: 'border-box'}}>
 					<Text role="section">{t('Bugün', 'Today')}</Text>
 					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · cost you nets')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 q · 25 min')} now />
 					<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} />

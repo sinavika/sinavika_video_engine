@@ -7,7 +7,7 @@ import {HandText, Highlight, InkCheck, InkLayer, InkLine, InkLoop, InkUnderline,
 import {Bar, Button, Card, Chip, Segmented, Stack, Text, Toggle} from '../../Parts/Shared';
 import {InkNote, PenToolbar, RoundButton, Scratchpad, SideRail, SolveBar, Tablet} from '../../Parts/Tablet';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
-import {AGIR_QUESTION, CONCEPT, Kind, ListenPill, Rich, RolePill, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, WORK_LESSONS, Words} from '../Mobile/Lessons';
+import {CONCEPT, Kind, ListenPill, Rich, RolePill, sectionStates, TOPIC, TOPIC_SECTIONS, TopicProgress, useAgirQuestion, WORK_LESSONS, Words} from '../Mobile/Lessons';
 import {InkOption} from './Solve';
 
 /**
@@ -21,12 +21,13 @@ import {InkOption} from './Solve';
 
 /** A lesson step on a tablet: the topic's progress on top ("Adım x / y", never part by part), the step in a reading column, a margin for ink on the right. */
 export const LessonStep: React.FC<{done: number; title: string; topic?: string; children: React.ReactNode; margin?: React.ReactNode; foot?: React.ReactNode; overlay?: boolean; toolbar?: React.ReactNode}> = ({done, title, topic = TOPIC.title, children, margin, foot, overlay = true, toolbar}) => {
+	const t = useT();
 	const colors = useColors();
 	return (
 		<Tablet module="lessons" wash>
 			<SolveBar
 				title={title}
-				sub={topic}
+				sub={topic === TOPIC.title ? t(TOPIC.title, 'Words in Context') : topic}
 				center={
 					<div style={{width: 340}}>
 						<TopicProgress step={TOPIC.before + done + 1} />
@@ -210,23 +211,27 @@ export const LessonConceptTabletScreen: React.FC = () => {
 /** Sınav tarzı soru: options eliminated with the pen before choosing; the step's hint after a wrong try. */
 export const LessonQuestionTabletScreen: React.FC = () => {
 	const colors = useColors();
+	const t = useT();
+	const question = useAgirQuestion();
 	return (
-		<LessonStep done={4} title="Sınav tarzı soru" toolbar={<PenToolbar vertical tool="pen" color="red" width="medium" clear={false} style={{alignSelf: 'center'}} />} foot={<Main icon="check">Cevapla</Main>}>
-			<Kind>Sınav tarzı</Kind>
+		<LessonStep done={4} title={t('Sınav tarzı soru', 'Exam-style question')} toolbar={<PenToolbar vertical tool="pen" color="red" width="medium" clear={false} style={{alignSelf: 'center'}} />} foot={<Main icon="check">{t('Cevapla', 'Answer')}</Main>}>
+			<Kind>{t('Sınav tarzı', 'Exam style')}</Kind>
 			<Text role="headline" size={21} weight={700} color={colors.ink} style={{lineHeight: '31px'}}>
-				Aşağıdaki cümlelerin hangisinde <Highlight>ağır</Highlight> sözcüğü mecaz anlamda kullanılmıştır?
+				{t('Aşağıdaki cümlelerin hangisinde ', 'In which sentence is the word ')}
+				<Highlight>{t('ağır', 'heavy')}</Highlight>
+				{t(' sözcüğü mecaz anlamda kullanılmıştır?', ' used figuratively?')}
 			</Text>
 			<Stack gap={9}>
-				{AGIR_QUESTION.options.map((option, index) => (
+				{question.options.map((option, index) => (
 					<InkOption key={option} letter={'ABCDE'[index]} text={option} mark={index === 1 ? 'loop' : 'strike'} state={index === 1 ? 'selected' : 'idle'} />
 				))}
 			</Stack>
 			<div style={{borderRadius: 16, padding: 14, background: colors.warningSoft, display: 'flex', flexDirection: 'column', gap: 4}}>
 				<Text role="headline" size={15} weight={800} color={colors.warningInk}>
-					Eleme ipucu
+					{t('Eleme ipucu', 'Elimination tip')}
 				</Text>
 				<Text role="body" color={colors.ink}>
-					<Rich text={AGIR_QUESTION.hint} /> Tartılabiliyorsa üstünü çiz.
+					<Rich text={question.hint} /> {t('Tartılabiliyorsa üstünü çiz.', 'If it can be weighed, cross it out.')}
 				</Text>
 			</div>
 		</LessonStep>

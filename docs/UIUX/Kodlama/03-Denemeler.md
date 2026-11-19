@@ -34,7 +34,7 @@ Kısaltmalar: `mod` = Denemeler modül renkleri (`useModuleColors('exam')`), `co
 >   - Alt çubuğun ortasında "Yalnız yanlışlar · N" yazar.
 >   - Koyu dolu "SinoAI'ye sor", altında "Derse git". Web çözüm panelinde de "SinoAI'ye sor" var.
 > - **İstatistiklerim:**
->   - Web "PDF olarak al" tarayıcının yazdırma penceresini açar.
+>   - Web "PDF olarak al" API'nin ürettiği A4 PDF'i indirir; yazdırma penceresi kalktı (sahip kararı, api+web+mobile oturumu 19 Kasım 2026'da aktardı). Şablon: [13-Istatistik-Raporu-PDF.md](13-Istatistik-Raporu-PDF.md).
 >   - Mobil ilk haftada düğmeler hedef modülün yumuşak tonundadır. Deneme adımı ayın sıradaki denemesine bağlıdır. Ders ve test adımlarının alt satırı şimdilik geneldir.
 
 ---
@@ -748,7 +748,7 @@ Kaynak: 17 Kasım 2026 okuması (değiştirilmedi). Mobil kök `C:\Users\onurc\D
 **İstatistikler**
 
 24. **Web İstatistiklerim'de "PDF olarak al" yok** (`statistics/pages/StatisticsPage.tsx`).
-25. **Mobil İstatistiklerim'de modül halkası (donut) var**; mobil çizimde yok (web çiziminde var). Mobil ilk hafta adım metni "İlk konunu çalış", çizim "İlk konuna başla"; mobilde üç adımın düğmesi de **Başla** (çizimde Denemeler adımı **Hatırlat**).
+25. **Düzeltildi (18 Kasım):** "Mobil İstatistiklerim'de modül halkası var" tespiti yanlıştı. Telefonda bu halka yok; halka yalnız tablette çizilir (`t-istatistik-pano`, 110) ve webde vardır. Çizimde değişiklik gerekmez. Mobil ilk hafta adım metni "İlk konunu çalış", çizim "İlk konuna başla"; mobilde üç adımın düğmesi de **Başla** (çizimde Denemeler adımı **Hatırlat**).
 
 **Çizim içi küçük farklar (olgu)**
 

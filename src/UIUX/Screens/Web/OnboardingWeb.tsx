@@ -66,6 +66,16 @@ const useAuthPromo = (page: 'signIn' | 'signUp'): AuthPromo => {
 	return page === 'signIn' ? {over: t('Tekrar hoş geldin', 'Welcome back'), title: t('Kaldığın yerden devam et', 'Pick up where you left off'), text: t('Planın, denemelerin ve SinoAI geçmişin seni bekliyor. Telefonda da aynı hesap.', 'Your plan, practice tests and SinoAI history are waiting. Same account on your phone.'), points, preview} : {over: t('Sınavika’ya katıl', 'Join Sınavika'), title: t('Ne çalışacağını bil, her gün ilerle', 'Know what to study, move forward every day'), text: t('Sınavını ve hedefini seç; ilk günün planı iki dakikada hazırlansın.', 'Choose your exam and goal; your first day’s plan is ready in two minutes.'), points, preview};
 };
 
+/** Small legal line under sign in and sign up: the first Google or Apple sign-in opens an account. */
+const LegalLine: React.FC = () => {
+	const t = useT();
+	return (
+		<Text role="meta" align="center">
+			{t('Google ya da Apple ile ilk girişte hesabın açılır; Kullanım Koşulları ve KVKK metni geçerlidir.', 'Your first Google or Apple sign-in opens an account; the Terms and Privacy Notice apply.')}
+		</Text>
+	);
+};
+
 export const WebSignInScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -88,6 +98,7 @@ export const WebSignInScreen: React.FC = () => {
 				<Button size="lg" block>
 					{t('Giriş yap', 'Sign in')}
 				</Button>
+				<LegalLine />
 			</Stack>
 		</AuthLayout>
 	);
@@ -132,19 +143,22 @@ export const WebSignUpScreen: React.FC = () => {
 					<Field label={t('Soyad', 'Last name')} value="Yılmaz" height={46} />
 				</Grid>
 				<Field label={t('E-posta', 'E-mail')} value="ayse@ornek.com" icon="mail" height={46} />
-				<Field label={t('Şifre', 'Password')} value="••••••••••" icon="lock" focus height={46} hint={t('En az 8 karakter ve bir rakam', 'At least 8 characters and a number')} />
+				<Field label={t('Şifre', 'Password')} value="••••••••••" icon="lock" focus height={46} hint={t('En az 6 karakter', 'At least 6 characters')} />
 				<Stack row gap={10} align="flex-start">
 					<div style={{width: 20, height: 20, borderRadius: 6, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 						<Icon name="check" size={13} color={colors.bg} />
 					</div>
 					<Text role="meta">{t('Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum.', 'I have read the Terms and Privacy Notice.')}</Text>
 				</Stack>
+				{/* Commercial e-mail consent (İYS): its own box, never pre-ticked. Not on sign-in. */}
+				<Stack row gap={10} align="flex-start">
+					<div style={{width: 20, height: 20, borderRadius: 6, border: `1.5px solid ${colors.line}`, background: colors.card, boxSizing: 'border-box', flexShrink: 0}} />
+					<Text role="meta">{t('Kampanya ve duyuruları e-postayla almak istiyorum (ticari ileti, isteğe bağlı).', 'Send me offers and news by e-mail (optional).')}</Text>
+				</Stack>
 				<Button size="lg" block>
 					{t('Hesabımı oluştur', 'Create my account')}
 				</Button>
-				<Text role="meta" align="center">
-					{t('Kayıttan sonra 2 dakikada planını hazırlıyoruz.', 'After sign-up we build your plan in 2 minutes.')}
-				</Text>
+				<LegalLine />
 			</Stack>
 		</AuthLayout>
 	);
@@ -338,7 +352,7 @@ export const WebOnbWeakScreen: React.FC = () => {
 	const colors = useColors();
 	const lessons: [string, string, boolean][] = [
 		['Matematik', 'Maths', true],
-		['Türkçe', 'Turkish', false],
+		['Türkçe', 'Reading & Writing', false],
 		['Geometri', 'Geometry', true],
 		['Fizik', 'Physics', false],
 		['Kimya', 'Chemistry', true],
@@ -426,9 +440,6 @@ export const WebOnbPlanChoiceScreen: React.FC = () => {
 					</Stack>
 				))}
 			</Stack>
-			<Text role="small" weight={700} color={colors.ink2}>
-				{t('Şimdilik paket seçme', 'Not now')}
-			</Text>
 			<Stack row gap={8}>
 				{MODULE_ORDER.map((key: ModuleKey) => (
 					<Tile key={key} module={key} size={34} />

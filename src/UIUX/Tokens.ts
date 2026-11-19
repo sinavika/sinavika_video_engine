@@ -231,7 +231,19 @@ export const UI_CANVAS = {
 	/** Apple Watch 46 mm (Series 10/11) in points; Wear OS round screens use `watchRound` (454 px at 2x). */
 	watch: {width: 208, height: 248, scale: 3},
 	watchRound: {width: 227, height: 227, scale: 3},
+	/**
+	 * iPhone Duo (Apple's foldable, 9 Sep 2026), as measured in the Xcode 27.2 simulator (19 Nov 2026):
+	 * outer display held upright 466 × 678 (1398 × 2034 px), inner display open wide 951 × 669
+	 * (2853 × 2007 px), held tall 669 × 951. Both keep a trailing safe-area strip of 84 pt (iOS draws
+	 * the island and status there; tab bar and toolbar sit in it) and 34 pt at the bottom. App Store
+	 * screenshots are these sizes at 3x.
+	 */
+	duoOuter: {width: 466, height: 678, scale: 3},
+	duoInner: {width: 951, height: 669, scale: 3},
+	duoInnerTall: {width: 669, height: 951, scale: 3},
 	/** Share cards (15 Nov 2026): Instagram story 1080 × 1920 and post 1080 × 1080, in pixels. */
 	share: {width: 1080, height: 1920, scale: 1},
 	shareSquare: {width: 1080, height: 1080, scale: 1},
+	/** PDF documents (19 Nov 2026): an A4 page in PDF points (595 × 842), pictured at 3x. */
+	print: {width: 595, height: 842, scale: 3},
 } as const;

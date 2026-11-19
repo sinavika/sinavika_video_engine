@@ -64,7 +64,7 @@ describe('UI/UX screens', () => {
 	it('has unique ids that match their platform', () => {
 		const ids = UI_SCREENS.map((screen) => screen.id);
 		expect(new Set(ids).size).toBe(ids.length);
-		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's', tablet: 't', watch: 'k', share: 'p'}[screen.platform]);
+		for (const screen of UI_SCREENS) expect(screen.id[0], screen.id).toBe({mobile: 'm', web: 'w', site: 's', tablet: 't', fold: 'f', watch: 'k', share: 'p', print: 'r'}[screen.platform]);
 	});
 
 	it('covers every module on mobile and web', () => {
@@ -130,9 +130,9 @@ describe('UI/UX screens', () => {
 
 	it('sizes site pages by their height and the rest by the canvas', () => {
 		for (const screen of UI_SCREENS) {
-			const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round);
+			const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose);
 			if (screen.platform === 'site') expect(screen.height, screen.id).toBeGreaterThan(800);
-			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'share' ? 1080 : screen.platform === 'watch' ? (screen.round ? 227 : 208) : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : 1440);
+			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'share' ? 1080 : screen.platform === 'print' ? 595 : screen.platform === 'watch' ? (screen.round ? 227 : 208) : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : screen.platform === 'fold' ? (screen.pose === 'outer' ? 466 : screen.pose === 'innerTall' ? 669 : 951) : 1440);
 		}
 	});
 
@@ -158,7 +158,7 @@ describe('UI/UX screens', () => {
 		const brandOrange = /#EA580C|#C2410C|#F97316|rgba\(234, 88, 12|rgba\(194, 65, 12|#E8590C|#FB8A3C|#C54C0A|rgba\(232, 89, 12|rgba\(251, 138, 60/i;
 		// The daily-quota sheet is a payment surface, which stays brand orange.
 		const paymentSurfaces = ['m-ders-hak'];
-		for (const screen of UI_SCREENS.filter((entry) => entry.module && !paymentSurfaces.includes(entry.id))) {
+		for (const screen of UI_SCREENS.filter((entry) => entry.module && !paymentSurfaces.includes(entry.id.replace(/^f-(dis|ic)-/, 'm-')))) {
 			// The logo is always orange (the web panel's menu carries it on every page).
 			const html = renderToStaticMarkup(React.createElement(UIProvider, {children: React.createElement(screen.Component)})).replaceAll('background-color:#EA580C;mask-image', '');
 			expect(html, screen.id).not.toMatch(brandOrange);
@@ -180,8 +180,8 @@ describe('UI/UX screens', () => {
 		const alwaysDark = ['m-ozet-kamera'];
 		for (const screen of UI_SCREENS) {
 			expect(screen.id, screen.id).not.toMatch(/koyu|dark/);
-			// Watch faces are dark in both themes, as watchOS and Wear OS are.
-			if (alwaysDark.includes(screen.id) || screen.platform === 'watch') continue;
+			// Watch faces are dark in both themes, as watchOS and Wear OS are; PDF pages are white paper in both.
+			if (alwaysDark.includes(screen.id) || screen.platform === 'watch' || screen.platform === 'print') continue;
 			const light = renderToStaticMarkup(React.createElement(UIProvider, {mode: 'light', children: React.createElement(screen.Component)}));
 			const dark = renderToStaticMarkup(React.createElement(UIProvider, {mode: 'dark', children: React.createElement(screen.Component)}));
 			expect(dark, screen.id).not.toBe(light);

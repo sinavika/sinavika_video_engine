@@ -27,6 +27,8 @@ Belge ile PNG çelişirse çizim kodu esastır. Çizimlerdeki ad, sayı, tarih v
 | [09-SinoAI.md](09-SinoAI.md) | SinoAI: sohbet, çalışma, geçmiş, kütüphane, üretim sonucu |
 | [10-Profil-Hesap-Abonelik.md](10-Profil-Hesap-Abonelik.md) | Profil, hesap, güvenlik, ayarlar, paketler, abonelik, web ödeme |
 | [11-Bildirim-Destek-Durumlar.md](11-Bildirim-Destek-Durumlar.md) | Bildirimler, destek, ortak durum kalıpları (yükleniyor, boş, hata, çevrimdışı, güncelleme) |
+| [13-Istatistik-Raporu-PDF.md](13-Istatistik-Raporu-PDF.md) | İstatistik raporu PDF'i (A4, API QuestPDF): iki sayfa, ölçüler, grafik çizim kuralları, alan eşlemesi, taslakla farklar |
+| [12-iPhone-Duo.md](12-iPhone-Duo.md) | iPhone Duo (katlanabilir): dış ve iç ekran ölçüleri, dikey çubuk şeridi, iki sütun, yarı açık ve dik pozlar, durum sürekliliği, RN notları |
 
 Genel kurallar üst klasördedir; bu klasör onları tekrar etmez, uygular:
 
@@ -259,7 +261,7 @@ Sekme değişiminde animasyon yoktur, seçim titreşimi vardır.
 - **Sıfır:** "0 dk" gösterilmez. Sıfır hâli kendi metniyle yazılır ("Henüz başlamadın").
 - **Sözcükler:**
   - "Test" kullanılır, asla "quiz". "Şifre" kullanılır, parola değil.
-  - Modül adları: Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları, SinoAI. "Lens", "Compass", "Kelime Kartları" ekranda geçmez.
+  - Modül adları (bu sırayla): Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI. "Lens", "Compass", "Kelime Kartları" ekranda geçmez.
   - SinoAI'ye "koç" denmez.
   - TYT, AYT, YKS büyük harfle yazılır.
 - **Dil:** TR ve EN metinler her ekranda belgededir. EN'de sınav adları (TYT, AYT, YKS) aynı kalır.

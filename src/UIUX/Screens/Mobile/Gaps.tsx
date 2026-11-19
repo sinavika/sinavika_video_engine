@@ -173,7 +173,7 @@ export const ExamNetScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
 	const rows: [string, number, number, number, string][] = [
-		[t('Türkçe', 'Turkish'), 34, 4, 2, '33'],
+		[t('Türkçe', 'Reading & Writing'), 34, 4, 2, '33'],
 		[t('Sosyal Bilimler', 'Social'), 15, 3, 2, '14,25'],
 		[t('Temel Matematik', 'Basic Maths'), 24, 8, 8, '22'],
 		[t('Fen Bilimleri', 'Science'), 11, 4, 5, '10'],
@@ -184,7 +184,7 @@ export const ExamNetScreen: React.FC = () => {
 				<Card padding={16} tone="module" module="exam">
 					<Stack row justify="space-between" align="flex-end">
 						<Stack gap={1}>
-							<Text role="meta">{t('TYT Deneme 4 · toplam net', 'TYT Exam 4 · total net')}</Text>
+							<Text role="meta">{t('TYT Deneme 4 · toplam net', 'SAT Practice Test 4 · total net')}</Text>
 							<Text role="num" size={32}>
 								79,25
 							</Text>

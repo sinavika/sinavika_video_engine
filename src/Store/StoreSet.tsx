@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, staticFile} from 'remotion';
 import {VideoFrame} from '../Components/Layouts/VideoFrame';
 import {themeVars, UIProvider} from '../UIUX/Context';
 import {Icon} from '../UIUX/Icons';
@@ -7,9 +7,11 @@ import {Card, Chip, Stack, Text} from '../UIUX/Parts/Shared';
 import {KpiCard, NetBars, TodayCard, WeekStrip} from '../UIUX/Parts/Study';
 import {findScreen} from '../UIUX/Registry';
 import {screenSize} from '../UIUX/UIUXProps';
-import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_SLIDES, type StoreFloat, type StoreSlide} from './StoreListing';
-import {fitStage, FRAME, PHONE_STAGE, phoneBox, TABLET_STAGE, tabletStageDevice, type TextBlock} from './StoreLayout';
+import {UI_CANVAS} from '../UIUX/Tokens';
+import {FEATURE_GRAPHIC, STORE_CREATIVE, STORE_SLIDES, SUBSCRIPTION_ICONS, type StoreFloat, type StoreSlide} from './StoreListing';
+import {fitStage, FRAME, GAP, MARK, markBoxStyle, PHONE_STAGE, phoneBox, TABLET_STAGE, tabletStageDevice, type TextBlock} from './StoreLayout';
 import type {StoreSetProps} from './StoreProps';
+import {LOOKS, TURUNCU, type Look} from './StoreLooks';
 
 /**
  * The store picture set. Main look "Turuncu" (owner, 14 Nov 2026), with
@@ -26,59 +28,11 @@ import type {StoreSetProps} from './StoreProps';
  * no device, no white or dark ground, no badge.
  */
 
-type Look = {
-	bg: string;
-	ink: string;
-	sub: string;
-	/** The mark behind the key words: a solid box (review, 14 Nov 2026: navy on orange, never a brown highlighter). */
-	markBg: string;
-	markInk: string;
-	glow: string;
-	shadow: string;
-	dots?: string;
-	/** Seritli: one ribbon running through all eight shots, so the gallery reads as one strip. */
-	ribbon?: {color: string; line: string};
-};
-
-const TURUNCU: Look = {
-	bg: 'linear-gradient(160deg, #F97316 0%, #EA580C 45%, #C2410C 100%)',
-	ink: '#FFFFFF',
-	sub: 'rgba(255,255,255,0.92)',
-	markBg: '#0B1C30',
-	markInk: '#FFFFFF',
-	glow: 'rgba(255, 255, 255, 0.18)',
-	shadow: '0 40px 90px -30px rgba(67, 20, 7, 0.55)',
-};
-
-const LOOKS: Record<StoreSetProps['look'], Look> = {
-	turuncu: TURUNCU,
-	krem: {
-		bg: '#FFF7ED',
-		ink: '#0B1C30',
-		sub: '#475569',
-		markBg: '#C2410C',
-		markInk: '#FFFFFF',
-		glow: 'rgba(234, 88, 12, 0.14)',
-		shadow: '0 40px 90px -30px rgba(120, 53, 15, 0.35)',
-		dots: 'rgba(11, 28, 48, 0.08)',
-	},
-	lacivert: {
-		bg: 'radial-gradient(120% 80% at 70% 85%, #1E2A4A 0%, #0F172A 60%)',
-		ink: '#FFFFFF',
-		sub: '#CBD5E1',
-		markBg: '#F97316',
-		markInk: '#0B1C30',
-		glow: 'rgba(249, 115, 22, 0.28)',
-		shadow: '0 40px 90px -30px rgba(0, 0, 0, 0.7)',
-	},
-	seritli: {
-		...TURUNCU,
-		ribbon: {color: '#0B1C30', line: 'rgba(255,255,255,0.75)'},
-	},
-};
-
 const LookContext = React.createContext<Look>(TURUNCU);
 const useLook = () => React.useContext(LookContext);
+
+/** A percentage as each language writes it: Turkish puts the sign first (%62), English after (62%). */
+const percent = (value: number, lang: 'tr' | 'en'): string => (lang === 'en' ? `${value}%` : `%${value}`);
 
 type Lang = 'tr' | 'en';
 type Float = StoreFloat;
@@ -102,7 +56,7 @@ const Headline: React.FC<{
 			style={{
 				fontSize: size,
 				fontWeight: 800,
-				lineHeight: 1.12,
+				lineHeight: MARK.lineHeight,
 				letterSpacing: '-0.03em',
 				color: look.ink,
 				textAlign: align,
@@ -114,7 +68,9 @@ const Headline: React.FC<{
 				style={{
 					background: look.markBg,
 					color: look.markInk,
-					padding: '0.02em 0.16em 0.06em',
+					...markBoxStyle(),
+					paddingLeft: '0.16em',
+					paddingRight: '0.16em',
 					borderRadius: '0.14em',
 					whiteSpace: 'nowrap',
 				}}
@@ -129,7 +85,7 @@ const Headline: React.FC<{
 /** A UI/UX drawing at its own canvas size, scaled to `width`. */
 const Drawing: React.FC<{id: string; width: number; lang: Lang; bg?: string}> = ({id, width, lang, bg = '#FFFFFF'}) => {
 	const screen = findScreen(id);
-	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round);
+	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose);
 	const scale = width / size.width;
 	return (
 		<div
@@ -330,7 +286,7 @@ const FloatCard: React.FC<{kind: Float; scale?: number; width?: number; lang: La
 					}}
 				>
 					{kind === 'today' ? <TodayCard /> : null}
-					{kind === 'kpi' ? <KpiCard icon="clock" label={en ? 'This week' : 'Bu hafta'} value={en ? '4 h 10 m' : '4 sa 10 dk'} delta="%22" /> : null}
+					{kind === 'kpi' ? <KpiCard icon="clock" label={en ? 'This week' : 'Bu hafta'} value={en ? '4 h 10 m' : '4 sa 10 dk'} delta={percent(22, lang)} /> : null}
 					{kind === 'step' ? (
 						<Card padding={16} radius={24}>
 							<Stack row gap={12}>
@@ -361,20 +317,31 @@ const FloatCard: React.FC<{kind: Float; scale?: number; width?: number; lang: La
 							<Stack gap={10}>
 								<Stack row justify="space-between">
 									<Text role="headline" size={16}>
-										{en ? 'My TYT nets' : 'TYT net gelişimim'}
+										{en ? 'My SAT Math scores' : 'TYT net gelişimim'}
 									</Text>
 									<Chip tone="success" icon="trend" size="sm">
-										+20,25
+										{en ? '+110' : '+20,25'}
 									</Chip>
 								</Stack>
+								{/* English store = SAT student (UI/UX persona, 18 Nov 2026): a section score out of 800, never TYT nets. */}
 								<NetBars
 									height={120}
-									items={[
-										['D2', 64],
-										['D3', 72],
-										['D4', 78.5],
-										['D5', 84.25],
-									]}
+									max={en ? 800 : 120}
+									items={
+										en
+											? [
+													['T2', 610],
+													['T3', 650],
+													['T4', 680],
+													['T5', 720],
+												]
+											: [
+													['D2', 64],
+													['D3', 72],
+													['D4', 78.5],
+													['D5', 84.25],
+												]
+									}
 								/>
 							</Stack>
 						</Card>
@@ -419,8 +386,8 @@ const UICard: React.FC<{
 				>
 					{kind === 'week' ? <WeekStrip /> : null}
 					{kind === 'today' ? <TodayCard /> : null}
-					{kind === 'kpi' ? <KpiCard icon="clock" label={en ? 'This week' : 'Bu hafta'} value={en ? '4 h 10 m' : '4 sa 10 dk'} delta="%22" /> : null}
-					{kind === 'kpi2' ? <KpiCard icon="target" label={en ? 'Accuracy' : 'Doğru oranı'} value="%62" delta="%6" /> : null}
+					{kind === 'kpi' ? <KpiCard icon="clock" label={en ? 'This week' : 'Bu hafta'} value={en ? '4 h 10 m' : '4 sa 10 dk'} delta={percent(22, lang)} /> : null}
+					{kind === 'kpi2' ? <KpiCard icon="target" label={en ? 'Accuracy' : 'Doğru oranı'} value={percent(62, lang)} delta={percent(6, lang)} /> : null}
 				</div>
 			</UIProvider>
 		</div>
@@ -565,6 +532,94 @@ const TabletShot: React.FC<{
 			<Ribbon index={index} w={w} y={y0 + 940 * u} amp={55 * u} thick={150 * u} />
 			<div style={{position: 'absolute', left: x0 + device.x * u, top: y0 + device.y * u}}>{slide.screens.tablet ? <Tablet id={slide.screens.tablet} width={device.width * u} lang={lang} /> : <Phone id={slide.screens.phone} width={device.width * u} lang={lang} />}</div>
 			{slide.screens.tablet ? <Float kind={slide.float} at={stage.float} u={u} x0={x0} y0={y0} h={h} lang={lang} /> : null}
+		</Ground>
+	);
+};
+
+/* ------------------------------------------------------------------ iPhone Duo */
+
+/** The Duo drawing for a slide: outer display = f-dis-<phone>, inner display = f-ic-<web> (the test slide shows the scratch paper). */
+const duoId = (slide: StoreSlide, inner: boolean): string => (inner ? (slide.screens.web === 'w-test-coz' ? 'f-ic-test-taslak' : `f-ic-${slide.screens.web.slice(2)}`) : `f-dis-${slide.screens.phone.slice(2)}`);
+
+/**
+ * iPhone Duo around a Duo drawing (sizes from the Xcode simulator, 19 Nov
+ * 2026). Closed: an upright body (the outer display, 466 × 678) with the
+ * spine on its leading edge. Open: the inner display (951 × 669) with the
+ * hinge marked at the top and bottom of the frame. Same black frame as the
+ * other devices.
+ */
+const Duo: React.FC<{id: string; width: number; lang: Lang; open?: boolean}> = ({id, width, lang, open}) => {
+	const look = useLook();
+	const bezel = width * (open ? 0.018 : 0.034);
+	const inner = width - bezel * 2;
+	const notch = {position: 'absolute', left: '50%', width: width * 0.012, marginLeft: -width * 0.006, height: bezel * 0.55, background: '#26262C', borderRadius: bezel} as const;
+	return (
+		<div style={{position: 'relative', width, borderRadius: width * (open ? 0.04 : 0.11), background: '#0B0B0F', padding: bezel, boxSizing: 'border-box', boxShadow: `${look.shadow}, inset 0 0 0 ${width * 0.004}px #3A3A40`}}>
+			{open ? (
+				<>
+					<div style={{...notch, top: bezel * 0.22}} />
+					<div style={{...notch, bottom: bezel * 0.22}} />
+				</>
+			) : (
+				<div style={{position: 'absolute', left: 0, top: width * 0.12, bottom: width * 0.12, width: bezel * 0.45, borderRadius: bezel, background: 'linear-gradient(90deg, #3A3A42, #16161B)'}} />
+			)}
+			<div style={{borderRadius: width * (open ? 0.025 : 0.085), overflow: 'hidden'}}>
+				<Drawing id={id} width={inner} lang={lang} />
+			</div>
+		</div>
+	);
+};
+
+/**
+ * Duo shot. Outer (closed, upright 1398 × 2034): the headline on top, the
+ * closed Duo under it, as the iPhone pictures. Inner (open, landscape
+ * 2853 × 2007): the headline on the leading side with a small closed Duo
+ * under it (one phone, two displays), the open Duo on the trailing side.
+ */
+const DuoShot: React.FC<{slide: StoreSlide; index: number; w: number; h: number; lang: Lang; open: boolean}> = ({slide, index, w, h, lang, open}) => {
+	const look = useLook();
+	if (!open) {
+		const u = w / 1398;
+		// The whole device stays inside the picture (16 Nov rule): the closed Duo is
+		// its frame (bezel 0.034 × width) around a 466 × 678 display; its bottom
+		// sits GAP.bottom above the edge.
+		const deviceWidth = 960 * u;
+		const deviceHeight = deviceWidth * (1 - 2 * 0.034) * (UI_CANVAS.duoOuter.height / UI_CANVAS.duoOuter.width) + deviceWidth * 2 * 0.034;
+		const deviceTop = h - GAP.bottom * u - deviceHeight;
+		return (
+			<Ground>
+				<Glow x={w / 2} y={deviceTop + 700 * u} d={1300 * u} />
+				<Ribbon index={index} w={w} y={h * 0.86} amp={40 * u} thick={100 * u} />
+				<div style={{position: 'absolute', left: 100 * u, right: 100 * u, top: 150 * u, textAlign: 'center'}}>
+					<Headline parts={words(slide.headline[lang])} size={92 * u} />
+					<div style={{marginTop: 24 * u, fontSize: 40 * u, fontWeight: 600, lineHeight: 1.3, color: look.sub}}>{slide.subline[lang]}</div>
+				</div>
+				<div style={{position: 'absolute', left: (w - deviceWidth) / 2, top: deviceTop}}>
+					<Duo id={duoId(slide, false)} width={deviceWidth} lang={lang} />
+				</div>
+			</Ground>
+		);
+	}
+	const u = w / 2853;
+	const deviceWidth = 1840 * u;
+	const deviceLeft = w - deviceWidth - 110 * u;
+	const deviceHeight = deviceWidth * (669 / 951);
+	const deviceTop = (h - deviceHeight) / 2;
+	const textWidth = deviceLeft - 2 * 110 * u;
+	return (
+		<Ground>
+			<Glow x={deviceLeft + deviceWidth / 2} y={h / 2} d={2000 * u} />
+			<Ribbon index={index} w={w} y={h * 0.82} amp={40 * u} thick={130 * u} />
+			<div style={{position: 'absolute', left: 110 * u, width: textWidth, top: 260 * u}}>
+				<Headline parts={words(slide.headline[lang])} size={120 * u} />
+				<div style={{marginTop: 30 * u, fontSize: 44 * u, fontWeight: 600, lineHeight: 1.3, color: look.sub}}>{slide.subline[lang]}</div>
+			</div>
+			<div style={{position: 'absolute', left: 300 * u, bottom: 120 * u}}>
+				<Duo id={duoId(slide, false)} width={400 * u} lang={lang} />
+			</div>
+			<div style={{position: 'absolute', left: deviceLeft, top: deviceTop}}>
+				<Duo id={duoId(slide, true)} width={deviceWidth} lang={lang} open />
+			</div>
 		</Ground>
 	);
 };
@@ -780,18 +835,45 @@ const Feature: React.FC<{w: number; lang: Lang}> = ({w, lang}) => {
 	);
 };
 
-export const StoreSet: React.FC<StoreSetProps> = ({look, kind, device, slide, textless, width, height, lang, screen}) => {
+/**
+ * A Google Play subscription icon: the store look's ground, the app's clock
+ * mark, the exam in big type and, for KPSS, the level in the key-word box.
+ * Everything sits inside the middle 72 % so a round crop keeps it whole.
+ */
+const SubscriptionIcon: React.FC<{w: number; product?: string}> = ({w, product}) => {
+	const look = useLook();
+	const item = SUBSCRIPTION_ICONS.find((icon) => icon.id === product);
+	if (!item) throw new Error(`Bilinmeyen abonelik: ${product}`);
+	const u = w / 1024;
+	const level = 'level' in item ? item.level : undefined;
+	const mark = staticFile('Brand/SinavikaIcon.svg');
+	return (
+		<Ground>
+			<AbsoluteFill style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 34 * u}}>
+				<div style={{width: 190 * u, height: 190 * u, backgroundColor: '#FFFFFF', maskImage: `url("${mark}")`, WebkitMaskImage: `url("${mark}")`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center'}} />
+				<div style={{fontSize: (level ? 230 : 280) * u, fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1, color: look.ink}}>{item.exam}</div>
+				{level ? (
+					<div style={{fontSize: 92 * u, fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1, color: look.markInk, background: look.markBg, borderRadius: 22 * u, padding: `${22 * u}px ${40 * u}px ${28 * u}px`}}>{level}</div>
+				) : null}
+			</AbsoluteFill>
+		</Ground>
+	);
+};
+
+export const StoreSet: React.FC<StoreSetProps> = ({look, kind, device, slide, textless, width, height, lang, screen, product}) => {
 	const sixteenNine = Math.abs(width / height - 16 / 9) < 0.02;
 	return (
 		<VideoFrame themeId="SinavikaLight" lang={lang}>
 			<LookContext.Provider value={LOOKS[look]}>
 				{kind === 'shot' && device === 'desktop' ? <DesktopShot slide={STORE_SLIDES[slide]} index={slide} w={width} lang={lang} /> : null}
+				{kind === 'shot' && (device === 'duoOuter' || device === 'duoInner') ? <DuoShot slide={STORE_SLIDES[slide]} index={slide} w={width} h={height} lang={lang} open={device === 'duoInner'} /> : null}
 				{kind === 'shot' && device === 'ipad' ? <TabletShot slide={STORE_SLIDES[slide]} index={slide} w={width} h={height} lang={lang} /> : null}
 				{kind === 'shot' && (device === 'iphone' || device === 'android') ? <PhoneShot slide={STORE_SLIDES[slide]} index={slide} w={width} h={height} android={device === 'android'} lang={lang} /> : null}
 				{kind === 'search' && !sixteenNine ? <Search w={width} textless={textless} lang={lang} /> : null}
 				{kind === 'header' && !sixteenNine ? <Header w={width} textless={textless} lang={lang} /> : null}
 				{(kind === 'search' || kind === 'header') && sixteenNine ? <Universal w={width} phrase={kind} textless={textless} lang={lang} /> : null}
 				{kind === 'feature' ? <Feature w={width} lang={lang} /> : null}
+				{kind === 'subicon' ? <SubscriptionIcon w={width} product={product} /> : null}
 				{kind === 'watch' && screen ? <WatchShot id={screen} w={width} lang={lang} /> : null}
 			</LookContext.Provider>
 		</VideoFrame>

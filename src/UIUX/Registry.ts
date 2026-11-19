@@ -1,4 +1,6 @@
-import type React from 'react';
+import React from 'react';
+import {DuoCentered, DuoInner, DuoOuter} from './Parts/Duo';
+import {DUO_EXTRA} from './Screens/Duo/DuoPoses';
 import type {ModuleKey} from './ModuleIdentity';
 import * as Account from './Screens/Mobile/Account';
 import * as Assist from './Screens/Mobile/Assist';
@@ -32,17 +34,18 @@ import * as WStudy from './Screens/Web/StudyWeb';
 import * as WTests from './Screens/Web/TestsWeb';
 import * as Watch from './Screens/Watch/Watch';
 import * as Share from './Screens/Share/ShareCards';
+import * as Print from './Screens/Print/StatsReport';
 
 /**
  * Every UI/UX drawing, by id. The export (`npm run uiux`), the boards and the
  * screen inventory (docs/UIUX/Ekran-Envanteri.md) read this list.
  *
- * Ids: m-<group>-<name> mobile, w-<group>-<name> web panel, s-<name> site, t-<group>-<name> tablet,
- * k-<apple|wear>-<name> watch (kol saati), p-<card>-<hikaye|gonderi> share cards (paylaşım).
+ * Ids: m-<group>-<name> mobile, w-<group>-<name> web panel, s-<name> site, t-<group>-<name> tablet, f-dis|ic-<name> iPhone Duo (outer / inner display),
+ * k-<apple|wear>-<name> watch (kol saati), p-<card>-<hikaye|gonderi> share cards (paylaşım), r-<document>-<page> PDF pages (rapor, A4).
  * `route` names the screen in the app (mobile route name or web path), so a
  * drawing maps to the code that draws it. `note` says what the screen does.
  */
-export type UIPlatform = 'mobile' | 'web' | 'site' | 'tablet' | 'watch' | 'share';
+export type UIPlatform = 'mobile' | 'web' | 'site' | 'tablet' | 'fold' | 'watch' | 'share' | 'print';
 
 export type UIScreen = {
 	id: string;
@@ -61,6 +64,8 @@ export type UIScreen = {
 	height?: number;
 	/** Tablet screens drawn upright (834 × 1194) instead of landscape. */
 	portrait?: boolean;
+	/** iPhone Duo: outer display upright (466 × 678), inner open wide (951 × 669) or inner held tall (669 × 951). */
+	pose?: 'outer' | 'inner' | 'innerTall';
 	/** Watch screens on a round Wear OS face (227 × 227) instead of Apple Watch (208 × 248); share cards as a 1080 × 1080 post instead of a 1080 × 1920 story. */
 	round?: boolean;
 };
@@ -70,9 +75,10 @@ const web = (id: string, group: string, title: string, route: string, Component:
 const site = (id: string, group: string, title: string, route: string, Component: React.FC, height: number, note = ''): UIScreen => ({id, platform: 'site', group, title, route, Component, note, height});
 const watch = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', round?: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'watch', group, title, route, Component, note, module, round});
 const share = (id: string, title: string, Component: React.FC, note: string, square: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'share', group: 'Paylaşım kartları', title, route: 'ShareCard (mobil: görünümden PNG · web: next/og)', Component, note, module, round: square});
+const print = (id: string, group: string, title: string, route: string, Component: React.FC, note: string): UIScreen => ({id, platform: 'print', group, title, route, Component, note});
 const tablet = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey, portrait?: boolean): UIScreen => ({id, platform: 'tablet', group, title, route, Component, note, module, portrait});
 
-export const UI_SCREENS: readonly UIScreen[] = [
+const BASE_SCREENS: UIScreen[] = [
 	mobile('m-hub-moduller', 'Modüller', 'Modüller (ana ekran)', 'ModuleHubHome', HubScreen, 'Ana ekran (5 Kas 2026 revizyonu; 17 Kas sahip kararları): önce “bugün ne yapacağım”. Selamın üstünde tarih yok; hedef selamın karşısında, seri hedefin altında. Hafta şeridi (bugünün halkası); günün planı ve sıradaki görev tek düğmeyle; iki eylem kartı (kaldığın yer, sıradaki deneme); modüller üç sütun. Veri: engagement/today, study-plan calendar, works continue, yaklaşan deneme.'),
 	mobile('m-hub-moduller-kaydir', 'Modüller', 'Modüller · aşağı kaydırılmış', 'ModuleHubHome', HubScrolledScreen, 'Modüller ızgarası, SinoAI, Bugün tekrar (Dersler adımları + Bilgi Kartları) ve Destek.'),
 	mobile('m-hub-ipucu', 'Modüller', 'İlk açılış ipucu', 'ModuleHubHome', HubTipScreen, 'İlk açılışta tek ipucu, günün planı kartında. Tur yok.'),
@@ -80,22 +86,20 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-hub-gun-bitti', 'Modüller', 'Ana ekran · günün planı bitti', 'ModuleHubHome', HubDayDoneScreen, 'Bitti kartı: görev, dakika, seri; Yarına bak ve isteğe bağlı fazladan 10 soru.'),
 	mobile('m-hub-abonelik-bitti', 'Modüller', 'Ana ekran · deneme süresi bitti', 'ModuleHubHome', HubExpiredScreen, 'Ödeme yoksa erişim yok: ilerleme korunur, modüller kilitli; Paketleri gör ve mağaza alımını geri yükle.'),
 	mobile('m-giris-karsilama', 'Giriş ve kayıt', 'Karşılama', '—', Auth.WelcomeScreen, 'Oturumu kapatmış öğrencinin karşılaması: modül slaytlarıyla ürün bir bakışta; Başlayalım ve Zaten hesabım var. Uygulamanın ilk açılışı m-onb-0-karsilama’dır.'),
-	mobile('m-giris-oturum-ac', 'Giriş ve kayıt', 'Oturum aç veya kaydol', 'AuthLogin', Auth.SignInScreen, 'Apple ve Google üstte, e-posta altta; hesap varsa kod gider, yoksa kayıt açılır.'),
+	mobile('m-giris-oturum-ac', 'Giriş ve kayıt', 'Oturum aç veya kaydol', 'AuthLogin', Auth.SignInScreen, 'E-posta ve şifreyle açılır; “E-postama kod gönder” ikincil. Apple ve Google üstte.'),
 	mobile('m-giris-kod', 'Giriş ve kayıt', 'Doğrulama kodu', 'AuthLogin', Auth.SignInCodeScreen, '6 kutulu kod, yeniden gönderme süresi, şifreyle giriş seçeneği.'),
 	mobile('m-kayit-eposta', 'Giriş ve kayıt', 'Hesap oluştur', 'AuthRegister', Auth.SignUpScreen, 'Apple ve Google önde; e-postayla devam edene kod gider.'),
-	mobile('m-kayit-bilgiler', 'Giriş ve kayıt', 'Hesap oluştur · adın', 'AuthRegister', Auth.SignUpDetailsScreen, 'Yalnız ad ve onay. Şifre gerekmez: her girişte e-postaya kod gelir; şifre sonra Hesap güvenliği’nden eklenir.'),
 	mobile('m-sifre-unuttum', 'Giriş ve kayıt', 'Şifremi unuttum', 'AuthForgotPassword', Auth.ForgotPasswordScreen, ''),
 	mobile('m-sifre-yeni', 'Giriş ve kayıt', 'Kod ve yeni şifre', 'AuthForgotPassword', Auth.NewPasswordScreen, ''),
-	mobile('m-giris-sayfa', 'Giriş ve kayıt', 'Misafir · hesap gerekli', 'AuthEntrySheet', Auth.AuthSheetScreen, 'Misafir hesap isteyen bir şeye dokununca alt sayfa açılır.'),
+	mobile('m-giris-sayfa', 'Giriş ve kayıt', 'Misafir · hesap gerekli', 'AuthEntrySheet', Auth.AuthSheetScreen, 'Misafir hesap isteyen bir şeye dokununca alt sayfa açılır; her bağlamda aynı: marka tonunda kişi simgesi, modül simgesi yok.'),
 	mobile('m-onb-0-karsilama', 'Onboarding', 'Onboarding 0 · Karşılama', 'Onboarding · OnboardingWelcomeStep', Gaps.OnbWelcomeScreen, 'Uygulamanın ilk ekranı: tek cümle, iki örnek kart (kaldığın yer, deneme), Başlayalım ve Hesabım var.'),
 	mobile('m-onb-0-bolge', 'Onboarding', 'Onboarding 0 · Bölge', 'Onboarding · OnboardingRegionStep', Gaps.OnbRegionScreen, 'Yalnız cihaz bölgesi belirsizse: Türkiye (YKS, KPSS) ya da United States (SAT, ACT).'),
 	mobile('m-onb-1-sinav', 'Onboarding', 'Onboarding 1 · Sınav ve oturum', 'Onboarding · OnboardingCategoryExamStep', Onb.OnbExamScreen, 'Sınav, oturumlar ve puan türü tek ekranda. Seçili olan koyu çerçeve ve tikle gösterilir.'),
 	mobile('m-onb-2-net', 'Onboarding', 'Onboarding 2 · Mevcut ve hedef net', 'Onboarding · OnboardingStudyNetStep', Onb.OnbScoreScreen, 'Tek kaydırıcı ve gerçekçilik yorumu. Netini bilmeyen öğrenci için “Netimi bilmiyorum”.'),
 	mobile('m-onb-3-tempo', 'Onboarding', 'Onboarding 3 · Tempo ve günler', 'Onboarding · OnboardingStudyTempoStep', Onb.OnbTempoScreen, 'Saat ve soru sayısı hazır tempo kartlarında; günler kısaltmalarıyla (Pzt … Paz).'),
 	mobile('m-onb-4-dersler', 'Onboarding', 'Onboarding 4 · Zorlandığın dersler', 'Onboarding · OnboardingStudyWeakStep', Onb.OnbWeakScreen, 'İsteğe bağlı; planda bu derslere daha çok yer ayrılır.'),
-	mobile('m-onb-5-plan', 'Onboarding', 'Onboarding 5 · Planın hazır', 'Onboarding · plan özeti (OnboardingStudyWeakStep sonrası)', Onb.OnbPlanScreen, 'Hafta modül renkleriyle; bugünkü ilk görev somut. İlerleme çubuğu planı kuran beş adımı sayar.'),
-	mobile('m-onb-6-hesap', 'Onboarding', 'Planını kaydet', 'AuthRegister', Onb.OnbAccountScreen, 'Hesap ödeme ekranından önce: önce emeğin güvene alınır. Apple ve Google önde, e-posta ikincil.'),
-	mobile('m-onb-7-deneme', 'Onboarding', '3 gün ücretsiz', 'Onboarding · OnboardingTrialStep', Onb.OnbTrialScreen, 'Bugün, hatırlatma günü ve ücret günü açıkça. Başlayınca öğrenci bugünkü ilk konuya girer.'),
+	mobile('m-onb-5-plan', 'Onboarding', 'Onboarding 5 · Planın hazır', 'Onboarding · plan özeti (OnboardingStudyWeakStep sonrası)', Onb.OnbPlanScreen, 'Ayrı adım, ödemeden önce (mobil 5/5). Hafta modül renkleriyle; ilk görev kartında ok yok, ödeme öncesi görev açılmaz.'),
+	mobile('m-onb-7-deneme', 'Onboarding', '3 gün ücretsiz', 'Onboarding · OnboardingTrialStep', Onb.OnbTrialScreen, 'Bugün, hatırlatma günü ve ücret günü açıkça. Ödemeden sonra ana ekran açılır; ilk konu kendiliğinden açılmaz. Hesap adımı yok: mağaza satın alması hesapsız.'),
 	mobile('m-onb-8-bildirim', 'Onboarding', 'Bildirim izni · ilk çalışmadan sonra', '—', Onb.OnbNotificationsScreen, 'İzin, ilk çalışma bitince ve hatırlatmanın değeri belliyken istenir; sistem penceresinden önce kendi açıklamamız.'),
 	mobile('m-deneme-vitrin', 'Denemeler', 'Denemeler', 'ExamDashboard', Exam.ExamHomeScreen, 'Aylık deneme setinden şerit (yaklaşan: tarih, kalan süre, Hatırlat; açık: Canlı, kapanış, Başla), devam eden deneme (1 saat 14 dk kaldı), Bu ay sırada.', 'exam'),
 	mobile('m-deneme-katalog', 'Denemeler', 'Tüm denemeler', 'ExamDashboard (tüm denemeler)', Exam.ExamCatalogScreen, '', 'exam'),
@@ -199,24 +203,26 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-sino-not', 'SinoAI', 'SinoAI · çalışma notu', 'SinoAiStudyNote', Gaps.SinoStudyNoteScreen, 'Önemli noktalar ve terimler; Kart yap, Test üret; uyarı satırı.', 'sinoAi'),
 	mobile('m-sino-menu', 'SinoAI', 'SinoAI · menü', 'SinoAiChat (menü)', Sino.SinoMenuScreen, 'Arama, yeni sohbet, kütüphane, Kaynaklarım, gün gün sohbetler; altta kullanım çubuğu ve SinoAI’den çık.', 'sinoAi'),
 	mobile('m-sino-hak', 'SinoAI', 'SinoAI · aylık hak doldu', 'SinoAi', States.SinoLimitScreen, 'Hak aylık ve Akıllı Özet ile ortak: yenilenme tarihi, Kütüphaneme git, Bu arada kartı.', 'sinoAi'),
-	mobile('m-profil', 'Profil ve hesap', 'Profil', 'ProfileMain', Account.ProfileScreen, 'Hedef, abonelik, görünüm, destek ve hakkında tek yerde.'),
+	mobile('m-profil', 'Profil ve hesap', 'Profil', 'ProfileMain', Account.ProfileScreen, 'Üç ölçü kartı yok; Hesabım: Hedefim, Kişisel bilgiler, Aboneliğim, İstatistiklerim; Uygulama: Görünüm, Dil, Bildirimler. Ayrı Paketler, İletişim tercihleri, Puanla satırı yok.'),
 	mobile('m-profil-devam', 'Profil ve hesap', 'Profil · alt bölüm', 'ProfileMain', Account.ProfileMoreScreen, ''),
 	mobile('m-istatistik', 'İstatistikler', 'İstatistiklerim', 'ProfileStatistics', Insights.StatisticsScreen, 'Bu hafta: süre, soru, seri; günlük çalışma modüllere göre yığılı; net gelişimi; derslere göre doğru oranı ve süre.'),
 	mobile('m-istatistik-ilk', 'İstatistikler', 'İstatistikler · ilk hafta', 'ProfileStatistics', Insights.StatisticsFirstWeekScreen, 'Sıfır duvarı yerine ilk üç adım; veri geldikçe grafikler açılır.'),
 	mobile('m-istatistik-ders', 'İstatistikler', 'İstatistikler · tek ders', 'ProfileStatisticsLesson', Gaps.StatisticsLessonScreen, 'Bir dersin süresi, sorusu, başarısı ve konu konu başarı.'),
-	mobile('m-profil-bilgiler', 'Profil ve hesap', 'Kişisel bilgiler', 'ProfileUserInfo / ProfileEdit', Account.ProfileDetailsScreen, ''),
-	mobile('m-profil-hedef', 'Profil ve hesap', 'Hedefim', 'ProfileAcademic', Account.ProfileGoalScreen, ''),
-	mobile('m-profil-abonelik', 'Profil ve hesap', 'Aboneliğim', 'ProfileMySubscriptions', Account.SubscriptionScreen, ''),
+	mobile('m-profil-bilgiler', 'Profil ve hesap', 'Kişisel bilgiler', 'ProfileUserInfo / ProfileEdit', Account.ProfileDetailsScreen, 'Ad, soyad, e-posta, telefon; fotoğraf ve doğum yılı yok.'),
+	mobile('m-profil-hedef', 'Profil ve hesap', 'Hedefim', 'ProfileAcademic', Account.ProfileGoalScreen, 'Sınav ve puan türü; hedef net, bölüm, tempo yok.'),
+	mobile('m-profil-abonelik', 'Profil ve hesap', 'Aboneliğim', 'ProfileMySubscriptions', Account.SubscriptionScreen, 'Kullanım tek satır yapay zekâ yüzdesi (Akıllı Özet + SinoAI ortak).'),
+	mobile('m-profil-abonelik-hediye', 'Profil ve hesap', 'Aboneliğim · hediye erişim', 'ProfileMySubscriptions', Account.SubscriptionGiftScreen, 'Admin hediyesi: … tarihine kadar açık; mağaza notu yok.'),
 	mobile('m-profil-paketler', 'Profil ve hesap', 'Paketler', 'ProfileAvailablePackages', Account.PackagesScreen, ''),
-	mobile('m-profil-gorunum', 'Profil ve hesap', 'Görünüm', 'ProfileAppearance', Account.AppearanceScreen, ''),
-	mobile('m-profil-dil', 'Profil ve hesap', 'Dil', 'ProfileLanguage', Account.LanguageScreen, ''),
-	mobile('m-profil-iletisim', 'Profil ve hesap', 'Bildirim ve iletişim', 'ProfileCommunicationPreferences', Account.CommunicationScreen, ''),
-	mobile('m-profil-guvenlik', 'Profil ve hesap', 'Hesap güvenliği', 'ProfileAccountSecurity', Account.SecurityScreen, 'Şifre belirleme ya da değiştirme, oturumlar.'),
-	mobile('m-profil-kapat', 'Profil ve hesap', 'Hesabımı kapat', 'ProfileAccountClosure', Account.CloseAccountScreen, ''),
-	mobile('m-hakkinda', 'Profil ve hesap', 'Hakkında', 'ProfileAbout', Account.AboutScreen, ''),
-	mobile('m-geri-bildirim', 'Profil ve hesap', 'Geri bildirimlerim', 'FeedbackMy', Account.FeedbackScreen, ''),
-	mobile('m-bildirimler', 'Bildirimler', 'Bildirimler', 'NotificationInbox', Account.NotificationsScreen, ''),
-	mobile('m-bildirimler-bos', 'Bildirimler', 'Bildirim yok', 'NotificationInbox', States.NotificationsEmptyScreen, 'Neyin burada görüneceği ve bildirim ayarları.'),
+	mobile('m-profil-gorunum', 'Profil ve hesap', 'Görünüm', 'ProfileAppearance', Account.AppearanceScreen, 'Yalnız tema.'),
+	mobile('m-profil-dil', 'Profil ve hesap', 'Dil', 'ProfileLanguage', Account.LanguageScreen, 'Türkçe, English; yakında diller yok.'),
+	mobile('m-profil-iletisim', 'Profil ve hesap', 'Bildirimler', 'ProfileCommunicationPreferences', Account.CommunicationScreen, ''),
+	mobile('m-profil-guvenlik', 'Profil ve hesap', 'Hesap güvenliği', 'ProfileAccountSecurity', Account.SecurityScreen, 'Şifre satırı ve açık oturumlar; kodla giriş anahtarı ve Apple/Google bağlama yok.'),
+	mobile('m-profil-kapat', 'Profil ve hesap', 'Hesabımı kapat', 'ProfileAccountClosure', Account.CloseAccountScreen, 'Neden seçimi isteğe bağlı.'),
+	mobile('m-hakkinda', 'Profil ve hesap', 'Hakkında', 'ProfileAbout', Account.AboutScreen, '72 px kutu, sürüm, Kullanım koşulları, Gizlilik politikası, KVKK aydınlatma metni, Açık kaynak lisansları, telif satırı.'),
+	mobile('m-hakkinda-lisanslar', 'Profil ve hesap', 'Açık kaynak lisansları', 'ProfileLicenses', Account.LicensesScreen, 'Paket adı, sürüm, lisans.'),
+	mobile('m-geri-bildirim', 'Profil ve hesap', 'Geri bildirimlerim', 'FeedbackMy', Account.FeedbackScreen, 'Yalnız içerik tepkileri ve SinoAI işaretleri; SinoAI “hatalı” işareti Hata bildirimi. Yıldız kartı ve soru hata bildirimi yok.'),
+	mobile('m-bildirimler', 'Bildirimler', 'Bildirimler', 'NotificationInbox', Account.NotificationsScreen, 'Son iki gün başlıksız, sonra BU HAFTA ve DAHA ÖNCE; haftalık özet nötr grafik simgesi.'),
+	mobile('m-bildirimler-bos', 'Bildirimler', 'Bildirim yok', 'NotificationInbox', States.NotificationsEmptyScreen, 'Yeşil zil kutusu, neyin burada görüneceği ve Bildirim ayarları.'),
 	mobile('m-bildirim-ayarlar', 'Bildirimler', 'Bildirim ayarları', 'ProfileNotificationSettings', Notif.NotificationSettingsScreen, 'Yeni: türlere göre aç/kapa. Günde en çok 2 hatırlatma, 22:00–08:00 sessiz; canlı etkinlikler ayrı; bağlı saat.'),
 	mobile('m-bildirim-canli-deneme', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Canlı etkinlik · deneme başlıyor', 'iOS Live Activity (ActivityKit)', Notif.LockLiveExamScreen, 'Yeni: canlı denemeye 15 dk kala kilit ekranında geri sayım, katılan sayısı ve Hazırım. Uygulama simgesi yok (Apple), modül simgesi var. Sunucu push-to-start ile başlatır, deneme başlayınca biter.'),
 	mobile('m-bildirim-canli-odak', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Canlı etkinlik · odak oturumu', 'iOS Live Activity (ActivityKit)', Notif.LockFocusScreen, 'Yeni: odak sayacı kilit ekranında; tek düğme (Duraklat) uygulamayı açmadan çalışır (App Intents, Apple: tek etkileşimli öğe). Öğrenci başlatır, süre bitince hemen kapanır.'),
@@ -228,16 +234,16 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	mobile('m-bildirim-widget-kilit', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Kilit ekranı widget’ları', 'WidgetKit (accessory)', Notif.LockWidgetsScreen, 'Yeni: dakika halkası, sıradaki görev, seri. Sabah plan bildirimi.'),
 	mobile('m-bildirim-widget-ana', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Ana ekran widget’ları', 'WidgetKit (iOS)', Notif.HomeWidgetsScreen, 'Yeni: iOS ana ekranı. Bugün halkası, sıradaki deneme, etkileşimli plan listesi (görev uygulama açılmadan tamamlanır).'),
 	mobile('m-bildirim-widget-android', 'Bildirimler · kilit ekranı ve canlı etkinlik', 'Android ana ekran widget’ları', 'Jetpack Glance (Android)', Notif.AndroidWidgetsScreen, 'Yeni: Material You, renkler duvar kâğıdından. 2×2 bugün halkası, 2×1 sıradaki deneme ve odak başlat, 4×2 etkileşimli plan listesi; boyutlandırılabilir. Dokunma hedefi 48 dp, köşe sistemin (Google, Tier 1).'),
-	mobile('m-destek', 'Destek', 'Destek', 'Support · SupportHub', Account.SupportHubScreen, ''),
+	mobile('m-destek', 'Destek', 'Destek', 'Support · SupportHub', Account.SupportHubScreen, 'Karşılama kartı düz marka tonu (action), gradyan yok; yanıt süresi vaat edilmez.'),
 	mobile('m-destek-talepler', 'Destek', 'Taleplerim', 'SupportTickets', Gaps.SupportTicketsScreen, 'Açılan taleplerin durumu (Yanıtlandı, İnceleniyor, Kapandı) ve Yeni talep.'),
-	mobile('m-destek-yeni', 'Destek', 'Yeni talep', 'SupportNew', Account.SupportNewScreen, ''),
-	mobile('m-destek-talep', 'Destek', 'Talep detayı', 'SupportTicketDetail', Account.SupportTicketScreen, ''),
+	mobile('m-destek-yeni', 'Destek', 'Yeni talep', 'SupportNew', Account.SupportNewScreen, 'API’nin altı konusu (Öneri yok); ekran görüntüleri 72 pt küçük kutu + kaldır, en çok 3; e-posta alanı yok.'),
+	mobile('m-destek-talep', 'Destek', 'Talep detayı', 'SupportTicketDetail', Account.SupportTicketScreen, 'Başlık sağında Çözüldü metin düğmesi; talep no kimliğin ilk 8 hanesi.'),
 	mobile('m-durum-bos', 'Durumlar', 'Boş durum', '—', Account.EmptyStateScreen, ''),
 	mobile('m-durum-hata', 'Durumlar', 'Yükleniyor, hata, çevrimdışı', '—', Account.ErrorStateScreen, ''),
 	mobile('m-durum-guncelleme', 'Durumlar', 'Zorunlu güncelleme', 'ForceUpdateGate', States.ForceUpdateScreen, 'Desteklenmeyen sürüm: yüklü ve gerekli sürüm, tek düğme; ilerleme hesapta. API: app/version, mobil ForceUpdateGate.'),
-	web('w-giris', 'Web · Giriş ve kayıt', 'Giriş yap', '/student/login', WOnb.WebSignInScreen, 'Solda form (Google ve Apple üstte, kodla giriş), sağda tanıtım paneli.'),
+	web('w-giris', 'Web · Giriş ve kayıt', 'Giriş yap', '/student/login', WOnb.WebSignInScreen, 'Solda form (Google ve Apple üstte, kodla giriş), sağda tanıtım paneli. Ticari ileti kutusu yok; altta yasal satır.'),
 	web('w-giris-kod', 'Web · Giriş ve kayıt', 'Giriş kodu', '/student/login', WOnb.WebSignInCodeScreen, ''),
-	web('w-kayit', 'Web · Giriş ve kayıt', 'Kayıt ol', '/student/register', WOnb.WebSignUpScreen, 'Kayıtta paket yok: önce plan, sonra paket.'),
+	web('w-kayit', 'Web · Giriş ve kayıt', 'Kayıt ol', '/student/register', WOnb.WebSignUpScreen, 'Kayıtta paket yok: önce plan, sonra paket. Şifre en az 6 karakter; Koşullar + KVKK kutusunun altında işaretsiz ticari ileti (İYS) kutusu; altta yasal satır.'),
 	web('w-sifre-unuttum', 'Web · Giriş ve kayıt', 'Şifremi unuttum', '/student/forgot-password', WOnb.WebForgotScreen, ''),
 	web('w-sifre-sifirla', 'Web · Giriş ve kayıt', 'Şifre sıfırla', '/student/reset-password', WOnb.WebResetScreen, ''),
 	web('w-onb-1-sinav', 'Web · Onboarding', 'Web onboarding 1 · Sınav', '/student/baslangic', WOnb.WebOnbExamScreen, 'Mobil ile aynı adımlar, sağda canlı önizleme.'),
@@ -245,7 +251,7 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	web('w-onb-3-tempo', 'Web · Onboarding', 'Web onboarding 3 · Tempo', '/student/baslangic', WOnb.WebOnbTempoScreen, ''),
 	web('w-onb-4-dersler', 'Web · Onboarding', 'Web onboarding 4 · Dersler', '/student/baslangic', WOnb.WebOnbWeakScreen, ''),
 	web('w-onb-5-plan', 'Web · Onboarding', 'Web onboarding 5 · Planın hazır', '/student/baslangic', WOnb.WebOnbPlanScreen, 'Sağda aynı planın mobil hali.'),
-	web('w-onb-6-paket', 'Web · Onboarding', 'Web onboarding 6 · Paketini seç', '/student/baslangic', WOnb.WebOnbPlanChoiceScreen, 'Web’de deneme süresi yok: paket seçilir, kartla ödenir; “Şimdilik paket seçme” de var.'),
+	web('w-onb-6-paket', 'Web · Onboarding', 'Web onboarding 6 · Paketini seç', '/student/baslangic', WOnb.WebOnbPlanChoiceScreen, 'Web’de deneme süresi yok: paket seçilir, kartla ödenir. “Şimdilik paket seçme” yok: paketsiz panel açılmaz.'),
 	web('w-panel-anasayfa', 'Web · Ana sayfa', 'Ana sayfa', '/student/dashboard', WStudy.WebHomeScreen, 'Mobil ile aynı Bugün düzeni: selam ve altında hedef (tarih yok); sağda seri ve Paylaş. Her satır aynı iki sütun (1,3 / 1), satırdaki kartlar eş boy: günün planı + hafta; Kaldığın yerden ve Sıradaki deneme sol sütunda, Bugün tekrar sağda; Bu hafta + Modüller.'),
 	web('w-panel-tur', 'Web · Ana sayfa', 'İlk giriş ipucu', '/student/dashboard', WStudy.WebTourScreen, 'İlk girişte tek ipucu, günün adımının üstünde.'),
 	web('w-panel-anasayfa-plansiz', 'Web · Ana sayfa', 'Ana sayfa · planı olmayan öğrenci', '/student/dashboard', WStudy.WebHomeNoPlanScreen, 'Plan kartı kayıt cevaplarını gösterir, Planımı hazırla; ilk konu plansız başlar.'),
@@ -253,10 +259,12 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	web('w-panel-anasayfa-abonelik-bitti', 'Web · Ana sayfa', 'Ana sayfa · deneme süresi bitti', '/student/dashboard', WStudy.WebHomeExpiredScreen, 'Ödeme yoksa erişim yok; ilerleme korunur.'),
 	web('w-panel-moduller', 'Web · Ana sayfa', 'Tüm modüller', '/student/moduller (yeni sayfa: web uygulamasında yok)', WPanel.WebModulesScreen, ''),
 	web('w-panel-bildirimler', 'Web · Bildirimler', 'Bildirimler', '/student/bildirimler', WPanel.WebNotificationsScreen, ''),
-	web('w-panel-profil', 'Web · Profil ve hesap', 'Profil', '/student/profil', WPanel.WebProfileScreen, ''),
-	web('w-panel-abonelik', 'Web · Profil ve hesap', 'Profil · abonelik', '/student/profil', WPanel.WebSubscriptionScreen, ''),
-	web('w-panel-ayarlar', 'Web · Profil ve hesap', 'Profil · bildirim ve görünüm', '/student/profil', WPanel.WebSettingsScreen, ''),
+	web('w-panel-profil', 'Web · Profil ve hesap', 'Profil', '/student/profil', WPanel.WebProfileScreen, 'Sağ sütunda Hedefim özeti ve Hesabımı kapat (İncele).'),
+	web('w-panel-abonelik', 'Web · Profil ve hesap', 'Profil · abonelik', '/student/profil', WPanel.WebSubscriptionScreen, 'Erişimin kartı (açık modüller, tarih, yapay zekâ kullanımı yüzdesi); altta paket seçimi, Paketi değiştir oraya kaydırır.'),
+	web('w-panel-ayarlar', 'Web · Profil ve hesap', 'Profil · bildirimler', '/student/profil', WPanel.WebSettingsScreen, 'Çalışma · Denemeler · Pazarlama.'),
+	web('w-panel-gorunum', 'Web · Profil ve hesap', 'Profil · görünüm', '/student/profil', WPanel.WebAppearanceScreen, 'Ayrı sekme; yalnız tema.'),
 	web('w-panel-destek', 'Web · Destek', 'Destek', '/student/destek', WPanel.WebSupportScreen, ''),
+	web('w-panel-destek-yeni', 'Web · Destek', 'Yeni talep', '/student/destek', WPanel.WebSupportNewScreen, 'Sayfa içi form: API’nin altı konusu, Başlık, Açıklama, en çok 3 ekran görüntüsü (72 pt, kaldır düğmesi), Gönder / Vazgeç. Giriş yapmış öğrencide e-posta alanı yok.'),
 	web('w-panel-destek-talep', 'Web · Destek', 'Destek talebi', '/student/destek/[id]', WPanel.WebSupportTicketScreen, ''),
 	web('w-panel-odeme', 'Web · Ödeme', 'Ödeme', '/student/odeme', WPanel.WebCheckoutScreen, ''),
 	web('w-panel-odeme-basarili', 'Web · Ödeme', 'Ödeme başarılı', '/student/odeme/basarili', WPanel.WebPaySuccessScreen, ''),
@@ -330,15 +338,14 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	web('w-sino-not', 'Web · SinoAI', 'Çalışma notu', '/student/sinoai/kutuphane/not/[id]', WGaps.WebSinoStudyNoteScreen, '', 'sinoAi'),
 	site('s-anasayfa', 'Web sitesi · Ana sayfa', 'Ana sayfa', '/', SiteP.SiteHomeScreen, 3718, 'Sitenin header’ı, ikonsuz logo; beyaz ve gri tonlar. Maketlerde gerçek panel ve uygulama çizimleri.'),
 	site('s-urunler-menu', 'Web sitesi · Ana sayfa', 'Ürünler menüsü', 'header', SiteP.SiteMenuScreen, 900, 'Ürünler açılınca 7 modül, sitenin sade gri tonlarında.'),
-	site('s-sinavlar', 'Web sitesi · Sınavlar', 'Sınavlar', '/sinavlar', SiteP.SiteExamsScreen, 1189, ''),
 	site('s-sinav-yks', 'Web sitesi · Sınavlar', 'Sınav sayfası · YKS', '/yks-hazirlik (şablon)', SiteP.SiteExamLandingScreen, 2657, 'Tüm sınav ve hazırlık sayfaları bu şablonla.'),
 	site('s-net-hesaplama', 'Web sitesi · Sınavlar', 'Net hesaplama', '/net-hesaplama', SiteP.SiteNetCalcScreen, 1024, ''),
 	site('s-paketler', 'Web sitesi · Paketler', 'Paketler', '/corporate/packages', SiteP.SitePlansScreen, 1200, 'Yalnız ücretli paketler; deneme süresi mobil uygulamada.'),
 	site('s-urun-denemeler', 'Web sitesi · Ürünler', 'Ürün · Denemeler', '/urunler/denemeler (şablon)', SiteP.SiteProductExamScreen, 2068, 'Altı ürün sayfası tek şablon.'),
 	site('s-urun-ozet', 'Web sitesi · Ürünler', 'Ürün · Akıllı Özet', '/urunler/lens', SiteP.SiteProductSummaryScreen, 2047, ''),
-	site('s-blog', 'Web sitesi · Blog', 'Blog', '/blog', SiteP.SiteBlogScreen, 1815, ''),
+	site('s-blog', 'Web sitesi · Blog', 'Blog', '/blog', SiteP.SiteBlogScreen, 2680, '12 yazı ve Daha fazla yazı (N); arama kutusu çiplerin sağında.'),
 	site('s-blog-yazi', 'Web sitesi · Blog', 'Blog yazısı', '/blog/[slug]', SiteP.SiteBlogPostScreen, 1362, ''),
-	site('s-hakkimizda', 'Web sitesi · Kurumsal', 'Hakkımızda', '/corporate/about', SiteP.SiteAboutScreen, 1210, ''),
+	site('s-hakkimizda', 'Web sitesi · Kurumsal', 'Hakkımızda', '/corporate/about', SiteP.SiteAboutScreen, 1000, 'Sayı satırı yok; başlık ve Ölç / Öğren / Geliş kartları.'),
 	site('s-sss-iletisim', 'Web sitesi · Kurumsal', 'SSS ve iletişim', '/corporate/sss + /contact', SiteP.SiteFaqContactScreen, 1116, ''),
 	site('s-yasal', 'Web sitesi · Kurumsal', 'Yasal sayfa', '/corporate/yasal/[slug]', SiteP.SiteLegalScreen, 993, ''),
 	site('s-sinoai-misafir', 'Web sitesi · SinoAI misafir', 'SinoAI · misafir', '/sinoai', SiteP.SiteSinoGuestScreen, 900, ''),
@@ -404,6 +411,33 @@ export const UI_SCREENS: readonly UIScreen[] = [
 	share('p-hafta-gonderi', 'Haftalık özet · gönderi', Share.WeekPost, 'Aynı içerik 1080 × 1080.', true, 'studyPlan'),
 	share('p-soru-hikaye', 'Bu soruyu çözdüm · hikâye', Share.SolvedStory, 'Testler: soru metni ya da görseli ve şıklar; cevap ve çözüm yok. Ders · konu etiketi, süre ve seviye.', false, 'tests'),
 	share('p-soru-gonderi', 'Bu soruyu çözdüm · gönderi', Share.SolvedPost, 'Aynı içerik 1080 × 1080.', true, 'tests'),
+	// İstatistik raporu PDF'i (19 Nov 2026): API QuestPDF, spec docs/UIUX/Kodlama/13-Istatistik-Raporu-PDF.md.
+	print('r-istatistik-1', 'İstatistik raporu (PDF)', 'Son 30 gün · sayfa 1', 'API StatisticsReportPdf (QuestPDF) · w-istatistik “PDF olarak al”', Print.StatsReportPageOne, 'Üst bant (logo, rapor adı, dönem ve tarih aralığı, öğrenci), dört ölçü, günlük çalışma modüllere göre yığılı ve günlük ortalama, modüllere dağılım halkası ve tablosu.'),
+	print('r-istatistik-2', 'İstatistik raporu (PDF)', 'Son 30 gün · sayfa 2', 'API StatisticsReportPdf (QuestPDF) · w-istatistik “PDF olarak al”', Print.StatsReportPageTwo, 'Sürekli üst satır; derslere göre tablo (en çok 8 ders), altında TYT net gelişimi; en verimli saatler (son 30 gün, hücrede yüzde).'),
+	print('r-istatistik-hafta', 'İstatistik raporu (PDF)', 'Bu hafta · deneme yok · sayfa 1', 'API StatisticsReportPdf (QuestPDF) · w-istatistik “PDF olarak al”', Print.StatsReportWeek, 'Deneme yokken dördüncü ölçü seri; yedi sütunun üstünde süre, altında gün adı ve tarihi.'),
+];
+
+/* iPhone Duo (owner, 18 Nov 2026: every screen, outer and inner). Generated from the screens above so a fix on a screen is a fix on Duo. */
+const DUO_SYSTEM_GROUP = 'Bildirimler · kilit ekranı ve canlı etkinlik';
+const DUO_SHEET_GROUPS = ['Giriş ve kayıt', 'Onboarding'];
+const duoOuter = (screen: UIScreen): UIScreen => {
+	const Original = screen.Component;
+	const Component: React.FC = () => React.createElement(DuoOuter, {children: React.createElement(Original)});
+	return {...screen, id: `f-dis-${screen.id.slice(2)}`, platform: 'fold', group: `Duo dış · ${screen.group}`, Component, pose: 'outer', note: `Dış ekran 466 × 678 pt (dik), telefon düzeni; sağda iOS’un 84 pt şeridi: ada ve durum iOS'un, araç ve sekme simgeleri bizim. ${screen.note}`.trim()};
+};
+const duoInner = (screen: UIScreen): UIScreen => {
+	const Original = screen.Component;
+	const sheet = screen.platform === 'mobile';
+	const Component: React.FC = () => (sheet ? React.createElement(DuoCentered, {children: React.createElement(Original)}) : React.createElement(DuoInner, {module: screen.module, children: React.createElement(Original)}));
+	return {...screen, id: `f-ic-${screen.id.slice(2)}`, platform: 'fold', group: `Duo iç · ${screen.group.replace('Web · ', '')}`, Component, pose: 'inner', note: `${sheet ? 'İç ekran 951 × 669 pt: telefon akışı ortada 430 pt sütun.' : 'İç ekran 951 × 669 pt: tablet ve web sayfası; sağda iOS’un 84 pt şeridi.'} ${screen.note}`.trim()};
+};
+
+export const UI_SCREENS: readonly UIScreen[] = [
+	...BASE_SCREENS,
+	...BASE_SCREENS.filter((screen) => screen.platform === 'mobile' && screen.group !== DUO_SYSTEM_GROUP).map(duoOuter),
+	...BASE_SCREENS.filter((screen) => screen.platform === 'mobile' && DUO_SHEET_GROUPS.includes(screen.group)).map(duoInner),
+	...BASE_SCREENS.filter((screen) => screen.platform === 'web' && screen.route !== '—' && !screen.group.startsWith('Web · Giriş') && !screen.group.startsWith('Web · Onboarding')).map(duoInner),
+	...DUO_EXTRA,
 ];
 
 export const findScreen = (id: string): UIScreen => {

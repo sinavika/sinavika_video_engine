@@ -73,7 +73,7 @@ export const WebExamCalendarScreen: React.FC = () => {
 				</WCard>
 				<WCard title={t('Bu ay Sınavika denemeleri', 'Sınavika exams this month')}>
 					<Stack gap={10}>
-						<EntryRow module="exam" strong icon="exam" title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Cumartesi 10:00 · Türkiye geneli', 'Saturday 10:00 · nationwide')} />
+						<EntryRow module="exam" strong icon="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Cumartesi 10:00 · Türkiye geneli', 'Saturday 10:00 · nationwide')} />
 						<EntryRow module="exam" icon="exam" title={t('KPSS GY-GK Deneme 2', 'KPSS Exam 2')} sub={t('Pazartesi 14:00', 'Monday 14:00')} />
 					</Stack>
 				</WCard>
@@ -89,7 +89,7 @@ export const WebExamStartScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
 	return (
-		<Immersive module="exam" title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Başlamadan önce', 'Before you start')}>
+		<Immersive module="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Başlamadan önce', 'Before you start')}>
 			<Stack align="center" justify="center" gap={22} style={{flex: 1}}>
 				<div style={{width: 150, height: 150, borderRadius: 75, border: `12px solid ${mod.color}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box'}}>
 					<Text role="display" size={56}>
@@ -164,7 +164,7 @@ export const WebCardsTodayScreen: React.FC = () => {
 				{[
 					[t('Kimya · Mol', 'Chemistry · Mole'), 12, 0.4],
 					[t('Tarih · Osmanlı', 'History · Ottoman'), 10, 0.6],
-					[t('Türkçe · Ses bilgisi', 'Turkish · Phonetics'), 6, 0.2],
+					[t('Türkçe · Ses bilgisi', 'Reading · Vocabulary'), 6, 0.2],
 					[t('Coğrafya · İklim', 'Geography · Climate'), 4, 0.8],
 				].map(([name, count, share]) => (
 					<WCard key={name as string}>
@@ -324,9 +324,9 @@ export const WebExamSolutionsListScreen: React.FC = () => {
 			<ModuleHead module="exam" tab={3} title={t('Soru çözümleri', 'Solutions')} sub={t('Girdiğin denemelerin soruları, cevapların ve çözümleri', 'Questions, your answers and solutions')} />
 			<WCard>
 				{[
-					[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim · 12 yanlış, 6 boş', '19 Oct · 12 wrong, 6 blank')],
+					[t('TYT Deneme 5', 'SAT Practice Test 5'), t('19 Ekim · 12 yanlış, 6 boş', '19 Oct · 12 wrong, 6 blank')],
 					[t('TYT Temel Matematik · Kasım', 'TYT Basic Maths · Nov'), t('3 Kasım · 13 yanlış, 13 boş', '3 Nov · 13 wrong, 13 blank')],
-					[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · 15 yanlış, 4 boş', '12 Oct · 15 wrong, 4 blank')],
+					[t('TYT Deneme 4', 'SAT Practice Test 4'), t('12 Ekim · 15 yanlış, 4 boş', '12 Oct · 15 wrong, 4 blank')],
 				].map(([title, sub]) => (
 					<Row
 						key={title}

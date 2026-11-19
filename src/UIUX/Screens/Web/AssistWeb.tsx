@@ -38,7 +38,7 @@ export const WebCardsHomeScreen: React.FC = () => {
 				{[
 					['Kimya', 'Chemistry', 3, 0.62, 12],
 					['Tarih', 'History', 4, 0.42, 10],
-					['Türkçe', 'Turkish', 2, 0.55, 6],
+					['Türkçe', 'Reading & Writing', 2, 0.55, 6],
 					['Coğrafya', 'Geography', 2, 0.9, 4],
 					['Biyoloji', 'Biology', 2, 0.3, 0],
 					['İngilizce', 'English', 1, 0.25, 0],
@@ -77,7 +77,7 @@ export const WebCardsBrowseScreen: React.FC = () => {
 			<Grid columns="280px 1fr">
 				<Card padding={8}>
 					{[
-						[t('Türkçe', 'Turkish'), 12],
+						[t('Türkçe', 'Reading & Writing'), 12],
 						[t('Matematik', 'Maths'), 9],
 						[t('Fizik', 'Physics'), 7],
 						[t('Kimya', 'Chemistry'), 8],
@@ -156,7 +156,7 @@ export const WebCardSessionScreen: React.FC = () => {
 						</Chip>
 						<Text role="meta">{t('1 mol nedir?', 'What is 1 mole?')}</Text>
 						<Text role="display" size={34} align="center">
-							6,02 × 10²³ {t('tanecik', 'particles')}
+							{t('6,02', '6.02')} × 10²³ {t('tanecik', 'particles')}
 						</Text>
 						<Text role="body" size={16} align="center">
 							{t('Avogadro sayısı kadar atom, molekül ya da iyon içeren madde miktarı.', 'The amount containing Avogadro’s number of particles.')}
@@ -335,7 +335,7 @@ export const WebSummaryDetailScreen: React.FC = () => {
 				tab={3}
 				tabs={SUMMARY_TABS(t)}
 				title={t('Türev · Zincir kuralı', 'Chain rule')}
-				sub={t('AYT Matematik · cevap B · bugün 14:10', 'AYT Maths · answer B · today 14:10')}
+				sub={t('AYT Matematik · cevap B · bugün 14:10', 'SAT Math · answer B · today 14:10')}
 				actions={
 					<>
 						<Button tone="ghost" icon="file">

@@ -42,9 +42,11 @@ if (values.inventory) {
 		['mobile', 'Mobil uygulama'],
 		['web', 'Web paneli ve web giriş/onboarding'],
 		['tablet', 'Tablet (iPad ve Android tablet, kalem)'],
+		['fold', 'iPhone Duo (dış ve iç ekran)'],
 		['site', 'Web sitesi (giriş öncesi)'],
 		['watch', 'Akıllı saat (Apple Watch ve Wear OS)'],
 		['share', 'Paylaşım kartları (hikâye ve gönderi)'],
+		['print', 'PDF belgeleri (A4)'],
 	];
 	const lines = ['# Sınavika UI/UX ekran envanteri', '', 'Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.', 'Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.', '', `Toplam ${UI_SCREENS.length} çizim: ${platforms.map(([platform, label]) => `${label.toLocaleLowerCase('tr-TR')} ${UI_SCREENS.filter((screen) => screen.platform === platform).length}`).join(', ')}.`, ''];
 	for (const [platform, label] of platforms) {
@@ -77,16 +79,20 @@ const FOLDER: Record<UIPlatform, string> = {
 	web: 'web-panel',
 	site: 'web-site',
 	tablet: 'tablet',
+	fold: 'iphone-duo',
 	watch: 'saat',
 	share: 'paylasim',
+	print: 'pdf',
 };
 const BOARD_COLUMNS: Record<UIPlatform, number> = {
 	mobile: 5,
 	web: 3,
 	site: 4,
 	tablet: 2,
+	fold: 3,
 	watch: 5,
 	share: 4,
+	print: 3,
 };
 const langs = (values.lang === 'both' ? ['tr', 'en'] : [values.lang]) as UILang[];
 const modes = (values.mode === 'both' ? ['light', 'dark'] : [values.mode]) as UIMode[];
@@ -115,7 +121,7 @@ for (const lang of langs)
 					inputProps,
 					puppeteerInstance: browser,
 				});
-				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'watch' ? UI_CANVAS.watch.scale : screen.platform === 'share' ? UI_CANVAS.share.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : UI_CANVAS.web.scale;
+				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'watch' ? UI_CANVAS.watch.scale : screen.platform === 'share' ? UI_CANVAS.share.scale : screen.platform === 'print' ? UI_CANVAS.print.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : screen.platform === 'fold' ? UI_CANVAS.duoInner.scale : UI_CANVAS.web.scale;
 				await renderStill({
 					composition,
 					serveUrl,

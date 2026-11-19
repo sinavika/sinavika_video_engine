@@ -4,6 +4,7 @@ import {Icon, type UIIconName} from '../Icons';
 import {alpha, MODULES, moduleGradient, moduleInk, type ModuleKey} from '../ModuleIdentity';
 import {UI_CANVAS, UI_RADIUS, UI_SHADOW} from '../Tokens';
 import {useFit} from '../Fit';
+import {DUO_BOTTOM, DUO_OUTER_TOOLBAR_TOP, DUO_RAIL, DuoRail, RailButton, RailGroup} from './Duo';
 import {Button, Chip, Glow, Logo, Stack, Steps, Text, Watermark} from './Shared';
 
 /**
@@ -37,9 +38,20 @@ const StatusBar: React.FC<{light?: boolean}> = ({light}) => {
 export const Phone: React.FC<{children: React.ReactNode; bg?: string; wash?: boolean; lightStatus?: boolean; overlay?: React.ReactNode}> = ({children, bg, wash, lightStatus, overlay}) => {
 	const colors = useColors();
 	const mod = useModuleColors();
+	const {canvas, duo} = useUI();
 	const background = bg ?? (wash ? `linear-gradient(180deg, ${mod.wash} 0%, ${colors.bg} 34%)` : colors.bg);
+	if (duo === 'outer' || duo === 'sheet') {
+		// iPhone Duo: no status bar on top. Outer display: iOS's trailing strip (island, status; our toolbar and tab bar). Bottom bars keep their own home-indicator padding, as on the phone.
+		return (
+			<div data-ui="screen" style={{position: 'relative', width: canvas?.width ?? W, height: canvas?.height ?? H, overflow: 'hidden', display: 'flex', flexDirection: 'column', background}}>
+				<div style={{flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', marginRight: duo === 'outer' ? DUO_RAIL : 0, paddingTop: 10}}>{children}</div>
+				{duo === 'outer' ? <DuoRail island /> : null}
+				{overlay}
+			</div>
+		);
+	}
 	return (
-		<div data-ui="screen" style={{position: 'relative', width: W, height: H, overflow: 'hidden', display: 'flex', flexDirection: 'column', background}}>
+		<div data-ui="screen" style={{position: 'relative', width: canvas?.width ?? W, height: canvas?.height ?? H, overflow: 'hidden', display: 'flex', flexDirection: 'column', background}}>
 			<StatusBar light={lightStatus} />
 			{children}
 			{overlay}
@@ -72,12 +84,32 @@ export const AppHeader: React.FC<{left?: 'profile' | 'back' | 'close' | 'menu' |
 	const {module} = useUI();
 	const icon: Record<string, UIIconName> = {profile: 'user', back: 'left', close: 'x', menu: 'menu'};
 	const showLogo = logo ?? (!title && !module);
+	const {duo} = useUI();
+	if (duo === 'outer') {
+		// Toolbar items with an icon move to the rail (Back or Close first, then the action); a text item stays in the header.
+		const custom = right !== undefined;
+		// A module page with tabs already shows Profil at the foot of the rail, so the toolbar drops its own profile button.
+		const tabbed = left === 'profile' && !!(module && MODULES[module].tabs);
+		return (
+			<>
+				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, height: 40, padding: '0 18px', flexShrink: 0}}>
+					{showLogo ? <Logo height={22} /> : title ? <Text role="section">{title}</Text> : <div />}
+					{custom ? right : null}
+				</div>
+				<RailGroup top={DUO_OUTER_TOOLBAR_TOP} label="duo-toolbar">
+					{left === 'none' || tabbed ? null : <RailButton icon={icon[left]} />}
+					{custom ? null : <RailButton icon="bell" badge="3" />}
+				</RailGroup>
+			</>
+		);
+	}
 	return (
-		<Stack row justify="space-between" style={{height: 52, padding: '0 14px', flexShrink: 0}}>
-			{left === 'none' ? <div style={{width: 40}} /> : <RoundIcon icon={icon[left]} tone={left === 'profile' ? 'plain' : 'card'} />}
+		// Three columns so the title stays centred whatever sits on the right (B5): 40 pt round back or close, centred title, right action.
+		<div style={{display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', columnGap: 8, height: 52, padding: '0 14px', flexShrink: 0}}>
+			<div style={{justifySelf: 'start'}}>{left === 'none' ? <div style={{width: 40}} /> : <RoundIcon icon={icon[left]} tone={left === 'profile' ? 'plain' : 'card'} />}</div>
 			{showLogo ? <Logo height={24} /> : title ? <Text role="section">{title}</Text> : <div />}
-			{right ?? <RoundIcon icon="bell" badge="3" />}
-		</Stack>
+			<div style={{justifySelf: 'end', display: 'flex', alignItems: 'center'}}>{right ?? <RoundIcon icon="bell" badge="3" />}</div>
+		</div>
 	);
 };
 
@@ -90,6 +122,13 @@ export const TabBar: React.FC<{module: ModuleKey; active?: number}> = ({module, 
 	if (!tabs) return null;
 	const items: ({label: string; icon: UIIconName} | 'hub')[] = [{label: t(tabs[0].label), icon: tabs[0].icon}, {label: t(tabs[1].label), icon: tabs[1].icon}, 'hub', {label: t(tabs[2].label), icon: tabs[2].icon}, {label: t('Profil', 'Profile'), icon: 'user'}];
 	const slot = [0, 1, 3, 4][active] ?? 0;
+	if (useUI().duo === 'outer') {
+		return (
+			<RailGroup bottom={DUO_BOTTOM} label="duo-tabbar">
+				{items.map((item, index) => (item === 'hub' ? <RailButton key="hub" icon="grid" /> : <RailButton key={item.label} icon={item.icon} on={index === slot} color={mod.color} soft={mod.soft} />))}
+			</RailGroup>
+		);
+	}
 	return (
 		<div data-ui="tabbar" style={{position: 'absolute', left: 14, right: 14, bottom: 22, height: 72, borderRadius: 28, background: alpha(colors.card.length === 7 ? colors.card : '#FFFFFF', 0.96), border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 2, padding: '0 6px', zIndex: 5}}>
 			{items.map((item, index) => {
@@ -192,9 +231,12 @@ export const HubCard: React.FC<{module: ModuleKey; wide?: boolean; status?: stri
  */
 export const Content: React.FC<{children: React.ReactNode; gap?: number; tabBar?: boolean; padding?: string; style?: React.CSSProperties; fit?: boolean}> = ({children, gap = 14, tabBar = true, padding, style, fit = true}) => {
 	const ref = React.useRef<HTMLDivElement>(null);
-	useFit(ref, fit);
+	// iPhone Duo outer display (shorter than a phone, 644 pt of content): the page is drawn scrolled to its top instead of leaving blocks out.
+	const {duo} = useUI();
+	const outer = duo === 'outer';
+	useFit(ref, fit && !outer);
 	return (
-		<div ref={ref} data-fit-area style={{flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap, padding: padding ?? `4px 18px ${tabBar ? 108 : 20}px`, boxSizing: 'border-box', ...style}}>
+		<div ref={ref} data-fit-area data-ui={outer ? 'scroll-y' : undefined} style={{flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap, padding: padding ?? `4px 18px ${tabBar && !outer ? 108 : outer ? DUO_BOTTOM : 20}px`, boxSizing: 'border-box', ...style}}>
 			{React.Children.map(children, (child) =>
 				child ? (
 					<div data-fit="block" style={{flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: style?.alignItems}}>
@@ -330,8 +372,9 @@ export const TourOverlay: React.FC<{hole: {x: number; y: number; w: number; h: n
 	const accent = useAccent();
 	const t = useT();
 	const single = total === 1;
+	const canvasHeight = useUI().canvas?.height ?? H;
 	const top = below ? hole.y + hole.h + 18 : undefined;
-	const bottom = below ? undefined : H - hole.y + 18;
+	const bottom = below ? undefined : canvasHeight - hole.y + 18;
 	return (
 		<div data-ui="scrim" style={{position: 'absolute', inset: 0, zIndex: 30}}>
 			<div style={{position: 'absolute', left: hole.x, top: hole.y, width: hole.w, height: hole.h, borderRadius: hole.r ?? 22, boxShadow: `0 0 0 4px rgba(255,255,255,0.95), 0 0 0 2000px rgba(11, 28, 48, 0.62)`}} />

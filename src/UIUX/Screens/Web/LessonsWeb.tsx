@@ -2,7 +2,7 @@ import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {Bar, Button, Card, Chip, Pct, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
-import {Grid, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
+import {Grid, ModuleBanner, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
 import {UI_CANVAS, UI_SHADOW} from '../../Tokens';
 import {ConceptContent, Feedback, FillContent, Kind, OrderContent, PlainCard, PredictContent, QuestionContent, REVIEWS, Rich, RoundButton, SUMMARY, TOPIC, TopicBadge, TopicProgress, TopicSurvey, TrueFalseContent, VideoRow, WORK_LESSONS, WORK_TOPICS} from '../Mobile/Lessons';
 import {FilterChips, ModuleWeekCard} from '../../Parts/Study';
@@ -107,7 +107,7 @@ export const WebLessonsTopicsScreen: React.FC = () => {
 	const mod = useModuleColors('lessons');
 	return (
 		<Panel active="lessons" crumb={t('Dersler ›', 'Lessons ›')}>
-			<ModuleHead module="lessons" tab={1} title={t('Türkçe', 'Turkish')} sub={t('TYT · 15 konu · %11 tamamlandı', 'TYT · 15 topics · 11% done')} />
+			<ModuleHead module="lessons" tab={1} title={t('Türkçe', 'Reading & Writing')} sub={t('TYT · 15 konu · %11 tamamlandı', 'TYT · 15 topics · 11% done')} />
 			{/* Lesson pills switch the lesson; the filter narrows the list. */}
 			<Stack row justify="space-between" gap={18}>
 				<FilterChips module="lessons" items={WORK_LESSONS.map(([tr, en]) => t(tr, en))} />
@@ -225,7 +225,9 @@ const LessonSide: React.FC = () => {
 					{t('Tanım', 'Definition')}
 				</Kind>
 				<Text role="small" size={14} color={colors.ink}>
-					Benzetme ya da ilgiyle gerçek anlamdan <b>tamamen uzaklaşma</b>.
+					{t('Benzetme ya da ilgiyle gerçek anlamdan ', 'A meaning that leaves the literal one ')}
+					<b>{t('tamamen uzaklaşma', 'completely behind')}</b>
+					{t('.', ', through likeness or link.')}
 				</Text>
 			</PlainCard>
 			<PlainCard gap={5} padding={14} style={{borderRadius: 14}}>
@@ -233,7 +235,9 @@ const LessonSide: React.FC = () => {
 					{t('Sık hata', 'Common mistake')}
 				</Kind>
 				<Text role="small" size={14} color={colors.ink}>
-					Somut sözcükler de mecaz olabilir: <b>sıcak</b> bir karşılama.
+					{t('Somut sözcükler de mecaz olabilir: ', 'Concrete words can be figurative too: a ')}
+					<b>{t('sıcak', 'warm')}</b>
+					{t(' bir karşılama.', ' welcome.')}
 				</Text>
 			</PlainCard>
 			<VideoRow title={t('Videoda izle', 'Watch the video')} sub="1:38 – 4:18" size={14.5} />
@@ -253,42 +257,57 @@ const LessonSide: React.FC = () => {
  */
 export const StudyPlayer: React.FC<{step: number; review?: number; section?: string; nav: React.ReactNode; center?: boolean; children: React.ReactNode}> = ({step, review, section = 'Mecaz anlam', nav, center, children}) => {
 	const colors = useColors();
+	const t = useT();
+	// iPhone Duo inner display: the player fills the frame, the column takes the width, the side outline stays out (the step bar's progress tells the place).
+	const embedded = useInTablet();
+	const column = embedded ? '100%' : COLUMN;
 	return (
 		<UIProvider module="lessons" web>
-			<div style={{width: UI_CANVAS.web.width, height: UI_CANVAS.web.height, display: 'flex', background: colors.bg, overflow: 'hidden'}}>
+			<div style={{width: embedded ? '100%' : UI_CANVAS.web.width, height: embedded ? undefined : UI_CANVAS.web.height, flex: embedded ? 1 : undefined, minHeight: 0, display: 'flex', background: colors.bg, overflow: 'hidden'}}>
 				<div style={{flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column'}}>
 					<Stack row gap={16} style={{height: 76, padding: '0 28px', borderBottom: `1px solid ${colors.line}`, background: colors.card, flexShrink: 0}}>
 						<RoundButton />
 						<Stack gap={0} grow>
 							<Text role="headline" size={16} weight={800}>
-								{TOPIC.title}
+								{t(TOPIC.title, 'Words in Context')}
 							</Text>
-							<Text role="small" size={13.5} color={colors.ink2}>{`Türkçe · ${section}`}</Text>
+							<Text role="small" size={13.5} color={colors.ink2}>
+								{t(`Türkçe · ${section}`, `Reading & Writing · ${section === 'Mecaz anlam' ? 'Figurative meaning' : section}`)}
+							</Text>
 						</Stack>
-						<div style={{width: 380}}>{review ? <TopicProgress step={step} total={review} label={['Tekrar', 'Review']} height={8} size={13.5} /> : <TopicProgress step={step} height={8} size={13.5} />}</div>
+						<div style={{width: embedded ? 220 : 380}}>{review ? <TopicProgress step={step} total={review} label={['Tekrar', 'Review']} height={8} size={13.5} /> : <TopicProgress step={step} height={8} size={13.5} />}</div>
 					</Stack>
 					<div style={{flex: 1, minHeight: 0, display: 'flex', justifyContent: 'center', overflow: 'hidden'}}>
-						<div style={{width: COLUMN, padding: '28px 0 12px', display: 'flex', flexDirection: 'column', gap: 14, justifyContent: center ? 'center' : undefined}}>{children}</div>
+						<div style={{width: column, maxWidth: COLUMN, padding: embedded ? '20px 28px 12px' : '28px 0 12px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 14, justifyContent: center ? 'center' : undefined}}>{children}</div>
 					</div>
 					<div style={{display: 'flex', justifyContent: 'center', padding: '12px 0 24px', flexShrink: 0}}>
-						<Stack row justify="space-between" gap={12} style={{width: COLUMN}}>
+						<Stack row justify="space-between" gap={12} style={{width: column, maxWidth: COLUMN, padding: embedded ? '0 28px' : undefined, boxSizing: 'border-box'}}>
 							{nav}
 						</Stack>
 					</div>
 				</div>
-				<LessonSide />
+				{embedded ? null : <LessonSide />}
 			</div>
 		</UIProvider>
 	);
 };
 
-export const Back: React.FC<{children?: string; icon?: UIIconName}> = ({children = 'Önceki adım', icon = 'left'}) => (
-	<Button tone="ghost" size="lg" icon={icon}>
-		{children}
-	</Button>
-);
+/** English labels of the player's buttons (the English drawings never show Turkish). */
+const PLAYER_EN: Record<string, string> = {'Önceki adım': 'Previous step', Devam: 'Continue', 'Kontrol et': 'Check', Cevapla: 'Answer', Sonraki: 'Next', Bitir: 'Finish', 'Konuyu bitir': 'Finish topic', Tekrarla: 'Review', Gönder: 'Submit'};
 
-export const Main: React.FC<{children: string}> = ({children}) => <Button size="lg">{children}</Button>;
+export const Back: React.FC<{children?: string; icon?: UIIconName}> = ({children = 'Önceki adım', icon = 'left'}) => {
+	const t = useT();
+	return (
+		<Button tone="ghost" size="lg" icon={icon}>
+			{t(children, PLAYER_EN[children] ?? children)}
+		</Button>
+	);
+};
+
+export const Main: React.FC<{children: string}> = ({children}) => {
+	const t = useT();
+	return <Button size="lg">{t(children, PLAYER_EN[children] ?? children)}</Button>;
+};
 
 export const WebLessonConceptScreen: React.FC = () => (
 	<StudyPlayer

@@ -15,7 +15,7 @@ export {LessonsHomeScreen, LessonConceptScreen as LessonFlowScreen} from './Less
 
 /** Lesson mains (Türkçe, Matematik…) with their quiz progress: the first level of every content module. */
 export const LESSON_MAINS: [string, string, number, number][] = [
-	['Türkçe', 'Turkish', 12, 30],
+	['Türkçe', 'Reading & Writing', 12, 30],
 	['Matematik', 'Maths', 9, 35],
 	['Geometri', 'Geometry', 3, 20],
 	['Fizik', 'Physics', 5, 18],
@@ -96,7 +96,7 @@ export const TestsTopicsScreen: React.FC = () => {
 			<Content gap={10}>
 				<PageTitle module="tests" title={t('Konular', 'Topics')} sub={t('TYT · bütün dersler', 'TYT · every subject')} />
 				<Card padding={0}>
-					<Lesson name={t('Türkçe', 'Turkish')} sub={t('30 konu · 12 tamamlandı', '30 topics · 12 complete')} />
+					<Lesson name={t('Türkçe', 'Reading & Writing')} sub={t('30 konu · 12 tamamlandı', '30 topics · 12 complete')} />
 				</Card>
 				<Card padding={0} tone="moduleLine" module="tests">
 					<Lesson name={t('Matematik', 'Maths')} sub={t('25 konu · 9 tamamlandı', '25 topics · 9 complete')} open />
@@ -271,7 +271,7 @@ export const TestSolveWrongScreen: React.FC = () => {
 			</Stack>
 			<Content tabBar={false} gap={12} padding="16px 18px 10px">
 				<Text role="body" size={17} weight={600} color={colors.ink} style={{lineHeight: '26px'}}>
-					{t('Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', 'Ali finishes a job in 6 days, Ayşe in 12. How many days do they need together?')}
+					{t('Bir işi Ali 6 günde, Ayşe 12 günde bitiriyor. İkisi birlikte bu işi kaç günde bitirir?', 'Ali finishes a job in 6 days, Emma in 12. How many days do they need together?')}
 				</Text>
 				<OptionRow letter="A" text="3" />
 				<OptionRow letter="B" text="4" state="correct" />

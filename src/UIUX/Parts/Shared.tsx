@@ -321,9 +321,10 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 					border: `1.5px solid ${error ? colors.error : focus ? accent.color : colors.line}`,
 					boxShadow: focus ? `0 0 0 4px ${alpha(accent.color, 0.1)}` : undefined,
 					display: 'flex',
-					alignItems: 'center',
+					// A tall field is a text area: the text starts at the top and wraps.
+					alignItems: height > 60 ? 'flex-start' : 'center',
 					gap: 10,
-					padding: '0 14px',
+					padding: height > 60 ? '12px 14px' : '0 14px',
 					fontFamily: typography.body,
 					fontSize: 16,
 					fontWeight: 500,
@@ -331,7 +332,7 @@ export const Field: React.FC<FieldProps> = ({label, value, placeholder, icon, tr
 				}}
 			>
 				{icon ? <Icon name={icon} size={18} color={colors.muted} /> : null}
-				<span data-ui={value ? undefined : 'placeholder'} style={{flex: 1, whiteSpace: 'nowrap', overflow: 'hidden'}}>
+				<span data-ui={value ? undefined : 'placeholder'} style={{flex: 1, whiteSpace: height > 60 ? 'normal' : 'nowrap', overflow: 'hidden'}}>
 					{value ?? placeholder}
 				</span>
 				{trailing}
@@ -439,7 +440,7 @@ export const OptionRow: React.FC<{letter: string; text: string; state?: OptionSt
 		wrong: {line: colors.error, fill: colors.errorSoft, badge: '#DC2626', ink: '#FFFFFF'},
 	}[state];
 	return (
-		<Stack row gap={12} style={{padding: '11px 14px', borderRadius: UI_RADIUS.md, border: `1.5px solid ${look.line}`, background: look.fill}}>
+		<Stack data-ui="option" row gap={12} style={{padding: '11px 14px', borderRadius: UI_RADIUS.md, border: `1.5px solid ${look.line}`, background: look.fill}}>
 			<div style={{width: 30, height: 30, borderRadius: 10, background: look.badge, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 				{state === 'correct' ? (
 					<Icon name="check" size={16} color="#FFFFFF" />

@@ -4,11 +4,15 @@ import {describe, expect, it, vi} from 'vitest';
 import {flashOpacity, punchScale, shakeOffset, whipPan} from '../../../src/Components/Story/StoryCamera';
 import {landing, netChartLayout, StickyNote} from '../../../src/Components/Story/StoryCard';
 import {cursorAt, StoryCursor} from '../../../src/Components/Story/StoryCursor';
-import {deviceFor, morphAt, sequenceDevice, slidesAt, StoryDevice} from '../../../src/Components/Story/StoryDevice';
+import {buzzAt, deviceFor, flipAt, morphAt, riseAt, sequenceDevice, slidesAt, StoryDevice, tapAt} from '../../../src/Components/Story/StoryDevice';
 import {HOME_APPS, homeLayout, StoryPhone, thumbAt} from '../../../src/Components/Story/StoryPhone';
 import {DEFAULT_STORY_LOOK, lookIssues, lookNameOf, repeatedLooks, STORY_COLORS, STORY_LOOKS, StoryLookFieldSchema, StoryLookProvider, storyTone, type StoryLookName} from '../../../src/Components/Story/StoryLook';
 import {StoryGround} from '../../../src/Components/Story/StoryMaterial';
-import {blendPoses, blinkAt, poseAt, STUDENT_POSES} from '../../../src/Components/Story/StoryStudent';
+import {blendPoses, blinkAt, poseAt, StoryStudent, STUDENT_POSES} from '../../../src/Components/Story/StoryStudent';
+import {StoryWrist} from '../../../src/Components/Story/StoryWrist';
+import {SOUND_EFFECTS} from '../../../src/Configurations/SoundEffects';
+import {existsSync} from 'node:fs';
+import path from 'node:path';
 import {subBeats} from '../../../src/Components/Story/StoryTiming';
 import {KeyPhrase, keyOf} from '../../../src/Components/Story/StoryType';
 import {SINAVIKA_TR_TEMPO} from '../../../src/Configurations/SocialTempo';
@@ -311,3 +315,83 @@ describe('UI states: the cursor and the spring morph', () => {
 		}
 	});
 });
+
+describe('the watch (Sosyal Medya, 19 Nov 2026: the December watch reels)', () => {
+	const card = [
+		{id: 'k-apple-kart', at: 0},
+		{id: 'k-apple-kart-cevap', at: 1, transition: 'flip' as const},
+	];
+
+	it('a notification rises from the bottom edge over the old screen, which steps back', () => {
+		const screens = [
+			{id: 'k-apple-kadran', at: 0},
+			{id: 'k-apple-bildirim', at: 1, transition: 'rise' as const},
+		];
+		expect(riseAt(screens, 0.5)).toEqual([{index: 0, y: 0, scale: 1, opacity: 1}]);
+		const mid = riseAt(screens, 1.15);
+		expect(mid.map((layer) => layer.index)).toEqual([0, 1]);
+		expect(mid[1].y).toBeGreaterThan(0);
+		expect(mid[1].y).toBeLessThan(1);
+		expect(mid[0].scale).toBeLessThan(1);
+		expect(riseAt(screens, 2)).toEqual([{index: 1, y: 0, scale: 1, opacity: 1}]);
+	});
+
+	it('a card turns over: the question edge-on, then the answer from the other edge, one face at a time', () => {
+		expect(flipAt(card, 0.9)).toEqual([{index: 0, angle: 0}]);
+		const first = flipAt(card, 1.1);
+		expect(first).toHaveLength(1);
+		expect(first[0].index).toBe(0);
+		expect(first[0].angle).toBeGreaterThan(0);
+		expect(first[0].angle).toBeLessThan(90);
+		const second = flipAt(card, 1.4);
+		expect(second[0].index).toBe(1);
+		expect(second[0].angle).toBeLessThan(0);
+		expect(second[0].angle).toBeGreaterThan(-90);
+		expect(flipAt(card, 2)).toEqual([{index: 1, angle: 0}]);
+	});
+
+	it('a buzz shakes the case and fades, its wave spreads a little longer', () => {
+		const buzzes = [{at: 1}];
+		expect(buzzAt(buzzes, 0.9)).toEqual({shake: 0, ring: null});
+		expect(Math.abs(buzzAt(buzzes, 1.01).shake)).toBeGreaterThan(0.1);
+		expect(buzzAt(buzzes, 1.3).ring).toBeCloseTo(0.5);
+		expect(buzzAt(buzzes, 1.5)).toMatchObject({shake: 0});
+		expect(buzzAt(buzzes, 1.7)).toEqual({shake: 0, ring: null});
+	});
+
+	it('the fingertip comes in before its tap, presses on it and lifts away', () => {
+		const taps = [{x: 0.75, y: 0.76, at: 2}];
+		expect(tapAt(taps, 1.5)).toBeNull();
+		expect(tapAt(taps, 1.9)?.near).toBeGreaterThan(0);
+		expect(tapAt(taps, 1.9)?.ripple).toBeNull();
+		expect(tapAt(taps, 2.06)?.press).toBeGreaterThan(0.9);
+		expect(tapAt(taps, 2.06)?.near).toBe(1);
+		expect(tapAt(taps, 2.3)?.press).toBe(0);
+		expect(tapAt(taps, 2.5)).toBeNull();
+	});
+
+	it('the student raises the watch wrist and taps it with the other hand; the glass lights only then', () => {
+		for (const name of ['wrist', 'wristTap'] as const) expect(STUDENT_POSES[name].watchLit).toBe(1);
+		for (const name of ['slumped', 'upright', 'surprised', 'happy', 'phone'] as const) expect(STUDENT_POSES[name].watchLit).toBe(0);
+		expect(STUDENT_POSES.wristTap.rightArm).toEqual(STUDENT_POSES.wrist.rightArm);
+		expect(STUDENT_POSES.wristTap.leftArm).not.toEqual(STUDENT_POSES.wrist.leftArm);
+		const html = renderToStaticMarkup(React.createElement(StoryStudent, {keys: [{at: 0, pose: 'wristTap'}], watch: 'wear', watchColor: '#C2410C'}));
+		expect(html).toContain('#C2410C');
+		expect(renderToStaticMarkup(React.createElement(StoryStudent, {keys: [{at: 0, pose: 'wrist'}]}))).not.toContain('#0B0F17');
+	});
+
+	it('the wrist close-up draws both watches by one API, and only watches', () => {
+		const apple = renderToStaticMarkup(React.createElement(StoryWrist, {screens: [{id: 'k-apple-kadran', at: 0}, {id: 'k-apple-bildirim', at: 0, transition: 'rise'}], width: 300, buzzes: [{at: 0}], taps: [{x: 0.5, y: 0.5, at: 0}]}));
+		const wear = renderToStaticMarkup(React.createElement(StoryWrist, {id: 'k-wear-kadran', width: 300}));
+		expect(apple).toContain('story-wrist-skin');
+		expect(wear).toContain('border-radius:50%');
+		expect(() => renderToStaticMarkup(React.createElement(StoryWrist, {id: 'm-plan-bugun', width: 300}))).toThrow();
+		expect(() => renderToStaticMarkup(React.createElement(StoryDevice, {id: 'm-plan-bugun', width: 300, buzzes: [{at: 0}]}))).toThrow();
+		expect(renderToStaticMarkup(React.createElement(StoryDevice, {screens: card, width: 300, taps: [{x: 0.75, y: 0.76, at: 0}]}))).toContain('rotate(-24deg)');
+	});
+
+	it('the haptic buzz is a kept sound effect', () => {
+		expect(existsSync(path.join(process.cwd(), 'public', SOUND_EFFECTS.hapticBuzz.file))).toBe(true);
+	});
+});
+

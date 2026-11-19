@@ -4,6 +4,26 @@ Güncelleme: 17 Kasım 2026 · Kaynak çizimler: `Desktop\Sinavika-UIUX3` · Çi
 Önce oku: [README](README.md) (ortak kurallar, ekran tanımı biçimi, testler) ve [Navigasyon](Navigasyon.md).
 Ortak durumlar (yükleniyor, boş, hata, çevrimdışı, form hatası, gönderiliyor): [11-Bildirim-Destek-Durumlar.md §4.6](11-Bildirim-Destek-Durumlar.md#46-ortak-durum-kalıpları-bütün-modüller). Burada yalnız bu ekranlara özgü hâller yazılır.
 
+
+> **Sahip kararları (17 Kasım 2026). Bu kararlarla çelişen ekran çizmek ya da kodlamak tasarım hatasıdır.** Kaynak: web deposunda `docs/UIUX/Tasarim-Uyum-Plani.md` §9.1 madde 14, §9.3 madde 21.
+> - **`m-profil`:**
+>   - Üç ölçü kartı yoktur (sahip: "gerek yok").
+>   - İstatistiklerim, Hesabım grubunda bir satırdır.
+>   - Ayrı Paketler, İletişim tercihleri ve "Puanla" satırı yoktur.
+>   - Bildirimler tek ekrandır: Çalışma · Denemeler · Pazarlama.
+> - **`m-profil-bilgiler`:** fotoğraf ve doğum yılı yoktur.
+> - **`m-profil-hedef`:** yalnız sınav ve puan türü vardır; hedef net, bölüm ve tempo yoktur.
+> - **`m-profil-abonelik`:**
+>   - Kullanım tek satırdır: yapay zekâ kullanım yüzdesi (Akıllı Özet ve SinoAI ortak). "7 / 30" yazılmaz.
+>   - Admin hediyesinde "… tarihine kadar açık" yazar ve mağaza notu yoktur (`m-profil-abonelik-hediye`).
+> - **`m-profil-gorunum`:** yalnız tema vardır. Modül renkleri, hareketi azalt, yazı boyutu satırları ve "yakında" diller yoktur.
+> - **`m-profil-guvenlik`:** şifre satırı ve açık oturumlar vardır; kodla giriş anahtarı ve Apple/Google bağlama yoktur.
+> - **`m-profil-kapat`:** neden seçimi isteğe bağlıdır.
+> - **Web:**
+>   - Görünüm ayrı sekmedir (`w-panel-gorunum`).
+>   - Hesap sekmesinin sağ sütununda Hedefim özeti ve Hesabımı kapat (İncele) vardır.
+>   - "Erişimin" kartı Abonelik sekmesindedir.
+
 ## 1. Modül özeti
 
 - **Ne işe yarar:** öğrencinin hesabı, hedefi, aboneliği ve uygulama ayarları tek yerde. Ana işler: hedefi görmek ve değiştirmek, aboneliği görmek, paket almak ya da iptal yolunu bulmak, tema/dil/bildirim ayarı, şifre ve oturumlar, hesabı kapatmak, çıkış.
@@ -333,10 +353,9 @@ Web ortak çerçevesi (`Panel`, `Parts/Web.tsx`):
 
 - **Görseller:** `acik/mobil/m-geri-bildirim.png`, `koyu/…`, `en/acik/…`
 - **Çerçeve:** geri + `Geri bildirimlerim`/`My feedback`; tab bar yok.
-- **Yerleşim:** `Card` boşluk 16: `section` "Sınavika’yı nasıl buluyorsun?" / "How do you like Sınavika?"; beş yıldız (30 px, aralık 8; dolu `#F59E0B`, boş `line`). `List` (modül renkli `Tile`): Dersler "Paragraf · Ana fikir dersi" alt "★★★★★ · “Çok net anlatım”"; Denemeler "TYT Deneme 4 · Soru 46" alt "Hata bildirimi · inceleniyor"; SinoAI "SinoAI yanıtı" alt "Faydalı olarak işaretlendi".
+- **Yerleşim (18 Kasım 2026):** yıldız kartı yok. Üstte `small` `ink2` "Derslere verdiğin tepkiler ve SinoAI yanıtlarına koyduğun işaretler." `List` (modül renkli `Tile`, ok yok): Dersler "Paragraf · Ana fikir dersi" alt "Beğendin · 14 Kas"; Dersler "Türev · Zincir kuralı" alt "Beğenmedin · 11 Kas"; SinoAI "SinoAI yanıtı · Türev sorusu" alt "Faydalı · 10 Kas"; SinoAI "SinoAI yanıtı · Mol hesabı" alt "Hata bildirimi · 6 Kas" (SinoAI "hatalı" işareti). Soru hata bildirimi satırı yok; uygulamada böyle akış yok.
 - **Veri:** geri bildirim geçmişi (bugünkü `feedbackStudentRepository`); uygulama puanı.
-- **Etkileşimler:** yıldız → puan kaydı; 4–5 yıldızda mağaza değerlendirme penceresi (sistem; yılda sınırlı), 1–3 yıldızda kısa yazı alanı (çizilmedi, doğrulanmadı). Satır → ilgili içerik [push].
-- **Kurallar:** yıldız dokunma alanı en az 44 pt (görünür 30).
+- **Etkileşimler:** satır → ilgili ders ya da SinoAI sohbeti [push].
 
 ## 5. Takılma ve kilitlenme önlemleri
 

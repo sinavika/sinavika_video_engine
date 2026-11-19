@@ -1,15 +1,15 @@
 import React from 'react';
-import {useColors, useModuleColors, useT} from '../../Context';
+import {useColors, useModuleColors, useT, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {EntryRow, ModuleWeekCard, NetBars} from '../../Parts/Study';
+import {EntryRow, ModuleWeekCard, NetBars, resultBars} from '../../Parts/Study';
 import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
 
 /** Denemeler: practice exams, results, analysis and solutions. Tabs: Denemeler · Denemelerim · Modüller · Sonuçlar · Profil. */
 
 const LESSONS: [string, string, number, number, string][] = [
-	['Türkçe', 'Turkish', 32.5, 40, '#0284C7'],
+	['Türkçe', 'Reading & Writing', 32.5, 40, '#0284C7'],
 	['Sosyal', 'Social', 14.25, 20, '#0D9488'],
 	['Matematik', 'Maths', 21.75, 40, '#4F46E5'],
 	['Fen', 'Science', 10, 20, '#DB2777'],
@@ -41,7 +41,7 @@ export const ExamHomeScreen: React.FC = () => {
 			<Content>
 				<PageTitle module="exam" title={t('Denemeler', 'Practice exams')} />
 				{/* The strip comes from this month's exam set (owner, 17 Nov 2026). Upcoming: "Yaklaşan · … · Cumartesi 10:00", time left, Hatırlat. Open: "Canlı · Türkiye geneli" (or "Bölüm denemesi"), closing date, Başla. The participant count shows only when the API gives it (100 or more). */}
-				<ModuleSlide module="exam" height={186} label={t('Yaklaşan · Cumartesi 10:00', 'Upcoming · Saturday 10:00')} title={t('TYT Deneme 5', 'TYT Exam 5')} text={t('Türkiye geneli · 120 soru · 2 gün 4 saat kaldı', 'Nationwide · 120 questions · 2 days 4 hours left')} action={t('Hatırlat', 'Remind me')} />
+				<ModuleSlide module="exam" height={186} label={t('Yaklaşan · Cumartesi 10:00', 'Upcoming · Saturday 10:00')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} text={t('Türkiye geneli · 120 soru · 2 gün 4 saat kaldı', 'Nationwide · 120 questions · 2 days 4 hours left')} action={t('Hatırlat', 'Remind me')} />
 				<ModuleWeekCard
 					module="exam"
 					time={t('3 sa 40 dk', '3 h 40 m')}
@@ -89,16 +89,16 @@ export const ExamCatalogScreen: React.FC = () => {
 		<ModuleScreen module="exam" tab={0} header={<AppHeader left="back" title={t('Tüm denemeler', 'All exams')} right={<div style={{width: 40}} />} />}>
 			<Content>
 				<Stack row gap={8}>
-					{[t('Tümü', 'All'), 'TYT', 'AYT', t('Branş', 'Subject'), t('Ücretsiz', 'Free')].map((label, index) => (
+					{[t('Tümü', 'All'), t('TYT', 'SAT'), t('AYT', 'ACT'), t('Branş', 'Subject'), t('Ücretsiz', 'Free')].map((label, index) => (
 						<Chip key={label} tone={index ? 'outline' : 'moduleSolid'} module="exam">
 							{label}
 						</Chip>
 					))}
 				</Stack>
 				<List>
-					<ExamRow title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Türkiye geneli · Cumartesi 10:00', 'Nationwide · Sat 10:00')} meta="120 · 165 dk" tag={t('Canlı', 'Live')} />
+					<ExamRow title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Türkiye geneli · Cumartesi 10:00', 'Nationwide · Sat 10:00')} meta="120 · 165 dk" tag={t('Canlı', 'Live')} />
 					<ExamRow title={t('AYT Sayısal Deneme 3', 'AYT Science Exam 3')} sub={t('Matematik, Fen', 'Maths, Science')} meta="80 · 180 dk" />
-					<ExamRow title={t('TYT Deneme 4', 'TYT Exam 4')} sub={t('Arşiv · sıralama açık', 'Archive · ranking open')} meta="120 · 165 dk" />
+					<ExamRow title={t('TYT Deneme 4', 'SAT Practice Test 4')} sub={t('Arşiv · sıralama açık', 'Archive · ranking open')} meta="120 · 165 dk" />
 					<ExamRow title={t('Problemler Branş', 'Problems Subject')} sub={t('Matematik', 'Maths')} meta="30 · 45 dk" tag={t('Ücretsiz', 'Free')} />
 					<ExamRow title={t('Fen Branş Denemesi', 'Science Subject Exam')} sub={t('Fizik, Kimya, Biyoloji', 'Physics, Chemistry, Biology')} meta="20 · 30 dk" />
 					<ExamRow title={t('Tarih Branş Denemesi', 'History Subject Exam')} sub={t('Sosyal Bilimler', 'Social sciences')} meta="20 · 25 dk" />
@@ -127,7 +127,7 @@ const ExamDetail: React.FC<{window: ExamWindow}> = ({window}) => {
 					<Chip tone="module" module="exam">
 						{t('TYT · Türkiye geneli', 'TYT · Nationwide')}
 					</Chip>
-					<Text role="hero">{t('TYT Deneme 5', 'TYT Exam 5')}</Text>
+					<Text role="hero">{t('TYT Deneme 5', 'SAT Practice Test 5')}</Text>
 					<Text role="body">{t('Sonuçlar sınavdan 2 saat sonra açıklanır. Sıralaman 12.480 kişi içinde hesaplanır.', 'Results in 2 hours. Ranked among 12,480 students.')}</Text>
 				</Stack>
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10}}>
@@ -199,7 +199,7 @@ export const ExamStartingScreen: React.FC = () => {
 	const t = useT();
 	const mod = useModuleColors('exam');
 	return (
-		<ModuleScreen module="exam" noTabBar header={<FocusHeader title={t('Başlamadan önce', 'Before you start')} sub={t('TYT Deneme 5', 'TYT Exam 5')} />}>
+		<ModuleScreen module="exam" noTabBar header={<FocusHeader title={t('Başlamadan önce', 'Before you start')} sub={t('TYT Deneme 5', 'SAT Practice Test 5')} />}>
 			<Content tabBar={false} gap={16} style={{alignItems: 'center', textAlign: 'center', paddingTop: 30}}>
 				<Ring value={1} size={170} stroke={12} color={mod.color} track={mod.track}>
 					<Stack align="center">
@@ -302,7 +302,7 @@ export const MyExamsScreen: React.FC = () => {
 				<Segmented items={[t('Yaklaşan · 2', 'Upcoming · 2'), t('Devam eden · 1', 'Active · 1'), t('Biten · 6', 'Done · 6')]} active={0} module="exam" />
 				<List>
 					{[
-						['17', t('TYT Deneme 5', 'TYT Exam 5'), t('Cumartesi · 10:00', 'Saturday · 10:00'), t('Hatırlatma açık', 'Reminder on')],
+						['17', t('TYT Deneme 5', 'SAT Practice Test 5'), t('Cumartesi · 10:00', 'Saturday · 10:00'), t('Hatırlatma açık', 'Reminder on')],
 						['26', t('KPSS GY-GK Deneme 2', 'KPSS GA-GC Exam 2'), t('Pazartesi · 14:00', 'Monday · 14:00'), t('Hatırlat', 'Remind me')],
 					].map(([day, title, sub, state], index) => (
 						<Stack key={title} row gap={12} style={{padding: '12px 14px'}}>
@@ -330,7 +330,7 @@ export const MyExamsScreen: React.FC = () => {
 						{[12, 13, 14, 15, 16, 17, 18].map((day) => (
 							<Stack key={day} align="center" gap={4} style={{width: 40, padding: '6px 0', borderRadius: 12, background: day === 17 ? MODULES.exam.color.light : 'transparent'}}>
 								<Text role="meta" color={day === 17 ? '#FFFFFF' : undefined}>
-									{['P', 'S', 'Ç', 'P', 'C', 'C', 'P'][day - 12]}
+									{[t('P', 'M'), t('S', 'T'), t('Ç', 'W'), t('P', 'T'), t('C', 'F'), t('C', 'S'), t('P', 'S')][day - 12]}
 								</Text>
 								<Text role="headline" color={day === 17 ? '#FFFFFF' : undefined}>
 									{day}
@@ -392,42 +392,37 @@ const ExamResults: React.FC<{external?: boolean}> = ({external}) => {
 						<Stack row justify="space-between">
 							<Stack gap={1}>
 								<Text role="headline" size={16}>
-									{t('TYT net gelişimim', 'My TYT nets')}
+									{t('TYT net gelişimim', 'My SAT Math scores')}
 								</Text>
 								<Text role="small">{t('Son 5 deneme · çizgili: dışarıda çözdüğün', 'Last 5 · hatched: solved elsewhere')}</Text>
 							</Stack>
 							<div style={{width: 112}}>
-								<Segmented items={['TYT', 'AYT']} module="exam" />
+								<Segmented items={[t('TYT', 'SAT'), t('AYT', 'ACT')]} module="exam" />
 							</div>
 						</Stack>
 						<NetBars
-							items={[
-								[t('28 Eyl', '28 Sep'), 64],
-								[t('5 Eki', '5 Oct'), 72],
-								[t('12 Eki', '12 Oct'), 78.5],
-								[t('19 Eki', '19 Oct'), 84.25],
-								[t('Dışarıda', 'Elsewhere'), 69.5, true],
-							]}
+							items={resultBars(t)}
+							max={useUI().lang === 'en' ? 800 : 120}
 						/>
 						{/* The progress strip is green only for a rise; a drop is shown neutral (line2, ink2), never red. */}
 						<Stack row gap={8} style={{padding: '8px 12px', borderRadius: 14, background: colors.successSoft}}>
 							<Icon name="trend" size={16} color={colors.successInk} />
 							<Text role="small" weight={700} color={colors.successInk}>
-								{t('Son 4 denemede +20,25 net', '+20.25 nets over the last 4')}
+								{t('Son 4 denemede +20,25 net', '+110 points over the last 4')}
 							</Text>
 						</Stack>
 					</Stack>
 				</Card>
 				<FitList gap={8}>
 					<EntryRow module="exam" strong icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
-					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
+					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost points')} />
 					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün denemenin sonucu', 'A result from another exam')} />
 				</FitList>
 				<SectionTitle title={t('Son sonuçlar', 'Latest results')} action={t('Tümü', 'All')} />
 				<List>
 					{[
-						[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Ekim · sıralama 6.870', '19 Oct · rank 6,870'), '84,25', '+5,75'],
-						[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), '78,5', '+9'],
+						[t('TYT Deneme 5', 'SAT Practice Test 5'), t('19 Ekim · sıralama 6.870', '19 Oct · rank 6,870'), t('84,25', '1,360'), t('+5,75', '+70')],
+						[t('TYT Deneme 4', 'SAT Practice Test 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), t('78,5', '1,290'), t('+9', '+50')],
 					].map(([title, sub, score, delta]) => (
 						<ListRow
 							key={title}
@@ -616,7 +611,7 @@ export const ExamAddExternalScreen: React.FC = () => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
 	const rows: [string, string, number, number, number][] = [
-		[t('Türkçe', 'Turkish'), '40', 32, 5, 30.75],
+		[t('Türkçe', 'Reading & Writing'), '40', 32, 5, 30.75],
 		[t('Sosyal', 'Social'), '20', 14, 3, 13.25],
 		[t('Matematik', 'Maths'), '40', 18, 6, 16.5],
 		[t('Fen', 'Science'), '20', 9, 4, 8],
@@ -675,7 +670,7 @@ export const ExamAddExternalScreen: React.FC = () => {
 							</Stack>
 						))}
 						<Stack row justify="space-between" style={{paddingTop: 8, borderTop: `1px solid ${colors.line2}`}}>
-							<Text role="headline">{t('Toplam net', 'Total net')}</Text>
+							<Text role="headline">{t('Toplam net', 'Total score')}</Text>
 							<Text role="section" color={mod.ink}>
 								68,5
 							</Text>
@@ -697,7 +692,7 @@ export const ExamResultScreen: React.FC = () => {
 	const lang = t('tr', 'en');
 	const colors = useColors();
 	return (
-		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('TYT Deneme 4', 'TYT Exam 4')} right={<div style={{width: 40}} />} />}>
+		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('TYT Deneme 4', 'SAT Practice Test 4')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
 				<Card padding={18}>
 					<Stack row gap={16}>
@@ -843,7 +838,7 @@ export const ExamTrendScreen: React.FC = () => {
 	return (
 		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('Ders gelişimi', 'Subject progress')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
-				<Segmented items={[t('Türkçe', 'Turkish'), t('Matematik', 'Maths'), t('Fen', 'Science'), t('Sosyal', 'Social')]} active={1} module="exam" />
+				<Segmented items={[t('Türkçe', 'Reading & Writing'), t('Matematik', 'Maths'), t('Fen', 'Science'), t('Sosyal', 'Social')]} active={1} module="exam" />
 				<Card padding={16}>
 					<Stack row justify="space-between" align="flex-end">
 						<Stack gap={2}>

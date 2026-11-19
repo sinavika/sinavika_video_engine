@@ -1,7 +1,7 @@
 import React from 'react';
 import {UIProvider, useColors, useModuleColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {alpha, MODULES, moduleGradient, type ModuleKey} from '../../ModuleIdentity';
+import {alpha, MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {BottomBar, Content, Phone} from '../../Parts/Mobile';
 import {Button, Card, Chip, Stack, Steps, Text, Tile} from '../../Parts/Shared';
 import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
@@ -9,9 +9,10 @@ import {UI_RADIUS, UI_SHADOW} from '../../Tokens';
 /**
  * Onboarding. Five steps build the plan (exam and sessions, current and target
  * score, pace and days, subjects that need support, the plan itself); the
- * progress bar counts only these. Then the account saves the plan and the
- * store trial starts, and the student lands in the first topic of
- * today's plan. Notifications are asked after that first study session, tips
+ * progress bar counts only these. "Planın hazır" stays its own step before
+ * payment. There is no account step: on mobile the store purchase needs no
+ * account; the account and the notification ask come inside the app. After
+ * payment the student lands on the home screen (no topic opens by itself). Tips
  * appear where a feature is first met: no tutorial up front.
  * Selections are a dark frame with a tick; orange is only the main button.
  */
@@ -209,7 +210,7 @@ export const OnbWeakScreen: React.FC = () => {
 	const colors = useColors();
 	const lessons: [string, string, boolean][] = [
 		['Matematik', 'Maths', true],
-		['Türkçe', 'Turkish', false],
+		['Türkçe', 'Reading & Writing', false],
 		['Geometri', 'Geometry', true],
 		['Fizik', 'Physics', false],
 		['Kimya', 'Chemistry', true],
@@ -300,10 +301,10 @@ export const WeekPlan: React.FC<{compact?: boolean}> = ({compact}) => {
 
 export const OnbPlanScreen: React.FC = () => {
 	const t = useT();
-	const colors = useColors();
 	const lessonsInk = useModuleColors('lessons').ink;
+	// The first task card has no arrow: nothing opens before payment.
 	return (
-		<OnbFrame step={5} over={t('Hazır', 'Ready')} title={t('YKS planın hazır', 'Your YKS plan is ready')} text={t('48 netten 78 nete, günde 3 saatlik dengeli tempoyla.', 'From 48 to 78, at a balanced 3 hours a day.')} cta={t('Planımı kaydet', 'Save my plan')}>
+		<OnbFrame step={5} over={t('Hazır', 'Ready')} title={t('YKS planın hazır', 'Your YKS plan is ready')} text={t('48 netten 78 nete, günde 3 saatlik dengeli tempoyla.', 'From 48 to 78, at a balanced 3 hours a day.')} cta={t('Devam et', 'Continue')}>
 			<WeekPlan />
 			<Card tone="moduleLine" module="lessons" padding={14}>
 				<Stack row gap={12}>
@@ -315,7 +316,6 @@ export const OnbPlanScreen: React.FC = () => {
 						<Text role="headline">{t('Türkçe · Sözcükte Anlam', 'Turkish · Word meaning')}</Text>
 						<Text role="small">{t('Dersler · ilk konu · 8 dk', 'Lessons · first topic · 8 min')}</Text>
 					</Stack>
-					<Icon name="right" size={18} color={colors.subtle} />
 				</Stack>
 			</Card>
 		</OnbFrame>
@@ -360,48 +360,6 @@ export const OnbTrialScreen: React.FC = () => {
 				</Stack>
 				<Text role="section">{t('₺299/ay', '₺299/mo')}</Text>
 			</Stack>
-		</OnbFrame>
-	);
-};
-
-/** Account step: hands over to sign up with the plan already made. Apple and Google first; e-mail asks only the code and the name. */
-export const OnbAccountScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<OnbFrame
-			over={t('Hesap', 'Account')}
-			title={t('Planını kaydedelim', 'Let’s save your plan')}
-			text={t('Hesabınla planın, netlerin ve ilerlemen web ve mobilde aynı kalır.', 'Your plan, scores and progress stay the same on web and mobile.')}
-			foot={
-				<>
-					<Button tone="dark" size="lg" block icon="apple">
-						{t('Apple ile devam et', 'Continue with Apple')}
-					</Button>
-					<Button tone="ghost" size="lg" block icon="google">
-						{t('Google ile devam et', 'Continue with Google')}
-					</Button>
-					<Text role="small" weight={700} align="center" color={colors.ink} style={{padding: '6px 0'}}>
-						{t('E-posta ile devam et', 'Continue with e-mail')}
-					</Text>
-				</>
-			}
-		>
-			<div style={{position: 'relative', height: 260, borderRadius: 26, background: moduleGradient('studyPlan'), overflow: 'hidden', padding: 18, boxSizing: 'border-box'}}>
-				<Text role="over" color="rgba(255,255,255,0.85)">
-					{t('Kaydedilecek', 'Will be saved')}
-				</Text>
-				<Stack gap={8} style={{marginTop: 12}}>
-					{[t('Haftalık plan · 21 saat', 'Weekly plan · 21 hours'), t('Hedef · 48 → 78 net', 'Goal · 48 → 78'), t('Zorlandığın dersler · 3', 'Weak subjects · 3')].map((line) => (
-						<Stack key={line} row gap={10} style={{padding: '10px 12px', borderRadius: 14, background: 'rgba(255,255,255,0.18)'}}>
-							<Icon name="check" size={16} color="#FFFFFF" />
-							<Text role="headline" color="#FFFFFF">
-								{line}
-							</Text>
-						</Stack>
-					))}
-				</Stack>
-			</div>
 		</OnbFrame>
 	);
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import {useColors, useModuleColors, useT} from '../../Context';
+import {useColors, useModuleColors, useT, useUI} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {MODULES, type ModuleKey} from '../../ModuleIdentity';
 import {Button, Chip, Field, FlagButton, OptionRow, Pct, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
-import {ActionCard, EntryRow, FilterChips, HEATMAP_SAMPLE, KpiCard, NetBars, PlanTaskCard, StateBlock, StudyBars, StudyDonut, StudyHeatmap, TodayCard, WeekStrip, type HubState} from '../../Parts/Study';
+import {ActionCard, EntryRow, FilterChips, HEATMAP_SAMPLE, KpiCard, NetBars, PlanTaskCard, resultBars, StateBlock, StudyBars, StudyDonut, StudyHeatmap, TodayCard, WeekStrip, type HubState} from '../../Parts/Study';
 import {Grid, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
 import {UI_SHADOW} from '../../Tokens';
 import {NumberCell, REVIEW_RESULTS} from '../Mobile/Insights';
@@ -73,7 +73,7 @@ const ModulesCard: React.FC<{action?: string}> = ({action}) => {
 	return (
 		<WCard title={t('Modüller', 'Modules')} action={action} padding={16}>
 			<Grid columns="repeat(3, minmax(0, 1fr))" gap={6}>
-				{(['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards'] as ModuleKey[]).map((key) => (
+				{(['studyPlan', 'lessons', 'tests', 'exam', 'flashcards', 'smartSummary'] as ModuleKey[]).map((key) => (
 					<Stack key={key} row gap={6} style={{padding: '6px 7px', borderRadius: 14, border: `1px solid ${colors.line}`, minWidth: 0}}>
 						<Tile module={key} size={24} />
 						<Text role="headline" size={13} style={{whiteSpace: 'nowrap'}}>
@@ -95,17 +95,17 @@ const WebHomeBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 	const tablet = useInTablet();
 	return (
 		<>
-			{/* Owner, 17 Nov 2026: no date above the greeting. Tablet: goal and streak on the greeting's line, right, side by side. Web: the goal keeps its line under the greeting (its place is held while loading); the streak has its Paylaş button. */}
+			{/* Owner, 17–18 Nov 2026: no date above the greeting; the goal and the streak sit on the greeting's line, opposite it (web adds Paylaş). No goal line under the greeting. */}
 			{tablet ? (
 				<Stack row justify="space-between" align="center">
 					<Text role="title" size={30}>
-						{t('Günaydın Ayşe', 'Good morning, Ayşe')}
+						{t('Günaydın Ayşe', 'Good morning, Emma')}
 					</Text>
 					<Stack row gap={12}>
 						<Stack row gap={6}>
 							<Icon name="target" size={15} color={colors.ink2} />
 							<Text role="small" color={colors.ink2} style={{whiteSpace: 'nowrap'}}>
-								{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
+								{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('YKS · 214 gün kaldı', 'SAT · 214 days left')}</b>
 							</Text>
 						</Stack>
 						<Chip tone="warning" icon="flame">
@@ -114,19 +114,17 @@ const WebHomeBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 					</Stack>
 				</Stack>
 			) : (
-				<Stack row justify="space-between" align="flex-end">
-					<Stack gap={4}>
-						<Text role="title" size={30}>
-							{t('Günaydın Ayşe', 'Good morning, Ayşe')}
-						</Text>
+				<Stack row justify="space-between" align="center">
+					<Text role="title" size={30}>
+						{t('Günaydın Ayşe', 'Good morning, Emma')}
+					</Text>
+					<Stack row gap={12}>
 						<Stack row gap={6}>
 							<Icon name="target" size={15} color={colors.ink2} />
 							<Text role="small" color={colors.ink2} style={{whiteSpace: 'nowrap'}}>
-								{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('TYT · 245 gün kaldı', 'TYT · 245 days left')}</b>
+								{t('Hedef', 'Goal')} <b style={{color: colors.ink}}>{t('YKS · 214 gün kaldı', 'SAT · 214 days left')}</b>
 							</Text>
 						</Stack>
-					</Stack>
-					<Stack row gap={10}>
 						<Chip tone="warning" icon="flame">
 							{state === 'done' ? t('6 gün seri', '6-day streak') : t('5 gün seri', '5-day streak')}
 						</Chip>
@@ -151,11 +149,11 @@ const WebHomeBody: React.FC<{state?: HubState}> = ({state = 'plan'}) => {
 			{/* Every row follows the same two columns (1.3 / 1): the two action cards share the plan card's column, review takes the calendar card's. Cards on a row are one height. */}
 			<Grid columns={HOME_COLUMNS}>
 				<Grid columns="1fr 1fr">
-					{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('TYT Türkçe · ilk konun', 'TYT Turkish · your first topic')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('30 adım · 33 dk', '30 steps · 33 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('Türkçe · 29 dk kaldı', 'Turkish · 29 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.13, label: t('Adım 4 / 30', 'Step 4 / 30')}} />}
+					{state === 'noPlan' ? <ActionCard module="lessons" over={t('İlk adımın', 'First step')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('TYT Türkçe · ilk konun', 'TYT Turkish · your first topic')} action={t('Başla', 'Start')} icon="book" meter={{progress: 0, label: t('30 adım · 33 dk', '30 steps · 33 min')}} /> : <ActionCard module="lessons" over={t('Kaldığın yerden', 'Continue')} title={t('Sözcükte Anlam', 'Word meaning')} line={t('Türkçe · 29 dk kaldı', 'Reading & Writing · 29 min left')} action={state === 'expired' ? t('Paketleri gör', 'See plans') : t('Devam et', 'Continue')} icon="book" meter={state === 'expired' ? {locked: t('Abone olunca açılır', 'Opens with a plan')} : {progress: 0.13, label: t('Adım 4 / 30', 'Step 4 / 30')}} />}
 					<ActionCard
 						module="exam"
 						over={t('Sıradaki deneme', 'Next exam')}
-						title={t('TYT Deneme 5', 'TYT Exam 5')}
+						title={t('TYT Deneme 5', 'SAT Practice Test 5')}
 						line={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 people')}
 						action={t('Hatırlat', 'Remind me')}
 						icon="exam"
@@ -251,13 +249,16 @@ export const WebHomeExpiredScreen: React.FC = () => (
 export const WebTourScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	// Inside a device frame (tablet, iPhone Duo) the page has no menu: the plan card sits at the page's top left.
+	const embedded = useInTablet();
+	const hole = embedded ? {left: 18, top: 62, width: 432, height: 262} : {left: 282, top: 196, width: 640, height: 300};
 	return (
 		<Panel
 			active="home"
 			overlay={
 				<div data-ui="scrim" style={{position: 'absolute', inset: 0, zIndex: 30}}>
-					<div style={{position: 'absolute', left: 282, top: 196, width: 640, height: 300, borderRadius: 28, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11,28,48,0.6)'}} />
-					<div style={{position: 'absolute', left: 300, top: 520, width: 440, borderRadius: 22, background: colors.card, padding: 20}}>
+					<div style={{position: 'absolute', ...hole, borderRadius: 28, boxShadow: '0 0 0 4px rgba(255,255,255,0.95), 0 0 0 3000px rgba(11,28,48,0.6)'}} />
+					<div style={{position: 'absolute', left: hole.left + 18, top: hole.top + hole.height + 24, width: 440, borderRadius: 22, background: colors.card, padding: 20}}>
 						<div style={{position: 'absolute', left: 60, top: -8, width: 16, height: 16, background: colors.card, transform: 'rotate(45deg)'}} />
 						<Text role="over" color={colors.brandDeep}>
 							{t('İpucu', 'Tip')}
@@ -394,7 +395,7 @@ const WebPlanToday: React.FC<{state?: WebPlanState}> = ({state = 'plan'}) => {
 											{state === 'menu' ? menu : null}
 										</div>
 										<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} more />
-										<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'TYT Exam 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} more />
+										<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} more />
 										<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" more />
 									</Grid>
 								</Stack>
@@ -444,41 +445,36 @@ export const WebResultsScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={2} title={t('Sonuçlar', 'Results')} sub={t('Netlerin, sıralaman ve gelişimin', 'Your nets, rank and progress')} />
+			<ModuleHead module="exam" tab={2} title={t('Sonuçlar', 'Results')} sub={t('Netlerin, sıralaman ve gelişimin', 'Your scores, rank and progress')} />
 			<Grid columns="1.6fr 1fr">
 				<WCard>
 					<Stack gap={14}>
 						<Stack row justify="space-between">
 							<Stack gap={1}>
 								<Text role="headline" size={16}>
-									{t('TYT net gelişimim', 'My TYT nets')}
+									{t('TYT net gelişimim', 'My SAT Math scores')}
 								</Text>
 								<Text role="small">{t('Son 5 deneme · çizgili: dışarıda çözdüğün', 'Last 5 · hatched: solved elsewhere')}</Text>
 							</Stack>
 							<div style={{width: 130}}>
-								<Segmented items={['TYT', 'AYT']} module="exam" />
+								<Segmented items={[t('TYT', 'SAT'), t('AYT', 'ACT')]} module="exam" />
 							</div>
 						</Stack>
 						<NetBars
 							height={200}
-							items={[
-								[t('28 Eyl', '28 Sep'), 64],
-								[t('5 Eki', '5 Oct'), 72],
-								[t('12 Eki', '12 Oct'), 78.5],
-								[t('19 Eki', '19 Oct'), 84.25],
-								[t('Dışarıda', 'Elsewhere'), 69.5, true],
-							]}
+							items={resultBars(t)}
+							max={useUI().lang === 'en' ? 800 : 120}
 						/>
 					</Stack>
 				</WCard>
 				<Stack gap={12}>
 					<EntryRow module="exam" strong icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
-					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost nets')} />
+					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost points')} />
 					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün', 'Solved elsewhere')} />
 					<Stack row gap={8} style={{padding: '10px 14px', borderRadius: 14, background: colors.successSoft}}>
 						<Icon name="trend" size={16} color={colors.successInk} />
 						<Text role="small" weight={700} color={colors.successInk}>
-							{t('Son 4 denemede +20,25 net', '+20.25 nets over the last 4')}
+							{t('Son 4 denemede +20,25 net', '+110 points over the last 4')}
 						</Text>
 					</Stack>
 				</Stack>
@@ -500,14 +496,22 @@ const ResultsTable: React.FC = () => {
 	const colors = useColors();
 	// The tablet page is shorter (834 pt): two rows end above the home indicator, a third was cut.
 	const tablet = useInTablet();
-	const all: [string, string, string, string, string, string, string, string, boolean][] = [
-		[t('TYT Deneme 5', 'TYT Exam 5'), t('19 Eki', '19 Oct'), '32,5', '14,25', '27,5', '10', '84,25', '338,61', false],
-		[t('TYT Deneme 4', 'TYT Exam 4'), t('12 Eki', '12 Oct'), '30', '13,5', '25', '10', '78,5', '325,04', false],
-		[t('Örnek Yayınları TYT 3', 'Sample Publishing TYT 3'), t('2 Kas', '2 Nov'), '29', '12,5', '20', '8', '69,5', '—', true],
-	];
+	// English drawings show a SAT student (store set): Reading & Writing, Math and the 400–1600 total; no TYT columns, no rank score.
+	const en = useUI().lang === 'en';
+	const all: {name: string; date: string; parts: string[]; total: string; score?: string; external: boolean}[] = en
+		? [
+				{name: 'SAT Practice Test 5', date: '19 Oct', parts: ['640', '720'], total: '1,360', external: false},
+				{name: 'SAT Practice Test 4', date: '12 Oct', parts: ['610', '680'], total: '1,290', external: false},
+				{name: 'Outside practice test 3', date: '2 Nov', parts: ['600', '640'], total: '1,240', external: true},
+			]
+		: [
+				{name: 'TYT Deneme 5', date: '19 Eki', parts: ['32,5', '14,25', '27,5', '10'], total: '84,25', score: '338,61', external: false},
+				{name: 'TYT Deneme 4', date: '12 Eki', parts: ['30', '13,5', '25', '10'], total: '78,5', score: '325,04', external: false},
+				{name: 'Örnek Yayınları TYT 3', date: '2 Kas', parts: ['29', '12,5', '20', '8'], total: '69,5', score: '—', external: true},
+			];
 	const rows = tablet ? all.slice(0, 2) : all;
 	const cell: React.CSSProperties = {padding: '10px 8px', borderBottom: `1px solid ${colors.line2}`, textAlign: 'right'};
-	const heads = [t('Deneme', 'Exam'), t('Tarih', 'Date'), t('Türkçe', 'Turkish'), t('Sosyal', 'Social'), t('Matematik', 'Maths'), t('Fen', 'Science'), t('Toplam net', 'Total net'), t('Puan', 'Score'), ''];
+	const heads = en ? ['Test', 'Date', 'Reading & Writing', 'Math', 'Total', ''] : ['Deneme', 'Tarih', 'Türkçe', 'Sosyal', 'Matematik', 'Fen', 'Toplam net', 'Puan', ''];
 	return (
 		<table style={{width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit'}}>
 			<thead>
@@ -520,17 +524,17 @@ const ResultsTable: React.FC = () => {
 				</tr>
 			</thead>
 			<tbody>
-				{rows.map(([name, date, tr, so, ma, fe, net, score, external]) => (
+				{rows.map(({name, date, parts, total, score, external}) => (
 					<tr key={name}>
 						<td style={{...cell, textAlign: 'left', fontSize: 15, fontWeight: 700, color: colors.ink}}>{name}</td>
 						<td style={{...cell, textAlign: 'left', fontSize: 14, color: colors.ink2}}>{external ? t('Dışarıda · 2 Kas', 'Elsewhere · 2 Nov') : date}</td>
-						{[tr, so, ma, fe].map((value, index) => (
+						{parts.map((value, index) => (
 							<td key={index} style={{...cell, fontSize: 14, color: colors.ink2}}>
 								{value}
 							</td>
 						))}
-						<td style={{...cell, fontSize: 15, fontWeight: 800, color: colors.ink}}>{net}</td>
-						<td style={{...cell, fontSize: 14, fontWeight: 700, color: colors.ink}}>{score}</td>
+						<td style={{...cell, fontSize: 15, fontWeight: 800, color: colors.ink}}>{total}</td>
+						{score === undefined ? null : <td style={{...cell, fontSize: 14, fontWeight: 700, color: colors.ink}}>{score}</td>}
 						<td style={{...cell}}>
 							<Stack row gap={6} justify="flex-end">
 								{external ? (
@@ -554,11 +558,11 @@ export const WebResultsEmptyScreen: React.FC = () => {
 	const t = useT();
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={2} title={t('Sonuçlar', 'Results')} sub={t('Netlerin, sıralaman ve gelişimin', 'Your nets, rank and progress')} />
+			<ModuleHead module="exam" tab={2} title={t('Sonuçlar', 'Results')} sub={t('Netlerin, sıralaman ve gelişimin', 'Your scores, rank and progress')} />
 			<Grid columns="1.6fr 1fr">
 				<StateBlock module="exam" icon="chart" title={t('İlk denemenden sonra burada', 'Here after your first exam')} text={t('Netin, sıralaman ve net kaybettiğin konular her denemeden sonra burada birikir.', 'Your nets, rank and the topics that cost you collect here.')} action={t('Sıradaki denemeye bak', 'See the next exam')} second={t('Dışarıda çözdüğün bir denemeyi ekle', 'Add an exam you solved elsewhere')} />
 				<Stack gap={12}>
-					<EntryRow module="exam" strong icon="exam" title={t('TYT Deneme 5', 'TYT Exam 5')} sub={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')} />
+					<EntryRow module="exam" strong icon="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Cumartesi 10:00 · 12.480 kişi', 'Saturday 10:00 · 12,480 joined')} />
 					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün', 'Solved elsewhere')} />
 				</Stack>
 			</Grid>
@@ -626,13 +630,13 @@ export const WebStatsScreen: React.FC = () => {
 					<Text role="title" size={28}>
 						{t('İstatistiklerim', 'My statistics')}
 					</Text>
-					<Text role="small">{t('Çalışma süren, doğru oranın, netlerin ve en verimli saatlerin tek yerde.', 'Your time, accuracy, nets and best hours in one place.')}</Text>
+					<Text role="small">{t('Çalışma süren, doğru oranın, netlerin ve en verimli saatlerin tek yerde.', 'Your time, accuracy, scores and best hours in one place.')}</Text>
 				</Stack>
 				<Stack row gap={10}>
 					<div style={{width: 300}}>
 						<Segmented items={[t('Bu hafta', 'This week'), t('Son 30 gün', '30 days'), t('Tümü', 'All')]} active={1} />
 					</div>
-					{/* Opens the browser's print dialog; menus are hidden in print (owner, 17 Nov 2026). */}
+					{/* Downloads the API's A4 report (r-istatistik-*, docs/UIUX/Kodlama/13-Istatistik-Raporu-PDF.md); the print dialog is gone (owner, 19 Nov 2026). */}
 					<Button tone="ghost" icon="file">
 						{t('PDF olarak al', 'Download PDF')}
 					</Button>
@@ -642,7 +646,7 @@ export const WebStatsScreen: React.FC = () => {
 				<KpiCard icon="clock" label={t('Çalışma süresi', 'Study time')} value={t('19 sa 40 dk', '19 h 40 m')} delta={t('%22', '22%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
 				<KpiCard icon="quiz" label={t('Çözülen soru', 'Questions')} value="742" delta={t('%31', '31%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
 				<KpiCard icon="target" label={t('Doğru oranı', 'Accuracy')} value={t('%62', '62%')} delta={t('%6', '6%')} period={t('geçen 30 güne göre', 'vs previous 30 days')} />
-				<KpiCard icon="trend" label={t('TYT net', 'TYT net')} value="84,25" delta="5,75" period={t('son denemeye göre', 'vs last exam')} />
+				<KpiCard icon="trend" label={t('TYT net', 'SAT score')} value={t('84,25', '1,360')} delta={t('5,75', '70')} period={t('son denemeye göre', 'vs last exam')} />
 			</Stack>
 			<Grid columns="1.35fr 1fr">
 				<WCard title={t('Haftalık çalışma', 'Weekly study')} action={t('modüllere göre', 'by module')}>
@@ -695,7 +699,7 @@ const SubjectTable: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const rows: [string, string, number, string, string, boolean][] = [
-		[t('Türkçe', 'Turkish'), '214', 0.75, t('6 sa 10 dk', '6 h 10 m'), t('+%8', '+8%'), false],
+		[t('Türkçe', 'Reading & Writing'), '214', 0.75, t('6 sa 10 dk', '6 h 10 m'), t('+%8', '+8%'), false],
 		[t('Matematik', 'Maths'), '296', 0.58, t('7 sa 5 dk', '7 h 5 m'), t('+%11', '+11%'), false],
 		[t('Fizik', 'Physics'), '118', 0.4, t('3 sa', '3 h'), t('−%3', '−3%'), true],
 		[t('Kimya', 'Chemistry'), '114', 0.52, t('2 sa 20 dk', '2 h 20 m'), t('+%4', '+4%'), false],
@@ -941,7 +945,7 @@ export const WebExamAddScreen: React.FC = () => {
 					))}
 				</Stack>
 				<Stack row justify="space-between" style={{paddingTop: 10, borderTop: `1px solid ${colors.line2}`}}>
-					<Text role="headline">{t('Toplam net: 68,5', 'Total net: 68.5')}</Text>
+					<Text role="headline">{t('Toplam net: 68,5', 'Total score: 68.5')}</Text>
 					<Button tone="module" module="exam">
 						{t('Kaydet', 'Save')}
 					</Button>
@@ -1013,17 +1017,20 @@ const WebWrongReview: React.FC<{last?: boolean}> = ({last}) => {
 	const t = useT();
 	const colors = useColors();
 	const open = last ? 20 : 3;
+	// In a tablet-sized page (iPhone Duo inner display) the left card is narrower:
+	// it still holds the filter and five columns (5 × 36 + 4 × 6 = 204 pt in 270 − 2 × 20).
+	const narrow = useInTablet();
 	return (
 		<Panel active="tests">
 			<ModuleHead module="tests" tab={2} title={t('Yanlışlarım · Temel Kavramlar', 'My mistakes · Basics')} sub={last ? t('Kolay · 5 / 20 doğru · son yanlış', 'Easy · 5 / 20 · last mistake') : t('Kolay · 5 / 20 doğru · ilk yanlıştan açıldı', 'Easy · 5 / 20 · opened at the first mistake')} />
-			<Grid columns="300px minmax(0, 1fr)">
+			<Grid columns={narrow ? '270px minmax(0, 1fr)' : '300px minmax(0, 1fr)'}>
 				<WCard>
 					<Stack gap={10}>
 						<Segmented items={[t('Yanlış · 15', 'Wrong · 15'), t('Boş · 0', 'Blank · 0'), t('Tümü · 20', 'All · 20')]} off={[1]} module="tests" />
-						<div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8}}>
+						<div style={{display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: narrow ? 6 : 8}}>
 							{REVIEW_RESULTS.map((result, index) => (
 								<div key={index} style={{display: 'flex', justifyContent: 'center'}}>
-									<NumberCell number={index + 1} result={result} on={index + 1 === open} size={40} />
+									<NumberCell number={index + 1} result={result} on={index + 1 === open} size={narrow ? 36 : 40} />
 								</div>
 							))}
 						</div>
@@ -1054,7 +1061,7 @@ const WebWrongReview: React.FC<{last?: boolean}> = ({last}) => {
 							</Grid>
 						)}
 						<Text role="body">{last ? t('29 yalnız 1’e ve kendisine bölünür. 21 = 3 · 7, 27 = 3 · 9, 33 = 3 · 11.', '29 divides only by 1 and itself. 21, 27 and 33 all divide by 3.') : t('Doğal sayılar 0 ve pozitif tam sayılardır. −4 tam sayıdır ama negatif olduğu için doğal değildir.', 'Natural numbers are 0 and the positive integers.')}</Text>
-						<Stack row gap={10}>
+						<Stack row gap={10} wrap>
 							<Button tone="moduleSoft" module="lessons" icon="book">
 								{t('Konuyu çalış', 'Study the topic')}
 							</Button>

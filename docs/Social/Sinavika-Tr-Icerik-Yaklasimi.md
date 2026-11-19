@@ -90,6 +90,31 @@ Not: TikTok'ta 19 sn'lik videonun ortalama izlenmesi 3,28 sn. İlk saniye ve ilk
 | Aynı yanlışı kaç kere yaparsın? | "Bu soruyu üçüncü kez yanlış yaptığını düşün." | Aynı soruda tekrarlanan hata, ardından yanlış analizi ve öğrenme |
 | SinoAI'yi test ediyoruz | "SinoAI'yi YKS öğrencisi gibi sorguladık." ("yapay zekâ" yerine SinoAI) | Öğrenci soruyor, SinoAI yanıtlıyor |
 
+## Aralık 2026: saat tanıtımı (sahip, 19 Kasım 2026)
+
+Aralıkta sinavika.tr'de saat uygulaması tanıtılacak: Apple Watch ve Wear OS. Yaklaşım aynı kalır: problem ya da merak hook'u, ürün videonun içinde doğal kullanılır, sonda 2 sn sade kart, "indir" yok, altyazı yok, Doğa sesi ve sıkı tempo. Görsel yön her videoda prompt-motion'dan seçilir, lacivert varsayılan değildir.
+
+Kurallar:
+- Saat ekranları yalnız gerçek UI/UX çizimlerinden gelir: `k-apple-*` (bugün, plan, odak, kart, kart cevap, deneme, bildirim, kadran, yığın) ve `k-wear-*` (kutucuk, odak, kadran). Telefon tarafında bildirim, canlı etkinlik ve widget ekranları `m-bildirim-*`.
+- Yalnız saatin gerçekten yaptığı şey söylenir: bugünün halkası (dakika ve görev), sıradaki görev, odak sayacı, bilgi kartı tekrarı, deneme geri sayımı ve "15 dk önce hatırlat", odak bitti bildirimi, kadran komplikasyonları. Saatte soru çözülmez; deneme telefonda çözülür (saat ekranı da bunu söylüyor).
+- İki platform da görünür: her videoda ya ikisi birden ya da sırayla. "Yalnız iPhone" izlenimi verilmez.
+- Yayın koşulu: iOS 2.12.0 (saatli) ve Wear OS 1.0.0 mağazada yayında olmadan saat videosu paylaşılmaz.
+
+Hook taslakları (6–12 kelime, ilk 2 sn ekranda büyük):
+
+| # | Hook | Saatte gösterilen |
+|---|---|---|
+| S1 | Telefonu açmadan bugün ne çalışacağını bilebilir misin? | Bugün halkası, sıradaki görev |
+| S2 | Telefonu elime aldığım an 40 dakikam gidiyordu. | Odak sayacı bilekte, telefon ters duruyor |
+| S3 | Bileğindeki saat sana ders çalıştırabilir mi? | Kart sorusu → cevap, biliyorum / bilmiyorum |
+| S4 | Otobüste iki dakikam vardı, beş kart tekrar ettim. | Bilgi kartları, 3 / 12 ilerleme |
+| S5 | Denemeye 2 gün kaldı. Bunu bana saatim söyledi. | Deneme geri sayımı, 15 dk önce hatırlat |
+| S6 | Herkes saatine bakınca saati görüyor, sen bugünkü planını. | Kadran komplikasyonları (dakika halkası, seri) |
+| S7 | Telefon bildirimi dikkatini dağıtır, bilek bildirimi hatırlatır. | Odak bitti bildirimi, sıradaki 12 kart |
+| S8 | 25 dakika telefona hiç dokunmadan çalışmayı denedim. | Deney: odak sayacı, sonda halka dolar |
+
+Video fikirleri: S8 "telefonsuz çalışma deneyi" (Öğrenci laboratuvarı çizgisinde), S4 "ölü dakikalar" (otobüs, sıra, teneffüs), S5 "deneme sabahı" (geri sayım ve hatırlatma), S1 + S6 kısa ürün videosu (kadran ve bugün halkası). Senaryolar altyapı gelince yazılır.
+
 ## İçerik sütunları (başlangıç varsayımı, performansa göre değişir)
 
 | Tür | Pay |
@@ -166,6 +191,7 @@ Kural (sahip, 15 Kasım): içerik için gereken altyapı kurulum oturumuna ileti
 | 15 Kasım | Müzik vuruşuna hizalama sahneyi bir vuruşa kadar uzatıyor, satır arasına 0,2–0,4 sn sessizlik ekliyor; tempo sözü veren şablonda kaydırma en çok 0,2 sn olsun, validate de vuruşla ölçsün | Bitti: tempo sözü veren şablonda kaydırma sessizlik bütçesiyle sınırlı; validate müzik vuruşuyla ölçüyor |
 | 16 Kasım | NetChart: en yüksek değer solda olunca etiketi başlığa biniyor (04 Neden unutuyoruz) | Bitti: `netChartLayout`, çizim alanı başlığın altından başlıyor; testli |
 | 17 Kasım | Video başına görünüm (`look`): zemin, palet, kart/yazı renkleri iş dosyasından; sabit lacivert kalkar; prompt-motion yönleri için hazır görünümler | Bitti: `content.look` (warmGrey varsayılan, paper, boldColour, ink, navy), kontrast denetimi, art arda aynı görünüm uyarısı; `device.transition: morph`, `cursor` öğesi. 01–07 `"look": "navy"` ile sabitlendi |
+| 19 Kasım | Aralık saat tanıtımı: bilekte saat (öğrenci pozu ve yakın plan), saat titreşimi ve bildirim gelişi, telefondan saate geçiş, kadran komplikasyonundan uygulamaya, saatte kart çevirme, iPhone kilit ekranında canlı etkinlik, Apple Watch ve Wear OS yan yana | Kısmen bitti: 1 bilek (`wrist` öğesi, `wrist`/`wristTap` pozları), 2 titreşim + bildirim (`buzzes`, `transition: rise`), 5 kart çevirme (`flip`, `taps`); 7 iki `device`/`wrist` öğesiyle yapılabilir (sayaç sabit). İkinci dalga: 3, 4, 6, akan sayaç |
 
 Kit belgesi: [`Hikaye-Kiti.md`](Hikaye-Kiti.md). 15 Kasım: StudyDeskStory kite geçti (öğeler Doğa'nın sözcüklerinde düşer, her alt vuruşta kamera yakınlaşır, tablet ve saat ekranları da kullanılabilir); "Çok çalışmak yetmiyor" yeniden üretildi (26 sn + 2 sn kart, `Outputs/Videos/SinavikaTr/Pilot/`).
 

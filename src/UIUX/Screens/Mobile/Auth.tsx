@@ -1,5 +1,5 @@
 import React from 'react';
-import {useColors, useT} from '../../Context';
+import {useColors, useT, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULE_ORDER, type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, HubCard, ModuleSlide, Phone, Sheet} from '../../Parts/Mobile';
@@ -80,14 +80,21 @@ export const WelcomeScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const fan: ModuleKey[] = ['lessons', 'exam', 'smartSummary'];
+	// A slide is about 210 pt tall with its text and button (ModuleSlide grows past
+	// its 150 minimum), and the tilt adds about 15 pt: the stack's box holds the
+	// last card whole, so it never reaches the headline. Short screens (iPhone Duo
+	// outer display and the inner display's sheet, 669–678 pt) fan the cards tighter.
+	const short = (useUI().canvas?.height ?? 874) < 760;
+	const step = short ? 50 : 76;
+	const stackHeight = 12 + step * (fan.length - 1) + 225;
 	return (
 		<Phone bg="radial-gradient(90% 55% at 50% 30%, var(--ui-brandSoft) 0%, var(--ui-bg) 70%)">
-			<Stack align="center" style={{paddingTop: 12}}>
+			<Stack align="center" style={{paddingTop: short ? 4 : 12}}>
 				<Logo height={30} />
 			</Stack>
-			<div style={{position: 'relative', height: 360, marginTop: 18}}>
+			<div style={{position: 'relative', height: stackHeight, marginTop: short ? 8 : 18}}>
 				{fan.map((key, index) => (
-					<div key={key} style={{position: 'absolute', left: 30 + index * 34, top: 12 + index * 76, width: 270, transform: `rotate(${[-7, 3, -2][index]}deg)`}}>
+					<div key={key} style={{position: 'absolute', left: 30 + index * 34, top: 12 + index * step, width: 270, transform: `rotate(${[-7, 3, -2][index]}deg)`}}>
 						<ModuleSlide module={key} height={150} />
 					</div>
 				))}
@@ -115,20 +122,31 @@ export const WelcomeScreen: React.FC = () => {
 	);
 };
 
+/** Sign in opens with e-mail and password; "E-postama kod gönder" is the secondary way in. */
 export const SignInScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<Phone>
 			<AppHeader left="back" right={<div style={{width: 40}} />} />
-			<Content tabBar={false} gap={18}>
-				<AuthTitle title={t('Oturum aç veya kaydol', 'Sign in or sign up')} text={t('Devam etmek için e-posta adresini gir. Hesabın varsa kod göndeririz, yoksa birlikte oluştururuz.', 'Enter your e-mail. If you have an account we send a code; if not, we create one together.')} />
+			<Content tabBar={false} gap={16}>
+				<AuthTitle title={t('Oturum aç', 'Sign in')} text={t('Kaldığın yerden devam et.', 'Pick up where you left off.')} />
 				<Social />
 				<Divider label={t('ya da e-posta ile', 'or with e-mail')} />
-				<Field label={t('E-posta', 'E-mail')} value="ayse@ornek.com" icon="mail" focus />
+				<Field label={t('E-posta', 'E-mail')} value="ayse@ornek.com" icon="mail" />
+				<Field label={t('Şifre', 'Password')} value="••••••••" icon="lock" focus trailing={<Icon name="eye" size={18} color={colors.muted} />} />
+				<Stack row justify="space-between">
+					<Text role="small" weight={700} color={colors.ink2}>
+						{t('E-postama kod gönder', 'E-mail me a code')}
+					</Text>
+					<Text role="small" weight={700} color={colors.brandDeep}>
+						{t('Şifremi unuttum', 'Forgot password')}
+					</Text>
+				</Stack>
 			</Content>
 			<BottomBar>
 				<Button size="lg" block>
-					{t('Kod gönder', 'Send code')}
+					{t('Giriş yap', 'Sign in')}
 				</Button>
 				<Footer muted={t('Hesabın yok mu?', 'No account?')} strong={t('Hesap oluştur', 'Create one')} />
 			</BottomBar>
@@ -195,31 +213,6 @@ export const SignUpScreen: React.FC = () => {
 	);
 };
 
-export const SignUpDetailsScreen: React.FC = () => {
-	const t = useT();
-	const colors = useColors();
-	return (
-		<Phone>
-			<AppHeader left="back" right={<div style={{width: 40}} />} />
-			<Content tabBar={false} gap={14}>
-				<AuthTitle title={t('Seni tanıyalım', 'Tell us about you')} text={t('Adın, SinoAI ve e-postalarda sana hitap etmemiz için. Şifre gerekmez: her girişte e-postana kod gelir.', 'Your name is how SinoAI and our e-mails address you. No password needed: each sign-in sends a code.')} />
-				<Field label={t('Adın', 'First name')} value="Ayşe" focus />
-				<Stack row gap={10} align="flex-start">
-					<div style={{width: 22, height: 22, borderRadius: 7, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
-						<Icon name="check" size={14} color={colors.bg} />
-					</div>
-					<Text role="small">{t('Kullanım Koşulları’nı ve KVKK aydınlatma metnini okudum.', 'I have read the Terms and the Privacy Notice.')}</Text>
-				</Stack>
-			</Content>
-			<BottomBar>
-				<Button size="lg" block>
-					{t('Hesabımı oluştur', 'Create my account')}
-				</Button>
-			</BottomBar>
-		</Phone>
-	);
-};
-
 export const ForgotPasswordScreen: React.FC = () => {
 	const t = useT();
 	return (
@@ -266,15 +259,17 @@ export const NewPasswordScreen: React.FC = () => {
 /** A guest taps something that needs an account: a sheet, not a full redirect. */
 export const AuthSheetScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
+		// One sheet for every context: brand-tone box with a person icon, no module icon.
 		<Phone
 			overlay={
 				<Sheet height={430}>
 					<Stack row gap={12}>
-						<Tile module="smartSummary" size={46} solid />
+						<Tile icon="user" size={46} color={colors.brand} />
 						<Stack grow gap={2}>
-							<Text role="section">{t('Analizini kaydedelim', 'Let’s save your analysis')}</Text>
-							<Text role="small">{t('Akıllı Özet için hesap gerekir. 30 saniye sürer.', 'Smart Summary needs an account. Takes 30 seconds.')}</Text>
+							<Text role="section">{t('Devam etmek için hesabın olsun', 'You need an account to continue')}</Text>
+							<Text role="small">{t('Kaydettiklerin hesabında saklanır. 30 saniye sürer.', 'What you save stays in your account. Takes 30 seconds.')}</Text>
 						</Stack>
 					</Stack>
 					<Social />

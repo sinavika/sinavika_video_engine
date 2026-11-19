@@ -1,5 +1,5 @@
 import React from 'react';
-import {useColors, useModuleColors, useUI} from '../../Context';
+import {useColors, useModuleColors, useT, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {Button, Stack, Text} from '../../Parts/Shared';
 import {UI_SHADOW} from '../../Tokens';
@@ -73,8 +73,10 @@ const Foot: React.FC<{action: string; disabled?: boolean; note?: string}> = ({ac
 
 /* ------------------------------------------------------------------ Grupla */
 
+/** The English drawing (store set, SAT/ACT) shows an English words-in-context example, not the Turkish lesson. */
 export const LessonGroupScreen: React.FC = () => {
 	const colors = useColors();
+	const t = useT();
 	const mod = useModuleColors('lessons');
 	const Group: React.FC<{title: string; items: string[]}> = ({title, items}) => (
 		<div style={{borderRadius: 18, border: `1.5px dashed ${mod.line}`, background: mod.wash, padding: 10, display: 'flex', flexDirection: 'column', gap: 8}}>
@@ -92,21 +94,21 @@ export const LessonGroupScreen: React.FC = () => {
 		</div>
 	);
 	return (
-		<Screen bar={<StepBar done={2} />} foot={<Foot action="Kontrol et" disabled note="2 kart kaldı" />} gap={11}>
-			<Kind>Grupla · 3 / 6</Kind>
-			<Title size={22}>Koyu sözcük gerçek mi, mecaz mı?</Title>
+		<Screen bar={<StepBar done={2} />} foot={<Foot action={t('Kontrol et', 'Check')} disabled note={t('2 kart kaldı', '2 cards left')} />} gap={11}>
+			<Kind>{t('Grupla · 3 / 6', 'Group · 3 / 6')}</Kind>
+			<Title size={22}>{t('Koyu sözcük gerçek mi, mecaz mı?', 'Is the bold word literal or figurative?')}</Title>
 			<Text role="small" color={colors.ink2}>
-				Karta dokun, sonra grubuna dokun. Yanlış yere koyduğunu geri alabilirsin.
+				{t('Karta dokun, sonra grubuna dokun. Yanlış yere koyduğunu geri alabilirsin.', 'Tap a card, then tap its group. You can undo a wrong move.')}
 			</Text>
-			<Group title="Gerçek anlam" items={['Bahçedeki **ağaç** kurudu.']} />
-			<Group title="Mecaz anlam" items={['Bu haber onun **cesaretini kırdı**.', 'Yaşlılar veremden söz ederken **ince hastalık** derdi.']} />
-			<Text role="meta">Yerleşmeyenler</Text>
+			<Group title={t('Gerçek anlam', 'Literal meaning')} items={[t('Bahçedeki **ağaç** kurudu.', 'The old **bridge** fell in the storm.')]} />
+			<Group title={t('Mecaz anlam', 'Figurative meaning')} items={[t('Bu haber onun **cesaretini kırdı**.', 'The bad news **broke his spirit**.'), t('Yaşlılar veremden söz ederken **ince hastalık** derdi.', 'Her kind words **built a bridge** between the two rivals.')]} />
+			<Text role="meta">{t('Yerleşmeyenler', 'Not placed yet')}</Text>
 			<Stack gap={8}>
 				<Card tone="on">
-					<Sentence text="Kardeşi **tatlı** bir çocuktur." size={14.5} />
+					<Sentence text={t('Kardeşi **tatlı** bir çocuktur.', 'The coach was **cold** toward the new player.')} size={14.5} />
 				</Card>
 				<Card>
-					<Sentence text="Annem **tatlı** bir kek yaptı." size={14.5} />
+					<Sentence text={t('Annem **tatlı** bir kek yaptı.', 'Keep the milk in a **cold** place.')} size={14.5} />
 				</Card>
 			</Stack>
 		</Screen>

@@ -25,7 +25,7 @@ RootStack (src/app/navigation/RootNavigator.tsx)
 ├── [açılış] ScreenLoading → boot bitene kadar (en çok 3 sn oturum geri yükleme)
 ├── Onboarding  (ProductOnboardingScreen)                          m-giris-karsilama, m-onb-0-karsilama … m-onb-7-deneme, m-onb-8-bildirim
 ├── AuthLogin   [fullScreenFlow]                                   m-giris-oturum-ac, m-giris-kod, m-giris-sayfa (alt sayfa)
-├── AuthRegister [fullScreenFlow]                                  m-kayit-eposta, m-kayit-bilgiler, m-onb-6-hesap
+├── AuthRegister [fullScreenFlow]                                  m-kayit-eposta
 ├── AuthForgotPassword [fullScreenFlow]                            m-sifre-unuttum, m-sifre-yeni
 └── Main = ModuleHubNavigator (stack)
     ├── ModuleHubHome  (Bugün, ana ekran)                          m-hub-moduller, -kaydir, -ipucu, -plansiz, -gun-bitti, -abonelik-bitti
@@ -100,6 +100,11 @@ Bütün yollar `/{locale}/student/...` altındadır (`tr` varsayılan, `en`). Ge
 Kurallar:
 - **Panel düzeni:**
   - Sol menü + üst çubuk + modül hap sekmeleri (`StudentModuleTabs`). SinoAI'de hap sekme yoktur.
+  - **Kabuk (sahip, 18 Kasım 2026):**
+    - Üst çubuk ve sol menü aynı `card` zeminde, aralarında çizgi yoktur. Sayfa `bg` zeminde ayrı bir yüzeydir; sol üst köşesi 26 px yuvarlaktır.
+    - Üst çubuk üç sütundur (1fr / 32rem / 1fr): arama ortada, sağda tema düğmesi ve hesap menüsü. Zil ve destek sol menünün Hesap bölümündedir; hedef çipi yoktur.
+    - Sol menüde logo 68 px satırda tek başınadır. Altta "Çıkış yap" ve yanında daralt düğmesi durur; menü daraltılınca ikisi alt alta gelir.
+    - Modüller menüde Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI sırasıyla dizilir.
   - 768 px altında sol menü çekmeceye döner. Çekmece üstte açılır; Escape ve dışına dokunma kapatır, açıkken sayfa kaymaz.
 - **Odak (`(immersive)`) sayfaları:**
   - Menü ve üst çubuk yoktur.

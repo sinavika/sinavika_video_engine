@@ -179,7 +179,7 @@ Ortak ölçüler: telefon tuvali 390 × 844 pt, durum çubuğu 50 pt. İçerik a
   - Modüller kartının altında (aralık 10) ayrı satırda iki kart yan yana (`1fr 1fr`, aralık 10): SinoAI ve Destek. Kart: iç 9/12, köşe 20, `card`, `line` kenar, kart gölgesi, aralık 12; solda 30 pt kutu (SinoAI `Tile`; Destek `line2` zemin, `headset` 16 `ink2`), `headline` ad, sağda `right` 18 `subtle`. Tablette sol menü olmadığı için bu iki kart buradadır. Yıkama yok. Altta ev çubuğu (200 × 5).
 - **Kurallar:**
   - Sıra her platformda aynı: selam → hafta → bugünün planı → eylemler → modüller → SinoAI → tekrar → destek (web'de iki/üç sütuna yayılır, sıra korunur).
-  - Modül sırası her yerde: Denemeler, Dersler, Testler, Ders Planı, Akıllı Özet, Bilgi Kartları, SinoAI.
+  - Modül sırası her yerde (18 Kasım 2026): Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI.
   - Kartın içindeki düğme kendi modülünün renginde; marka turuncusu yalnız logo, hafta şeridi vurgusu ve ödeme ile ilgili düğmede.
   - Destek kartı nötrdür (beyaz kart, gri simge); ana eylem değildir.
   - Reklam yok. Ödeme olmadan erişim yok (3 günlük mağaza denemesi).

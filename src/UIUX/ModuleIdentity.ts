@@ -21,7 +21,7 @@
 import {contrastRatio, mixColors} from '../Themes/ColorPalette';
 import type {UIIconName} from './Icons';
 
-export const MODULE_KEYS = ['exam', 'lessons', 'tests', 'studyPlan', 'smartSummary', 'flashcards', 'sinoAi'] as const;
+export const MODULE_KEYS = ['studyPlan', 'lessons', 'tests', 'exam', 'flashcards', 'smartSummary', 'sinoAi'] as const;
 export type ModuleKey = (typeof MODULE_KEYS)[number];
 
 export type Bilingual = {tr: string; en: string};
@@ -187,7 +187,7 @@ export const MODULES: Record<ModuleKey, ModuleIdentity> = {
 	},
 };
 
-/** The order modules appear in everywhere: the learning loop (measure, learn, practise, plan, solve, review, ask). */
+/** The order modules appear in everywhere (owner, 18 Nov 2026): Ders Planı, Dersler, Testler, Denemeler, Bilgi Kartları, Akıllı Özet, SinoAI. The apps read the same MODULE_ORDER. */
 export const MODULE_ORDER: readonly ModuleKey[] = MODULE_KEYS;
 
 const hexToRgb = (hex: string): [number, number, number] => {

@@ -67,3 +67,24 @@ describe('store listing', () => {
 		}
 	});
 });
+
+describe('Play subscription icons (Play Console spec, 18 Nov 2026)', () => {
+	it('are square, 512–1080 px, one distinct picture per product', async () => {
+		const {SUBSCRIPTION_ICONS, SUBSCRIPTION_ICON_SIZE} = await import('../../src/Store/StoreListing');
+		expect(SUBSCRIPTION_ICON_SIZE).toBeGreaterThanOrEqual(512);
+		expect(SUBSCRIPTION_ICON_SIZE).toBeLessThanOrEqual(1080);
+		const ids = SUBSCRIPTION_ICONS.map((icon) => icon.id);
+		const looks = SUBSCRIPTION_ICONS.map((icon) => `${icon.exam}|${'level' in icon ? icon.level : ''}`);
+		expect(new Set(ids).size).toBe(ids.length);
+		expect(new Set(looks).size, 'each icon must look different').toBe(looks.length);
+		expect(new Set(SUBSCRIPTION_ICONS.map((icon) => icon.file)).size).toBe(ids.length);
+	});
+});
+
+describe('store cards write numbers per language (18 Nov 2026: "%62" showed in the English header)', () => {
+	it('has no fixed Turkish percent literals in StoreSet; percentages go through percent(value, lang)', async () => {
+		const {readFileSync} = await import('node:fs');
+		const source = readFileSync('src/Store/StoreSet.tsx', 'utf8');
+		expect(source.match(/["'`]%\d/g) ?? [], 'use percent(value, lang)').toEqual([]);
+	});
+});

@@ -1,9 +1,9 @@
 import React from 'react';
 import {useColors, useT} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
-import {MODULES, type ModuleKey} from '../../ModuleIdentity';
+import {type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, ModuleScreen, PageTitle, Phone, SectionTitle, TabBar} from '../../Parts/Mobile';
-import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, LoadingLogo, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
+import {Avatar, Bar, Button, Card, Chip, Field, List, ListRow, Segmented, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 
 /** Profil (slot 5 of every module), plan and packages, settings, notifications, support and the empty / error states. */
 
@@ -45,41 +45,26 @@ export const ProfileScreen: React.FC = () => {
 						<Avatar size={60} />
 						<Stack grow gap={3}>
 							<Text role="section">Ayşe Yılmaz</Text>
-							<Text role="small">{t('YKS · Sayısal · hedef 78 net', 'YKS · Science · goal 78')}</Text>
+							<Text role="small">{t('YKS · Sayısal', 'YKS · Science')}</Text>
 							<Chip tone="brand" icon="star" size="sm">
 								{t('YKS Aylık · 12 Kasım’a kadar', 'YKS Monthly · until 12 Nov')}
 							</Chip>
 						</Stack>
 					</Stack>
 				</Card>
-				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8}}>
-					{(
-						[
-							['flame', '5', t('gün seri', 'day streak')],
-							['clock', t('42 sa', '42 h'), t('bu ay', 'this month')],
-							['exam', '6', t('deneme', 'exams')],
-						] as [UIIconName, string, string][]
-					).map(([icon, value, label]) => (
-						<Card key={label} padding={12}>
-							<Stack align="center" gap={3}>
-								<Icon name={icon} size={18} color="#EA580C" />
-								<Text role="section">{value}</Text>
-								<Text role="meta">{label}</Text>
-							</Stack>
-						</Card>
-					))}
-				</div>
+				{/* No three stat cards (owner, 17 Nov 2026); İstatistiklerim is a row under Hesabım. */}
 				<Text role="over">{t('Hesabım', 'Account')}</Text>
 				<List>
-					<MenuRow icon="target" title={t('Hedefim', 'My goal')} sub={t('YKS · 78 net · günde 3 saat', 'YKS · 78 · 3 h a day')} />
+					<MenuRow icon="target" title={t('Hedefim', 'My goal')} sub={t('YKS · TYT + AYT · Sayısal', 'YKS · TYT + AYT · Science')} />
 					<MenuRow icon="user" title={t('Kişisel bilgiler', 'Personal details')} sub={t('Ad, e-posta, telefon', 'Name, e-mail, phone')} />
 					<MenuRow icon="card" title={t('Aboneliğim', 'My plan')} sub={t('YKS Aylık', 'YKS Monthly')} />
+					<MenuRow icon="chart" title={t('İstatistiklerim', 'My statistics')} sub={t('Süre, doğru oranı, net gelişimi', 'Time, accuracy, net progress')} />
 				</List>
 				<Text role="over">{t('Uygulama', 'App')}</Text>
 				<List>
 					<MenuRow icon="moon" title={t('Görünüm', 'Appearance')} sub={t('Sistem', 'System')} />
-					<MenuRow icon="language" title={t('Dil', 'Language')} sub={t('Türkçe', 'Turkish')} />
-					<MenuRow icon="bell" title={t('Bildirimler', 'Notifications')} />
+					<MenuRow icon="language" title={t('Dil', 'Language')} sub={t('Türkçe', 'English')} />
+					<MenuRow icon="bell" title={t('Bildirimler', 'Notifications')} sub={t('Çalışma · Denemeler · Pazarlama', 'Study · Exams · Marketing')} />
 				</List>
 			</Content>
 		</ProfileFrame>
@@ -94,7 +79,6 @@ export const ProfileMoreScreen: React.FC = () => {
 				<Text role="over">{t('Güvenlik', 'Security')}</Text>
 				<List>
 					<MenuRow icon="shield" title={t('Hesap güvenliği', 'Account security')} sub={t('Şifre, oturumlar', 'Password, sessions')} />
-					<MenuRow icon="mail" title={t('İletişim tercihleri', 'Communication')} sub={t('E-posta ve SMS izinleri', 'E-mail and SMS consent')} />
 				</List>
 				<Text role="over">{t('Yardım', 'Help')}</Text>
 				<List>
@@ -113,7 +97,6 @@ export const ProfileMoreScreen: React.FC = () => {
 
 export const ProfileDetailsScreen: React.FC = () => {
 	const t = useT();
-	const colors = useColors();
 	return (
 		<ProfileFrame
 			back
@@ -128,19 +111,13 @@ export const ProfileDetailsScreen: React.FC = () => {
 			}
 		>
 			<Content tabBar={false} gap={12}>
-				<Stack align="center" gap={8} style={{padding: '6px 0'}}>
-					<Avatar size={84} />
-					<Text role="small" weight={700} color={colors.brandDeep}>
-						{t('Fotoğrafı değiştir', 'Change photo')}
-					</Text>
-				</Stack>
+				{/* No photo and no birth year (owner, 17 Nov 2026). */}
 				<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
 					<Field label={t('Ad', 'First name')} value="Ayşe" />
 					<Field label={t('Soyad', 'Last name')} value="Yılmaz" />
 				</div>
 				<Field label={t('E-posta', 'E-mail')} value="ayse@ornek.com" icon="mail" hint={t('Doğrulandı', 'Verified')} />
 				<Field label={t('Telefon', 'Phone')} value="+90 5•• ••• •• 21" icon="phone" focus />
-				<Field label={t('Doğum yılı', 'Birth year')} value="2008" />
 			</Content>
 		</ProfileFrame>
 	);
@@ -165,9 +142,7 @@ export const ProfileGoalScreen: React.FC = () => {
 				<List>
 					<ListRow icon="grad" plainIcon title={t('Sınav', 'Exam')} subtitle="YKS · TYT + AYT" />
 					<ListRow icon="layers" plainIcon title={t('Puan türü', 'Score type')} subtitle={t('Sayısal', 'Science')} />
-					<ListRow icon="target" plainIcon title={t('Hedef net', 'Target score')} subtitle="78" />
-					<ListRow icon="pin" plainIcon title={t('Hedef bölüm', 'Target programme')} subtitle={t('Bilgisayar Mühendisliği · İstanbul', 'Computer Engineering · Istanbul')} />
-					<ListRow icon="clock" plainIcon title={t('Tempo', 'Pace')} subtitle={t('Dengeli · 3 saat · 6 gün', 'Balanced · 3 h · 6 days')} />
+					{/* No target net, programme or pace: exam and score type only, as in the app. */}
 				</List>
 				<Card tone="soft" padding={14}>
 					<Text role="small">{t('Hedefini değiştirirsen Ders Planı bir sonraki günden itibaren yeniden kurulur.', 'Changing your goal rebuilds your plan from tomorrow.')}</Text>
@@ -177,7 +152,7 @@ export const ProfileGoalScreen: React.FC = () => {
 	);
 };
 
-export const SubscriptionScreen: React.FC = () => {
+const Subscription: React.FC<{gift?: boolean}> = ({gift}) => {
 	const t = useT();
 	const colors = useColors();
 	return (
@@ -188,38 +163,29 @@ export const SubscriptionScreen: React.FC = () => {
 						{t('Aktif paket', 'Active plan')}
 					</Text>
 					<Text role="hero" color="#FFFFFF">
-						{t('YKS Aylık', 'YKS Monthly')}
+						{gift ? t('Sınavika hediyesi', 'Gift from Sınavika') : t('YKS Aylık', 'YKS Monthly')}
 					</Text>
 					<Text role="small" color="rgba(255,255,255,0.9)">
-						{t('12 Kasım’da ₺299 ile yenilenir · App Store', 'Renews 12 Nov for ₺299 · App Store')}
+						{gift ? t('31 Aralık 2026 tarihine kadar açık', 'Open until 31 December 2026') : t('12 Kasım’da ₺299 ile yenilenir · App Store', 'Renews 12 Nov for ₺299 · App Store')}
 					</Text>
 				</div>
-				<SectionTitle title={t('Bu ay kullanım', 'Usage this month')} />
+				{/* One line: the AI quota is one percentage shared by Akıllı Özet and SinoAI; no monthly counts. */}
+				<SectionTitle title={t('Kullanım', 'Usage')} />
 				<Card padding={14}>
-					<Stack gap={12}>
-						{(
-							[
-								['smartSummary', 7, 30],
-								['sinoAi', 4, 20],
-							] as [ModuleKey, number, number][]
-						).map(([key, used, total]) => (
-							<Stack key={key} gap={5}>
-								<Stack row justify="space-between">
-									<Text role="small" weight={700} color={colors.ink}>
-										{t(MODULES[key].name)} {key === 'sinoAi' ? t('üretim', 'creations') : ''}
-									</Text>
-									<Text role="small">
-										{used} / {total}
-									</Text>
-								</Stack>
-								<Bar value={used / total} color={MODULES[key].color.light} />
-							</Stack>
-						))}
+					<Stack gap={6}>
+						<Stack row justify="space-between">
+							<Text role="small" weight={700} color={colors.ink}>
+								{t('Yapay zekâ kullanımı', 'AI usage')}
+							</Text>
+							<Text role="small">{t('%40', '40%')}</Text>
+						</Stack>
+						<Bar value={0.4} color={colors.ink2} />
+						<Text role="meta">{t('Akıllı Özet ve SinoAI ortak · 1 Aralık’ta yenilenir', 'Smart Summary and SinoAI share it · renews 1 December')}</Text>
 					</Stack>
 				</Card>
 				<SectionTitle title={t('Paketinde', 'Included')} />
 				<Stack gap={8}>
-					{[t('Tüm denemeler ve Türkiye sıralaması', 'All exams and national ranking'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız sohbet', 'SinoAI · unlimited chat')].map((line) => (
+					{[t('Tüm denemeler ve Türkiye sıralaması', 'All exams and national ranking'), t('Dersler, Testler, Bilgi Kartları', 'Lessons, quizzes, flashcards'), t('Ders Planı ve ilerleme', 'Study plan and progress'), t('Akıllı Özet ve SinoAI · aylık ortak hak', 'Smart Summary and SinoAI · shared monthly quota')].map((line) => (
 						<Stack key={line} row gap={10}>
 							<Icon name="checkCircle" size={18} color={colors.success} />
 							<Text role="body" color={colors.ink}>
@@ -233,13 +199,20 @@ export const SubscriptionScreen: React.FC = () => {
 				<Button tone="soft" size="lg" block>
 					{t('Paketleri karşılaştır', 'Compare plans')}
 				</Button>
-				<Text role="small" align="center">
-					{t('İptal ve iade App Store ayarlarından yapılır.', 'Cancel and refunds are in App Store settings.')} <b style={{color: colors.ink}}>{t('Nasıl?', 'How?')}</b>
-				</Text>
+				{gift ? null : (
+					<Text role="small" align="center">
+						{t('İptal ve iade App Store ayarlarından yapılır.', 'Cancel and refunds are in App Store settings.')} <b style={{color: colors.ink}}>{t('Nasıl?', 'How?')}</b>
+					</Text>
+				)}
 			</BottomBar>
 		</ProfileFrame>
 	);
 };
+
+export const SubscriptionScreen: React.FC = () => <Subscription />;
+
+/** Access given by the admin: "… tarihine kadar açık", no store note. */
+export const SubscriptionGiftScreen: React.FC = () => <Subscription gift />;
 
 export const PackagesScreen: React.FC = () => {
 	const t = useT();
@@ -276,7 +249,7 @@ export const PackagesScreen: React.FC = () => {
 				))}
 				<Card tone="soft" padding={14}>
 					<Stack gap={8}>
-						{[t('Tüm modüller ve denemeler', 'Every module and exam'), t('Akıllı Özet · ayda 30', 'Smart Summary · 30 a month'), t('SinoAI · sınırsız', 'SinoAI · unlimited'), t('Reklamsız', 'No ads')].map((line) => (
+						{[t('Tüm modüller ve denemeler', 'Every module and exam'), t('Akıllı Özet ve SinoAI · aylık ortak hak', 'Smart Summary and SinoAI · shared monthly quota'), t('Reklamsız', 'No ads')].map((line) => (
 							<Stack key={line} row gap={8}>
 								<Icon name="check" size={16} color={colors.success} />
 								<Text role="small" color={colors.ink}>
@@ -326,11 +299,7 @@ export const AppearanceScreen: React.FC = () => {
 						</Stack>
 					))}
 				</div>
-				<List>
-					<ListRow title={t('Modül renkleri', 'Module colours')} subtitle={t('Her modül kendi renginde', 'Each module in its colour')} trailing={<Toggle on />} chevron={false} />
-					<ListRow title={t('Hareketi azalt', 'Reduce motion')} subtitle={t('Geçiş animasyonlarını kısaltır', 'Shortens transitions')} trailing={<Toggle />} chevron={false} />
-					<ListRow title={t('Yazı boyutu', 'Text size')} subtitle={t('Sistem ayarı', 'System setting')} />
-				</List>
+				{/* Theme only: no module-colour switch, reduce-motion or text-size rows (they follow the system). */}
 			</Content>
 		</ProfileFrame>
 	);
@@ -342,8 +311,6 @@ export const LanguageScreen: React.FC = () => {
 	const langs: [string, string, boolean][] = [
 		['Türkçe', 'TR', true],
 		['English', 'EN', false],
-		['Deutsch', 'DE · ' + t('yakında', 'soon'), false],
-		['Nederlands', 'NL · ' + t('yakında', 'soon'), false],
 	];
 	return (
 		<ProfileFrame back title={t('Dil', 'Language')} noTabBar>
@@ -387,7 +354,7 @@ export const CommunicationScreen: React.FC = () => {
 		],
 	];
 	return (
-		<ProfileFrame back title={t('Bildirim ve iletişim', 'Notifications and contact')} noTabBar>
+		<ProfileFrame back title={t('Bildirimler', 'Notifications')} noTabBar>
 			<Content tabBar={false} gap={10}>
 				<Text role="small">{t('Seni yalnız işine yarayan şeyler için rahatsız ederiz.', 'We only bother you for things that help.')}</Text>
 				{groups.map(([group, rows]) => (
@@ -414,9 +381,6 @@ export const SecurityScreen: React.FC = () => {
 			<Content tabBar={false} gap={12}>
 				<List>
 					<ListRow icon="lock" plainIcon title={t('Şifreni belirle ya da değiştir', 'Set or change password')} subtitle={t('Son değişiklik 3 ay önce', 'Changed 3 months ago')} />
-					<ListRow icon="mail" plainIcon title={t('E-posta ile kodla giriş', 'Sign in with e-mail code')} trailing={<Toggle on />} chevron={false} />
-					<ListRow icon="apple" plainIcon title={t('Apple hesabı', 'Apple account')} subtitle={t('Bağlı', 'Connected')} />
-					<ListRow icon="google" plainIcon title={t('Google hesabı', 'Google account')} subtitle={t('Bağla', 'Connect')} />
 				</List>
 				<SectionTitle title={t('Açık oturumlar', 'Active sessions')} />
 				<List>
@@ -472,6 +436,17 @@ export const CloseAccountScreen: React.FC = () => {
 						</Stack>
 					))}
 				</Card>
+				{/* The reason stays optional; leaving it empty never blocks closing. */}
+				<Stack gap={8}>
+					<Text role="meta">{t('Neden ayrılıyorsun? (isteğe bağlı)', 'Why are you leaving? (optional)')}</Text>
+					<Stack row wrap gap={8}>
+						{[t('Sınavım bitti', 'My exam is over'), t('Başka uygulama', 'Another app'), t('Pahalı', 'Too expensive'), t('Diğer', 'Other')].map((label) => (
+							<Chip key={label} tone="outline">
+								{label}
+							</Chip>
+						))}
+					</Stack>
+				</Stack>
 				<Card tone="soft" padding={14}>
 					<Text role="small">{t('Aktif aboneliğin App Store’dan ayrıca iptal edilmelidir; hesap kapatma ödemeyi durdurmaz.', 'Cancel your App Store subscription separately; closing the account does not stop billing.')}</Text>
 				</Card>
@@ -487,8 +462,6 @@ export const NotificationsScreen: React.FC = () => {
 		['exam', 'Sonucun hazır: TYT Deneme 4', 'Your result: TYT Exam 4', '78,5 net · eksik konularını gör.', '78.5 · see your gaps.', '10:24', true],
 		['studyPlan', 'Bugünün planı hazır', 'Today’s plan is ready', '3 görev, yaklaşık 45 dakika.', '3 tasks, about 45 minutes.', '08:30', true],
 		['sinoAi', 'SinoAI yanıtladı', 'SinoAI replied', 'Türev sorunun çözümü hazır.', 'Your derivative answer is ready.', t('Dün', 'Yday'), true],
-		['flashcards', '32 kart seni bekliyor', '32 cards are due', 'Bugün 8 dakika yeter.', '8 minutes today is enough.', t('Pzt', 'Mon'), false],
-		['smartSummary', 'Analizin hazır', 'Your analysis is ready', 'Mol hesaplamaları.', 'Mole calculations.', t('Paz', 'Sun'), false],
 	];
 	return (
 		<Phone>
@@ -520,9 +493,27 @@ export const NotificationsScreen: React.FC = () => {
 						</Stack>
 					))}
 				</List>
+				{/* The last two days carry no heading; then BU HAFTA and DAHA ÖNCE. The weekly summary takes a neutral chart icon, not a module colour. */}
 				<Text role="over">{t('Bu hafta', 'This week')}</Text>
 				<List>
-					<ListRow module="exam" title={t('Çözümlerin hazır: KPSS Deneme 2', 'Solutions ready: KPSS Exam 2')} subtitle={t('Soru çözümlerin açıldı.', 'Your solutions are open.')} chevron={false} trailing={<Text role="meta">{t('Cmt', 'Sat')}</Text>} />
+					<ListRow module="flashcards" title={t('32 kart seni bekliyor', '32 cards are due')} subtitle={t('Bugün 8 dakika yeter.', '8 minutes today is enough.')} chevron={false} trailing={<Text role="meta">{t('Pzt', 'Mon')}</Text>} />
+					<Stack row gap={12} style={{padding: '12px 14px'}}>
+						<div style={{width: 38, height: 38, borderRadius: 12, background: colors.line2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
+							<Icon name="chart" size={18} color={colors.ink2} />
+						</div>
+						<Stack grow gap={2}>
+							<Text role="headline" size={14}>
+								{t('Haftalık özetin hazır', 'Your weekly summary')}
+							</Text>
+							<Text role="small">{t('Bu hafta 6 sa 20 dk çalıştın.', 'You studied 6 h 20 m this week.')}</Text>
+						</Stack>
+						<Text role="meta">{t('Paz', 'Sun')}</Text>
+					</Stack>
+				</List>
+				<Text role="over">{t('Daha önce', 'Earlier')}</Text>
+				<List>
+					<ListRow module="smartSummary" title={t('Analizin hazır', 'Your analysis is ready')} subtitle={t('Mol hesaplamaları.', 'Mole calculations.')} chevron={false} trailing={<Text role="meta">{t('12 Kas', '12 Nov')}</Text>} />
+					<ListRow module="exam" title={t('Çözümlerin hazır: KPSS Deneme 2', 'Solutions ready: KPSS Exam 2')} subtitle={t('Soru çözümlerin açıldı.', 'Your solutions are open.')} chevron={false} trailing={<Text role="meta">{t('8 Kas', '8 Nov')}</Text>} />
 				</List>
 			</Content>
 		</Phone>
@@ -531,18 +522,20 @@ export const NotificationsScreen: React.FC = () => {
 
 export const SupportHubScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<Phone>
 			<AppHeader left="back" title={t('Destek', 'Support')} right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={12}>
-				<div style={{borderRadius: 24, padding: 18, background: 'linear-gradient(135deg, #EA580C, #F97316)'}}>
+				{/* Flat brand action tone, no gradient: white text on light orange falls under 4.5:1. No promised reply time; the API gives none. */}
+				<div style={{borderRadius: 24, padding: 18, background: colors.action}}>
 					<Text role="section" color="#FFFFFF">
 						{t('Nasıl yardımcı olabiliriz?', 'How can we help?')}
 					</Text>
 					<Text role="small" color="rgba(255,255,255,0.9)">
-						{t('Genelde birkaç saat içinde yanıtlıyoruz.', 'We usually reply within a few hours.')}
+						{t('Talebini aç, yanıtı e-postana ve buraya gelsin.', 'Open a request; the reply comes to your e-mail and here.')}
 					</Text>
-					<Button tone="white" size="sm" icon="plus" style={{marginTop: 12, color: '#C2410C'}}>
+					<Button tone="white" size="sm" icon="plus" style={{marginTop: 12, color: colors.action}}>
 						{t('Yeni talep', 'New request')}
 					</Button>
 				</div>
@@ -563,6 +556,7 @@ export const SupportHubScreen: React.FC = () => {
 
 export const SupportNewScreen: React.FC = () => {
 	const t = useT();
+	const colors = useColors();
 	return (
 		<Phone>
 			<AppHeader left="close" title={t('Yeni talep', 'New request')} right={<div style={{width: 40}} />} />
@@ -571,20 +565,34 @@ export const SupportNewScreen: React.FC = () => {
 					{t('Konu', 'Topic')}
 				</Text>
 				<Stack row wrap gap={8}>
-					{[t('Ödeme', 'Payment'), t('Hesap', 'Account'), t('Deneme', 'Exam'), t('Teknik sorun', 'Bug'), t('Öneri', 'Idea')].map((label, index) => (
-						<Chip key={label} tone={index ? 'outline' : 'brand'} style={{height: 38, padding: '0 14px', fontSize: 13}}>
+					{/* The API's six topics; a signed-in student gives no e-mail here. */}
+					{[t('Hesap', 'Account'), t('Ödeme', 'Payment'), t('Deneme', 'Exam'), t('İçerik', 'Content'), t('Teknik sorun', 'Bug'), t('Diğer', 'Other')].map((label, index) => (
+						<Chip key={label} tone={index === 1 ? 'brand' : 'outline'} style={{height: 38, padding: '0 14px', fontSize: 13}}>
 							{label}
 						</Chip>
 					))}
 				</Stack>
 				<Field label={t('Başlık', 'Title')} value={t('Ödeme iki kez çekildi', 'Charged twice')} />
 				<Field label={t('Açıklama', 'Details')} value={t('12 Ekim’de kartımdan iki kez ₺299 çekildi…', 'On 12 Oct I was charged ₺299 twice…')} height={120} />
-				<Card tone="soft" padding={14}>
+				{/* Picked screenshots: 72 pt thumbnails with a remove button top right; at most 3. */}
+				<Stack gap={8}>
+					<Text role="small" weight={700}>
+						{t('Ekran görüntüsü · 2/3', 'Screenshots · 2/3')}
+					</Text>
 					<Stack row gap={10}>
-						<Icon name="image" size={18} />
-						<Text role="small">{t('Ekran görüntüsü ekle (isteğe bağlı)', 'Add a screenshot (optional)')}</Text>
+						{[0, 1].map((index) => (
+							<div key={index} style={{position: 'relative', width: 72, height: 72, borderRadius: 14, background: colors.line2, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+								<Icon name="image" size={24} color={colors.muted} />
+								<div style={{position: 'absolute', top: -6, right: -6, width: 24, height: 24, borderRadius: 12, background: colors.ink, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+									<Icon name="x" size={13} color={colors.card} stroke={2.6} />
+								</div>
+							</div>
+						))}
+						<div style={{width: 72, height: 72, borderRadius: 14, border: `1.5px dashed ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Icon name="plus" size={22} color={colors.ink2} />
+						</div>
 					</Stack>
-				</Card>
+				</Stack>
 			</Content>
 			<BottomBar>
 				<Button size="lg" block>
@@ -600,11 +608,19 @@ export const SupportTicketScreen: React.FC = () => {
 	const colors = useColors();
 	return (
 		<Phone>
-			<AppHeader left="back" title={t('Ödeme iki kez çekildi', 'Charged twice')} right={<div style={{width: 40}} />} />
+			<AppHeader
+				left="back"
+				title={t('Ödeme iki kez çekildi', 'Charged twice')}
+				right={
+					<Text role="small" weight={700} color={colors.brandDeep}>
+						{t('Çözüldü', 'Resolved')}
+					</Text>
+				}
+			/>
 			<Content tabBar={false} gap={12}>
 				<Stack row gap={8}>
 					<Chip tone="success">{t('Yanıtlandı', 'Answered')}</Chip>
-					<Chip>{t('Ödeme · #4821', 'Payment · #4821')}</Chip>
+					<Chip>{t('Ödeme · #85A0DA78', 'Payment · #85A0DA78')}</Chip>
 				</Stack>
 				<Stack align="flex-end">
 					<div style={{maxWidth: 280, padding: '12px 14px', borderRadius: '20px 20px 6px 20px', background: colors.action}}>
@@ -658,6 +674,34 @@ export const AboutScreen: React.FC = () => {
 	);
 };
 
+/** Açık kaynak lisansları: one row per package (name, version, licence), as in the app. */
+export const LicensesScreen: React.FC = () => {
+	const t = useT();
+	const packages: [string, string, string][] = [
+		['react', '19.1.0', 'MIT'],
+		['react-native', '0.81.4', 'MIT'],
+		['@react-navigation/native', '7.1.17', 'MIT'],
+		['expo', '54.0.9', 'MIT'],
+		['react-native-reanimated', '4.1.0', 'MIT'],
+		['i18next', '25.5.2', 'MIT'],
+		['dayjs', '1.11.18', 'MIT'],
+		['lottie-react-native', '7.3.4', 'Apache-2.0'],
+	];
+	return (
+		<Phone>
+			<AppHeader left="back" title={t('Açık kaynak lisansları', 'Open-source licences')} right={<div style={{width: 40}} />} />
+			<Content tabBar={false} gap={12}>
+				<Text role="small">{t('Sınavika bu açık kaynak paketlerle yapıldı.', 'Sınavika is built with these open-source packages.')}</Text>
+				<List>
+					{packages.map(([name, version, licence]) => (
+						<ListRow key={name} title={name} subtitle={`${version} · ${licence}`} />
+					))}
+				</List>
+			</Content>
+		</Phone>
+	);
+};
+
 export const FeedbackScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
@@ -665,18 +709,15 @@ export const FeedbackScreen: React.FC = () => {
 		<Phone>
 			<AppHeader left="back" title={t('Geri bildirimlerim', 'My feedback')} right={<div style={{width: 40}} />} />
 			<Content tabBar={false} gap={12}>
-				<Card padding={16}>
-					<Text role="section">{t('Sınavika’yı nasıl buluyorsun?', 'How do you like Sınavika?')}</Text>
-					<Stack row gap={8} style={{marginTop: 10}}>
-						{[1, 2, 3, 4, 5].map((star) => (
-							<Icon key={star} name="star" size={30} color={star <= 4 ? '#F59E0B' : colors.line} />
-						))}
-					</Stack>
-				</Card>
+				{/* Only content reactions and SinoAI marks; no star card and no question error report (the app has no such flow). */}
+				<Text role="small" color={colors.ink2}>
+					{t('Derslere verdiğin tepkiler ve SinoAI yanıtlarına koyduğun işaretler.', 'Your reactions to lessons and marks on SinoAI replies.')}
+				</Text>
 				<List>
-					<ListRow module="lessons" title={t('Paragraf · Ana fikir dersi', 'Reading · Main idea lesson')} subtitle={t('★★★★★ · “Çok net anlatım”', '★★★★★ · “Very clear”')} />
-					<ListRow module="exam" title={t('TYT Deneme 4 · Soru 46', 'TYT Exam 4 · Q46')} subtitle={t('Hata bildirimi · inceleniyor', 'Error report · in review')} />
-					<ListRow module="sinoAi" title={t('SinoAI yanıtı', 'SinoAI reply')} subtitle={t('Faydalı olarak işaretlendi', 'Marked helpful')} />
+					<ListRow module="lessons" title={t('Paragraf · Ana fikir dersi', 'Reading · Main idea lesson')} subtitle={t('Beğendin · 14 Kas', 'Liked · 14 Nov')} chevron={false} />
+					<ListRow module="lessons" title={t('Türev · Zincir kuralı', 'Derivative · Chain rule')} subtitle={t('Beğenmedin · 11 Kas', 'Disliked · 11 Nov')} chevron={false} />
+					<ListRow module="sinoAi" title={t('SinoAI yanıtı · Türev sorusu', 'SinoAI reply · Derivative')} subtitle={t('Faydalı · 10 Kas', 'Helpful · 10 Nov')} chevron={false} />
+					<ListRow module="sinoAi" title={t('SinoAI yanıtı · Mol hesabı', 'SinoAI reply · Moles')} subtitle={t('Hata bildirimi · 6 Kas', 'Error report · 6 Nov')} chevron={false} />
 				</List>
 			</Content>
 		</Phone>
@@ -726,8 +767,9 @@ export const ErrorStateScreen: React.FC = () => {
 					</Text>
 				</Stack>
 				<PageTitle module="exam" title={t('Denemelerim', 'My exams')} />
-				<Card padding={10}>
-					<LoadingLogo size={28} label={t('Denemelerin yükleniyor', 'Loading your exams')} />
+				{/* A late card stays an empty frame in its final place (no logo inside a card); its content fades in there (owner, 18 Nov 2026). */}
+				<Card padding={10} style={{height: 76}}>
+					<div />
 				</Card>
 				<Card padding={12} style={{textAlign: 'center'}}>
 					<Stack align="center" gap={6}>
