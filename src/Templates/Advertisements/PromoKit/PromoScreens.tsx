@@ -16,10 +16,10 @@ import {WebSinoChatScreen, WebSinoLibraryScreen, WebSinoStudyScreen} from '../..
 /** Ad screens with campaign data (no predictions or promises on screen). */
 const YksLossScreen: React.FC = () => <AdMobileScreen concept={findConcept('yks', 'net-kaybi')} />;
 const KpssLossScreen: React.FC = () => <AdMobileScreen concept={findConcept('kpss', 'puan-kaybi')} />;
-const YksPlanScreen: React.FC = () => <AdMobileScreen concept={findConcept('yks', 'bugun-ne-calisayim')} />;
+const YksPlanScreen: React.FC = () => <AdMobileScreen concept={findConcept('yks', 'calisma-programi')} />;
 const KpssPlanScreen: React.FC = () => <AdMobileScreen concept={findConcept('kpss', 'isten-sonra-plan')} />;
 const SolveScreen: React.FC = () => <AdMobileScreen concept={findConcept('yks', 'fotograf-cek-coz')} />;
-const KpssCardScreen: React.FC = () => <AdMobileScreen concept={findConcept('kpss', 'genel-kultur-kartlar')} />;
+const KpssCardScreen: React.FC = () => <AdMobileScreen concept={findConcept('kpss', 'tarih-kartlar')} />;
 
 /**
  * The real product screens (UI/UX v3) the promotion reels may show, by name.

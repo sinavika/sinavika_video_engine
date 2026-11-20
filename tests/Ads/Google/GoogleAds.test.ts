@@ -6,7 +6,7 @@ import {adGroundOf} from '../../../src/Ads/Google/AdGround';
 import {ProofCard} from '../../../src/Ads/Google/ProofCard';
 import {UIProvider} from '../../../src/UIUX/Context';
 import {DeviceBrowser} from '../../../src/UIUX/Parts/Web';
-import {AD_CONCEPTS, AD_EXAMS, AD_PLATFORMS, AD_TEXT, conceptsFor, DISPLAY_SIZES, displayConceptsFor, EXAM_LANG, EXAM_TAG, examsForLang, PLATFORM_LINE, TEXT_LIMITS, type AdExam} from '../../../src/Ads/Google/GoogleAdsPlan';
+import {AD_CONCEPTS, AD_EXAMS, AD_PLATFORMS, AD_TEXT, conceptsFor, DISPLAY_SIZES, displayConceptsFor, EXAM_LANG, EXAM_TAG, examsForLang, html5ConceptsFor, mainConceptsFor, PLATFORM_CTA, PLATFORM_LINE, TEXT_LIMITS, TRIAL_PHRASES, type AdExam} from '../../../src/Ads/Google/GoogleAdsPlan';
 import {buildVideoAdJob, VIDEO_AD_LINES, videoAdSpecs} from '../../../src/Ads/Google/VideoAdPlan';
 import {buildBannerHtml} from '../../../src/Ads/Google/Html5Banner';
 import {checkProductCopy} from '../../../src/Configurations/ProductMessaging';
@@ -37,7 +37,9 @@ describe('Google Ads plan', () => {
 	it('names the exam in every hook and every first headline, in the market’s language', () => {
 		for (const concept of AD_CONCEPTS) {
 			const hook = concept.headline[EXAM_LANG[concept.exam]];
-			expect(hook.length, `${concept.exam}/${concept.id}`).toBeLessThanOrEqual(TEXT_LIMITS.headline);
+			// A picture hook may be longer than a headline field when it carries a short version (report §4.3, §4.5).
+			const field = (concept.shortHeadline ?? concept.headline)[EXAM_LANG[concept.exam]];
+			expect(field.length, `${concept.exam}/${concept.id}`).toBeLessThanOrEqual(TEXT_LIMITS.headline);
 			expect(hook, `${concept.exam}/${concept.id}`).toMatch(OWN_EXAM[concept.exam]);
 		}
 		for (const exam of AD_EXAMS) for (const platform of AD_PLATFORMS) expect(AD_TEXT[exam][platform].headlines[0]).toMatch(OWN_EXAM[exam]);
@@ -49,13 +51,40 @@ describe('Google Ads plan', () => {
 		for (const exam of AD_EXAMS) expect(EXAM_TAG[exam]).toMatch(OWN_EXAM[exam]);
 	});
 
-	it('gives each exam four concepts and one HTML5 concept, with unique ids', () => {
+	it('gives each exam six main concepts, backups and three HTML5 concepts, with unique ids (report §4, §5.3)', () => {
 		for (const exam of AD_EXAMS) {
 			const concepts = conceptsFor(exam);
-			expect(concepts).toHaveLength(4);
-			expect(new Set(concepts.map((concept) => concept.id)).size).toBe(4);
-			expect(concepts.filter((concept) => concept.html5)).toHaveLength(1);
+			expect(mainConceptsFor(exam), exam).toHaveLength(6);
+			expect(concepts.filter((concept) => concept.backup).length, exam).toBeGreaterThanOrEqual(2);
+			expect(new Set(concepts.map((concept) => concept.id)).size, exam).toBe(concepts.length);
+			expect(html5ConceptsFor(exam), exam).toHaveLength(3);
+			for (const concept of concepts) expect(concept.id, exam).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
 		}
+		// KPSS levels: one concept per level in their own group (report §4.6).
+		expect(conceptsFor('kpss').filter((concept) => concept.group === 'duzey').map((concept) => concept.id)).toEqual(['lisans', 'onlisans', 'ortaogretim']);
+	});
+
+	it('says "ücretsiz" or "free" only in the store trial sentence, never on the web (report §3.1)', () => {
+		const FREE = /ücretsiz|\bfree\b/i;
+		const strip = (text: string) => TRIAL_PHRASES.reduce((rest, phrase) => rest.split(phrase).join(''), text);
+		const texts = [...copyOf(AD_CONCEPTS), ...copyOf(AD_TEXT), ...copyOf(PLATFORM_LINE), ...copyOf(PLATFORM_CTA)];
+		for (const text of texts) expect(strip(text), text).not.toMatch(FREE);
+		for (const exam of AD_EXAMS) expect(copyOf(AD_TEXT[exam].web).join(' '), exam).not.toMatch(FREE);
+		expect(copyOf(PLATFORM_LINE.web).join(' ')).not.toMatch(FREE);
+	});
+
+	it('keeps text clean for Google: no double spaces, edge spaces, repeated punctuation, emoji or curly apostrophes (report §3.3)', () => {
+		for (const text of [...copyOf(AD_TEXT), ...copyOf(AD_CONCEPTS.map((concept) => [concept.headline, concept.shortHeadline, concept.subline]))]) {
+			expect(text, text).not.toMatch(/ {2}|^\s|\s$|([!?.,])\1|\.\.\.|…|[’‘]|\p{Extended_Pictographic}/u);
+			expect((text.match(/!/g) ?? []).length, text).toBeLessThanOrEqual(1);
+		}
+	});
+
+	it('builds app headlines from different modules, a KPSS level and a practice test (report §5.6)', () => {
+		expect(AD_TEXT.kpss.mobile.headlines.join(' ')).toMatch(/Lisans|Önlisans|Ortaöğretim/);
+		expect(AD_TEXT.sat.mobile.headlines.join(' ')).toMatch(/practice test/);
+		expect(AD_TEXT.act.mobile.headlines.join(' ')).toMatch(/practice test/);
+		for (const exam of AD_EXAMS) expect(AD_TEXT[exam].mobile.headlines.at(-1), exam).toMatch(/3 gün ücretsiz dene|Try it free for 3 days/);
 	});
 
 	it('never shows another exam in a concept or its texts', () => {
@@ -141,9 +170,9 @@ describe('Google Ads search plan', () => {
 });
 
 describe('Google Ads display banners and videos', () => {
-	it('banners two concepts per exam in nine IAB sizes', () => {
+	it('banners three concepts per exam in nine IAB sizes', () => {
 		expect(DISPLAY_SIZES).toHaveLength(9);
-		for (const exam of AD_EXAMS) expect(displayConceptsFor(exam)).toHaveLength(2);
+		for (const exam of AD_EXAMS) expect(displayConceptsFor(exam)).toHaveLength(3);
 	});
 
 	it('plans 40 videos: 4 exams, 2 promotions, 15 s in three shapes and bumpers in two', () => {

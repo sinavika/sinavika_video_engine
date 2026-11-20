@@ -85,7 +85,7 @@ const Headline: React.FC<{
 /** A UI/UX drawing at its own canvas size, scaled to `width`. */
 const Drawing: React.FC<{id: string; width: number; lang: Lang; bg?: string}> = ({id, width, lang, bg = '#FFFFFF'}) => {
 	const screen = findScreen(id);
-	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose);
+	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose, screen.narrow);
 	const scale = width / size.width;
 	return (
 		<div

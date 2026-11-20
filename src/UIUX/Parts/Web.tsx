@@ -17,6 +17,12 @@ import {PHONE_GEOMETRY} from '../../Components/AppScreens/PhoneFrame';
 
 const {width: W, height: H} = UI_CANVAS.web;
 
+/** Site pages drawn at phone width (390 pt): header, sections, titles and footer stack. */
+const SiteNarrow = React.createContext(false);
+export const useSiteNarrow = () => React.useContext(SiteNarrow);
+/** Wraps a whole page component so it can read `useSiteNarrow()` before `Site` renders. */
+export const SiteNarrowProvider = SiteNarrow.Provider;
+
 type PanelItem = 'home' | 'modules' | ModuleKey | 'stats' | 'notifications' | 'profile' | 'support';
 
 /** A menu row: neutral icon and text; only the active row shows its module colour (a thin bar and the icon), on a light grey pill. */
@@ -264,6 +270,20 @@ export const Immersive: React.FC<{module: ModuleKey; title: string; sub?: string
 export const SiteHeader: React.FC<{active?: string; open?: 'products'}> = ({active, open}) => {
 	const colors = useColors();
 	const t = useT();
+	const narrow = useSiteNarrow();
+	if (narrow)
+		return (
+			<Stack row gap={10} style={{height: 60, padding: '0 20px', background: colors.card, borderBottom: `1px solid ${colors.line}`, flexShrink: 0}}>
+				<Logo wordmark height={20} color={colors.ink} />
+				<div style={{flex: 1}} />
+				<Button size="sm" style={{height: 36, padding: '0 14px'}}>
+					{t('Kayıt Ol', 'Sign up')}
+				</Button>
+				<div style={{width: 36, height: 36, borderRadius: 18, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<Icon name="menu" size={18} color={colors.ink} />
+				</div>
+			</Stack>
+		);
 	const links: [string, boolean][] = [
 		[t('Ürünler', 'Products'), true],
 		[t('Paketler', 'Plans'), false],
@@ -340,6 +360,53 @@ const SiteFooter: React.FC = () => {
 		['Sınavika', [t('Hakkımızda', 'About'), t('Yayınevleri', 'Publishers'), t('İletişim', 'Contact')]],
 		[t('Yasal', 'Legal'), [t('Kullanım koşulları', 'Terms'), t('Gizlilik', 'Privacy'), 'KVKK', t('Çerez tercihleri', 'Cookie settings')]],
 	];
+	if (useSiteNarrow())
+		return (
+			<div style={{background: colors.bg, borderTop: `1px solid ${colors.line}`, padding: '36px 20px 28px'}}>
+				<Stack gap={12}>
+					<Logo wordmark height={20} color={colors.ink} />
+					<Text role="small" color={colors.muted}>
+						{t('Ne çalışacağını bil, her gün ilerle. YKS ve KPSS için çalışma platformu.', 'Know what to study, move ahead every day.')}
+					</Text>
+					<Stack row gap={8}>
+						<Button tone="ghost" size="sm" icon="apple">
+							App Store
+						</Button>
+						<Button tone="ghost" size="sm" icon="googlePlay">
+							Google Play
+						</Button>
+					</Stack>
+				</Stack>
+				<div style={{display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '24px 16px', marginTop: 28}}>
+					{columns.map(([title, links]) => (
+						<Stack key={title} gap={8}>
+							<Text role="headline" size={14} color={colors.ink}>
+								{title}
+							</Text>
+							{links.map((link) => (
+								<Text key={link} role="small" color={colors.muted}>
+									{link}
+								</Text>
+							))}
+						</Stack>
+					))}
+				</div>
+				<Stack gap={12} style={{marginTop: 28, paddingTop: 16, borderTop: `1px solid ${colors.line}`}}>
+					<Stack row gap={6}>
+						{['VISA', 'Mastercard', 'troy', 'ETBİS'].map((mark) => (
+							<div key={mark} style={{height: 24, padding: '0 8px', borderRadius: 6, border: `1px solid ${colors.line}`, display: 'flex', alignItems: 'center'}}>
+								<Text role="meta" weight={800} color={colors.ink2}>
+									{mark}
+								</Text>
+							</div>
+						))}
+					</Stack>
+					<Text role="meta" color={colors.muted}>
+						© 2026 Sınavika
+					</Text>
+				</Stack>
+			</div>
+		);
 	return (
 		<div style={{background: colors.bg, borderTop: `1px solid ${colors.line}`, padding: '56px 112px 36px'}}>
 			<Stack row justify="space-between" align="flex-start">
@@ -390,25 +457,35 @@ const SiteFooter: React.FC = () => {
 };
 
 /** A site page: header, sections, footer, on a white canvas of the page's height. */
-export const Site: React.FC<{active?: string; open?: 'products'; children: React.ReactNode; footer?: boolean}> = ({active, open, children, footer = true}) => {
+export const Site: React.FC<{active?: string; open?: 'products'; children: React.ReactNode; footer?: boolean; narrow?: boolean}> = ({active, open, children, footer = true, narrow = false}) => {
 	const colors = useColors();
 	return (
 		<UIProvider calm>
-			<div style={{width: W, background: colors.card, display: 'flex', flexDirection: 'column'}}>
-				<SiteHeader active={active} open={open} />
-				{children}
-				{footer ? <SiteFooter /> : null}
-			</div>
+			<SiteNarrow.Provider value={narrow}>
+				{/* The page fills the canvas: Turkish and English differ in length, the registry height is the longer one, the footer stays at the bottom. */}
+				<div data-ui="site-page" style={{width: narrow ? UI_CANVAS.mobile.width : W, minHeight: '100%', background: colors.card, display: 'flex', flexDirection: 'column'}}>
+					<SiteHeader active={active} open={open} />
+					{children}
+					<div data-ui="site-fill" style={{flex: 1}} />
+					{footer ? <SiteFooter /> : null}
+				</div>
+			</SiteNarrow.Provider>
 		</UIProvider>
 	);
 };
 
-export const Section: React.FC<{children: React.ReactNode; bg?: string; padding?: string; style?: React.CSSProperties}> = ({children, bg, padding = '72px 112px', style}) => <div style={{padding, background: bg, boxSizing: 'border-box', ...style}}>{children}</div>;
+/** A page band. At phone width it takes `narrowPadding` (default 40 / 20). */
+export const Section: React.FC<{children: React.ReactNode; bg?: string; padding?: string; narrowPadding?: string; style?: React.CSSProperties}> = ({children, bg, padding = '72px 112px', narrowPadding = '40px 20px', style}) => {
+	const narrow = useSiteNarrow();
+	return <div style={{padding: narrow ? narrowPadding : padding, background: bg, boxSizing: 'border-box', ...style}}>{children}</div>;
+};
 
 export const SiteTitle: React.FC<{over?: string; title: React.ReactNode; lead?: string; center?: boolean; size?: number}> = ({over, title, lead, center, size = 44}) => {
 	const colors = useColors();
+	const narrow = useSiteNarrow();
+	if (narrow) size = Math.min(size, 30);
 	return (
-		<Stack gap={12} align={center ? 'center' : 'flex-start'} style={{textAlign: center ? 'center' : 'left'}}>
+		<Stack gap={narrow ? 10 : 12} align={center ? 'center' : 'flex-start'} style={{textAlign: center ? 'center' : 'left'}}>
 			{over ? (
 				<Text role="over" color={colors.muted}>
 					{over}
@@ -418,7 +495,7 @@ export const SiteTitle: React.FC<{over?: string; title: React.ReactNode; lead?: 
 				{title}
 			</Text>
 			{lead ? (
-				<Text role="body" size={18} style={{lineHeight: '28px', maxWidth: 720}} align={center ? 'center' : 'left'}>
+				<Text role="body" size={narrow ? 16 : 18} style={{lineHeight: narrow ? '24px' : '28px', maxWidth: 720}} align={center ? 'center' : 'left'}>
 					{lead}
 				</Text>
 			) : null}

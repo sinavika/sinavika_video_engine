@@ -6,6 +6,7 @@ import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, PageT
 import {Bar, Bars, Button, Card, Chip, Field, List, ListRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile, Toggle} from '../../Parts/Shared';
 import {FilterChips, ModuleWeekCard, PlanTaskCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
+import {usePersona} from '../../ExamPersona';
 
 /** Ders Planı: today, focus timer, progress, schedule and plan settings. Tabs: Bugün · İlerleme · Modüller · Program · Profil. */
 
@@ -68,6 +69,7 @@ const DayRings: React.FC = () => {
 export const PlanTodayScreen: React.FC = () => {
 	const t = useT();
 	const mod = useModuleColors('studyPlan');
+	const {plan} = usePersona();
 	return (
 		<ModuleScreen module="studyPlan" tab={0}>
 			<Content gap={12}>
@@ -108,11 +110,11 @@ export const PlanTodayScreen: React.FC = () => {
 				</Stack>
 				<FitList gap={9}>
 					{/* No "Çalışmaya devam et" or "Bugün tekrar" card here (Bugün tekrar lives on the home screen); an empty day never reads "0 görev · 0 dk". */}
-					<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('Kaldığın yerden · 8 dk', 'From where you left off · 8 min')} done />
-					<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · you lost nets here')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 questions · 25 min')} now />
-					<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} />
-					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} />
-					<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" />
+					<PlanTaskCard module="lessons" source={plan.lesson[0]} title={plan.lesson[1]} amount={plan.lesson[2]} done />
+					<PlanTaskCard module="tests" source={plan.quiz[0]} title={plan.quiz[1]} amount={plan.quiz[2]} now />
+					<PlanTaskCard module="flashcards" source={plan.cards[0]} title={plan.cards[1]} amount={plan.cards[2]} />
+					<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={plan.exam[0]} amount={plan.exam[1]} badge={t('Canlı deneme', 'Live exam')} />
+					<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={plan.own} amount="18:00 – 18:40" />
 				</FitList>
 			</Content>
 		</ModuleScreen>

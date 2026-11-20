@@ -5,6 +5,7 @@ import {Bar, Button, Card, Chip, Field, List, ListRow, Pct, Ring, Stack, Text, T
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, WCard} from '../../Parts/Web';
 import {ModuleWeekCard} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
+import {usePersona} from '../../ExamPersona';
 
 /** Web Bilgi Kartları, Akıllı Özet and SinoAI. */
 
@@ -145,8 +146,9 @@ export const WebCardSessionScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('flashcards');
+	const {card} = usePersona();
 	return (
-		<Immersive module="flashcards" title={t('Kart oturumu · Kimya · Mol', 'Card session · Chemistry · Mole')} sub="12 / 32" progress={0.37}>
+		<Immersive module="flashcards" title={`${t('Kart oturumu', 'Card session')} · ${card.meta}`} sub="12 / 32" progress={0.37}>
 			<Stack align="center" justify="center" gap={24} style={{flex: 1, background: `radial-gradient(60% 60% at 50% 40%, ${mod.wash} 0%, ${colors.card} 70%)`}}>
 				<div style={{position: 'relative', width: 600, height: 330}}>
 					<div style={{position: 'absolute', inset: '22px -18px -14px 18px', borderRadius: 28, background: mod.soft}} />
@@ -154,12 +156,12 @@ export const WebCardSessionScreen: React.FC = () => {
 						<Chip tone="module" module="flashcards">
 							{t('Cevap', 'Answer')}
 						</Chip>
-						<Text role="meta">{t('1 mol nedir?', 'What is 1 mole?')}</Text>
+						<Text role="meta">{card.question}</Text>
 						<Text role="display" size={34} align="center">
-							{t('6,02', '6.02')} × 10²³ {t('tanecik', 'particles')}
+							{card.answer}
 						</Text>
 						<Text role="body" size={16} align="center">
-							{t('Avogadro sayısı kadar atom, molekül ya da iyon içeren madde miktarı.', 'The amount containing Avogadro’s number of particles.')}
+							{card.text}
 						</Text>
 					</Stack>
 				</div>
@@ -328,14 +330,15 @@ export const WebSummaryDetailScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('smartSummary');
+	const {problem} = usePersona();
 	return (
 		<Panel active="smartSummary" crumb={t('Akıllı Özet ›', 'Smart Summary ›')}>
 			<ModuleHead
 				module="smartSummary"
 				tab={3}
 				tabs={SUMMARY_TABS(t)}
-				title={t('Türev · Zincir kuralı', 'Chain rule')}
-				sub={t('AYT Matematik · cevap B · bugün 14:10', 'SAT Math · answer B · today 14:10')}
+				title={problem.title}
+				sub={`${problem.chip} · ${problem.answer.toLocaleLowerCase(t('tr-TR', 'en-US'))} · ${t('bugün 14:10', 'today 14:10')}`}
 				actions={
 					<>
 						<Button tone="ghost" icon="file">
@@ -352,7 +355,10 @@ export const WebSummaryDetailScreen: React.FC = () => {
 					<Card padding={16}>
 						<div style={{height: 160, borderRadius: 14, background: '#F5F1E8', padding: 16, boxSizing: 'border-box'}}>
 							<Text role="headline" color="#1E293B">
-								14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
+								{problem.photo}
+							</Text>
+							<Text role="small" color="#1E293B" style={{marginTop: 10}}>
+								{problem.options}
 							</Text>
 						</div>
 					</Card>
@@ -361,7 +367,7 @@ export const WebSummaryDetailScreen: React.FC = () => {
 							{t('Kazanım', 'Skill')}
 						</Text>
 						<Text role="small" color={colors.ink2} style={{marginTop: 6}}>
-							{t('İç içe fonksiyonda türev: dıştakinin türevi × içtekinin türevi.', 'Composite derivative: outer × inner.')}
+							{problem.skill}
 						</Text>
 					</Card>
 					<Card padding={18} style={{border: `1.5px solid ${colors.warningSoft}`}}>
@@ -369,17 +375,13 @@ export const WebSummaryDetailScreen: React.FC = () => {
 							{t('Sık hata', 'Common mistake')}
 						</Text>
 						<Text role="small" color={colors.ink2} style={{marginTop: 6}}>
-							{t('İçteki fonksiyonun türevini (6x) çarpmayı unutmak.', 'Forgetting the inner derivative (6x).')}
+							{problem.mistake}
 						</Text>
 					</Card>
 				</Stack>
 				<WCard title={t('Adım adım çözüm', 'Step by step')}>
 					<Stack gap={16}>
-						{[
-							[t('Zincir kuralını uygula', 'Apply the chain rule'), "f'(x) = 4(3x² − 2)³ · 6x"],
-							[t('İçi hesapla (x = 1)', 'Inner value (x = 1)'), '3 · 1² − 2 = 1'],
-							[t('Yerine koy', 'Substitute'), "f'(1) = 4 · 1³ · 6 = 24"],
-						].map(([title, formula], index) => (
+						{problem.steps.map(([title, formula], index) => (
 							<Stack key={title} row gap={14} align="flex-start">
 								<Stack align="center" justify="center" style={{width: 32, height: 32, borderRadius: 16, background: mod.action}}>
 									<Text role="headline" color="#FFFFFF">

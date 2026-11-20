@@ -25,7 +25,7 @@ import {bundleProject} from '../src/Renderers/VideoRenderer';
 import {BRAND} from '../src/Configurations/Brand';
 import {buildBannerHtml} from '../src/Ads/Google/Html5Banner';
 import {buildCalloutsCsv, buildEditorCsv, buildNegativeList, buildSearchMarkdown, buildSitelinksCsv, buildSnippetCsv} from '../src/Ads/Google/SearchExport';
-import {AD_EXAMS, AD_FORMATS, EXAM_LANG, AD_LANGS, AD_PLATFORMS, AD_TEXT, conceptsFor, DISPLAY_MAX_BYTES, DISPLAY_SIZES, displayConceptsFor, HTML5_SIZES, PLATFORM_FOLDER, type AdExam, type AdFormat, type AdLang, type AdPlatform} from '../src/Ads/Google/GoogleAdsPlan';
+import {AD_EXAMS, AD_FORMATS, EXAM_LANG, AD_LANGS, AD_PLATFORMS, AD_TEXT, conceptsFor, DISPLAY_MAX_BYTES, DISPLAY_SIZES, displayConceptsFor, HTML5_SIZES, html5ConceptsFor, type AdConcept, PLATFORM_FOLDER, type AdExam, type AdFormat, type AdLang, type AdPlatform} from '../src/Ads/Google/GoogleAdsPlan';
 import {GOOGLE_AD_BANNER_ID, type GoogleAdBannerProps, GOOGLE_AD_IMAGE_ID, GOOGLE_AD_LAYER_ID, GOOGLE_AD_LOGO_ID, type GoogleAdImageProps, type GoogleAdLayerProps, type GoogleAdLogoProps} from '../src/Ads/Google/GoogleAdsProps';
 
 const {values} = parseArgs({
@@ -56,6 +56,14 @@ const PICTURE_SCALES = [2, 1.5, 1] as const;
 const root = path.resolve(values.out);
 const groupDir = (lang: AdLang, exam: AdExam, platform: AdPlatform) => path.join(root, lang, exam, PLATFORM_FOLDER[platform]);
 const csvCell = (text: string) => `"${text.replace(/"/g, '""')}"`;
+
+/** Asset names carry the concept code (report §3.4): `<exam>-<app|web>-<concept>-<format>-2026-11`, so Google's asset report reads by concept. */
+const SET = '2026-11';
+const PROMOTION: Record<AdPlatform, string> = {mobile: 'app', web: 'web'};
+const FORMAT_CODE: Record<AdFormat, string> = {yatay: 'yatay-191x1', kare: 'kare-1x1', dikey: 'dikey-4x5'};
+const assetName = (exam: AdExam, platform: AdPlatform, concept: AdConcept, format: string) => `${exam}-${PROMOTION[platform]}-${concept.id}-${format}-${SET}`;
+/** The ad group folder (report §4.7): product, Dersler showcase, KPSS levels; backups wait apart. */
+const groupFolder = (concept: AdConcept) => (concept.backup ? 'yedek' : {urun: 'urun', dersler: 'dersler', duzey: 'duzey'}[concept.group]);
 
 // ---------------------------------------------------------------- text assets (no rendering needed)
 const md: string[] = ['# Sınavika Google Ads metinleri', '', 'Türkiye (tr): YKS ve KPSS, Türkçe. ABD (en): SAT ve ACT, İngilizce.', '', 'Kaynak: `src/Ads/Google/GoogleAdsPlan.ts`. Sınırlar: başlık 30, uzun başlık 90, açıklama 90 karakter (ilk açıklama 60, kısa açıklama gereken yerler için).', ''];
@@ -119,11 +127,11 @@ const still = async (id: string, inputProps: Record<string, unknown>, output: st
 if (!values['no-banners'] && platforms.includes('web')) {
 	for (const lang of langs)
 		for (const exam of exams.filter((entry) => EXAM_LANG[entry] === lang))
-			for (const [index, concept] of displayConceptsFor(exam).entries()) {
+			for (const concept of displayConceptsFor(exam)) {
 				if (values.concept && !values.concept.split(',').includes(concept.id)) continue;
 				for (const size of DISPLAY_SIZES) {
 					const props: GoogleAdBannerProps = {lang, exam, concept: concept.id, size};
-					const output = path.join(groupDir(lang, exam, 'web'), 'banner', size, `${String(index + 1).padStart(2, '0')}-${concept.id}.jpg`);
+					const output = path.join(groupDir(lang, exam, 'web'), 'banner', size, `${assetName(exam, 'web', concept, size)}.jpg`);
 					await mkdir(path.dirname(output), {recursive: true});
 					const composition = await selectComposition({serveUrl, id: GOOGLE_AD_BANNER_ID, inputProps: props, puppeteerInstance: browser});
 					let quality = 92;
@@ -160,13 +168,15 @@ if (!values['no-images']) {
 		for (const exam of exams.filter((entry) => EXAM_LANG[entry] === lang))
 			for (const platform of platforms) {
 				const concepts = conceptsFor(exam);
-				for (const [index, concept] of concepts.entries()) {
+				for (const concept of concepts) {
 					if (values.concept && !values.concept.split(',').includes(concept.id)) continue;
+					// The KPSS levels run in the app campaign only (report §4.6).
+					if (concept.group === 'duzey' && platform === 'web') continue;
 					for (const format of formats)
-						for (const textless of values['no-textless'] ? [false] : [false, true]) {
+						for (const textless of values['no-textless'] || concept.backup ? [false] : [false, true]) {
 							const props: GoogleAdImageProps = {lang, exam, concept: concept.id, platform, format, textless};
 							const folder = textless ? 'gorseller-metinsiz' : 'gorseller';
-							await still(GOOGLE_AD_IMAGE_ID, props, path.join(groupDir(lang, exam, platform), folder, AD_FORMATS[format].folder, `${String(index + 1).padStart(2, '0')}-${concept.id}.png`), PICTURE_SCALES);
+							await still(GOOGLE_AD_IMAGE_ID, props, path.join(groupDir(lang, exam, platform), folder, groupFolder(concept), AD_FORMATS[format].folder, `${assetName(exam, platform, concept, FORMAT_CODE[format])}${textless ? '-metinsiz' : ''}.png`), PICTURE_SCALES);
 						}
 				}
 			}
@@ -181,18 +191,19 @@ if (!values['no-html5']) {
 	const temp = path.join(root, '.katmanlar');
 	for (const lang of langs)
 		for (const exam of exams.filter((entry) => EXAM_LANG[entry] === lang))
-			for (const platform of platforms) {
-				const concept = conceptsFor(exam).find((entry) => entry.html5);
-				if (!concept) continue;
+			// HTML5 runs in the app campaigns only (report §5.3).
+			for (const platform of platforms.filter((entry) => entry === 'mobile'))
+				for (const concept of html5ConceptsFor(exam)) {
+				if (values.concept && !values.concept.split(',').includes(concept.id)) continue;
 				const layer = async (kind: GoogleAdLayerProps['layer']) => {
 					const props: GoogleAdLayerProps = {lang, exam, concept: concept.id, platform, layer: kind};
-					return readFile(await still(GOOGLE_AD_LAYER_ID, props, path.join(temp, `${lang}-${exam}-${platform}-${kind}.png`), [2]));
+					return readFile(await still(GOOGLE_AD_LAYER_ID, props, path.join(temp, `${lang}-${exam}-${concept.id}-${kind}.png`), [2]));
 				};
 				const [device, proof] = [await layer('device'), await layer('proof')];
 				for (const size of HTML5_SIZES) {
 					const html = buildBannerHtml({concept, lang, platform, size, files: {device: 'cihaz.png', proof: 'kanit.png', logo: 'logo.png', fonts: ['manrope-latin.woff2', 'manrope-latin-ext.woff2']}});
 					const zip = zipSync({'index.html': new TextEncoder().encode(html), 'cihaz.png': device, 'kanit.png': proof, 'logo.png': logo, 'manrope-latin.woff2': fonts[0], 'manrope-latin-ext.woff2': fonts[1]}, {level: 9});
-					const output = path.join(groupDir(lang, exam, platform), 'html5', `${exam}-${PLATFORM_FOLDER[platform]}-${lang}-${size.name}.zip`);
+					const output = path.join(groupDir(lang, exam, platform), 'html5', `${assetName(exam, platform, concept, size.name)}.zip`);
 					await mkdir(path.dirname(output), {recursive: true});
 					await writeFile(output, zip);
 					if (zip.byteLength > MAX_BYTES) oversize.push(output);

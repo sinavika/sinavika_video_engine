@@ -58,6 +58,7 @@ Her canlı yazma için sahibin onayı gerekir.
 
 - **Öğretim sırası artıkları** (TYT ve KPSS Lisans; 9 Kasım ölçümü): 17 bölüm tanımla açılmıyor, 1 bölümde formül anlamından önce geliyor, 124 sözel bölümde ilk sorudan önce çözümlü örnek yok. Bir sonraki yama turunda düzeltilecek.
 - **Sırada yazılacaklar:** KPSS Önlisans (Ortaöğretim aynası; tahmini 15–25 $) ya da AYT (276 konu; tahmini 85–95 $). Her ikisi de sahibin model ve tutar adlı onayını bekliyor. Anthropic hesabının harcama sınırı 5 Kasım'da doldu; Console'da yükseltilmeden ücretli üretim yapılamaz.
+- **Canlı ve etkileşimli görseller** (20 Kasım; Google Ads vitrini bunu bekliyor): isterler ve sahibe sorular `docs/Courses/Works-Canli-Gorseller-Isterleri.md` içinde.
 - **İçerik okuması:** Model TYT yazımında 833 düzeltme kaydetti (`written.fixes`). 14'lük örneklemde 4 gerçek hata vardı: Navarin, eğim birimi, olasılıkta ortak kat ve sesteş kök. Sözel derslerde modelin "düzeltme" diye değiştirdiği bilgiler kaynakla bir kez karşılaştırılmalı.
 
 ## Yeni adım önerileri (karar sahibin; 2-3 Kasım)

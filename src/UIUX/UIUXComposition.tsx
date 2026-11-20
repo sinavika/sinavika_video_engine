@@ -11,7 +11,7 @@ import {BOARD, screenSize, UIUX_BOARD_ID, UIUX_SCREEN_ID, UIUXBoardPropsSchema, 
  * The UI/UX drawings as pictures: one screen at its own size, or a board of
  * several screens with their titles. Which screen comes from the props.
  */
-const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode, audit}) => {
+const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode, audit, exam}) => {
 	const {Component} = findScreen(id);
 	const ref = React.useRef<HTMLDivElement>(null);
 	const [handle] = React.useState(() => (audit ? delayRender('uiux-audit') : null));
@@ -27,7 +27,7 @@ const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode, audit}) => {
 	}, [handle, lang]);
 	return (
 		<VideoFrame themeId="SinavikaLight" lang={lang}>
-			<UIProvider lang={lang} mode={mode}>
+			<UIProvider lang={lang} mode={mode} exam={exam}>
 				<AbsoluteFill ref={ref} style={themeVars(mode)}>
 					<Component />
 				</AbsoluteFill>
@@ -37,8 +37,8 @@ const ScreenPicture: React.FC<UIUXScreenProps> = ({id, lang, mode, audit}) => {
 };
 
 const boardCell = (screen: UIScreen) => {
-	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose);
-	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : screen.platform === 'watch' ? BOARD.watchWidth : screen.platform === 'share' ? BOARD.shareWidth : screen.platform === 'print' ? BOARD.printWidth : screen.platform === 'tablet' ? (screen.portrait ? BOARD.tabletPortraitWidth : BOARD.tabletWidth) : screen.platform === 'fold' ? (screen.pose === 'outer' ? BOARD.duoOuterWidth : screen.pose === 'innerTall' ? BOARD.duoInnerTallWidth : BOARD.duoInnerWidth) : BOARD.webWidth;
+	const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose, screen.narrow);
+	const width = screen.platform === 'mobile' ? BOARD.mobileWidth : screen.platform === 'watch' ? BOARD.watchWidth : screen.platform === 'share' ? BOARD.shareWidth : screen.platform === 'print' ? BOARD.printWidth : screen.platform === 'tablet' ? (screen.portrait ? BOARD.tabletPortraitWidth : BOARD.tabletWidth) : screen.platform === 'fold' ? (screen.pose === 'outer' ? BOARD.duoOuterWidth : screen.pose === 'innerTall' ? BOARD.duoInnerTallWidth : BOARD.duoInnerWidth) : screen.narrow ? BOARD.siteNarrowWidth : BOARD.webWidth;
 	return {size, width, scale: width / size.width, height: (size.height * width) / size.width};
 };
 
@@ -121,7 +121,7 @@ export const UIUXComposition: React.FC = () => (
 			calculateMetadata={({props}) => {
 				const parsed = UIUXScreenPropsSchema.parse(props);
 				const screen = findScreen(parsed.id);
-				return {props: parsed, ...screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose)};
+				return {props: parsed, ...screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose, screen.narrow)};
 			}}
 		/>
 		<Composition

@@ -74,7 +74,7 @@ Kısaltmalar: **M** = `sinavika_mobile_reactnative/src/modules/lens/presentation
 | `m-ozet-video` | mobil | Video analizi | `LensVideo` | M `screens/LensSessionCreateScreen.tsx` (yığın `LensVideo`) | dolu |
 | `w-ozet-video` | web | Video analizi | `/student/lens/video/[id]` | W `pages/LensVideoDetailPage.tsx` (ayrıca `/student/lens/video` → `LensVideoHomePage.tsx`) | dolu |
 
-Tablet çizimi yok; tablet web düzenini kullanır (600 pt altında telefon düzeni). Web sitesindeki ürün sayfası `s-urun-ozet` bu belgenin dışındadır.
+Tablet çizimi yok; tablet web düzenini kullanır (600 pt altında telefon düzeni). Web sitesindeki ürün sayfası `s-urun-akilli-ozet` bu belgenin dışındadır ([14-Web-Sitesi.md](14-Web-Sitesi.md) §3.6).
 
 ## 3. Süreçler (akışlar)
 

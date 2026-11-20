@@ -4,6 +4,7 @@ import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, Phone} from '../../Parts/Mobile';
 import {Button, Card, Chip, List, ListRow, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {UI_SHADOW} from '../../Tokens';
+import {usePersona} from '../../ExamPersona';
 
 /**
  * SinoAI on mobile: a quiet chat surface (like ChatGPT or Gemini). White
@@ -129,6 +130,7 @@ export const SinoHomeScreen: React.FC = () => {
 export const SinoChatScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	const {problem} = usePersona();
 	return (
 		<SinoPhone>
 			<SinoTop />
@@ -140,13 +142,13 @@ export const SinoChatScreen: React.FC = () => {
 							{t('12. soru', 'Question 12')}
 						</Text>
 						<Text role="body" size={13} color="#0B1C30" style={{lineHeight: '18px', marginTop: 3}}>
-							f(x) = (3x² − 2)⁴
+							{problem.noteLines[0]}
 						</Text>
 						<Text role="body" size={13} color="#0B1C30" style={{lineHeight: '18px'}}>
-							{t("ise f'(1) kaçtır?", "find f'(1).")}
+							{problem.noteLines[1]}
 						</Text>
 						<div style={{display: 'flex', gap: 6, marginTop: 6}}>
-							{['A) 12', 'B) 24', 'C) 48'].map((choice) => (
+							{problem.noteChoices.map((choice) => (
 								<Text key={choice} role="meta" size={10} color="#5F6B7D">
 									{choice}
 								</Text>
@@ -155,22 +157,22 @@ export const SinoChatScreen: React.FC = () => {
 					</div>
 					<div style={{maxWidth: 270, padding: '10px 14px', borderRadius: 20, background: colors.line2}}>
 						<Text role="body" color={colors.ink}>
-							{t('Bu soruda neden 6x ile çarpıyoruz?', 'Why do we multiply by 6x here?')}
+							{problem.ask}
 						</Text>
 					</div>
 				</Stack>
 				<Stack gap={12}>
 					<Mark size={22} />
 					<Text role="body" size={15.5} color={colors.ink} style={{lineHeight: '24px'}}>
-						{t('Fonksiyon iç içe: dışta ( )⁴, içte 3x² − 2 var. Zincir kuralında dıştakinin türevini alıp içtekinin türeviyle çarparız.', 'It is a composite: ( )⁴ outside, 3x² − 2 inside. The chain rule multiplies the outer derivative by the inner one.')}
+						{problem.reply}
 					</Text>
 					<div style={{padding: '12px 14px', borderRadius: 14, background: colors.line2}}>
 						<Text role="headline" size={15}>
-							f'(x) = 4(3x² − 2)³ · 6x
+							{problem.formula}
 						</Text>
 					</div>
 					<Text role="body" size={15.5} color={colors.ink} style={{lineHeight: '24px'}}>
-						{t('x = 1 için içerisi 1 olur, sonuç 24. Bu konu son denemende 1 net kaybettirdi.', 'At x = 1 the inside is 1, so the answer is 24. This cost you 1 point last exam.')}
+						{problem.close}
 					</Text>
 					{/* Reply actions as in the app: regenerate, copy, share, like, dislike. */}
 					<Stack row gap={14}>

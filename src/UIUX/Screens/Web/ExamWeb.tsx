@@ -5,6 +5,7 @@ import {MODULES} from '../../ModuleIdentity';
 import {Bar, Button, Card, Chip, List, OptionRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {ModuleWeekCard} from '../../Parts/Study';
 import {Grid, Immersive, ModuleBanner, ModuleHead, Panel, useInTablet, WCard} from '../../Parts/Web';
+import {usePersona} from '../../ExamPersona';
 
 /** Web Denemeler: exams, my exams with calendar, details, solving, results, analysis, solutions and statistics. */
 
@@ -291,13 +292,14 @@ export const WebExamSolveScreen: React.FC = () => {
 export const WebResultScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	const {practice, result, analysis} = usePersona();
 	return (
 		<Panel active="exam" crumb={t('Sonuçlar ›', 'Results ›')}>
 			<ModuleHead
 				module="exam"
 				tab={2}
-				title={t('TYT Deneme 4', 'SAT Practice Test 4')}
-				sub={t('12 Ekim · Türkiye geneli · 12.480 katılımcı', '12 Oct · nationwide · 12,480 students')}
+				title={practice[1]}
+				sub={result.meta}
 				actions={
 					<>
 						<Button tone="ghost" icon="chart">
@@ -313,34 +315,37 @@ export const WebResultScreen: React.FC = () => {
 				<Stack gap={18}>
 					<Card padding={20}>
 						<Stack row gap={20}>
-							<Ring value={0.65} size={120} stroke={11} color={MODULES.exam.color.light}>
-								<Text role="num" size={30}>
-									78,5
-								</Text>
+							<Ring value={result.ring} size={120} stroke={11} color={MODULES.exam.color.light}>
+								<Stack align="center">
+									<Text role="num" size={result.value.length > 4 ? 26 : 30}>
+										{result.value}
+									</Text>
+									<Text role="meta">{result.unit}</Text>
+								</Stack>
 							</Ring>
 							<Stack gap={8}>
 								<Chip tone="success" icon="trend">
-									+6,5 net
+									{result.gain}
 								</Chip>
 								<Text role="small" size={14}>
-									{t('TYT puanın', 'TYT score')} <b style={{color: colors.ink}}>362,4</b>
+									{result.score[0]} <b style={{color: colors.ink}}>{result.score[1]}</b>
 								</Text>
 								<Text role="small" size={14}>
-									{t('Türkiye sıralaman', 'National rank')} <b style={{color: colors.ink}}>8.214</b>
+									{result.rank[0]} <b style={{color: colors.ink}}>{result.rank[1]}</b>
 								</Text>
 							</Stack>
 						</Stack>
 					</Card>
 					<WCard title={t('Derslere göre', 'By subject')}>
 						<Stack gap={12}>
-							{LESSONS.map(([tr, en, score, total, color]) => (
-								<Stack key={tr} gap={5}>
+							{result.lessons.map(({name, score, total, color}) => (
+								<Stack key={name} gap={5}>
 									<Stack row justify="space-between">
 										<Text role="small" weight={700} color={colors.ink}>
-											{t(tr, en)}
+											{name}
 										</Text>
 										<Text role="small">
-											{String(score).replace('.', ',')} / {total}
+											{t(String(score).replace('.', ','), String(score))} / {total}
 										</Text>
 									</Stack>
 									<Bar value={score / total} color={color} />
@@ -354,27 +359,19 @@ export const WebResultScreen: React.FC = () => {
 						<Stack row gap={10}>
 							<Icon name="sparkles" size={18} color={MODULES.exam.color.light} />
 							<Text role="small" color={colors.ink2}>
-								{t('Bu 3 konuyu bu hafta çalışırsan yaklaşık 5 net kazanabilirsin.', 'Study these 3 this week to gain about 5 points.')}
+								{analysis.gain}
 							</Text>
 						</Stack>
 					</Card>
 					<List>
-						{[
-							['Problemler', 'Problems', 'Matematik', 'Maths', '3,25', '4 / 9 / 2'],
-							['Paragraf', 'Reading', 'Türkçe', 'Turkish', '2,5', '18 / 6 / 2'],
-							['Kuvvet ve hareket', 'Force and motion', 'Fizik', 'Physics', '1,75', '1 / 5 / 1'],
-							['Osmanlı kültür ve medeniyeti', 'Ottoman culture', 'Tarih', 'History', '1,25', '2 / 3 / 1'],
-							['Hücre', 'The cell', 'Biyoloji', 'Biology', '1', '1 / 3 / 0'],
-						].map(([tr, en, lessonTr, lessonEn, loss, dyb]) => (
-							<Stack key={tr} row gap={12} style={{padding: '12px 14px'}}>
+						{analysis.topics.map(({name, sub, loss}) => (
+							<Stack key={name} row gap={12} style={{padding: '12px 14px'}}>
 								<Stack grow gap={1}>
-									<Text role="headline">{t(tr, en)}</Text>
-									<Text role="small">
-										{t(lessonTr, lessonEn)} · D/Y/B {dyb}
-									</Text>
+									<Text role="headline">{name}</Text>
+									<Text role="small">{sub}</Text>
 								</Stack>
-								<Text role="headline" color={colors.errorInk} style={{width: 90}}>
-									−{loss} net
+								<Text role="headline" color={colors.errorInk} style={{width: 110, whiteSpace: 'nowrap'}}>
+									{loss}
 								</Text>
 								<Chip tone="module" module="lessons" icon="book" size="sm">
 									{t('Ders', 'Lesson')}

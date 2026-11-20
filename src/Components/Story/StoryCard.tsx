@@ -1,5 +1,6 @@
 import React from 'react';
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import {SINAVIKA_TR_TEMPO} from '../../Configurations/SocialTempo';
 import type {SoundEffectId} from '../../Configurations/SoundEffects';
 import {useTheme} from '../../Themes/ThemeContext';
 import {SoundEffect} from '../Sounds/SoundEffect';
@@ -17,10 +18,12 @@ const settle = (value: number) => 1 - (1 - value) ** 3;
 
 const useSeconds = () => useCurrentFrame() / useVideoConfig().fps;
 
-/** A card's landing: scale, tilt and opacity `seconds` after it starts at `at`. */
+const LAND = SINAVIKA_TR_TEMPO.land;
+
+/** A card's landing (SINAVIKA_TR_TEMPO.land, calmed 20 Nov 2026): scale, tilt and opacity `seconds` after it starts at `at`. */
 export const landing = (seconds: number, at: number, tilt = 0): {opacity: number; transform: string} => {
-	const land = settle(interpolate(seconds, [at, at + 0.24], [0, 1], CLAMP));
-	return {opacity: seconds < at ? 0 : Math.min(1, land * 1.6), transform: `scale(${1.18 - 0.18 * land}) rotate(${tilt + (1 - land) * 5}deg)`};
+	const land = settle(interpolate(seconds, [at, at + LAND.seconds], [0, 1], CLAMP));
+	return {opacity: seconds < at ? 0 : Math.min(1, land * 1.6), transform: `scale(${LAND.from - (LAND.from - 1) * land}) rotate(${tilt + (1 - land) * LAND.tilt}deg)`};
 };
 
 const Land: React.FC<{at: number; tilt?: number; sound?: SoundEffectId | null; children: React.ReactNode}> = ({at, tilt = 0, sound = 'pop', children}) => {

@@ -1,9 +1,10 @@
 import React from 'react';
-import {UIProvider, useColors, useModuleColors, useT, useUI} from '../../Context';
+import {UIProvider, useColors, useExam, useModuleColors, useT, useUI} from '../../Context';
 import {Icon, type UIIconName} from '../../Icons';
 import {AppHeader, Content, ModuleScreen, ModuleSlide, PageTitle, Phone, SectionTitle, Sheet} from '../../Parts/Mobile';
 import {FilterChips, ModuleWeekCard} from '../../Parts/Study';
 import {Bar, Button, Card, Chip, Dots, List, ListRow, Pct, PendingSyncNote, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
+import {usePersona} from '../../ExamPersona';
 
 /**
  * Dersler (Works): a topic is one lesson, a run of steps the student works
@@ -80,7 +81,12 @@ const AGIR_QUESTION_EN = {
 };
 
 /** The sample exam-style question in the drawing's language. */
-export const useAgirQuestion = () => (useUI().lang === 'en' ? AGIR_QUESTION_EN : AGIR_QUESTION);
+export const useAgirQuestion = () => {
+	const exam = useExam();
+	const persona = usePersona();
+	// The default personas keep their named questions (other drawings read AGIR_QUESTION directly); KPSS and ACT draw their own.
+	return exam === 'yks' ? AGIR_QUESTION : exam === 'sat' ? AGIR_QUESTION_EN : persona.steps.question;
+};
 
 export const SUMMARY = {
 	points: ['**Gerçek anlam:** sözcüğün akla gelen ilk anlamı.', '**Somut** beş duyuyla algılanır; **nitel** nasıl, **nicel** ne kadar olduğunu söyler.', '**Eş sesli** sözcüklerin anlamları arasında bağ yoktur (çay); **çok anlamlıda** vardır (kol).', 'Bağlam sorularında sözcüğün yerine **karşılık koy** ve şıklarda dene.'],
@@ -731,18 +737,22 @@ export const LessonPredictScreen: React.FC = () => (
 export const FillContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
+	const {fill} = usePersona().steps;
+	// The middle chip is the right word, the last one the student's wrong pick.
 	const chips: [string, OptionLook][] = [
-		['hafif', 'idle'],
-		['ağır', 'ok'],
-		['tatlı', 'no'],
+		[fill.chips[0], 'idle'],
+		[fill.chips[1], 'ok'],
+		[fill.chips[2], 'no'],
 	];
 	return (
 		<>
-			<Kind size={12.5 * size}>Boşluk doldur</Kind>
-			<Title size={24 * size}>Cümleyi mecaz anlamla tamamla</Title>
+			<Kind size={12.5 * size}>{fill.kind}</Kind>
+			<Title size={24 * size}>{fill.title}</Title>
 			<PlainCard>
 				<Text role="headline" size={18 * size} weight={800} style={{lineHeight: `${32 * size}px`}}>
-					Arkadaşının söylediği sözler ona çok <span style={{display: 'inline-block', minWidth: 64, textAlign: 'center', borderBottom: `2.5px solid ${colors.success}`, color: colors.successInk, padding: '0 4px'}}>ağır</span> geldi; o gün kimseyle konuşmadı.
+					{fill.before}
+					<span style={{display: 'inline-block', minWidth: 64, textAlign: 'center', borderBottom: `2.5px solid ${colors.success}`, color: colors.successInk, padding: '0 4px'}}>{fill.word}</span>
+					{fill.after}
 				</Text>
 			</PlainCard>
 			<Stack row gap={10} wrap>
@@ -754,45 +764,48 @@ export const FillContent: React.FC<{size?: number}> = ({size = 1}) => {
 					</div>
 				))}
 			</Stack>
-			<Feedback tone="no" title="Doğrusu: ağır" size={14.5 * size}>
-				<Rich text={'Sözler tartıyla ölçülmez. **Ağır** burada "kırıcı, üzücü" anlamında; kimseyle konuşmadığına göre sözler onu üzmüş.'} />
+			<Feedback tone="no" title={fill.right} size={14.5 * size}>
+				<Rich text={fill.why} />
 			</Feedback>
 			<Text role="meta" size={13 * size} color={mod.ink}>
-				Bu adım tekrar listene eklendi; yarın yeniden gelecek.
+				{fill.review}
 			</Text>
 		</>
 	);
 };
 
 export const LessonFillScreen: React.FC = () => (
-	<Screen bar={<StepBar done={2} />} foot={<Main>Devam</Main>}>
+	<Screen bar={<StepBar done={2} />} foot={<Main>{usePersona().steps.buttons.next}</Main>}>
 		<FillContent />
 	</Screen>
 );
 
 /* ------------------------------------------------------------------ TrueFalse · doğru mu, yanlış mı? */
 
-export const TrueFalseContent: React.FC<{size?: number}> = ({size = 1}) => (
-	<>
-		<Kind size={12.5 * size}>Sık yapılan hata</Kind>
-		<Title size={24 * size}>Bu ifade doğru mu?</Title>
-		<PlainCard>
-			<Text role="title" size={19 * size} style={{lineHeight: `${26 * size}px`}}>
-				"Somut bir sözcük her zaman gerçek anlamlıdır."
-			</Text>
-		</PlainCard>
-		<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
-			<Choice text="Doğru" center size={15 * size} />
-			<Choice text="Yanlış" look="ok" center size={15 * size} />
-		</div>
-		<Feedback tone="ok" title="Doğru, bu ifade yanlış" size={14.5 * size}>
-			<Rich text="Somut sözcükler de mecaz anlam kazanabilir: **sıcak** bir karşılama, **tatlı** bir söz. Karşılamanın sıcaklığı termometreyle ölçülmez." />
-		</Feedback>
-	</>
-);
+export const TrueFalseContent: React.FC<{size?: number}> = ({size = 1}) => {
+	const {trueFalse: step} = usePersona().steps;
+	return (
+		<>
+			<Kind size={12.5 * size}>{step.kind}</Kind>
+			<Title size={24 * size}>{step.title}</Title>
+			<PlainCard>
+				<Text role="title" size={19 * size} style={{lineHeight: `${26 * size}px`}}>
+					{step.claim}
+				</Text>
+			</PlainCard>
+			<div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10}}>
+				<Choice text={step.yes} center size={15 * size} />
+				<Choice text={step.no} look="ok" center size={15 * size} />
+			</div>
+			<Feedback tone="ok" title={step.verdict} size={14.5 * size}>
+				<Rich text={step.why} />
+			</Feedback>
+		</>
+	);
+};
 
 export const LessonTrueFalseScreen: React.FC = () => (
-	<Screen bar={<StepBar done={3} />} foot={<Main>Devam</Main>}>
+	<Screen bar={<StepBar done={3} />} foot={<Main>{usePersona().steps.buttons.next}</Main>}>
 		<TrueFalseContent />
 	</Screen>
 );
@@ -802,18 +815,14 @@ export const LessonTrueFalseScreen: React.FC = () => (
 export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 	const colors = useColors();
 	const mod = useModuleColors('lessons');
-	const steps: [string, string, number?][] = [
-		['Şıklarda dene', 'aynı karşılık oturuyor mu'],
-		['Sözcüğü cümlede bul', 'çevresini oku', 1],
-		['Tek uyanı seç', 'çeldiriciye dikkat'],
-		['Yerine bir karşılık koy', '"kiralamak" gibi', 2],
-	];
+	const {order} = usePersona().steps;
+	const steps = order.items;
 	return (
 		<>
-			<Kind size={12.5 * size}>Sözcüğün bağlamdaki anlamı</Kind>
-			<Title size={24 * size}>Bağlam sorusunu çözerken hangi sırayla ilerlersin?</Title>
+			<Kind size={12.5 * size}>{order.kind}</Kind>
+			<Title size={24 * size}>{order.title}</Title>
 			<Text role="body" size={15 * size} color={colors.ink2}>
-				Basılı tutup sürükle ya da adımlara sırayla dokun.
+				{order.hint}
 			</Text>
 			<Stack gap={8}>
 				{steps.map(([label, detail, order], index) => (
@@ -843,7 +852,7 @@ export const OrderContent: React.FC<{size?: number}> = ({size = 1}) => {
 };
 
 export const LessonOrderScreen: React.FC = () => (
-	<Screen bar={<StepBar done={21} />} foot={<Ghost icon="refresh">Baştan diz</Ghost>}>
+	<Screen bar={<StepBar done={21} />} foot={<Ghost icon="refresh">{usePersona().steps.buttons.restart}</Ghost>}>
 		<OrderContent />
 	</Screen>
 );
@@ -877,7 +886,7 @@ export const QuestionContent: React.FC<{size?: number; grid?: boolean}> = ({size
 };
 
 export const LessonQuestionScreen: React.FC = () => (
-	<Screen bar={<StepBar done={4} />} foot={<Ghost icon="sparkles">SinoAI’ye sor</Ghost>} gap={10}>
+	<Screen bar={<StepBar done={4} />} foot={<Ghost icon="sparkles">{usePersona().steps.buttons.ask}</Ghost>} gap={10}>
 		<QuestionContent />
 	</Screen>
 );

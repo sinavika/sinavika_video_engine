@@ -5,6 +5,7 @@ import {Card, Chip, List, ListRow, Segmented, Stack, Text} from '../../Parts/Sha
 import {StateBlock} from '../../Parts/Study';
 import {Panel, useInTablet} from '../../Parts/Web';
 import {UI_SHADOW} from '../../Tokens';
+import {usePersona} from '../../ExamPersona';
 
 /**
  * SinoAI on the web panel: a quiet chat surface (like ChatGPT or Gemini).
@@ -99,10 +100,11 @@ const SinoFrame: React.FC<{active?: 'chat' | 'study' | 'library'; children: Reac
 export const WebSinoChatScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
+	const {problem} = usePersona();
 	return (
 		<SinoFrame>
 			<Stack row justify="space-between" style={{width: '100%', padding: '0 0 10px 24px'}}>
-				<Text role="headline">{t('Türevde zincir kuralı', 'Chain rule')}</Text>
+				<Text role="headline">{problem.title}</Text>
 				<Stack row gap={14}>
 					<Icon name="cards" size={18} color={colors.muted} />
 					<Icon name="more" size={20} color={colors.muted} stroke={3} />
@@ -112,7 +114,7 @@ export const WebSinoChatScreen: React.FC = () => {
 				<Stack align="flex-end">
 					<div style={{maxWidth: 520, padding: '12px 18px', borderRadius: 22, background: colors.line2}}>
 						<Text role="body" size={15.5} color={colors.ink}>
-							{t("f(x) = (3x² − 2)⁴ için f'(1) sorusunda neden 6x ile çarpıyoruz?", "Why multiply by 6x in f'(1) for f(x) = (3x² − 2)⁴?")}
+							{problem.ask}
 						</Text>
 					</div>
 				</Stack>
@@ -120,15 +122,15 @@ export const WebSinoChatScreen: React.FC = () => {
 					<Icon name="sparkles" size={24} color={colors.ink} stroke={1.6} />
 					<Stack gap={12} grow>
 						<Text role="body" size={16} color={colors.ink} style={{lineHeight: '26px'}}>
-							{t('Fonksiyon iç içe: dışta ( )⁴, içte 3x² − 2 var. Zincir kuralında dıştakinin türevini alır, içtekinin türeviyle çarparız.', 'It is a composite: ( )⁴ outside, 3x² − 2 inside. The chain rule multiplies the outer derivative by the inner one.')}
+							{problem.reply}
 						</Text>
 						<div style={{padding: '14px 18px', borderRadius: 14, background: colors.line2}}>
 							<Text role="headline" size={16}>
-								f'(x) = 4(3x² − 2)³ · 6x → f'(1) = 24
+								{problem.formula}
 							</Text>
 						</div>
 						<Text role="body" size={16} color={colors.ink} style={{lineHeight: '26px'}}>
-							{t('Bu konu son denemende 1 net kaybettirdi. İstersen benzer 3 soruyla pekiştirelim.', 'This cost you 1 point last exam. Want 3 similar questions?')}
+							{problem.close}
 						</Text>
 						<Stack row gap={16}>
 							{(['refresh', 'copy', 'upload', 'thumbUp', 'thumbDown'] as UIIconName[]).map((icon) => (

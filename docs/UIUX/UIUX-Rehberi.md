@@ -95,6 +95,8 @@ Modül sırası her yerde aynıdır (sahip, 18 Kasım 2026): **Ders Planı, Ders
 
 - Sitenin mevcut header'ı. "Ürünler" açılınca 7 modül kendi rengiyle listelenir.
 - Maketlerde **gerçek çizimler** kullanılır: telefonda mobil ekran, tarayıcıda panel. Ürün değiştikçe site görselleri de aynı kaynaktan güncellenir.
+- Her site sayfası masaüstü (1440) ve telefon (390, `-mobil`) genişliğinde çizilir. Ürün sayfaları tek şablondur: giriş, nasıl çalışır (her adımın ekranı), özellikler (metin ve ekran dönüşümlü), somut örnek, diğer modüller, SSS, çağrı. Metin ve ekran eşlemesi `Screens/Site/SiteContent.ts`; ayrıntı [Kodlama/14-Web-Sitesi.md](Kodlama/14-Web-Sitesi.md) (20 Kasım 2026).
+- Paketler: önce sınav (YKS | KPSS), KPSS'de tür, sonra süre; tek paket kartı. YDT yazılmaz.
 
 ## 3. Görsel dil
 

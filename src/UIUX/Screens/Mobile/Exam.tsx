@@ -3,7 +3,8 @@ import {useColors, useModuleColors, useT, useUI} from '../../Context';
 import {Icon} from '../../Icons';
 import {MODULES} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FitList, FocusHeader, ModuleScreen, ModuleSlide, PageTitle, SectionTitle, Sheet} from '../../Parts/Mobile';
-import {EntryRow, ModuleWeekCard, NetBars, resultBars} from '../../Parts/Study';
+import {EntryRow, ModuleWeekCard, NetBars} from '../../Parts/Study';
+import {usePersona} from '../../ExamPersona';
 import {Bar, Button, Card, Chip, Field, List, ListRow, OptionRow, Pct, Ring, Segmented, Sparkline, Stack, Text, Tile} from '../../Parts/Shared';
 
 /** Denemeler: practice exams, results, analysis and solutions. Tabs: Denemeler · Denemelerim · Modüller · Sonuçlar · Profil. */
@@ -350,9 +351,11 @@ export const MyExamsScreen: React.FC = () => {
  * denemelerim, Analizlerim, Deneme ekle. Data: GET statistics exams (net per
  * attempt); Deneme ekle uses GET/POST student/external-exams.
  */
-const ExamResults: React.FC<{external?: boolean}> = ({external}) => {
+export const ExamResults: React.FC<{external?: boolean; bars?: [string, number | null, boolean?][]; sub?: string; withAdd?: boolean}> = ({external, bars, sub, withAdd = true}) => {
 	const t = useT();
 	const colors = useColors();
+	const persona = usePersona();
+	const enMax = useUI().lang === 'en' ? 800 : 120;
 	return (
 		<ModuleScreen
 			module="exam"
@@ -392,23 +395,23 @@ const ExamResults: React.FC<{external?: boolean}> = ({external}) => {
 						<Stack row justify="space-between">
 							<Stack gap={1}>
 								<Text role="headline" size={16}>
-									{t('TYT net gelişimim', 'My SAT Math scores')}
+									{persona.trend.title}
 								</Text>
-								<Text role="small">{t('Son 5 deneme · çizgili: dışarıda çözdüğün', 'Last 5 · hatched: solved elsewhere')}</Text>
+								<Text role="small">{sub ?? t('Son 5 deneme · çizgili: dışarıda çözdüğün', 'Last 5 · hatched: solved elsewhere')}</Text>
 							</Stack>
 							<div style={{width: 112}}>
-								<Segmented items={[t('TYT', 'SAT'), t('AYT', 'ACT')]} module="exam" />
+								<Segmented items={persona.trend.tabs} module="exam" />
 							</div>
 						</Stack>
 						<NetBars
-							items={resultBars(t)}
-							max={useUI().lang === 'en' ? 800 : 120}
+							items={bars ?? persona.trend.bars}
+							max={bars ? enMax : persona.trend.max}
 						/>
 						{/* The progress strip is green only for a rise; a drop is shown neutral (line2, ink2), never red. */}
 						<Stack row gap={8} style={{padding: '8px 12px', borderRadius: 14, background: colors.successSoft}}>
 							<Icon name="trend" size={16} color={colors.successInk} />
 							<Text role="small" weight={700} color={colors.successInk}>
-								{t('Son 4 denemede +20,25 net', '+110 points over the last 4')}
+								{persona.trend.gain}
 							</Text>
 						</Stack>
 					</Stack>
@@ -416,14 +419,11 @@ const ExamResults: React.FC<{external?: boolean}> = ({external}) => {
 				<FitList gap={8}>
 					<EntryRow module="exam" strong icon="exam" title={t('Sınavika denemelerim', 'My Sınavika exams')} sub={t('6 deneme · sonuç belgeleri', '6 exams · result documents')} />
 					<EntryRow module="exam" icon="chart" title={t('Analizlerim', 'My analyses')} sub={t('Net kaybettiğin konular', 'Topics that cost points')} />
-					<EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün denemenin sonucu', 'A result from another exam')} />
+					{withAdd ? <EntryRow module="exam" icon="plus" title={t('Deneme ekle', 'Add an exam')} sub={t('Dışarıda çözdüğün denemenin sonucu', 'A result from another exam')} /> : null}
 				</FitList>
 				<SectionTitle title={t('Son sonuçlar', 'Latest results')} action={t('Tümü', 'All')} />
 				<List>
-					{[
-						[t('TYT Deneme 5', 'SAT Practice Test 5'), t('19 Ekim · sıralama 6.870', '19 Oct · rank 6,870'), t('84,25', '1,360'), t('+5,75', '+70')],
-						[t('TYT Deneme 4', 'SAT Practice Test 4'), t('12 Ekim · sıralama 8.214', '12 Oct · rank 8,214'), t('78,5', '1,290'), t('+9', '+50')],
-					].map(([title, sub, score, delta]) => (
+					{persona.latest.map(([title, sub, score, delta]) => (
 						<ListRow
 							key={title}
 							module="exam"
@@ -691,37 +691,38 @@ export const ExamResultScreen: React.FC = () => {
 	const t = useT();
 	const lang = t('tr', 'en');
 	const colors = useColors();
+	const {practice, result} = usePersona();
 	return (
-		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('TYT Deneme 4', 'SAT Practice Test 4')} right={<div style={{width: 40}} />} />}>
+		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={practice[1]} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
 				<Card padding={18}>
 					<Stack row gap={16}>
-						<Ring value={0.65} size={104} stroke={10} color={MODULES.exam.color.light}>
+						<Ring value={result.ring} size={104} stroke={10} color={MODULES.exam.color.light}>
 							<Stack align="center">
-								<Text role="num" size={28}>
-									{num(78.5, lang)}
+								<Text role="num" size={result.value.length > 4 ? 24 : 28}>
+									{result.value}
 								</Text>
-								<Text role="meta">net</Text>
+								<Text role="meta">{result.unit}</Text>
 							</Stack>
 						</Ring>
 						<Stack gap={6} grow>
 							<Chip tone="success" icon="trend">
-								{t('+6,5 net', '+6.5')}
+								{result.gain}
 							</Chip>
 							<Text role="small">
-								{t('TYT puanın', 'TYT score')} <b style={{color: colors.ink}}>362,4</b>
+								{result.score[0]} <b style={{color: colors.ink}}>{result.score[1]}</b>
 							</Text>
 							<Text role="small">
-								{t('Sıralaman', 'Rank')} <b style={{color: colors.ink}}>8.214</b> / 12.480
+								{result.rank[0]} <b style={{color: colors.ink}}>{result.rank[1]}</b>
 							</Text>
 						</Stack>
 					</Stack>
 					<Stack gap={10} style={{marginTop: 16}}>
-						{LESSONS.map(([tr, en, score, total, color]) => (
-							<Stack key={tr} gap={4}>
+						{result.lessons.map(({name, score, total, color}) => (
+							<Stack key={name} gap={4}>
 								<Stack row justify="space-between">
 									<Text role="small" weight={700} color={colors.ink}>
-										{t(tr, en)}
+										{name}
 									</Text>
 									<Text role="small">
 										{num(score, lang)} / {total}
@@ -737,7 +738,7 @@ export const ExamResultScreen: React.FC = () => {
 						<Tile module="exam" icon="target" size={40} />
 						<Stack grow gap={1}>
 							<Text role="headline">{t('En çok net kaybettiğin 3 konu', 'Your 3 costliest topics')}</Text>
-							<Text role="small">{t('Problemler, Paragraf, Kuvvet ve hareket', 'Problems, Reading, Force and motion')}</Text>
+							<Text role="small">{result.costly}</Text>
 						</Stack>
 						<Icon name="right" size={18} color={colors.subtle} />
 					</Stack>
@@ -758,6 +759,7 @@ export const ExamResultScreen: React.FC = () => {
 const ExamAnalysis: React.FC<{added?: boolean}> = ({added}) => {
 	const t = useT();
 	const colors = useColors();
+	const {analysis} = usePersona();
 	return (
 		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('Eksik konu analizi', 'Gap analysis')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
@@ -765,19 +767,13 @@ const ExamAnalysis: React.FC<{added?: boolean}> = ({added}) => {
 					<Stack row gap={10}>
 						<Icon name="sparkles" size={20} color={MODULES.exam.color.light} />
 						<Text role="small" color={colors.ink2}>
-							{t('Bu 3 konuyu bu hafta çalışırsan yaklaşık 5 net kazanabilirsin.', 'Study these 3 this week and gain about 5 points.')}
+							{analysis.gain}
 						</Text>
 					</Stack>
 				</Card>
 				<List>
-					{(
-						[
-							['Problemler', 'Problems', 'Matematik · yüzde ve oran', 'Maths · ratios', '3,25', 20],
-							['Paragraf', 'Reading', 'Türkçe · ana fikir', 'Turkish · main idea', '2,5', 12],
-							['Kuvvet ve hareket', 'Force and motion', 'Fizik · Newton yasaları', 'Physics · Newton', '1,75', 0],
-						] as [string, string, string, string, string, number][]
-					).map(([tr, en, subTr, subEn, loss, count], index) => (
-						<Stack key={tr} row gap={12} align="flex-start" style={{padding: 14}}>
+					{analysis.topics.map(({name, sub, loss, quiz: count}, index) => (
+						<Stack key={name} row gap={12} align="flex-start" style={{padding: 14}}>
 							<div style={{width: 28, height: 28, borderRadius: 9, background: colors.errorSoft, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 								<Text role="headline" size={13} color={colors.errorInk}>
 									{index + 1}
@@ -785,12 +781,12 @@ const ExamAnalysis: React.FC<{added?: boolean}> = ({added}) => {
 							</div>
 							<Stack grow gap={6}>
 								<Stack row justify="space-between">
-									<Text role="headline">{t(tr, en)}</Text>
-									<Text role="headline" color={colors.errorInk}>
-										−{loss} net
+									<Text role="headline">{name}</Text>
+									<Text role="headline" color={colors.errorInk} style={{whiteSpace: 'nowrap'}}>
+										{loss}
 									</Text>
 								</Stack>
-								<Text role="small">{t(subTr, subEn)}</Text>
+								<Text role="small">{sub}</Text>
 								<Stack row gap={6}>
 									<Chip tone="module" module="lessons" icon="book" size="sm">
 										{t('Konu anlatımı', 'Topic lesson')}

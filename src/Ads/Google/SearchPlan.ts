@@ -39,7 +39,7 @@ export type SearchCampaign = {
 };
 
 const KPSS_SHARED = [
-	'Sınavika ile KPSS’ye hazırlan',
+	'Sınavika ile KPSS\'ye hazırlan',
 	'Puanını nerede kaybettin?',
 	'Eksiklerini konu konu gör',
 	'Her gün kısa görevlerle çalış',
@@ -47,12 +47,12 @@ const KPSS_SHARED = [
 	'GY-GK denemeleri çöz',
 	'Bilgi Kartları ile tekrar et',
 	'SinoAI takıldığın yeri anlatır',
-	'Web’de ve mobilde aynı hesap',
-	'Ücretsiz başla',
+	'Web\'de ve mobilde aynı hesap',
+	"sinavika.com\'da başla",
 ];
 
 const YKS_SHARED = [
-	'Sınavika ile YKS’ye hazırlan',
+	'Sınavika ile YKS\'ye hazırlan',
 	'Netini nerede kaybettin?',
 	'Bugün ne çalışacağını bil',
 	'Eksiklerini konu konu gör',
@@ -60,8 +60,8 @@ const YKS_SHARED = [
 	'Türkiye geneli sıralamanı gör',
 	'Çözemediğin soruyu çek',
 	'SinoAI takıldığın yeri anlatır',
-	'Web’de ve mobilde aynı hesap',
-	'Ücretsiz başla',
+	'Web\'de ve mobilde aynı hesap',
+	"sinavika.com\'da başla",
 ];
 
 export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
@@ -74,7 +74,7 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 			'Deneme çöz, netini ve puanını gör. Eksik konuların günlük plana dönüşsün.',
 			'Ders Planı eksiklerinden kısa görevler kurar; işten sonra da düzenli çalış.',
 			'Bilgi Kartları tarih, coğrafya ve vatandaşlığı unutmadan tekrar ettirir.',
-			'SinoAI hedefini ve eksiklerini bilerek anlatır. sinavika.com’da ücretsiz başla.',
+			'SinoAI hedefini ve eksiklerini bilerek anlatır. sinavika.com\'da başla.',
 		],
 		groups: [
 			{
@@ -103,7 +103,7 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 				landing: `${SITE}/kpss-lisans`,
 				paths: ['kpss', 'lisans'],
 				keywords: ['kpss lisans', 'kpss lisans deneme', 'kpss gy gk deneme', 'kpss genel yetenek genel kültür', 'kpss lisans deneme çöz'],
-				headlines: ['KPSS lisans hazırlık', 'Lisans GY-GK denemeleri', 'Genel yetenek ve genel kültür', 'Lisans için günlük plan', 'GY-GK’da eksiğini gör'],
+				headlines: ['KPSS lisans hazırlık', 'Lisans GY-GK denemeleri', 'Genel yetenek ve genel kültür', 'Lisans için günlük plan', 'GY-GK\'da eksiğini gör'],
 			},
 			{
 				name: 'KPSS net hesaplama',
@@ -124,7 +124,7 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 				landing: `${SITE}/kpss-deneme-sinavi`,
 				paths: ['kpss', 'uygulama'],
 				keywords: ['kpss uygulaması', 'kpss uygulama', 'ücretsiz kpss uygulamaları', 'kpss hazırlık uygulaması', 'kpss soru çözme uygulaması'],
-				headlines: ['KPSS uygulaması', 'Telefonunda KPSS hazırlığı', 'iOS ve Android’de Sınavika', 'Deneme, plan ve kartlar', 'Kısa görevlerle her gün çalış'],
+				headlines: ['KPSS uygulaması', 'Telefonunda KPSS hazırlığı', 'iOS ve Android\'de Sınavika', 'Deneme, plan ve kartlar', 'Kısa görevlerle her gün çalış'],
 			},
 		],
 	},
@@ -137,7 +137,7 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 			'Deneme çöz, netini ve sıralamanı gör. Eksik konuların günlük plana dönüşsün.',
 			'Ders Planı eksiklerinden günlük görevler kurar; bugün ne çalışacağını bil.',
 			'Akıllı Özet çözemediğin soruyu adım adım çözer ve konusunu söyler.',
-			'SinoAI hedefini ve eksiklerini bilerek anlatır. sinavika.com’da ücretsiz başla.',
+			'SinoAI hedefini ve eksiklerini bilerek anlatır. sinavika.com\'da başla.',
 		],
 		groups: [
 			{
@@ -159,14 +159,14 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 				landing: `${SITE}/tyt-hazirlik`,
 				paths: ['tyt', 'hazirlik'],
 				keywords: ['tyt hazırlık', 'tyt çalışma', 'tyt konuları', 'tyt soru çöz', 'tyt test çöz'],
-				headlines: ['TYT’ye hazırlan', 'TYT konuları ve testleri', 'TYT için günlük plan', 'Mikro derslerle TYT', 'TYT netini artır'],
+				headlines: ['TYT\'ye hazırlan', 'TYT konuları ve testleri', 'TYT için günlük plan', 'TYT konuları adım adım', 'TYT netini artır'],
 			},
 			{
 				name: 'AYT hazırlık',
 				landing: `${SITE}/ayt-hazirlik`,
 				paths: ['ayt', 'hazirlik'],
 				keywords: ['ayt hazırlık', 'ayt çalışma', 'ayt konuları', 'ayt soru çöz', 'ayt test çöz'],
-				headlines: ['AYT’ye hazırlan', 'AYT konuları ve testleri', 'AYT için günlük plan', 'Mikro derslerle AYT', 'AYT netini artır'],
+				headlines: ['AYT\'ye hazırlan', 'AYT konuları ve testleri', 'AYT için günlük plan', 'AYT konuları adım adım', 'AYT netini artır'],
 			},
 			{
 				name: 'YKS net hesaplama',
@@ -188,12 +188,12 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 		name: 'Arama · Marka',
 		dailyBudget: 15,
 		maxCpc: 1.5,
-		sharedHeadlines: ['Sınavika', 'Sınavika’ya giriş yap', 'Deneme, plan ve SinoAI', 'Web’de ve mobilde aynı hesap', 'Ücretsiz başla', 'YKS ve KPSS hazırlığı', 'Netini nerede kaybettin?', 'Bugün ne çalışacağını bil', 'iOS ve Android’de Sınavika', 'Kaldığın yerden devam et'],
+		sharedHeadlines: ['Sınavika', 'Sınavika\'ya giriş yap', 'Deneme, plan ve SinoAI', 'Web\'de ve mobilde aynı hesap', "sinavika.com\'da başla", 'YKS ve KPSS hazırlığı', 'Netini nerede kaybettin?', 'Bugün ne çalışacağını bil', 'iOS ve Android\'de Sınavika', 'Kaldığın yerden devam et'],
 		descriptions: [
-			'Sınavika’nın resmi sitesi. Deneme çöz, analizini gör, planınla çalış.',
+			'Sınavika\'nın resmi sitesi. Deneme çöz, analizini gör, planınla çalış.',
 			'YKS ve KPSS için denemeler, testler, mikro dersler ve Bilgi Kartları.',
 			'Ders Planı eksiklerinden günlük görevler kurar; SinoAI takıldığın yeri anlatır.',
-			'Web’de ve mobilde aynı hesap. sinavika.com’da ücretsiz başla.',
+			'Web\'de ve mobilde aynı hesap. sinavika.com\'da başla.',
 		],
 		groups: [
 			{
@@ -201,7 +201,7 @@ export const SEARCH_CAMPAIGNS: readonly SearchCampaign[] = [
 				landing: `${SITE}`,
 				paths: ['', ''],
 				keywords: ['sınavika', 'sinavika', 'sınavika giriş', 'sinavika com', 'sınavika uygulama'],
-				headlines: ['Sınavika resmi sitesi', 'Sınavika’da ücretsiz başla', 'Sınavika uygulaması', 'Sınavika ile hazırlan', 'Sınavika hesabına gir'],
+				headlines: ['Sınavika resmi sitesi', "Sınavika\'da hemen başla", 'Sınavika uygulaması', 'Sınavika ile hazırlan', 'Sınavika hesabına gir'],
 			},
 		],
 	},
@@ -224,9 +224,9 @@ export const SITELINKS: readonly {text: string; line1: string; line2: string; ur
 	{text: 'Türkiye geneli deneme', line1: 'Netini ve sıralamanı gör', line2: 'Denemeden sonra analizini oku', url: `${SITE}/turkiye-geneli-deneme-sinavi`},
 	{text: 'Ders Planı', line1: 'Bugün ne çalışacağını bil', line2: 'Eksiklerinden günlük görevler', url: `${SITE}/urunler/ders-plani`},
 	{text: 'SinoAI', line1: 'Takıldığın konuyu sor', line2: 'Hedefini bilerek anlatır', url: `${SITE}/urunler/sinoai`},
-	{text: 'Net hesaplama', line1: 'Netini ve puanını hesapla', line2: 'YKS ve KPSS için ücretsiz', url: `${SITE}/net-hesaplama`},
+	{text: 'Net hesaplama', line1: 'Netini ve puanını hesapla', line2: 'YKS ve KPSS puanını hemen gör', url: `${SITE}/net-hesaplama`},
 	{text: 'Sınav takvimi', line1: 'Sınavına kaç gün kaldı?', line2: 'YKS ve KPSS tarihleri', url: `${SITE}/sinav-takvimi`},
-	{text: 'Ücretsiz kayıt ol', line1: 'Hesabını bir dakikada aç', line2: 'Web’de ve mobilde aynı hesap', url: `${SITE}/student/register`},
+	{text: 'Kayıt ol', line1: 'Hesabını bir dakikada aç', line2: 'Web\'de ve mobilde aynı hesap', url: `${SITE}/student/register`},
 ];
 
 export const CALLOUTS: readonly string[] = ['Web ve mobilde aynı hesap', 'Türkiye geneli sıralama', 'Günlük çalışma planı', 'Adım adım çözümler', 'Mikro dersler ve testler', 'Ücretsiz başla'];

@@ -120,7 +120,7 @@ Bugünkü kod yolları mobilde `C:\Users\onurc\Desktop\sinavika_mobile_reactnati
 - Web'de deneme süresi yoktur: paket seçilir, kartla ödenir.
 
 ### 3.7 Web ödeme
-1. Girişler: site `/corporate/packages` (`s-paketler`), web onboarding `Ödemeye geç` (`w-onb-6-paket`), `w-panel-abonelik` → `Paketi değiştir`, `Subscription`/`Payment` bildirimi. Hepsi → `/student/odeme?packageId=…` (isteğe bağlı kupon parametresi) [sayfa geçişi].
+1. Girişler: site `/corporate/packages` (`s-paketler`, `s-paketler-kpss`; hiyerarşi [14-Web-Sitesi.md](14-Web-Sitesi.md) §8), web onboarding `Ödemeye geç` (`w-onb-6-paket`), `w-panel-abonelik` → `Paketi değiştir`, `Subscription`/`Payment` bildirimi. Hepsi → `/student/odeme?packageId=…` (isteğe bağlı kupon parametresi) [sayfa geçişi].
 2. Sipariş özeti: `GET StudentSubscription/order-summary` (paket, kupon, toplam).
 3. Kupon girilir → özet yeniden hesaplanır (indirim satırı yeşil).
 4. Telefon yoksa önce telefon istenir (`PUT StudentAuth/profile`, bugünkü kod).

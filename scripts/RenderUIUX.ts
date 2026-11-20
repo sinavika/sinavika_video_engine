@@ -9,6 +9,7 @@
  *   npm run uiux -- --no-boards | --boards-only
  *   npm run uiux -- --list                        (id, route and title of every drawing)
  *   npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md   (writes the screen inventory and exits)
+ *   npm run uiux -- --exam kpss --only m-deneme   (exam persona for ads: kpss or yks in Turkish, act or sat in English; to sinav-kisileri/<exam>/, no boards)
  *
  * Mobile and watch screens are written at 3x (1170 x 2532; watch 624 x 744 or 681 x 681), web and site at 2x.
  */
@@ -17,6 +18,7 @@ import path from 'node:path';
 import {parseArgs} from 'node:util';
 import {openBrowser, renderStill, selectComposition} from '@remotion/renderer';
 import {bundleProject} from '../src/Renderers/VideoRenderer';
+import {EXAM_LANG, UI_EXAMS, type UIExam} from '../src/UIUX/Context';
 import {UI_SCREENS, type UIPlatform} from '../src/UIUX/Registry';
 import {UI_CANVAS, type UILang, type UIMode} from '../src/UIUX/Tokens';
 import {UIUX_BOARD_ID, UIUX_SCREEN_ID, type UIUXBoardProps, type UIUXScreenProps} from '../src/UIUX/UIUXProps';
@@ -34,6 +36,7 @@ const {values} = parseArgs({
 		'boards-only': {type: 'boolean', default: false},
 		list: {type: 'boolean', default: false},
 		inventory: {type: 'string'},
+		exam: {type: 'string'},
 	},
 });
 
@@ -74,6 +77,8 @@ if (values.list) {
 	process.exit(0);
 }
 
+/** Chrome's largest capture height (16 384 px), with a margin. */
+const MAX_PICTURE_HEIGHT = 16000;
 const FOLDER: Record<UIPlatform, string> = {
 	mobile: 'mobil',
 	web: 'web-panel',
@@ -94,7 +99,11 @@ const BOARD_COLUMNS: Record<UIPlatform, number> = {
 	share: 4,
 	print: 3,
 };
-const langs = (values.lang === 'both' ? ['tr', 'en'] : [values.lang]) as UILang[];
+const exam = values.exam as UIExam | undefined;
+if (exam && !(UI_EXAMS as readonly string[]).includes(exam)) throw new Error(`--exam: ${UI_EXAMS.join(' | ')}`);
+// A persona is drawn in its own language and only as screens (the boards stay the default set).
+const langs = (exam ? [EXAM_LANG[exam]] : values.lang === 'both' ? ['tr', 'en'] : [values.lang]) as UILang[];
+if (exam) values['no-boards'] = true;
 const modes = (values.mode === 'both' ? ['light', 'dark'] : [values.mode]) as UIMode[];
 const MODE_FOLDER: Record<UIMode, string> = {light: 'acik', dark: 'koyu'};
 /** Every board in registry order (platform|group); a board's number is its place here. */
@@ -109,10 +118,10 @@ let count = 0;
 
 for (const lang of langs)
 	for (const mode of modes) {
-		const root = path.join(values.out, ...(lang === 'tr' ? [] : ['en']), MODE_FOLDER[mode]);
+		const root = exam ? path.join(values.out, 'sinav-kisileri', exam, MODE_FOLDER[mode]) : path.join(values.out, ...(lang === 'tr' ? [] : ['en']), MODE_FOLDER[mode]);
 		if (!values['boards-only']) {
 			for (const screen of selected) {
-				const inputProps: UIUXScreenProps = {id: screen.id, lang, mode, audit: false};
+				const inputProps: UIUXScreenProps = {id: screen.id, lang, mode, audit: false, exam};
 				const output = path.resolve(root, FOLDER[screen.platform], `${screen.id}.png`);
 				await mkdir(path.dirname(output), {recursive: true});
 				const composition = await selectComposition({
@@ -121,7 +130,9 @@ for (const lang of langs)
 					inputProps,
 					puppeteerInstance: browser,
 				});
-				const scale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'watch' ? UI_CANVAS.watch.scale : screen.platform === 'share' ? UI_CANVAS.share.scale : screen.platform === 'print' ? UI_CANVAS.print.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : screen.platform === 'fold' ? UI_CANVAS.duoInner.scale : UI_CANVAS.web.scale;
+				const baseScale = screen.platform === 'mobile' ? UI_CANVAS.mobile.scale : screen.platform === 'watch' ? UI_CANVAS.watch.scale : screen.platform === 'share' ? UI_CANVAS.share.scale : screen.platform === 'print' ? UI_CANVAS.print.scale : screen.platform === 'tablet' ? UI_CANVAS.tablet.scale : screen.platform === 'fold' ? UI_CANVAS.duoInner.scale : screen.narrow ? UI_CANVAS.mobile.scale : UI_CANVAS.web.scale;
+				// Chrome cannot capture a picture taller than 16 384 px (the page repeats below it): long site pages get a smaller scale.
+				const scale = Math.min(baseScale, Math.floor((MAX_PICTURE_HEIGHT / composition.height) * 100) / 100);
 				await renderStill({
 					composition,
 					serveUrl,
@@ -174,7 +185,7 @@ for (const lang of langs)
 					output,
 					inputProps,
 					imageFormat: 'png',
-					scale: 1.5,
+					scale: Math.min(1.5, Math.floor((MAX_PICTURE_HEIGHT / composition.height) * 100) / 100),
 					puppeteerInstance: browser,
 					chromiumOptions: {gl: 'angle'},
 				});

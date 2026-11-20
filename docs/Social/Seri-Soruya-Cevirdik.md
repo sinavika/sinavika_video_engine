@@ -7,7 +7,7 @@
 - **Süre:** hedef 30–45 sn; konu gerektirirse ara sıra aşabilir (sahip, 15 Kasım). Doğa saniyede ~2 kelime okuyor, yani 45 sn için ~70–80 kelime; görüntü her ~1 sn'de değişir.
 - **Altyazı yok.** Anlamı ekrandaki büyük yazılar taşır: soru metni, sayılar, şıklar, sonuç.
 - **Geri sayım kısa:** 3-2-1 yaklaşık 1,5 sn, Doğa "Hadi, düşün!" der; tam 3 sn bekleme videoyu durduruyor (sahip, 15 Kasım).
-- **Kapanış soru:** "Sırada ne var? Yoruma yaz." Uygulama kartı yok; köşede yalnız küçük logo.
+- **Kapanış soru:** "Sırada ne var? Yoruma yaz." Uygulama kartı yok; köşe logosu da yok (sahip, 20 Kasım: hiçbir reels'te köşe logosu olmaz).
 - **Ses:** Doğa. **Görüntü:** motor (soru kartı, şekil çizimi, şık eleme, adım adım çözüm, uygulama ekranları).
 - **Ton:** "biz" diye konuşan, samimi, esprili esnaf dili. İzleyiciye "sen", yorumcuya "dostumuz". Kendi hatasını itiraf etmekten çekinmez ("Biz de ilk önce 9 dedik").
 - **Dürüstlük:** Uydurma yorum yok. Fikir bizden geliyorsa açıkça "bu hafta biz seçtik" denir; ekranda yorum kartı yalnız gerçek yorum için kullanılır, kullanıcı adı gösterilmez ("dostumuz"). Gerçek yorumlar geldikçe seri onlara geçer; en beğenilen yorum bir sonraki bölümün konusu olur.

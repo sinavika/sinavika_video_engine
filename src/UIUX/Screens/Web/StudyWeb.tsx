@@ -11,6 +11,7 @@ import {EmbedStep, TOPIC} from '../Mobile/Lessons';
 import {LessonFormulaScreen, LessonGroupScreen, LessonMatchScreen} from '../Mobile/LessonSteps';
 import {WebExamSolveScreen} from './ExamWeb';
 import {Back, Main, StudyPlayer} from './LessonsWeb';
+import {usePersona} from '../../ExamPersona';
 
 /**
  * Web panel in step with the app (8 Nov 2026): the same "Bugün" home with
@@ -298,6 +299,7 @@ const WebPlanToday: React.FC<{state?: WebPlanState}> = ({state = 'plan'}) => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('studyPlan');
+	const {plan} = usePersona();
 	const none = state === 'none';
 	const menu = (
 		<div style={{position: 'absolute', right: 8, top: 44, zIndex: 5, width: 250, padding: 6, borderRadius: 16, background: colors.card, border: `1px solid ${colors.line}`, boxShadow: UI_SHADOW.float}}>
@@ -389,14 +391,14 @@ const WebPlanToday: React.FC<{state?: WebPlanState}> = ({state = 'plan'}) => {
 										<div style={{width: '45%', height: '100%', borderRadius: 5, background: mod.color}} />
 									</div>
 									<Grid columns="1fr 1fr" gap={12}>
-										<PlanTaskCard module="lessons" source={t('TYT Türkçe · Dersler', 'TYT Turkish · Lessons')} title={t('Sözcükte Anlam', 'Word meaning')} amount={t('Kaldığın yerden · 8 dk', 'From where you left off · 8 min')} done more />
+										<PlanTaskCard module="lessons" source={plan.lesson[0]} title={plan.lesson[1]} amount={plan.lesson[2]} done more />
 										<div style={{position: 'relative'}}>
-											<PlanTaskCard module="tests" source={t('TYT Matematik · denemende net kaybettin', 'TYT Maths · cost you nets')} title={t('Problemler · Orta', 'Problems · Medium')} amount={t('20 soru · 25 dk', '20 q · 25 min')} now more />
+											<PlanTaskCard module="tests" source={plan.quiz[0]} title={plan.quiz[1]} amount={plan.quiz[2]} now more />
 											{state === 'menu' ? menu : null}
 										</div>
-										<PlanTaskCard module="flashcards" source={t('TYT Kimya · Bilgi Kartları', 'TYT Chemistry · Flashcards')} title={t('Mol kavramı', 'The mole')} amount={t('20 kart · 10 dk', '20 cards · 10 min')} more />
-										<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={t('TYT Deneme 5', 'SAT Practice Test 5')} amount="10:00 – 12:45" badge={t('Canlı deneme', 'Live exam')} more />
-										<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={t('Paragraf kitabı · 2 test', 'Reading book · 2 tests')} amount="18:00 – 18:40" more />
+										<PlanTaskCard module="flashcards" source={plan.cards[0]} title={plan.cards[1]} amount={plan.cards[2]} more />
+										<PlanTaskCard module="exam" source={t('Sınavika · Türkiye geneli', 'Sınavika · nationwide')} title={plan.exam[0]} amount={plan.exam[1]} badge={t('Canlı deneme', 'Live exam')} more />
+										<PlanTaskCard module="own" source={t('Kendi görevin', 'Your own task')} title={plan.own} amount="18:00 – 18:40" more />
 									</Grid>
 								</Stack>
 							</WCard>

@@ -115,6 +115,66 @@ Hook taslakları (6–12 kelime, ilk 2 sn ekranda büyük):
 
 Video fikirleri: S8 "telefonsuz çalışma deneyi" (Öğrenci laboratuvarı çizgisinde), S4 "ölü dakikalar" (otobüs, sıra, teneffüs), S5 "deneme sabahı" (geri sayım ve hatırlatma), S1 + S6 kısa ürün videosu (kadran ve bugün halkası). Senaryolar altyapı gelince yazılır.
 
+## Ana seri: "Dediniz, yaptık" (sahip, 20 Kasım 2026)
+
+Sahibin fikri: Dokuru'nun "Gıda boyası mı dediniz?" ve "Elmalar çürük değil" videolarındaki mizaç. Öğrencinin söylediği bir şeyi ekrana koyuyoruz, sonra ne yaptığımızı gösteriyoruz. Teknik bilgisi olmayan izleyiciye verilen mesaj şu: "Biz bir markayız ve sizi dinliyoruz. Fikrinizi yazın, biz yapalım." Eğitim uygulamalarında bunu yapan yok.
+
+**Pay:** ayda 10 videonun 6–7'si bu seri. Kalanlar problem hook'u ve deney videoları. Aralıkta saat tanıtımı da bu kalıba girebilir.
+
+**İki tür açılış (dürüstlük kuralı):**
+
+| Tür | Açılış | Kaynak | Kural |
+|---|---|---|---|
+| Dediniz | "Bize şunu yazdınız: …" | Gerçek destek talebi, mağaza yorumu, Instagram/YouTube yorumu, DM | Cümle sadeleştirilebilir, anlamı değişmez. İsim, e-posta ve ekran görüntüsü yok. Destek talepleri özeldir, yalnız anonim alıntı kullanılır. Herkese açık yorumda kullanıcı adı gizlenir. |
+| Fark ettik | "Telefonda test çözerken şunu fark ettik: …" | Bizim denetimimiz, ekip testi, veri | Gerçek kaynak yoksa "dediniz" açılışı kurgu yorumla da yapılabilir (sahip, 20 Kasım; aşağıda). |
+
+**Hook kuralı (sahip, 20 Kasım):** hook ya markanın "biz" diye itirafıdır ya da "Bize yazdınız" balonuyla alıntılanan şikâyettir; şikâyet dış sesin kendi sorusu gibi sorulmaz. Ayrıntı ve kontrol listesi: [Dediniz-Yaptik-Hook-Kurallari.md](Dediniz-Yaptik-Hook-Kurallari.md).
+
+**Akış (25–40 sn; sonda 2 sn sade kart, sinavika.tr kuralı sürer):**
+
+| Zaman | Ne olur |
+|---|---|
+| 0–2 sn | Öğrencinin cümlesi ekranda büyük ve Doğa'nın sesinde. Bir yorum balonu ya da not kâğıdı olarak görünür, gerçek ekran görüntüsü kullanılmaz. |
+| 2–8 sn | Sorunun öğrenciye ne yaptırdığı: "Kütüphanede deneme çözüyorsun, netini kâğıtta hesaplıyorsun, sonra unutuyorsun." |
+| 8–25 sn | Ne yaptık: önce / sonra, gerçek UI/UX ekranları ve kısa bir "işin mutfağı" anı (çizim, deneme, ekip kararı). Teknik terim yok (API, commit, sürüm numarası). |
+| 25–30 sn | Sonuç tek cümle: "Artık dışarıda çözdüğün deneme de net gelişiminde." |
+| Kapanış | Soru: "Sırada ne var? Uygulamada neyi değiştirelim, yoruma yaz." Sonra 2 sn kart. |
+
+**Sahip kararları (20 Kasım, D1 örneğinden sonra):** hiçbir reels'te köşe logosu yok (sondaki sade kart kalır); müzik Dokuru gibi canlı ve heyecanlı (~125–130 BPM, romantik ya da yumuşak değil); kamera zıplaması azaltıldı: sahne başı yakınlaşma %105, alt vuruşta yalnız çok yavaş bir itme (%101,5), kart girişlerinde sekme yok (motor, 20 Kasım, `SINAVIKA_TR_TEMPO` calmed).
+
+**Ton:** "biz" diye konuşan samimi esnaf dili. Kusur itiraf edilir: "Haklısınız, bu ekran dar telefonda sığmıyordu." Sesli düşünme serbest: "Üç tasarım denedik, ikisini attık." Satış çağrısı yok.
+
+**Yayın koşulu:** Düzeltme mağazadaki sürümde yayında değilse video paylaşılmaz. Yazılan her iddia api+web+mobile ya da UI/UX oturumuna doğrulatılır.
+
+**Döngü:** Her videonun kapanışı bir sonrakinin malzemesini toplar. Ayın sonunda en çok beğenilen istek seçilir ve ilgili oturuma iş olarak gider. Yapıldığında videosu çekilir. İstek listesi: `Posts/Seri-DedinizYaptik/Istekler.md` (ilk video yayınlanınca açılır).
+
+### İlk bölüm havuzu (20 Kasım; kaynaklar doğrulandı)
+
+Kaynaklar şunlar: canlı veritabanında 23 destek talebi (yalnız okuma). Uygulama içi geri bildirimde yorum neredeyse yok (1 yorum). Sınavika repolarının commit mesajları çoğunlukla "bazı revizasyonlar" olduğu için değişiklikler plan belgelerinden ve koddan okundu.
+
+| # | Tür | Öğrencinin cümlesi (sadeleştirilmiş) | Ne yaptık | Durum |
+|---|---|---|---|---|
+| D1 | Dediniz (3 talep, Temmuz–Ağustos) | "Kütüphanede kendi denememi çözüyorum, sonucunu buraya ekleyebilir miyim?" | Deneme ekle: dışarıda çözülen deneme net gelişiminde çizgili sütun olarak görünür (mobil, 9 Kasım) | Mağazada yayında olunca. **İlk video adayı.** |
+| D2 | Dediniz (Temmuz) | "Altı çizili dediğiniz yerde çizgi yok." | Soru metninde altı çizili yazım çiziliyor (web + mobil, Temmuz sonu) | Yayında. Eski ekran yeniden çizilir. |
+| D3 | Dediniz (13 Kasım) | "Bazı sorularda görseller gözükmüyor." | 2.247 sorunun eksik şekli listelendi. Çizim durumu Works/Quiz oturumundan sorulacak. | Doğrulanacak. Bittiyse güçlü "işin mutfağı" videosu. |
+| D4 | Dediniz (Haziran, 2 talep) | "Denemelere giremiyorum, paralı mı bu uygulama? Dolandırmak için mi kurdunuz?" | Dokuru'nun "Elmalar çürük değil" videosunun karşılığı: dürüst cevap, ne ücretli, neden, 3 günlük deneme | **Sahip kararı gerekir:** fiyat ve ödeme konuşulur mu? |
+| D5 | Dediniz (11 Kasım) | "Ders programını düzenlemek istiyorum, uygulama kapanıyor." | Düzeltme durumu api+web+mobile'a sorulacak | Doğrulanacak |
+| D6 | Dediniz (18 Kasım) | "Hedef sınavda yalnız TYT ve AYT Sayısal olsun." | Henüz yapılmadı: istek listesine | Yapılınca |
+| F1 | Fark ettik | "Telefonda test çözerken cevap paneli taştı, Devam düğmesi kayboldu." | Panel kayıyor, Devam hep görünür, yeni soruda sayfa başa döner (2.12.2) | 2.12.2 yayında olunca |
+| F2 | Fark ettik | "Web'de 13 menü vardı, deneme için 5 ayrı yer." | 7 modül, her yerde aynı ad ve aynı renk (Ekim yeniden tasarımı) | Yayında. Önce ekranı yeniden çizilir. |
+| F3 | Fark ettik | "Denemede cevabın anında boyanıyordu, sınavda öyle olmuyor." | Deneme artık sınav provası: cevaplar sonda (25 Ekim) | Yayında |
+| F4 | Fark ettik | "Telefonda 5^(1/2), 5 ½ gibi görünüyordu, anlam değişiyordu." | Mobil matematik yeniden çizildi: kök tek parça, üs kesri küçük ve yükseltilmiş (8 Kasım) | Yayında olunca. Görseli çok güçlü. |
+| F5 | Fark ettik | "Dar ekranda kart başlıkları kesiliyordu." | Başlıklar kesilmiyor (2.12.1) | Yayında olunca |
+| F6 | İşin mutfağı | "Bir soru yayına girmeden önce ne oluyor?" | En çok 3 aday, kusurlu olan gösterilmez, şekli motor çizer | Her zaman |
+| F7 | Saat (Aralık) | "Telefonu açınca dikkatim dağılıyor." | Bugünün planı ve odak sayacı bilekte (S1–S8 ile birleşir) | iOS 2.12 ve Wear 1.0 yayında olunca |
+
+**Sahip kararları (20 Kasım):**
+- Destek talepleri anonim alıntı olarak kullanılabilir.
+- Gerçek kaynak şimdilik az. Senaryo için "biri şunu yazmış" diye kurgu bir yorum yazılabilir (sahip: "bir şey olmaz"). Yorum kurgu olabilir ama **yaptığımız şey her zaman gerçektir**: uygulamada olmayan bir özellik ya da düzeltme anlatılmaz. Kurgu yorumda gerçek kişi adı, kullanıcı adı ve ekran görüntüsü taklidi kullanılmaz.
+- D4 dürüst ücret videosu yapılır. Ne ücretli, neden, 3 günlük deneme anlatılır; fiyat rakamı ve indirim söylenmez.
+
+**Altyapı isteği (Video Engine kurulumu):** önce/sonra sahnesi: aynı ekranın eski ve yeni hâli kayarak değişir. Yorum balonu ya da not kâğıdı açılışı da gerekiyor. Eski ekranlar UI/UX'te silindiği için "önce" hâli sade bir yeniden çizimle verilir.
+
 ## İçerik sütunları (başlangıç varsayımı, performansa göre değişir)
 
 | Tür | Pay |
@@ -192,6 +252,7 @@ Kural (sahip, 15 Kasım): içerik için gereken altyapı kurulum oturumuna ileti
 | 16 Kasım | NetChart: en yüksek değer solda olunca etiketi başlığa biniyor (04 Neden unutuyoruz) | Bitti: `netChartLayout`, çizim alanı başlığın altından başlıyor; testli |
 | 17 Kasım | Video başına görünüm (`look`): zemin, palet, kart/yazı renkleri iş dosyasından; sabit lacivert kalkar; prompt-motion yönleri için hazır görünümler | Bitti: `content.look` (warmGrey varsayılan, paper, boldColour, ink, navy), kontrast denetimi, art arda aynı görünüm uyarısı; `device.transition: morph`, `cursor` öğesi. 01–07 `"look": "navy"` ile sabitlendi |
 | 19 Kasım | Aralık saat tanıtımı: bilekte saat (öğrenci pozu ve yakın plan), saat titreşimi ve bildirim gelişi, telefondan saate geçiş, kadran komplikasyonundan uygulamaya, saatte kart çevirme, iPhone kilit ekranında canlı etkinlik, Apple Watch ve Wear OS yan yana | Kısmen bitti: 1 bilek (`wrist` öğesi, `wrist`/`wristTap` pozları), 2 titreşim + bildirim (`buzzes`, `transition: rise`), 5 kart çevirme (`flip`, `taps`); 7 iki `device`/`wrist` öğesiyle yapılabilir (sayaç sabit). İkinci dalga: 3, 4, 6, akan sayaç |
+| 20 Kasım | "Dediniz, yaptık" serisi: önce/sonra sahnesi, anonim yorum balonu (kapanışta boş balon + imleç), ekran üstü durum kurguları (F1 Devam düğmesi kayar + sıkışma; F4 "5 ½" düşüşü, kopuk kök, telefon/web örtüşmesi), "önce" ekranları (çizgili sütunsuz sonuçlar, kesik başlık), D1 nesneleri (kütüphane masası, kitapçık, düşen kâğıt) | Bitti (20 Kasım): `beforeAfter`, `comment`, `glass` push/swipe/highlight, `squeeze`/`release`, `power`, `root`, `match`, `once-deneme-sonuclar`, `once-test-vitrin`/`sonra-test-vitrin`, `desk`/`booklet`/`slip` (Hikaye-Kiti.md "Dediniz, yaptık"). Ek teslim (20 Kasım): `match` örtüşmesi iki çerçevenin içinde, glass `rise` (D1 çizgili sütun), glass `tap` + `transition: "top"` (F1 yeni soru baştan). Kareler kontrol edildi; altyapı tamam. |
 
 Kit belgesi: [`Hikaye-Kiti.md`](Hikaye-Kiti.md). 15 Kasım: StudyDeskStory kite geçti (öğeler Doğa'nın sözcüklerinde düşer, her alt vuruşta kamera yakınlaşır, tablet ve saat ekranları da kullanılabilir); "Çok çalışmak yetmiyor" yeniden üretildi (26 sn + 2 sn kart, `Outputs/Videos/SinavikaTr/Pilot/`).
 
@@ -208,6 +269,10 @@ Hepsi `Posts/Seri-SinavikaTr/`, çıktılar `Outputs/Videos/SinavikaTr/Pilot/`. 
 | 5 | SinoAI sınavda | `05-SinoAI-Sinavda.json` | İlk beş #4 | 26,0 sn, uyarısız (16 Kasım); SinoAI sohbeti (türev, zincir kuralı, "son denemende 1 net kaybettirdi"), 20 soruluk test |
 | 6 | Aynı yanlışı kaç kere yaparsın? | `06-Ayni-Yanlis.json` | Deneysel + hook 2.9 | 27,4 sn, uyarısız (16 Kasım); Testler yanlış nedeni, Yanlışlarım |
 | 7 | Öğrenci laboratuvarı | `07-Ogrenci-Laboratuvari.json` | Deneysel | 23,6 sn, uyarısız (16 Kasım); Ali 8 sa / Ece 5 sa kurgusal deney (gerçek veri değil), İstatistiklerim'de süre + net |
+| 8 | Dediniz, yaptık · Kendi denemen de sayılır (D1) | `08-DY-Kendi-Denemen.json` | Kör test D1 | 32,8 sn, görünüm `paper` (20 Kasım). Sahip geri bildirimiyle yeniden render edildi: canlı müzik, sakin kamera, köşe logosu yok. Yayın: Deneme ekle mağazada olunca |
+| 9 | Dediniz, yaptık · Kaybolan Devam düğmesi (F1) | `09-DY-Devam-Dugmesi.json` | Kör test F1, hook kuralına göre düzeltildi | 30,4 sn, uyarısız, görünüm `warmGrey`. İlk hook reddedildi (şikâyet gibi değildi). Yayın: 2.12.2 mağazada olunca |
+| 10 | Dediniz, yaptık · Beş buçuk görünen üs (F4) | `10-DY-Bes-Bucuk.json` | Kör test F4 | 34,4 sn, görünüm `boldColour`. Sahip hook'u örnek gösterdi. Yayın: matematik düzeltmesinin sürümü doğrulanınca |
+| 11 | Dediniz, yaptık · Hepsi tek uygulamada (D7) | `11-DY-Tek-Uygulama.json` | Sahibin fikri | 37,5 sn, görünüm `ink`: 7 modül montajı. Yayın koşulu yok |
 
 ## Video 3 · Telefonunu bırakma! (senaryo)
 

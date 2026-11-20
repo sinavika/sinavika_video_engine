@@ -3,10 +3,12 @@ import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import type {SoundEffectId} from '../../Configurations/SoundEffects';
 import {UIProvider} from '../../UIUX/Context';
 import {DeviceBrowser, DevicePhone} from '../../UIUX/Parts/Web';
-import {findScreen, type UIScreen} from '../../UIUX/Registry';
+import type {UIScreen} from '../../UIUX/Registry';
 import type {UIMode} from '../../UIUX/Tokens';
 import {screenSize} from '../../UIUX/UIUXProps';
 import {SoundEffect} from '../Sounds/SoundEffect';
+import {storyScreen} from './StoryBefore';
+import {GlassScreen, type GlassEffect} from './StoryGlass';
 import {useStoryLook} from './StoryLook';
 
 /**
@@ -21,11 +23,16 @@ import {useStoryLook} from './StoryLook';
 
 type StoryDeviceKind = 'phone' | 'tablet' | 'appleWatch' | 'wearWatch' | 'browser';
 
-/** How a screen comes onto the glass: sliding in from the right (an app's next page), morphing in place on a spring, rising from the bottom (a notification arriving) or flipping over (a card turned to its answer). */
-type ScreenTransition = 'slide' | 'morph' | 'rise' | 'flip';
+/**
+ * How a screen comes onto the glass: sliding in from the right (an app's next page), morphing in place on a spring,
+ * rising from the bottom (a notification arriving), flipping over (a card turned to its answer), wiped in from the
+ * left behind a line in the look's accent (a before and after of the same screen, "Dediniz, yaptık") or coming down
+ * from the top as the page jumps back to its start (`top`: the next question opens at its top, F1).
+ */
+export type ScreenTransition = 'slide' | 'morph' | 'rise' | 'flip' | 'wipe' | 'top';
 
-/** One screen of a sequence: the drawing, when it comes in (seconds of the scene) and how (the device's transition when not set). */
-export type ShownScreen = {id: string; at: number; transition?: ScreenTransition};
+/** One screen of a sequence: the drawing, when it comes in (seconds of the scene), how (the device's transition when not set) and the moments the engine plays on it (StoryGlass). */
+export type ShownScreen = {id: string; at: number; transition?: ScreenTransition; glass?: readonly GlassEffect[]};
 
 /** Which device a drawing belongs on, and the screen's own size in points. Share cards are not shown on a device. */
 export const deviceFor = (screen: Pick<UIScreen, 'platform' | 'portrait' | 'round' | 'height'>): {kind: StoryDeviceKind; screen: {width: number; height: number}} => {
@@ -54,7 +61,7 @@ export const deviceFor = (screen: Pick<UIScreen, 'platform' | 'portrait' | 'roun
  */
 export const sequenceDevice = (screens: readonly ShownScreen[]) => {
 	if (screens.length === 0) throw new Error('Bir cihaz en az bir ekran gösterir.');
-	const devices = screens.map((shown) => deviceFor(findScreen(shown.id)));
+	const devices = screens.map((shown) => deviceFor(storyScreen(shown.id)));
 	const first = devices[0];
 	devices.forEach((device, index) => {
 		if (device.kind !== first.kind || device.screen.width !== first.screen.width || device.screen.height !== first.screen.height)
@@ -136,10 +143,42 @@ export const flipAt = (screens: readonly ShownScreen[], seconds: number): {index
 	return eased < 0.5 ? [{index: current.index - 1, angle: 180 * eased}] : [{index: current.index, angle: -180 * (1 - eased)}];
 };
 
-/** Each transition's sound: the page's whoosh, the morph's swoosh, the notification's pop, the card's flip. */
-const TRANSITION_SOUND: Record<ScreenTransition, SoundEffectId> = {slide: 'transitionWhoosh', morph: 'morph', rise: 'pop', flip: 'cardFlip'};
+const WIPE_SECONDS = 0.7;
+const TOP_SECONDS = 0.38;
 
-type GlassLayer = {index: number; transform: string; opacity: number; shadow?: string};
+/**
+ * The page jumping back to its top (Sosyal Medya, 20 Nov 2026, F1: "her yeni soru en baştan açılıyor"): the new screen
+ * comes down from above the glass, the old one is pushed down and out, fast, with blur along the move. `y` in screen
+ * heights.
+ */
+export const topAt = (screens: readonly ShownScreen[], seconds: number): {index: number; y: number; blur: number}[] => {
+	const current = reachedScreen(screens, seconds);
+	const progress = current.index === 0 ? 1 : Math.min(1, (seconds - current.at) / TOP_SECONDS);
+	if (progress >= 1) return [{index: current.index, y: 0, blur: 0}];
+	const eased = 1 - (1 - progress) ** 3;
+	const blur = 5 * Math.sin(Math.PI * progress);
+	return [
+		{index: current.index - 1, y: eased, blur},
+		{index: current.index, y: eased - 1, blur},
+	];
+};
+
+/**
+ * A before and after (Sosyal Medya, 20 Nov 2026): the new screen is uncovered from the left edge to the right behind a
+ * moving line, the old one stays where it is. `edge` is where the line stands (0–1 of the width), null when no wipe runs.
+ */
+export const wipeAt = (screens: readonly ShownScreen[], seconds: number): {layers: {index: number; edge: number | null}[]; edge: number | null} => {
+	const current = reachedScreen(screens, seconds);
+	const progress = current.index === 0 ? 1 : Math.min(1, (seconds - current.at) / WIPE_SECONDS);
+	if (progress >= 1) return {layers: [{index: current.index, edge: null}], edge: null};
+	const edge = progress < 0.5 ? 2 * progress * progress : 1 - (-2 * progress + 2) ** 2 / 2;
+	return {layers: [{index: current.index - 1, edge: null}, {index: current.index, edge}], edge};
+};
+
+/** Each transition's sound: the page's whoosh, the morph's swoosh, the notification's pop, the card's flip, the wipe's swoosh. */
+const TRANSITION_SOUND: Record<ScreenTransition, SoundEffectId> = {slide: 'transitionWhoosh', morph: 'morph', rise: 'pop', flip: 'cardFlip', wipe: 'morph', top: 'transitionWhoosh'};
+
+type GlassLayer = {index: number; transform: string; opacity: number; shadow?: string; clip?: string; blur?: number};
 
 /** What is on the glass `seconds` into the scene, drawn by the transition of the screen coming in. */
 const glassLayers = (screens: readonly ShownScreen[], seconds: number, fps: number, size: {width: number; height: number}, fallback: ScreenTransition): GlassLayer[] => {
@@ -150,6 +189,10 @@ const glassLayers = (screens: readonly ShownScreen[], seconds: number, fps: numb
 			return riseAt(screens, seconds).map(({index, y, scale, opacity}) => ({index, transform: `translateY(${y * size.height}px) scale(${scale})`, opacity, shadow: y > 0 ? '0 -12px 30px rgba(0,0,0,0.35)' : undefined}));
 		case 'flip':
 			return flipAt(screens, seconds).map(({index, angle}) => ({index, transform: `perspective(${size.width * 3}px) rotateY(${angle}deg)`, opacity: 1}));
+		case 'top':
+			return topAt(screens, seconds).map(({index, y, blur}) => ({index, transform: `translateY(${y * size.height}px)`, opacity: 1, blur}));
+		case 'wipe':
+			return wipeAt(screens, seconds).layers.map(({index, edge}) => ({index, transform: 'none', opacity: 1, clip: edge === null ? undefined : `inset(0 ${(1 - edge) * size.width}px 0 0)`}));
 		case 'slide':
 			return slidesAt(screens, seconds).map(({index, x}) => ({index, transform: `translateX(${x * size.width}px)`, opacity: 1, shadow: x > 0 ? '-12px 0 30px rgba(0,0,0,0.25)' : undefined}));
 	}
@@ -162,19 +205,25 @@ const glassLayers = (screens: readonly ShownScreen[], seconds: number, fps: numb
 export const ScreenSlider: React.FC<{screens: readonly ShownScreen[]; size: {width: number; height: number}; mode: UIMode; sound?: SoundEffectId | null; transition?: ScreenTransition}> = ({screens, size, mode, sound, transition = 'slide'}) => {
 	const {fps} = useVideoConfig();
 	const seconds = useCurrentFrame() / fps;
+	const look = useStoryLook();
+	const wiping = (reachedScreen(screens, seconds).transition ?? transition) === 'wipe' ? wipeAt(screens, seconds).edge : null;
 	return (
 		<div style={{position: 'relative', width: size.width, height: size.height, overflow: 'hidden'}}>
-			{glassLayers(screens, seconds, fps, size, transition).map(({index, transform, opacity, shadow}) => {
-				const entry = findScreen(screens[index].id);
+			{glassLayers(screens, seconds, fps, size, transition).map(({index, transform, opacity, shadow, clip, blur}) => {
+				const entry = storyScreen(screens[index].id);
 				const Drawing = entry.Component;
+				const draw = () => (
+					<UIProvider mode={mode} lang="tr" module={entry.module} calm={false} web={entry.platform === 'tablet'}>
+						<Drawing />
+					</UIProvider>
+				);
 				return (
-					<div key={index} style={{position: 'absolute', inset: 0, transform, opacity, boxShadow: shadow, backfaceVisibility: 'hidden'}}>
-						<UIProvider mode={mode} lang="tr" module={entry.module} calm={false} web={entry.platform === 'tablet'}>
-							<Drawing />
-						</UIProvider>
+					<div key={index} style={{position: 'absolute', inset: 0, transform, opacity, boxShadow: shadow, clipPath: clip, filter: blur && blur > 0.5 ? `blur(${blur.toFixed(1)}px)` : undefined, backfaceVisibility: 'hidden'}}>
+						{screens[index].glass?.length ? <GlassScreen size={size} effects={screens[index].glass!} render={draw} /> : draw()}
 					</div>
 				);
 			})}
+			{wiping === null ? null : <div style={{position: 'absolute', top: 0, bottom: 0, left: wiping * size.width - size.width * 0.008, width: size.width * 0.016, background: look.accent, boxShadow: `0 0 ${size.width * 0.05}px ${look.accent}`}} />}
 			{sound === null ? null : screens.slice(1).map((shown, index) => <SoundEffect key={index} id={sound ?? TRANSITION_SOUND[shown.transition ?? transition]} atSeconds={shown.at} volume={0.6} />)}
 		</div>
 	);
@@ -331,9 +380,9 @@ export const WatchCase: React.FC<{round: boolean; screen: {width: number; height
  * tilts it as a device held in a hand. Light mode unless `mode` says otherwise; watch drawings are dark by design.
  * A watch also takes `buzzes` and `taps` (WatchCase).
  */
-export const StoryDevice: React.FC<{id?: string; screens?: readonly ShownScreen[]; width: number; mode?: UIMode; rotate?: number; transition?: ScreenTransition; buzzes?: readonly WatchBuzz[]; taps?: readonly WatchTap[]}> = ({id, screens: given, width, mode = 'light', rotate = 0, transition = 'slide', buzzes = [], taps = []}) => {
+export const StoryDevice: React.FC<{id?: string; screens?: readonly ShownScreen[]; width: number; mode?: UIMode; rotate?: number; transition?: ScreenTransition; buzzes?: readonly WatchBuzz[]; taps?: readonly WatchTap[]; glass?: readonly GlassEffect[]}> = ({id, screens: given, width, mode = 'light', rotate = 0, transition = 'slide', buzzes = [], taps = [], glass}) => {
 	const look = useStoryLook();
-	const screens = given ?? (id ? [{id, at: 0}] : []);
+	const screens = given ?? (id ? [{id, at: 0, glass}] : []);
 	const {kind, screen} = sequenceDevice(screens);
 	if ((buzzes.length || taps.length) && kind !== 'appleWatch' && kind !== 'wearWatch') throw new Error('Titreşim ve parmak dokunuşu yalnız saatte gösterilir.');
 	const shadow = `0 ${width * 0.06}px ${width * 0.16}px -${width * 0.05}px rgba(0,0,0,0.6), inset 0 0 0 ${Math.max(1, width * 0.006)}px ${RIM}`;

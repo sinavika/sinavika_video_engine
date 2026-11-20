@@ -5,6 +5,7 @@ import {type ModuleKey} from '../../ModuleIdentity';
 import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, Phone, SectionTitle} from '../../Parts/Mobile';
 import {Bar, Button, Card, Chip, List, Logo, Pct, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {KpiCard} from '../../Parts/Study';
+import {usePersona} from '../../ExamPersona';
 import {UI_SHADOW} from '../../Tokens';
 import {Kind, Screen, StepBar, TrueFalseContent} from './Lessons';
 
@@ -106,18 +107,14 @@ export const ExamMonthScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('exam');
-	const rows: [string, string, string | null, 'done' | 'missed'][] = [
-		[t('TYT Genel Deneme', 'TYT General'), t('Genel deneme · 120 soru', 'General · 120 q'), '78,5', 'done'],
-		[t('TYT Temel Matematik', 'TYT Basic Maths'), t('Bölüm denemesi · 40 soru', 'Section · 40 q'), '21,75', 'done'],
-		[t('TYT Türkçe', 'TYT Turkish'), t('Bölüm denemesi · 40 soru', 'Section · 40 q'), '32,5', 'done'],
-		[t('TYT Fen Bilimleri', 'TYT Science'), t('Bölüm denemesi · 20 soru', 'Section · 20 q'), null, 'missed'],
-	];
+	const {month} = usePersona();
+	const rows = month.rows.map(([title, sub, net]) => [title, sub, net, net === null ? 'missed' : 'done'] as const);
 	return (
 		<ModuleScreen module="exam" tab={1} header={<AppHeader left="back" title={t('Ekim 2026', 'October 2026')} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
 				<Card padding={14} tone="module" module="exam">
 					<Stack gap={6}>
-						<Text role="headline">{t('3 / 4 deneme · ortalama 44,25 net', '3 / 4 exams · avg 44.25')}</Text>
+						<Text role="headline">{month.summary}</Text>
 						<Text role="small">{t('Ay kapandı; sıralamalar kesinleşti.', 'Month closed; ranks are final.')}</Text>
 					</Stack>
 				</Card>
@@ -136,7 +133,7 @@ export const ExamMonthScreen: React.FC = () => {
 											<Text role="section" color={mod.ink}>
 												{net}
 											</Text>
-											<Text role="meta">net</Text>
+											<Text role="meta">{month.unit}</Text>
 										</Stack>
 									) : (
 										<Chip tone="outline" size="sm">
@@ -172,25 +169,21 @@ export const ExamNetScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('exam');
-	const rows: [string, number, number, number, string][] = [
-		[t('Türkçe', 'Reading & Writing'), 34, 4, 2, '33'],
-		[t('Sosyal Bilimler', 'Social'), 15, 3, 2, '14,25'],
-		[t('Temel Matematik', 'Basic Maths'), 24, 8, 8, '22'],
-		[t('Fen Bilimleri', 'Science'), 11, 4, 5, '10'],
-	];
+	const {net} = usePersona();
+	const rows = net.rows;
 	return (
-		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={t('Deneme neti', 'Exam net')} right={<div style={{width: 40}} />} />}>
+		<ModuleScreen module="exam" tab={2} header={<AppHeader left="back" title={net.title} right={<div style={{width: 40}} />} />}>
 			<Content gap={12}>
 				<Card padding={16} tone="module" module="exam">
 					<Stack row justify="space-between" align="flex-end">
 						<Stack gap={1}>
-							<Text role="meta">{t('TYT Deneme 4 · toplam net', 'SAT Practice Test 4 · total net')}</Text>
+							<Text role="meta">{net.total[0]}</Text>
 							<Text role="num" size={32}>
-								79,25
+								{net.total[1]}
 							</Text>
 						</Stack>
 						<Chip tone="success" icon="trend">
-							{t('+6,75 net', '+6.75')}
+							{net.total[2]}
 						</Chip>
 					</Stack>
 				</Card>
@@ -200,13 +193,13 @@ export const ExamNetScreen: React.FC = () => {
 							<Text role="meta" style={{flex: 1}}>
 								{t('Ders', 'Subject')}
 							</Text>
-							{['D', 'Y', 'B'].map((head) => (
+							{net.heads.slice(0, 3).map((head) => (
 								<Text key={head} role="meta" style={{width: 34}} align="center">
 									{head}
 								</Text>
 							))}
 							<Text role="meta" style={{width: 50}} align="right">
-								Net
+								{net.heads[3]}
 							</Text>
 						</Stack>
 						{rows.map(([name, right, wrong, blank, net]) => (
@@ -232,10 +225,7 @@ export const ExamNetScreen: React.FC = () => {
 				</Card>
 				<SectionTitle title={t('Net kaybettiğin konular', 'Topics that cost you')} />
 				<List>
-					{[
-						[t('Problemler', 'Word problems'), t('D/Y/B 3/3/2 · −3,75 net', '3/3/2 · −3.75')],
-						[t('Paragrafta yapı', 'Paragraph structure'), t('D/Y/B 4/2/0 · −2,5 net', '4/2/0 · −2.5')],
-					].map(([title, sub]) => (
+					{net.costly.map(([title, sub]) => (
 						<Stack key={title} row gap={10} style={{padding: '12px 14px'}}>
 							<Stack grow gap={1}>
 								<Text role="headline">{title}</Text>

@@ -5,6 +5,7 @@ import {AppHeader, BottomBar, Content, FocusHeader, ModuleScreen, ModuleSlide, P
 import {Bar, Button, Card, Chip, Dots, List, ListRow, Ring, Segmented, Stack, Text, Tile} from '../../Parts/Shared';
 import {ModuleWeekCard, StateBlock} from '../../Parts/Study';
 import {UI_SHADOW} from '../../Tokens';
+import {usePersona} from '../../ExamPersona';
 
 /** Akıllı Özet (Lens), Bilgi Kartları and SinoAI. */
 
@@ -161,6 +162,7 @@ export const SummaryResultScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('smartSummary');
+	const {problem} = usePersona();
 	return (
 		<ModuleScreen
 			module="smartSummary"
@@ -168,7 +170,7 @@ export const SummaryResultScreen: React.FC = () => {
 			header={
 				<AppHeader
 					left="back"
-					title={t('Türev · Zincir kuralı', 'Chain rule')}
+					title={problem.title}
 					right={
 						<div style={{width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 							<Icon name="more" size={22} color={colors.ink} stroke={3} />
@@ -182,18 +184,14 @@ export const SummaryResultScreen: React.FC = () => {
 					<Chip tone="module" module="smartSummary" icon="scan">
 						{t('Akıllı Özet', 'Smart Summary')}
 					</Chip>
-					<Chip>{t('AYT Matematik', 'SAT Math')}</Chip>
+					<Chip>{problem.chip}</Chip>
 					<Chip tone="success" icon="check">
-						{t('Cevap: B', 'Answer: B')}
+						{problem.answer}
 					</Chip>
 				</Stack>
 				<SectionTitle title={t('Adım adım çözüm', 'Step by step')} />
 				<Stack gap={10}>
-					{[
-						[t('Zincir kuralını uygula', 'Apply the chain rule'), "f'(x) = 4(3x² − 2)³ · 6x"],
-						[t('İçi hesapla (x = 1)', 'Inner value (x = 1)'), '3 · 1² − 2 = 1'],
-						[t('Yerine koy', 'Substitute'), "f'(1) = 4 · 1³ · 6 = 24"],
-					].map(([title, formula], index) => (
+					{problem.steps.map(([title, formula], index) => (
 						<Stack key={title} row gap={12} align="flex-start">
 							<div style={{width: 26, height: 26, borderRadius: 13, background: mod.action, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
 								<Text role="meta" weight={800} color="#FFFFFF">
@@ -218,7 +216,7 @@ export const SummaryResultScreen: React.FC = () => {
 						{t('Kazanım', 'Skill')}
 					</Text>
 					<Text role="small" color={colors.ink2} style={{marginTop: 4}}>
-						{t('İç içe fonksiyonda türev: dıştakinin türevi × içtekinin türevi. AYT’de her yıl 1–2 soru.', 'Derivative of a composite: outer × inner. 1–2 questions every year.')}
+						{problem.skill}
 					</Text>
 				</Card>
 				<Card padding={14} style={{border: `1.5px solid ${colors.warningSoft}`}}>
@@ -226,21 +224,21 @@ export const SummaryResultScreen: React.FC = () => {
 						{t('Sık hata', 'Common mistake')}
 					</Text>
 					<Text role="small" color={colors.ink2} style={{marginTop: 4}}>
-						{t('İçteki fonksiyonun türevini (6x) çarpmayı unutmak.', 'Forgetting to multiply by the inner derivative (6x).')}
+						{problem.mistake}
 					</Text>
 				</Card>
 				<SectionTitle title={t('Bu konuda devam et', 'Keep going on this topic')} />
 				<List>
-					<ListRow module="lessons" icon="book" title={t('Konuyu çalış', 'Study the topic')} subtitle={t('Dersler · Türev', 'Lessons · Derivatives')} />
+					<ListRow module="lessons" icon="book" title={t('Konuyu çalış', 'Study the topic')} subtitle={problem.lesson} />
 				</List>
 				{/* No card making from an analysis; "Benzer 5 soru" opens the topic's quiz in Testler. The photo closes the page. */}
 				<SectionTitle title={t('Sorunun fotoğrafı', 'Photo of the question')} />
 				<div style={{height: 150, borderRadius: 16, background: '#F5F1E8', padding: 16, boxSizing: 'border-box'}}>
 					<Text role="headline" color="#1E293B">
-						14. f(x) = (3x² − 2)⁴ {t('için', 'for')} f'(1) {t('kaçtır?', '?')}
+						{problem.photo}
 					</Text>
 					<Text role="small" color="#1E293B" style={{marginTop: 10}}>
-						A) 12 · B) 24 · C) 36 · D) 48 · E) 60
+						{problem.options}
 					</Text>
 				</div>
 			</Content>
@@ -534,6 +532,7 @@ export const CardsTodayScreen: React.FC = () => {
 const FlashcardFace: React.FC<{back?: boolean}> = ({back}) => {
 	const t = useT();
 	const mod = useModuleColors('flashcards');
+	const {card} = usePersona();
 	return (
 		<div style={{position: 'relative', flex: 1, margin: '6px 20px 0'}}>
 			<div style={{position: 'absolute', inset: '24px 18px -12px', borderRadius: 28, background: 'var(--ui-card)', opacity: 0.55}} />
@@ -542,20 +541,20 @@ const FlashcardFace: React.FC<{back?: boolean}> = ({back}) => {
 				<Chip tone="module" module="flashcards">
 					{back ? t('Cevap', 'Answer') : t('Tanım', 'Definition')}
 				</Chip>
-				<Text role="meta">{t('Kimya · Mol', 'Chemistry · Mole')}</Text>
+				<Text role="meta">{card.meta}</Text>
 				{back ? (
 					<>
 						<Text role="hero" align="center">
-							{t('6,02', '6.02')} × 10²³ {t('tanecik', 'particles')}
+							{card.answer}
 						</Text>
 						<Text role="body" align="center">
-							{t('Avogadro sayısı kadar atom, molekül ya da iyon içeren madde miktarı.', 'The amount containing Avogadro’s number of particles.')}
+							{card.text}
 						</Text>
 					</>
 				) : (
 					<>
 						<Text role="hero" size={28} align="center">
-							{t('1 mol nedir?', 'What is 1 mole?')}
+							{card.question}
 						</Text>
 						<Button tone="moduleSoft" module="flashcards" size="sm" icon="refresh">
 							{t('Çevir', 'Flip')}
@@ -572,11 +571,12 @@ const FlashcardFace: React.FC<{back?: boolean}> = ({back}) => {
 
 export const CardSessionScreen: React.FC = () => {
 	const t = useT();
+	const persona = usePersona();
 	const mod = useModuleColors('flashcards');
 	return (
 		<UIProvider module="flashcards">
 			<Phone bg={`linear-gradient(180deg, ${mod.soft} 0%, var(--ui-bg) 70%)`}>
-				<FocusHeader title={t('Kart oturumu', 'Card session')} sub={t('Kimya · Mol', 'Chemistry · Mole')} progress={0.37} />
+				<FocusHeader title={t('Kart oturumu', 'Card session')} sub={persona.card.meta} progress={0.37} />
 				<FlashcardFace />
 				<BottomBar>
 					<Text role="small" align="center">
@@ -593,12 +593,13 @@ export const CardSessionScreen: React.FC = () => {
 
 export const CardSessionBackScreen: React.FC = () => {
 	const t = useT();
+	const persona = usePersona();
 	const colors = useColors();
 	const mod = useModuleColors('flashcards');
 	return (
 		<UIProvider module="flashcards">
 			<Phone bg={`linear-gradient(180deg, ${mod.soft} 0%, var(--ui-bg) 70%)`}>
-				<FocusHeader title={t('Kart oturumu', 'Card session')} sub={t('Kimya · Mol', 'Chemistry · Mole')} progress={0.37} />
+				<FocusHeader title={t('Kart oturumu', 'Card session')} sub={persona.card.meta} progress={0.37} />
 				<FlashcardFace back />
 				<BottomBar>
 					<Text role="small" align="center">

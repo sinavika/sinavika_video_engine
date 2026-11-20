@@ -169,15 +169,6 @@ const Counter: React.FC<{index: number; total: number}> = ({index, total}) => {
 	);
 };
 
-/** The logo in the top corner; on the side away from the phone. */
-const Corner: React.FC<{side?: 'left' | 'right'}> = ({side = 'left'}) => {
-	const {u} = useVideoLayout();
-	return (
-		<div style={{position: 'absolute', [side]: u(90), top: u(64)} as React.CSSProperties}>
-			<BrandMark size="chrome" color={WHITE} />
-		</div>
-	);
-};
 
 export const HookScene: React.FC<{content: Content}> = ({content}) => {
 	const {u} = useVideoLayout();
@@ -187,7 +178,6 @@ export const HookScene: React.FC<{content: Content}> = ({content}) => {
 		<AbsoluteFill>
 			<OrangeGround />
 			<div style={{position: 'absolute', top: u(700), left: giant, fontSize: u(360), fontWeight: 800, color: 'transparent', WebkitTextStroke: `${u(3)}px rgba(255,255,255,0.16)`, whiteSpace: 'nowrap', letterSpacing: '-0.04em'}}>Sınavika</div>
-			<Corner />
 			<div style={{position: 'absolute', left: u(130), top: 0, bottom: 0, width: u(980), display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 				<Kinetic lines={content.hook.lines} size={112} />
 			</div>
@@ -213,7 +203,6 @@ export const FanScene: React.FC<{content: Content}> = ({content}) => {
 	return (
 		<AbsoluteFill>
 			<OrangeGround />
-			<Corner />
 			<div style={{position: 'absolute', top: u(70), left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
 				<div style={{fontSize: u(78), fontWeight: 800, color: WHITE, letterSpacing: '-0.03em', opacity: interpolate(seconds, [0.05, 0.35], [0, 1], CLAMP), transform: `translateY(${interpolate(seconds, [0.05, 0.4], [u(-30), 0], CLAMP)}px)`}}>{content.fan.headline}</div>
 			</div>
@@ -267,7 +256,6 @@ export const BeatScene: React.FC<{content: Content; index: number}> = ({content,
 	return (
 		<AbsoluteFill>
 			<OrangeGround />
-			<Corner side={phoneLeft ? 'right' : 'left'} />
 			<div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: `0 ${u(phoneLeft ? 110 : 130)}px 0 ${u(phoneLeft ? 230 : 130)}px`}}>
 				{phoneLeft ? phone : text}
 				{phoneLeft ? <div style={{width: u(820)}}>{text}</div> : phone}

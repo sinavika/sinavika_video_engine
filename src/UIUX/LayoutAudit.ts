@@ -67,6 +67,16 @@ export const auditScreen = (root: HTMLElement, lang: 'tr' | 'en' = 'tr'): AuditF
 	};
 	const scrimIn = (el: Element) => [...root.querySelectorAll('[data-ui~="scrim"]')].some((scrim) => screenOf(scrim) === screenOf(el));
 	const hex = (c: number[]) => `#${c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('')}`;
+	// Site pages: the registry height must match the drawn page, or the footer is cut / the bottom left empty.
+	const page = root.querySelector<HTMLElement>('[data-ui~="site-page"]');
+	if (page) {
+		const fill = page.querySelector<HTMLElement>('[data-ui~="site-fill"]')?.getBoundingClientRect().height ?? 0;
+		const drawn = Math.ceil(page.getBoundingClientRect().height - fill);
+		const canvas = Math.round(screen.bottom - screen.top);
+		// Longer than the canvas cuts the footer; much shorter leaves a gap above it (the other language may be the longer one).
+		if (drawn - canvas > 2) findings.push({level: 'hata', kind: 'sayfa boyu', text: 'site', detail: `sayfa ${drawn} pt, tuval ${canvas} pt; Registry yüksekliği en az ${drawn} olmalı`});
+		else if (canvas - drawn > 60) findings.push({level: 'uyarı', kind: 'sayfa boyu', text: 'site', detail: `sayfa ${drawn} pt, tuval ${canvas} pt; footer'ın üstünde ${canvas - drawn} pt boşluk`});
+	}
 
 	const clipOf = (el: Element): Rect => {
 		let clip = screen;

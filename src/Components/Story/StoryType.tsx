@@ -1,6 +1,7 @@
 import React from 'react';
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {BRAND_TYPOGRAPHY} from '../../Configurations/BrandTypography';
+import {SINAVIKA_TR_TEMPO} from '../../Configurations/SocialTempo';
 import {useTheme} from '../../Themes/ThemeContext';
 import {STORY_INK, useStoryLook, type StoryTone} from './StoryLook';
 
@@ -57,7 +58,7 @@ export const KeyPhrase: React.FC<{text: string; keywords?: readonly string[]; at
 				const key = marked.has(keyOf(word));
 				const stroke = key ? interpolate(seconds, [start + 0.12, start + 0.42], [0, 1], CLAMP) : 0;
 				return (
-					<span key={index} style={{position: 'relative', display: 'inline-block', opacity: land, transform: `translateY(${(1 - land) * size * 0.5}px) scale(${1 + (1 - land) * 0.35})`, transformOrigin: '50% 80%', color: key ? accent : ink}}>
+					<span key={index} style={{position: 'relative', display: 'inline-block', opacity: land, transform: `translateY(${(1 - land) * size * SINAVIKA_TR_TEMPO.word.drop}px) scale(${1 + (1 - land) * SINAVIKA_TR_TEMPO.word.swell})`, transformOrigin: '50% 80%', color: key ? accent : ink}}>
 						{key ? <span style={{position: 'absolute', left: '-4%', bottom: '6%', height: '34%', width: `${108 * stroke}%`, background: accent, opacity: 0.22, borderRadius: size * 0.08, transform: 'skewX(-12deg)'}} /> : null}
 						<span style={{position: 'relative'}}>{word}</span>
 					</span>
@@ -82,7 +83,7 @@ export const NumberPop: React.FC<{to: number; from?: number; at?: number; count?
 	const landed = interpolate(seconds, [at + count, at + count + 0.12, at + count + 0.32], [0, 1, 0], CLAMP);
 	const shown = seconds < at ? 0 : 1;
 	return (
-		<span style={{display: 'inline-block', opacity: shown, transform: `scale(${1 + 0.16 * landed})`, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: size, color, fontVariantNumeric: 'tabular-nums', lineHeight: 1}}>
+		<span style={{display: 'inline-block', opacity: shown, transform: `scale(${1 + 0.08 * landed})`, fontFamily: typography.display, fontWeight: BRAND_TYPOGRAPHY.weights.kinetic, fontSize: size, color, fontVariantNumeric: 'tabular-nums', lineHeight: 1}}>
 			{value.toLocaleString('tr-TR', {minimumFractionDigits: decimals, maximumFractionDigits: decimals})}
 			{suffix ? <span style={{fontSize: size * 0.42, marginLeft: size * 0.08}}>{suffix}</span> : null}
 		</span>

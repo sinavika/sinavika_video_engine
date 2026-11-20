@@ -22,7 +22,15 @@ type UIState = {
 	duo?: 'outer' | 'inner' | 'sheet';
 	/** iPhone Duo partly open: the folding region splits the inner display; panes keep clear of it. */
 	fold?: boolean;
+	/** The exam the drawn student prepares for (ads show only their own exam). Default: yks in Turkish, sat in English. */
+	exam?: UIExam;
 };
+
+/** Exam personas: yks and kpss are drawn in Turkish, sat and act in English. */
+export const UI_EXAMS = ['yks', 'kpss', 'sat', 'act'] as const;
+export type UIExam = (typeof UI_EXAMS)[number];
+/** The language an exam persona is drawn in. */
+export const EXAM_LANG: Record<UIExam, UILang> = {yks: 'tr', kpss: 'tr', sat: 'en', act: 'en'};
 
 const UIContext = createContext<UIState>({mode: 'light', lang: 'tr'});
 
@@ -45,6 +53,22 @@ export const useColors = (): UIColors => UI_COLORS[useUI().mode];
 const TintContext = createContext(false);
 export const TintProvider: React.FC<{children: React.ReactNode}> = ({children}) => <TintContext.Provider value>{children}</TintContext.Provider>;
 export const useOnTint = (): boolean => useContext(TintContext);
+
+/** The drawn student's exam: the persona set on the drawing, else yks in Turkish and sat in English. */
+export const useExam = (): UIExam => {
+	const {exam, lang} = useUI();
+	return exam ?? (lang === 'en' ? 'sat' : 'yks');
+};
+
+/**
+ * Picks the exam-bound text (exam names, subjects, scores, topics) for the
+ * drawn student: `pick('TYT Deneme 5', 'KPSS Deneme 5', 'SAT Practice Test 5', 'ACT Practice Test 5')`.
+ * Everything else stays with `t()`.
+ */
+export const usePick = (): (<T>(yks: T, kpss: T, sat: T, act: T) => T) => {
+	const exam = useExam();
+	return (yks, kpss, sat, act) => ({yks, kpss, sat, act})[exam];
+};
 
 /** Picks the text of the drawing's language: `t('Denemeler', 'Practice exams')` or `t({tr, en})`. */
 export const useT = (): ((tr: string | Bilingual, en?: string) => string) => {

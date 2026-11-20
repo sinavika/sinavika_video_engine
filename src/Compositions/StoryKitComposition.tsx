@@ -1,6 +1,10 @@
 import React from 'react';
 import {Composition, Folder, Sequence} from 'remotion';
+import {StoryBeforeAfter} from '../Components/Story/StoryBeforeAfter';
 import {StoryCamera} from '../Components/Story/StoryCamera';
+import {StoryComment} from '../Components/Story/StoryComment';
+import {ExamBooklet, LibraryDesk, NetSlip} from '../Components/Story/StoryDesk';
+import {MathMatch, PowerMishap, RootMishap} from '../Components/Story/StoryMath';
 import {StoryCursor} from '../Components/Story/StoryCursor';
 import {STORY_LOOKS, StoryLookProvider, type StoryLookName} from '../Components/Story/StoryLook';
 import {StoryGround} from '../Components/Story/StoryMaterial';
@@ -26,6 +30,13 @@ const STORY_KIT_COMPOSITION_ID = 'StoryKit';
 /** Screen transitions of the watch scenes (a constant, so the motion rules' CSS-transition guard does not read them as one). */
 const RISE = 'rise' as const;
 const FLIP = 'flip' as const;
+/** "Dediniz, yaptık" scenes (10–17, 20 Nov 2026): the scenes of the kit's first nine, then the series' parts. */
+const SCENES = 17;
+/** m-test-coz-yanlis, measured on the drawing: the solution panel's text lines, the split above its buttons, "Devam". */
+/** m-deneme-sonuclar's hatched bar, measured on the drawing (D1: it rises into place). */
+const OWN_BAR = {x: 0.755, y: 0.385, width: 0.15, height: 0.11};
+const TOP = 'top' as const;
+const WRONG_PANEL = {fill: [0.766, 0.813] as const, inset: 0.15, split: 0.815, devam: {x: 0.045, y: 0.895, width: 0.91, height: 0.065}};
 
 const Ground: React.FC<{children: React.ReactNode}> = ({children}) => <StoryGround>{children}</StoryGround>;
 
@@ -249,6 +260,120 @@ const StoryKitSheet: React.FC<{look: StoryLookName}> = ({look}) => (
 				</StoryCamera>
 			</Ground>
 		</Sequence>
+		{/* 10. D1: a library desk, another publisher's booklet, the net written in the slip's corner, then the slip slides off and falls. */}
+		<Sequence from={SCENE * 9 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={330} y={760}>
+						<StoryStudent keys={[{at: 0, pose: 'upright'}, {at: 2, pose: 'surprised'}]} size={420} />
+					</Place>
+					<Place x={40} y={1180}>
+						<LibraryDesk width={1000} />
+					</Place>
+					<Place x={90} y={1020}>
+						<ExamBooklet at={0.2} width={300} />
+					</Place>
+					<Place x={540} y={1050}>
+						<NetSlip net="68,5" at={0.4} write={0.9} fall={2} width={360} />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 11. The anonymous comment carrying the hook: no name, no avatar; words land one by one, the keywords in the accent. */}
+		<Sequence from={SCENE * 10 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={90} y={330}>
+						<StoryComment label="Bize yazdınız" text="Kütüphanede kendi denememi çözüyorum, netim kâğıtta kayboluyor." keywords={['kendi denememi', 'kayboluyor']} at={0.1} width={900} size={66} />
+					</Place>
+					<Place x={330} y={1180}>
+						<StoryStudent keys={[{at: 0, pose: 'slumped'}]} size={420} />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 12. Before and after: m-deneme-sonuclar as it was (only Sınavika exams, the missing slot blinking), wiped into today's, the hatched bar ringed. */}
+		<Sequence from={SCENE * 11 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={290} y={200}>
+						<StoryBeforeAfter before={{id: 'once-deneme-sonuclar'}} after={{id: 'm-deneme-sonuclar', glass: [{kind: 'rise', at: 2.15, ...OWN_BAR}, {kind: 'highlight', at: 2.85, x: 0.75, y: 0.38, width: 0.155, height: 0.15}]}} at={1.4} width={500} />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 13. F1: the wrong answer's panel grows, a finger scrolls, "Devam" slides off the bottom; then the frame squeezes in. */}
+		<Sequence from={SCENE * 12 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}, {kind: 'squeeze', at: 2.3}, {kind: 'shake', at: 2.5, strength: 8}]}>
+					<Place x={290} y={240}>
+						<StoryDevice
+							id="m-test-coz-yanlis"
+							width={500}
+							glass={[
+								{kind: 'push', at: 0.4, y: WRONG_PANEL.split, by: 0.24, fill: WRONG_PANEL.fill, inset: WRONG_PANEL.inset, seconds: 1.3},
+								{kind: 'swipe', at: 1.2, from: {x: 0.55, y: 0.72}, to: {x: 0.55, y: 0.42}},
+							]}
+						/>
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 14. The fix: the frame opens, "Devam" ringed on today's screen; the card title cut with "…" wiped into the full one. */}
+		<Sequence from={SCENE * 13 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'release', at: 0.05}]}>
+					<Place x={50} y={330}>
+						<StoryDevice id="m-test-coz-yanlis" width={460} glass={[{kind: 'highlight', at: 0.6, ...WRONG_PANEL.devam}]} />
+					</Place>
+					<Place x={570} y={330}>
+						<StoryBeforeAfter before={{id: 'once-test-vitrin'}} after={{id: 'sonra-test-vitrin'}} at={1.6} width={460} />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 15. F4: 5^(1/2) drops to "5 ½" and lifts back; the root's bar floats off, clicks back and grows as terms come in. */}
+		<Sequence from={SCENE * 14 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={330} y={300}>
+						<PowerMishap steps={[{state: 'right', at: 0}, {state: 'dropped', at: 0.5}, {state: 'right', at: 2.2}]} size={300} />
+					</Place>
+					<Place x={110} y={1050}>
+						<RootMishap terms={[{latex: 'x', at: 0}, {latex: '+\\,1', at: 2.4}, {latex: '+\\,y', at: 2.9}]} steps={[{state: 'broken', at: 0}, {state: 'fixed', at: 1.6}]} size={170} />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 16. Phone and web show the same expression, the two lift out and lie on each other; the reel's empty comment bubble with its cursor. */}
+		<Sequence from={SCENE * 15 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={40} y={300}>
+						<MathMatch latex="5^{\frac{1}{2}}\cdot\sqrt{x+1}" meet={1.2} width={1000} />
+					</Place>
+					<Place x={110} y={1260}>
+						<StoryComment at={0.3} width={860} size={60} tail="right" />
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
+		{/* 17. F1: "Devam" is tapped and the next question opens at its top, the page coming down from above. */}
+		<Sequence from={SCENE * 16 * FPS} durationInFrames={SCENE * FPS}>
+			<Ground>
+				<StoryCamera moves={[{kind: 'punch', at: 0}]}>
+					<Place x={290} y={240}>
+						<StoryDevice
+							screens={[
+								{id: 'm-test-coz-yanlis', at: 0, glass: [{kind: 'tap', at: 0.7, x: 0.5, y: 0.927}]},
+								{id: 'm-test-coz', at: 1.1, transition: TOP},
+							]}
+							width={500}
+						/>
+					</Place>
+				</StoryCamera>
+			</Ground>
+		</Sequence>
 		</StoryStage>
 		</StoryLookProvider>
 	</VideoFrame>
@@ -256,6 +381,6 @@ const StoryKitSheet: React.FC<{look: StoryLookName}> = ({look}) => (
 
 export const StoryKitComposition: React.FC = () => (
 	<Folder name="StoryKit">
-		<Composition id={STORY_KIT_COMPOSITION_ID} component={StoryKitSheet} defaultProps={{look: 'warmGrey' as StoryLookName}} durationInFrames={SCENE * 9 * FPS} fps={FPS} width={1080} height={1920} />
+		<Composition id={STORY_KIT_COMPOSITION_ID} component={StoryKitSheet} defaultProps={{look: 'warmGrey' as StoryLookName}} durationInFrames={SCENE * SCENES * FPS} fps={FPS} width={1080} height={1920} />
 	</Folder>
 );

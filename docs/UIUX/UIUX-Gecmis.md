@@ -218,6 +218,33 @@ Uygulama oturumu ("api+web+mobil", web deposu `docs/UIUX/Tasarim-Uyum-Plani.md` 
   - **Katlanma bölgesi 40 pt** (mac-iphone simülatörde ölçtü: x 455,5–495,5; önce 24 pt çizilmişti). Sağ bölme 349 pt, bölmeler arası boşluk katın kendisi; sol bölme artık katın üstüne hiç taşmıyor (24 pt'de 0,5 pt taşıyordu). Odak sayfalarının üst çubuğu katta ikiye bölündü (ilerleme çubuğu katı geçiyordu); yarı açık taslakta yazılar %80'e küçüldü (kalem araç çubuğunun altında kalıyordu).
   - **Dış ekran araçları 180 pt'den** (mac-iphone: iOS'un sistem öğeleri `reservedRegions(.occlusion)` ile 174 pt; 132 pt Wi‑Fi halkasıyla çakışıyordu). 152 dış ekran, panolar ve dış ekran mağaza görselleri yeniden üretildi; Sosyal Medya'ya bildirildi.
   - **Şeritte çift Profil kalktı** (Sosyal Medya fark etti): sekmeli modül ekranlarında Profil hem üst araçlarda hem alttaki sekmelerdeydi. Artık yalnız altta; üstte yalnız Zil. Modüller hub'ında (sekmesiz) Profil üstte kalır. Dış ekranlar, panolar ve dış ekran mağaza görselleri yeniden üretildi.
+- **20 Kasım, web sitesi giriş öncesi sayfalar (sahip, api+web+mobile oturumu aracılığıyla: "ürün detay sayfasında özelliklerle alakalı görsel de yok, anlatım da yok … UI/UX'ten yeni çizimler iste, daha iyi ve daha kapsamlı olsun"; Paketler: "YKS diyor; TYT mi AYT mi belli değil. KPSS için 3 paket gözüküyor"):**
+  - **Ürün detay şablonu**, 7 modül (`s-urun-ders-plani` … `s-urun-sinoai`):
+    - giriş (web ve telefon), nasıl çalışır (her adımın ekranı);
+    - 4–6 özellik, metin ve ekran dönüşümlü, yakın çekimli;
+    - somut örnek, diğer modüller, SSS, çağrı.
+    - Metin ve ekran eşlemesi `Screens/Site/SiteContent.ts`; test `tests/UIUX/SiteContent.test.ts` (ürün dili kuralları, her görsel gerçek çizim).
+  - **Hakkımızda:** misyon, yaklaşım, 7 modül, sınavlar, değerler, şirket bilgileri, SSS. Metin kurulum oturumundan gelecek, düzen hazır.
+  - **İletişim:** kanal kartları, destek formu, Destek Merkezi yönlendirmesi, şirket bilgileri ve harita.
+  - **SSS** ayrı sayfa oldu (`s-sss`).
+  - **Sınav ve deneme sayfası şablonları:** `s-sinav-yks`, `s-deneme-sinavi`. YDT çıkarıldı.
+  - **Paketler:**
+    - sınav → (KPSS türü) → süre → tek kart; yıllık varsayılan, "%45 tasarruf";
+    - karşılaştırma tablosu;
+    - `s-paketler`, `s-paketler-kpss`.
+  - **Altyapı:**
+    - Her site sayfası telefon genişliğinde de çiziliyor (`siteNarrow`, `-mobil`, 390 pt).
+    - Denetim sayfa boyunu ölçüyor (`sayfa boyu`); footer tuvalin altına sabit.
+    - Chrome'un 16.384 px sınırı için uzun resimlerin ölçeği küçülüyor. Telefon sayfaları bu yüzden yaklaşık 2× yazılıyor.
+  - **Kalkan çizimler:** `s-urun-ozet`, `s-sss-iletisim`. Belge: [Kodlama/14-Web-Sitesi.md](Kodlama/14-Web-Sitesi.md).
+- **20 Kasım, sınav kişisi (Sosyal Medya, Google Ads):** reklam yalnız kendi sınavını gösterebilir. Çizimlere `exam` kişisi eklendi: yks, kpss (TR); sat, act (EN).
+  - Kişiye göre değişenler: sınav ve deneme adları, dersler, puanlar, ders adımları, kart, Akıllı Özet ve SinoAI sorusu, sınav takvimi.
+  - Veri `src/UIUX/ExamPersona.ts`; test `tests/UIUX/ExamPersona.test.ts`; dışa aktarma `--exam`.
+  - Varsayılan İngilizce (SAT) düzeldi:
+    - ders adımları Türkçeydi, artık İngilizce;
+    - SAT ekranlarında "TYT score", "net" ve TYT dersleri vardı, kalktı;
+    - sonuç grafiği sekmesinde ACT yazıyordu.
+  - Web sınav takvimi yalnız kişinin sınavını gösterir; YDT ve KPSS satırı kalktı. Ayrıntı: [Kodlama/README.md](Kodlama/README.md) §2.
 - **Vitrin istatistik kartı:** her modül vitrininde aynı çerçeveli kart (`ModuleWeekCard`). **Çevrimdışı:** adım kilitli + nötr satır (`PendingSyncNote`), Testler ve Denemeler de aynı. **Web `/student/ders-cal/ders`** Konular sekmesi; `w-ders-dersler` kaldırıldı.
 - **Deneme çıkışı:** mobil de kaldığı yerden devam ettirir ("Ara ver"); arka planda 5 dakika sonra otomatik bitirme kalkar.
 

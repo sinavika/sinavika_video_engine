@@ -18,6 +18,7 @@ import * as Onb from './Screens/Mobile/Onboarding';
 import * as Plan from './Screens/Mobile/Plan';
 import * as Sino from './Screens/Mobile/SinoAI';
 import * as SiteP from './Screens/Site/Site';
+import * as SitePg from './Screens/Site/SitePages';
 import * as TLearn from './Screens/Tablet/Learn';
 import * as TSolve from './Screens/Tablet/Solve';
 import * as TParity from './Screens/Tablet/Parity';
@@ -68,11 +69,15 @@ export type UIScreen = {
 	pose?: 'outer' | 'inner' | 'innerTall';
 	/** Watch screens on a round Wear OS face (227 × 227) instead of Apple Watch (208 × 248); share cards as a 1080 × 1080 post instead of a 1080 × 1920 story. */
 	round?: boolean;
+	/** Site pages drawn at phone width (390 pt, written at 3x). */
+	narrow?: boolean;
 };
 
 const mobile = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey): UIScreen => ({id, platform: 'mobile', group, title, route, Component, note, module});
 const web = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', module?: ModuleKey): UIScreen => ({id, platform: 'web', group, title, route, Component, note, module});
 const site = (id: string, group: string, title: string, route: string, Component: React.FC, height: number, note = ''): UIScreen => ({id, platform: 'site', group, title, route, Component, note, height});
+/** A site page at phone width: same page, `-mobil` id. */
+const siteNarrow = (id: string, group: string, title: string, route: string, Component: React.FC, height: number, note = ''): UIScreen => ({id, platform: 'site', group, title, route, Component, note, height, narrow: true});
 const watch = (id: string, group: string, title: string, route: string, Component: React.FC, note = '', round?: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'watch', group, title, route, Component, note, module, round});
 const share = (id: string, title: string, Component: React.FC, note: string, square: boolean, module?: ModuleKey): UIScreen => ({id, platform: 'share', group: 'Paylaşım kartları', title, route: 'ShareCard (mobil: görünümden PNG · web: next/og)', Component, note, module, round: square});
 const print = (id: string, group: string, title: string, route: string, Component: React.FC, note: string): UIScreen => ({id, platform: 'print', group, title, route, Component, note});
@@ -336,18 +341,39 @@ const BASE_SCREENS: UIScreen[] = [
 	web('w-sino-kutuphane', 'Web · SinoAI', 'SinoAI kütüphane', '/student/sinoai/kutuphane', WSino.WebSinoLibraryScreen, '', 'sinoAi'),
 	web('w-sino-kaynaklar', 'Web · SinoAI', 'Kaynaklarım', '/student/sinoai/kaynaklarim', WGaps.WebSinoSourcesScreen, '', 'sinoAi'),
 	web('w-sino-not', 'Web · SinoAI', 'Çalışma notu', '/student/sinoai/kutuphane/not/[id]', WGaps.WebSinoStudyNoteScreen, '', 'sinoAi'),
-	site('s-anasayfa', 'Web sitesi · Ana sayfa', 'Ana sayfa', '/', SiteP.SiteHomeScreen, 3718, 'Sitenin header’ı, ikonsuz logo; beyaz ve gri tonlar. Maketlerde gerçek panel ve uygulama çizimleri.'),
+	site('s-anasayfa', 'Web sitesi · Ana sayfa', 'Ana sayfa', '/', SiteP.SiteHomeScreen, 3297, 'Sitenin header’ı, ikonsuz logo; beyaz ve gri tonlar. Maketlerde gerçek panel ve uygulama çizimleri.'),
 	site('s-urunler-menu', 'Web sitesi · Ana sayfa', 'Ürünler menüsü', 'header', SiteP.SiteMenuScreen, 900, 'Ürünler açılınca 7 modül, sitenin sade gri tonlarında.'),
-	site('s-sinav-yks', 'Web sitesi · Sınavlar', 'Sınav sayfası · YKS', '/yks-hazirlik (şablon)', SiteP.SiteExamLandingScreen, 2657, 'Tüm sınav ve hazırlık sayfaları bu şablonla.'),
-	site('s-net-hesaplama', 'Web sitesi · Sınavlar', 'Net hesaplama', '/net-hesaplama', SiteP.SiteNetCalcScreen, 1024, ''),
-	site('s-paketler', 'Web sitesi · Paketler', 'Paketler', '/corporate/packages', SiteP.SitePlansScreen, 1200, 'Yalnız ücretli paketler; deneme süresi mobil uygulamada.'),
-	site('s-urun-denemeler', 'Web sitesi · Ürünler', 'Ürün · Denemeler', '/urunler/denemeler (şablon)', SiteP.SiteProductExamScreen, 2068, 'Altı ürün sayfası tek şablon.'),
-	site('s-urun-ozet', 'Web sitesi · Ürünler', 'Ürün · Akıllı Özet', '/urunler/lens', SiteP.SiteProductSummaryScreen, 2047, ''),
-	site('s-blog', 'Web sitesi · Blog', 'Blog', '/blog', SiteP.SiteBlogScreen, 2680, '12 yazı ve Daha fazla yazı (N); arama kutusu çiplerin sağında.'),
-	site('s-blog-yazi', 'Web sitesi · Blog', 'Blog yazısı', '/blog/[slug]', SiteP.SiteBlogPostScreen, 1362, ''),
-	site('s-hakkimizda', 'Web sitesi · Kurumsal', 'Hakkımızda', '/corporate/about', SiteP.SiteAboutScreen, 1000, 'Sayı satırı yok; başlık ve Ölç / Öğren / Geliş kartları.'),
-	site('s-sss-iletisim', 'Web sitesi · Kurumsal', 'SSS ve iletişim', '/corporate/sss + /contact', SiteP.SiteFaqContactScreen, 1116, ''),
-	site('s-yasal', 'Web sitesi · Kurumsal', 'Yasal sayfa', '/corporate/yasal/[slug]', SiteP.SiteLegalScreen, 993, ''),
+	site('s-sinav-yks', 'Web sitesi · Sınavlar', 'Sınav sayfası · YKS', '/yks-hazirlik (şablon)', SitePg.SiteExamLandingScreen, 3590, 'Sınav ve hazırlık sayfalarının ortak şablonu (yks, tyt, ayt, kpss-lisans, kpss-onlisans, kpss-ortaogretim); değerler Kodlama 14 §5.'),
+	siteNarrow('s-sinav-yks-mobil', 'Web sitesi · Sınavlar · mobil', 'Sınav sayfası · YKS · mobil', '/yks-hazirlik (şablon)', SitePg.SiteExamLandingNarrowScreen, 5499, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-net-hesaplama', 'Web sitesi · Sınavlar', 'Net hesaplama', '/net-hesaplama', SiteP.SiteNetCalcScreen, 1037, ''),
+	site('s-deneme-sinavi', 'Web sitesi · Sınavlar', 'Deneme sayfası', '/online-deneme-sinavi (şablon)', SitePg.SiteExamTrialScreen, 3111, 'Deneme sayfalarının ortak şablonu (online, yks, kpss, türkiye geneli); takvim API’den.'),
+	siteNarrow('s-deneme-sinavi-mobil', 'Web sitesi · Sınavlar · mobil', 'Deneme sayfası · mobil', '/online-deneme-sinavi (şablon)', SitePg.SiteExamTrialNarrowScreen, 4660, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-paketler', 'Web sitesi · Paketler', 'Paketler · YKS', '/corporate/packages', SitePg.SitePlansScreen, 2837, 'Önce sınav (YKS | KPSS), sonra süre; tek paket kartı. YDT yok.'),
+	siteNarrow('s-paketler-mobil', 'Web sitesi · Paketler · mobil', 'Paketler · YKS · mobil', '/corporate/packages', SitePg.SitePlansNarrowScreen, 3658, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-paketler-kpss', 'Web sitesi · Paketler', 'Paketler · KPSS', '/corporate/packages?sinav=kpss', SitePg.SitePlansKpssScreen, 2961, 'KPSS seçilince önce hangi KPSS (Lisans, Önlisans, Ortaöğretim), sonra tek kart.'),
+	siteNarrow('s-paketler-kpss-mobil', 'Web sitesi · Paketler · mobil', 'Paketler · KPSS · mobil', '/corporate/packages?sinav=kpss', SitePg.SitePlansKpssNarrowScreen, 3916, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-ders-plani', 'Web sitesi · Ürünler', 'Ürün · Ders Planı', '/urunler/ders-plani', SitePg.SiteProductStudyPlanScreen, 6507, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-ders-plani-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Ders Planı · mobil', '/urunler/ders-plani', SitePg.SiteProductStudyPlanNarrowScreen, 9243, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-dersler', 'Web sitesi · Ürünler', 'Ürün · Dersler', '/urunler/ders-cal', SitePg.SiteProductLessonsScreen, 6483, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-dersler-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Dersler · mobil', '/urunler/ders-cal', SitePg.SiteProductLessonsNarrowScreen, 9014, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-testler', 'Web sitesi · Ürünler', 'Ürün · Testler', '/urunler/testler (yeni)', SitePg.SiteProductTestsScreen, 6507, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-testler-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Testler · mobil', '/urunler/testler (yeni)', SitePg.SiteProductTestsNarrowScreen, 9094, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-denemeler', 'Web sitesi · Ürünler', 'Ürün · Denemeler', '/urunler/denemeler', SitePg.SiteProductExamScreen, 6523, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-denemeler-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Denemeler · mobil', '/urunler/denemeler', SitePg.SiteProductExamNarrowScreen, 9142, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-bilgi-kartlari', 'Web sitesi · Ürünler', 'Ürün · Bilgi Kartları', '/urunler/flashcard', SitePg.SiteProductFlashcardsScreen, 6435, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-bilgi-kartlari-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Bilgi Kartları · mobil', '/urunler/flashcard', SitePg.SiteProductFlashcardsNarrowScreen, 8622, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-akilli-ozet', 'Web sitesi · Ürünler', 'Ürün · Akıllı Özet', '/urunler/lens', SitePg.SiteProductSummaryScreen, 6435, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-akilli-ozet-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · Akıllı Özet · mobil', '/urunler/lens', SitePg.SiteProductSummaryNarrowScreen, 8597, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-urun-sinoai', 'Web sitesi · Ürünler', 'Ürün · SinoAI', '/urunler/sinoai', SitePg.SiteProductSinoScreen, 6435, 'Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts.'),
+	siteNarrow('s-urun-sinoai-mobil', 'Web sitesi · Ürünler · mobil', 'Ürün · SinoAI · mobil', '/urunler/sinoai', SitePg.SiteProductSinoNarrowScreen, 8909, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-blog', 'Web sitesi · Blog', 'Blog', '/blog', SiteP.SiteBlogScreen, 2571, '12 yazı ve Daha fazla yazı (N); arama kutusu çiplerin sağında.'),
+	site('s-blog-yazi', 'Web sitesi · Blog', 'Blog yazısı', '/blog/[slug]', SiteP.SiteBlogPostScreen, 1372, ''),
+	site('s-hakkimizda', 'Web sitesi · Kurumsal', 'Hakkımızda', '/corporate/about', SitePg.SiteAboutScreen, 4672, 'Giriş, misyon, yaklaşım, 7 modül, sınavlar, değerler, şirket bilgileri, SSS. Sayı ya da istatistik yok.'),
+	siteNarrow('s-hakkimizda-mobil', 'Web sitesi · Kurumsal · mobil', 'Hakkımızda · mobil', '/corporate/about', SitePg.SiteAboutNarrowScreen, 7520, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-iletisim', 'Web sitesi · Kurumsal', 'İletişim', '/corporate/contact', SitePg.SiteContactScreen, 2289, 'Kanal kartları, destek talebi formu, Destek Merkezi yönlendirmesi, SSS kısayolu, şirket bilgileri ve harita.'),
+	siteNarrow('s-iletisim-mobil', 'Web sitesi · Kurumsal · mobil', 'İletişim · mobil', '/corporate/contact', SitePg.SiteContactNarrowScreen, 4131, 'Aynı sayfa 390 pt genişlikte; satırlar alt alta.'),
+	site('s-sss', 'Web sitesi · Kurumsal', 'SSS', '/corporate/sss', SiteP.SiteFaqScreen, 1154, 'Sorular solda; sağda iletişim sayfasına yol (form s-iletisim’de).'),
+	site('s-yasal', 'Web sitesi · Kurumsal', 'Yasal sayfa', '/corporate/yasal/[slug]', SiteP.SiteLegalScreen, 1003, ''),
 	site('s-sinoai-misafir', 'Web sitesi · SinoAI misafir', 'SinoAI · misafir', '/sinoai', SiteP.SiteSinoGuestScreen, 900, ''),
 
 	/* Tablet (iPad 11", Android tablet): pen in exams, tests and lessons. Layout modes: tabletWide ≥ 900 pt (landscape), tabletPortrait 600–899 pt. */

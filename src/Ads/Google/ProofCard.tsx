@@ -94,7 +94,7 @@ const Body: React.FC<{proof: AdProof}> = ({proof}) => {
 					</Label>
 					<div style={{display: 'flex', alignItems: 'baseline', gap: 12}}>
 						<div style={{fontSize: 76, fontWeight: 800, color: INK, letterSpacing: '-0.04em', lineHeight: 1}}>{t(proof.net)}</div>
-						<div style={{fontSize: 26, fontWeight: 700, color: MUTED}}>net</div>
+						{proof.unit ? <div style={{fontSize: 26, fontWeight: 700, color: MUTED}}>{t(proof.unit)}</div> : null}
 						<div style={{marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 999, background: '#ECFDF5', color: SUCCESS, fontSize: 21, fontWeight: 800}}>
 							<Icon name="trend" size={18} color={SUCCESS} stroke={2.4} />
 							{t(proof.delta)}
@@ -137,6 +137,47 @@ const Body: React.FC<{proof: AdProof}> = ({proof}) => {
 					</div>
 				</>
 			);
+		case 'lesson': {
+			const color = MODULES.lessons.color.light;
+			return (
+				<>
+					<Label icon="book" color={color} right={<div style={{fontSize: 17, fontWeight: 700, color}}>{t(proof.step)}</div>}>
+						{t(proof.title)}
+					</Label>
+					<div style={{fontSize: 26, fontWeight: 750, color: INK, lineHeight: 1.3, letterSpacing: '-0.015em'}}>{t(proof.prompt)}</div>
+					<div style={{display: 'flex', gap: 10, marginTop: 16}}>
+						{proof.options.map((option, index) => (
+							<div key={option.tr} style={{flex: 1, padding: '12px 14px', borderRadius: 14, textAlign: 'center', fontSize: 21, fontWeight: 800, border: `2px solid ${index === proof.answer ? SUCCESS : LINE}`, background: index === proof.answer ? '#ECFDF5' : '#FFFFFF', color: index === proof.answer ? SUCCESS : INK}}>
+								{t(option)}
+							</div>
+						))}
+					</div>
+					<div style={{display: 'flex', alignItems: 'center', gap: 8, marginTop: 16, paddingTop: 14, borderTop: `1px solid ${LINE}`, fontSize: 18, fontWeight: 750, color}}>
+						<Icon name="book" size={18} color={color} />
+						{t(proof.link)}
+					</div>
+				</>
+			);
+		}
+		case 'retake': {
+			const color = MODULES.tests.color.light;
+			return (
+				<>
+					<Label icon="refresh" color={color}>
+						{t(proof.title)}
+					</Label>
+					<div style={{fontSize: 40, fontWeight: 800, color: INK, letterSpacing: '-0.03em', lineHeight: 1.05}}>{t(proof.count)}</div>
+					<div style={{fontSize: 17, fontWeight: 600, color: MUTED, marginTop: 6}}>{t(proof.meta)}</div>
+					<div style={{display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 16}}>
+						{proof.topics.map((topic) => (
+							<div key={topic.tr} style={{padding: '8px 14px', borderRadius: 999, background: `${color}14`, color, fontSize: 17, fontWeight: 750}}>
+								{t(topic)}
+							</div>
+						))}
+					</div>
+				</>
+			);
+		}
 	}
 };
 

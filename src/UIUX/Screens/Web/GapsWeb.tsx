@@ -10,6 +10,7 @@ import {LessonReviewSessionScreen} from '../Mobile/Gaps';
 import {FLAGGED_QUESTIONS, SOLVED_QUIZZES} from '../Mobile/Learn';
 import {SUMMARY_TABS} from './AssistWeb';
 import {Back, Main, StudyPlayer} from './LessonsWeb';
+import {usePersona} from '../../ExamPersona';
 
 /**
  * Web student pages that had no drawing (compatibility report 13–14 Nov
@@ -43,14 +44,12 @@ export const WebExamCalendarScreen: React.FC = () => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('exam');
-	const rows: [string, string, string, string][] = [
-		['YKS · TYT', t('Haziran 2027 · Cumartesi', 'June 2027 · Saturday'), '245', t('gün', 'days')],
-		['YKS · AYT, YDT', t('Haziran 2027 · Pazar', 'June 2027 · Sunday'), '246', t('gün', 'days')],
-		['KPSS Lisans', t('Temmuz 2027', 'July 2027'), '280', t('gün', 'days')],
-	];
+	const {calendar} = usePersona();
+	// Only the drawn student's own exam (ads, 20 Nov 2026); no YDT.
+	const rows = calendar.rows.map(([name, date, days]) => [name, date, days, t('gün', 'days')] as const);
 	return (
 		<Panel active="exam">
-			<ModuleHead module="exam" tab={0} title={t('Sınav takvimi', 'Exam calendar')} sub={t('Hedef sınavın ve öteki resmî sınavlar; tarihler ÖSYM duyurusuyla güncellenir.', 'Your target exam and other official exams.')} />
+			<ModuleHead module="exam" tab={0} title={t('Sınav takvimi', 'Exam calendar')} sub={t('Hedef sınavının resmî tarihleri; ÖSYM duyurusuyla güncellenir.', 'Your target exam’s official dates; updated with the official calendar.')} />
 			<Grid columns="1.4fr 1fr">
 				<WCard title={t('Sınavlar', 'Exams')}>
 					{rows.map(([name, date, days, unit], index) => (
@@ -73,8 +72,8 @@ export const WebExamCalendarScreen: React.FC = () => {
 				</WCard>
 				<WCard title={t('Bu ay Sınavika denemeleri', 'Sınavika exams this month')}>
 					<Stack gap={10}>
-						<EntryRow module="exam" strong icon="exam" title={t('TYT Deneme 5', 'SAT Practice Test 5')} sub={t('Cumartesi 10:00 · Türkiye geneli', 'Saturday 10:00 · nationwide')} />
-						<EntryRow module="exam" icon="exam" title={t('KPSS GY-GK Deneme 2', 'KPSS Exam 2')} sub={t('Pazartesi 14:00', 'Monday 14:00')} />
+						<EntryRow module="exam" strong icon="exam" title={calendar.month[0][0]} sub={calendar.month[0][1]} />
+						<EntryRow module="exam" icon="exam" title={calendar.month[1][0]} sub={calendar.month[1][1]} />
 					</Stack>
 				</WCard>
 			</Grid>

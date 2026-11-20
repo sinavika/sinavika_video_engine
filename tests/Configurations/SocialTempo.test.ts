@@ -29,7 +29,21 @@ describe('sinavika.tr tempo', () => {
 		expect(StudyDeskStory.transition).toEqual({preset: 'none'});
 		expect(StudyDeskStory.targetSeconds).toEqual(SINAVIKA_TR_TEMPO.contentSeconds);
 		expect(SINAVIKA_TR_TEMPO.cut.punchFrom).toBeGreaterThan(1);
-		expect(SINAVIKA_TR_TEMPO.cut.punchSeconds).toBeLessThanOrEqual(0.3);
+		expect(SINAVIKA_TR_TEMPO.cut.punchSeconds).toBeLessThanOrEqual(0.45);
+	});
+
+	it('keeps the cuts but not the bounce (owner, 20 Nov 2026: "zıplama biraz fazla göz yordu")', () => {
+		const {cut, subBeat, land, word, maxPictureGapSeconds} = SINAVIKA_TR_TEMPO;
+		// The scene's punch, the sub-beat push and a card's landing stay small; the push is slow, not a jolt.
+		expect(cut.punchFrom).toBeLessThanOrEqual(1.06);
+		expect(subBeat.from).toBeLessThanOrEqual(1.02);
+		expect(subBeat.seconds).toBeGreaterThanOrEqual(0.5);
+		expect(land.from).toBeLessThanOrEqual(1.08);
+		expect(land.tilt).toBeLessThanOrEqual(3);
+		expect(word.swell).toBeLessThanOrEqual(0.15);
+		// The picture still changes at least every 1.5 s.
+		expect(maxPictureGapSeconds).toBeLessThanOrEqual(1.5);
+		expect(SINAVIKA_TR_TEMPO.calmed).toBe('2026-11-20');
 	});
 
 	it('the template keeps lines nearly touching and has the render check the real recording', () => {

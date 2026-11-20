@@ -3,7 +3,7 @@
 Bu dosya `npm run uiux -- --inventory docs/UIUX/Ekran-Envanteri.md` ile çizim kaydından (`src/UIUX/Registry.ts`) üretilir; elle düzenlenmez.
 Her satır bir çizimi, gerçek uygulamadaki karşılığını ("Rota") ve değişikliğin nedenini gösterir. "yeni" bugün olmayan ekrandır.
 
-Toplam 587 çizim: mobil uygulama 162, web paneli ve web giriş/onboarding 95, tablet (ipad ve android tablet, kalem) 37, iphone duo (dış ve iç ekran) 255, web sitesi (giriş öncesi) 13, akıllı saat (apple watch ve wear os) 12, paylaşım kartları (hikâye ve gönderi) 10, pdf belgeleri (a4) 3.
+Toplam 608 çizim: mobil uygulama 162, web paneli ve web giriş/onboarding 95, tablet (ipad ve android tablet, kalem) 37, iphone duo (dış ve iç ekran) 255, web sitesi (giriş öncesi) 34, akıllı saat (apple watch ve wear os) 12, paylaşım kartları (hikâye ve gönderi) 10, pdf belgeleri (a4) 3.
 
 ## Mobil uygulama
 
@@ -955,21 +955,134 @@ Toplam 587 çizim: mobil uygulama 162, web paneli ve web giriş/onboarding 95, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `s-sinav-yks` | Sınav sayfası · YKS | `/yks-hazirlik (şablon)` | Tüm sınav ve hazırlık sayfaları bu şablonla. |
+| `s-sinav-yks` | Sınav sayfası · YKS | `/yks-hazirlik (şablon)` | Sınav ve hazırlık sayfalarının ortak şablonu (yks, tyt, ayt, kpss-lisans, kpss-onlisans, kpss-ortaogretim); değerler Kodlama 14 §5. |
+
+### Web sitesi · Sınavlar · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-sinav-yks-mobil` | Sınav sayfası · YKS · mobil | `/yks-hazirlik (şablon)` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Sınavlar
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
 | `s-net-hesaplama` | Net hesaplama | `/net-hesaplama` | — |
+| `s-deneme-sinavi` | Deneme sayfası | `/online-deneme-sinavi (şablon)` | Deneme sayfalarının ortak şablonu (online, yks, kpss, türkiye geneli); takvim API’den. |
+
+### Web sitesi · Sınavlar · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-deneme-sinavi-mobil` | Deneme sayfası · mobil | `/online-deneme-sinavi (şablon)` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
 
 ### Web sitesi · Paketler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `s-paketler` | Paketler | `/corporate/packages` | Yalnız ücretli paketler; deneme süresi mobil uygulamada. |
+| `s-paketler` | Paketler · YKS | `/corporate/packages` | Önce sınav (YKS | KPSS), sonra süre; tek paket kartı. YDT yok. |
+
+### Web sitesi · Paketler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-paketler-mobil` | Paketler · YKS · mobil | `/corporate/packages` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Paketler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-paketler-kpss` | Paketler · KPSS | `/corporate/packages?sinav=kpss` | KPSS seçilince önce hangi KPSS (Lisans, Önlisans, Ortaöğretim), sonra tek kart. |
+
+### Web sitesi · Paketler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-paketler-kpss-mobil` | Paketler · KPSS · mobil | `/corporate/packages?sinav=kpss` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
 
 ### Web sitesi · Ürünler
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `s-urun-denemeler` | Ürün · Denemeler | `/urunler/denemeler (şablon)` | Altı ürün sayfası tek şablon. |
-| `s-urun-ozet` | Ürün · Akıllı Özet | `/urunler/lens` | — |
+| `s-urun-ders-plani` | Ürün · Ders Planı | `/urunler/ders-plani` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-ders-plani-mobil` | Ürün · Ders Planı · mobil | `/urunler/ders-plani` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-dersler` | Ürün · Dersler | `/urunler/ders-cal` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-dersler-mobil` | Ürün · Dersler · mobil | `/urunler/ders-cal` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-testler` | Ürün · Testler | `/urunler/testler (yeni)` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-testler-mobil` | Ürün · Testler · mobil | `/urunler/testler (yeni)` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-denemeler` | Ürün · Denemeler | `/urunler/denemeler` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-denemeler-mobil` | Ürün · Denemeler · mobil | `/urunler/denemeler` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-bilgi-kartlari` | Ürün · Bilgi Kartları | `/urunler/flashcard` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-bilgi-kartlari-mobil` | Ürün · Bilgi Kartları · mobil | `/urunler/flashcard` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-akilli-ozet` | Ürün · Akıllı Özet | `/urunler/lens` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-akilli-ozet-mobil` | Ürün · Akıllı Özet · mobil | `/urunler/lens` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Ürünler
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-sinoai` | Ürün · SinoAI | `/urunler/sinoai` | Ürün detay şablonu: giriş, nasıl çalışır, özellikler, örnek, diğer modüller, SSS, çağrı. Metin ve ekranlar SiteContent.ts. |
+
+### Web sitesi · Ürünler · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-urun-sinoai-mobil` | Ürün · SinoAI · mobil | `/urunler/sinoai` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
 
 ### Web sitesi · Blog
 
@@ -982,8 +1095,31 @@ Toplam 587 çizim: mobil uygulama 162, web paneli ve web giriş/onboarding 95, t
 
 | Kimlik | Ekran | Rota | Not |
 |---|---|---|---|
-| `s-hakkimizda` | Hakkımızda | `/corporate/about` | Sayı satırı yok; başlık ve Ölç / Öğren / Geliş kartları. |
-| `s-sss-iletisim` | SSS ve iletişim | `/corporate/sss + /contact` | — |
+| `s-hakkimizda` | Hakkımızda | `/corporate/about` | Giriş, misyon, yaklaşım, 7 modül, sınavlar, değerler, şirket bilgileri, SSS. Sayı ya da istatistik yok. |
+
+### Web sitesi · Kurumsal · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-hakkimizda-mobil` | Hakkımızda · mobil | `/corporate/about` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Kurumsal
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-iletisim` | İletişim | `/corporate/contact` | Kanal kartları, destek talebi formu, Destek Merkezi yönlendirmesi, SSS kısayolu, şirket bilgileri ve harita. |
+
+### Web sitesi · Kurumsal · mobil
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-iletisim-mobil` | İletişim · mobil | `/corporate/contact` | Aynı sayfa 390 pt genişlikte; satırlar alt alta. |
+
+### Web sitesi · Kurumsal
+
+| Kimlik | Ekran | Rota | Not |
+|---|---|---|---|
+| `s-sss` | SSS | `/corporate/sss` | Sorular solda; sağda iletişim sayfasına yol (form s-iletisim’de). |
 | `s-yasal` | Yasal sayfa | `/corporate/yasal/[slug]` | — |
 
 ### Web sitesi · SinoAI misafir

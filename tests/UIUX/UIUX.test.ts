@@ -130,9 +130,9 @@ describe('UI/UX screens', () => {
 
 	it('sizes site pages by their height and the rest by the canvas', () => {
 		for (const screen of UI_SCREENS) {
-			const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose);
+			const size = screenSize(screen.platform, screen.height, screen.portrait, screen.round, screen.pose, screen.narrow);
 			if (screen.platform === 'site') expect(screen.height, screen.id).toBeGreaterThan(800);
-			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'share' ? 1080 : screen.platform === 'print' ? 595 : screen.platform === 'watch' ? (screen.round ? 227 : 208) : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : screen.platform === 'fold' ? (screen.pose === 'outer' ? 466 : screen.pose === 'innerTall' ? 669 : 951) : 1440);
+			expect(size.width, screen.id).toBe(screen.platform === 'mobile' ? 390 : screen.platform === 'share' ? 1080 : screen.platform === 'print' ? 595 : screen.platform === 'watch' ? (screen.round ? 227 : 208) : screen.platform === 'tablet' ? (screen.portrait ? 834 : 1194) : screen.platform === 'fold' ? (screen.pose === 'outer' ? 466 : screen.pose === 'innerTall' ? 669 : 951) : screen.narrow ? 390 : 1440);
 		}
 	});
 

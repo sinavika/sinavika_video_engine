@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {UI_EXAMS} from './Context';
 import {UI_CANVAS, UI_LANGS, UI_MODES} from './Tokens';
 
 /** Props of the UI/UX compositions, shared by the compositions and the export script. */
@@ -11,6 +12,8 @@ export const UIUXScreenPropsSchema = z.object({
 	mode: z.enum(UI_MODES).default('light'),
 	/** Layout audit (npm run uiux-audit): the drawing logs what LayoutAudit finds. */
 	audit: z.boolean().default(false),
+	/** Exam persona (ads): leave out for the default (yks in Turkish, sat in English). */
+	exam: z.enum(UI_EXAMS).optional(),
 });
 export type UIUXScreenProps = z.infer<typeof UIUXScreenPropsSchema>;
 
@@ -25,9 +28,10 @@ export const UIUXBoardPropsSchema = z.object({
 export type UIUXBoardProps = z.infer<typeof UIUXBoardPropsSchema>;
 
 /** Board layout: each screen drawn at this width, with its title above. Tablet portrait cells keep the landscape cells' height. */
-export const BOARD = {mobileWidth: 390, webWidth: 720, tabletWidth: 900, tabletPortraitWidth: 449, watchWidth: 300, duoOuterWidth: 300, duoInnerWidth: 620, duoInnerTallWidth: 417, shareWidth: 405, printWidth: 420, gap: 48, padding: 72, header: 150, caption: 64} as const;
+export const BOARD = {siteNarrowWidth: 300, mobileWidth: 390, webWidth: 720, tabletWidth: 900, tabletPortraitWidth: 449, watchWidth: 300, duoOuterWidth: 300, duoInnerWidth: 620, duoInnerTallWidth: 417, shareWidth: 405, printWidth: 420, gap: 48, padding: 72, header: 150, caption: 64} as const;
 
-export const screenSize = (platform: 'mobile' | 'web' | 'site' | 'tablet' | 'fold' | 'watch' | 'share' | 'print', height?: number, portrait?: boolean, round?: boolean, pose?: 'outer' | 'inner' | 'innerTall'): {width: number; height: number} => {
+export const screenSize = (platform: 'mobile' | 'web' | 'site' | 'tablet' | 'fold' | 'watch' | 'share' | 'print', height?: number, portrait?: boolean, round?: boolean, pose?: 'outer' | 'inner' | 'innerTall', narrow?: boolean): {width: number; height: number} => {
+	if (platform === 'site' && narrow) return {width: UI_CANVAS.mobile.width, height: height ?? UI_CANVAS.mobile.height};
 	if (platform === 'share') return round ? {width: UI_CANVAS.shareSquare.width, height: UI_CANVAS.shareSquare.height} : {width: UI_CANVAS.share.width, height: UI_CANVAS.share.height};
 	if (platform === 'print') return {width: UI_CANVAS.print.width, height: UI_CANVAS.print.height};
 	if (platform === 'mobile') return {width: UI_CANVAS.mobile.width, height: UI_CANVAS.mobile.height};

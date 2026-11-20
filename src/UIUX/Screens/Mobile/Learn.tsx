@@ -23,7 +23,8 @@ export const LESSON_MAINS: [string, string, number, number][] = [
 	['Biyoloji', 'Biology', 2, 14],
 ];
 
-export const TestsHomeScreen: React.FC = () => {
+/** Testler home. `slide` changes the first slide's words or cuts them (ModuleSlide `clamp`); the set draws it as is. */
+export const TestsHomeScreen: React.FC<{slide?: {title?: string; text?: string; clamp?: number}}> = ({slide}) => {
 	const t = useT();
 	const colors = useColors();
 	const mod = useModuleColors('tests');
@@ -33,7 +34,7 @@ export const TestsHomeScreen: React.FC = () => {
 				<PageTitle module="tests" title={t('Testler', 'Quizzes')} />
 				{/* Swiped slides: Senin için hazır first, then where you left off and the topics; the dots show the page. */}
 				<Stack gap={8}>
-					<ModuleSlide module="tests" height={170} />
+					<ModuleSlide module="tests" height={170} {...slide} />
 					<Dots count={3} active={0} />
 				</Stack>
 				<ModuleWeekCard

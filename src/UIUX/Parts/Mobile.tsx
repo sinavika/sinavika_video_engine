@@ -158,11 +158,15 @@ export const TabBar: React.FC<{module: ModuleKey; active?: number}> = ({module, 
 	);
 };
 
-/** One slide of the hub carousel: the module's gradient, its offer today and one action. */
-export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: string; text?: string; label?: string; action?: string}> = ({module, height = 196, title, text, label, action}) => {
+/**
+ * One slide of the hub carousel: the module's gradient, its offer today and one action. `clamp` cuts the title and the
+ * line after that many lines with "…" (the app before 2.12.1, for the story reels' "önce" drawing; never in the set).
+ */
+export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: string; text?: string; label?: string; action?: string; clamp?: number}> = ({module, height = 196, title, text, label, action, clamp}) => {
 	const t = useT();
 	const {mode} = useUI();
 	const identity = MODULES[module];
+	const cut: React.CSSProperties | undefined = clamp ? {display: '-webkit-box', WebkitLineClamp: clamp, WebkitBoxOrient: 'vertical', overflow: 'hidden'} : undefined;
 	return (
 		<div style={{position: 'relative', overflow: 'hidden', minHeight: height, borderRadius: UI_RADIUS.xl, background: moduleGradient(module, mode), padding: 20, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 6, boxShadow: `0 16px 30px -18px ${alpha(identity.color.light, 0.8)}`}}>
 			<Glow />
@@ -171,10 +175,10 @@ export const ModuleSlide: React.FC<{module: ModuleKey; height?: number; title?: 
 			<Text role="over" color="rgba(255,255,255,0.85)" style={{position: 'relative'}}>
 				{label ?? t(identity.slide.label)}
 			</Text>
-			<Text role="hero" size={24} color="#FFFFFF" style={{position: 'relative', maxWidth: 270}}>
+			<Text role="hero" size={24} color="#FFFFFF" style={{position: 'relative', maxWidth: 270, ...cut}}>
 				{title ?? t(identity.slide.title)}
 			</Text>
-			<Text role="small" color="rgba(255,255,255,0.9)" style={{position: 'relative', maxWidth: 260}}>
+			<Text role="small" color="rgba(255,255,255,0.9)" style={{position: 'relative', maxWidth: 260, ...cut}}>
 				{text ?? t(identity.slide.text)}
 			</Text>
 			<div style={{flex: 1}} />

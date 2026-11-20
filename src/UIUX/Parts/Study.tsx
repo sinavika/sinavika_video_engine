@@ -351,22 +351,28 @@ export const resultBars = (t: (tr: string, en?: string) => string): [string, num
 	];
 };
 
-export const NetBars: React.FC<{items: [string, number, boolean?][]; max?: number; height?: number}> = ({items, max = 120, height = 150}) => {
+/** Net bars. A null value keeps its slot empty (the story reels' "önce" drawing, before own exams were counted). */
+export const NetBars: React.FC<{items: [string, number | null, boolean?][]; max?: number; height?: number}> = ({items, max = 120, height = 150}) => {
 	const colors = useColors();
 	const mod = useModuleColors('exam');
+	const locale = useUI().lang === 'en' ? 'en-US' : 'tr-TR';
 	return (
 		<Stack gap={6}>
 			<div style={{position: 'relative', height, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 10, padding: '0 4px'}}>
 				{[0.25, 0.5, 0.75, 1].map((line) => (
 					<div key={line} style={{position: 'absolute', left: 0, right: 0, bottom: height * line, borderTop: `1px dashed ${colors.line}`}} />
 				))}
-				{items.map(([label, value, own]) => (
+				{items.map(([label, value, own]) =>
+					value === null ? (
+						<div key={label} style={{flex: 1}} />
+					) : (
 					<div key={label} style={{position: 'relative', flex: 1, height: Math.max((value / max) * height, 30), borderRadius: '14px 14px 6px 6px', background: own ? `repeating-linear-gradient(135deg, ${mod.soft} 0 6px, ${mod.track} 6px 12px)` : `linear-gradient(180deg, ${mod.color} 0%, ${mod.action} 100%)`, display: 'flex', justifyContent: 'center', paddingTop: 8, boxSizing: 'border-box'}}>
 						<Text role="headline" size={13.5} color={own ? mod.ink : '#FFFFFF'} tnum>
-							{value.toLocaleString(useUI().lang === 'en' ? 'en-US' : 'tr-TR')}
+							{value.toLocaleString(locale)}
 						</Text>
 					</div>
-				))}
+					),
+				)}
 			</div>
 			<Stack row justify="space-between" gap={10} style={{padding: '0 4px'}}>
 				{items.map(([label]) => (

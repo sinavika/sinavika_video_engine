@@ -78,7 +78,7 @@ Bu model bugünkü dört kuralımızla çakışıyor. Değişmeleri sahibin kara
 |---|---|
 | Altyazı | Yok; mevcut kural sürer. Anlamı ekrandaki büyük yazılar ve görüntü taşır. |
 | Süre | 30–45 sn (saniyede ~3 kelime, sahne her ~1 sn'de değişir); 2 hafta sonra izlenme süresine göre ayarlanır. |
-| Kapanış | Soruyla biter ("Sırada ne var? Yoruma yaz."); uygulama kartı yok, yalnız köşede küçük logo. |
+| Kapanış | Soruyla biter ("Sırada ne var? Yoruma yaz."); uygulama kartı yok; köşe logosu da yok (20 Kasım). |
 | Ses ve görüntü | Doğa + motorun çizdiği görüntü (uygulama ekranları, animasyon); çekim yok. Ton "biz" diye konuşan samimi anlatıma geçer. |
 
 Tanıtım reels'lerinin kuralları (15 + 3 sn, uygulama kartı) değişmedi.

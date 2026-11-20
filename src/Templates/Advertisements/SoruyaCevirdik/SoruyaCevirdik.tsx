@@ -2,7 +2,6 @@ import React from 'react';
 import {z} from 'zod';
 import {AbsoluteFill, interpolate} from 'remotion';
 import {useVideoLayout} from '../../../Components/Layouts/VideoLayout';
-import {BrandMark} from '../../../Components/Overlays/BrandMark';
 import {SoundEffect} from '../../../Components/Sounds/SoundEffect';
 import {Text} from '../../../Components/Typography/Text';
 import {BRAND_TYPOGRAPHY as TYPE} from '../../../Configurations/BrandTypography';
@@ -99,7 +98,7 @@ const Ground: React.FC = () => {
 	);
 };
 
-/** The series chip at the top and the small logo in the corner, on every scene. */
+/** The series chip at the top, on every scene. No corner logo (owner, 20 Nov 2026: "hiçbir reels de olmasın"); the brand is on the closing card. */
 const Chrome: React.FC<{series: string}> = ({series}) => {
 	const {u} = useVideoLayout();
 	return (
@@ -112,11 +111,6 @@ const Chrome: React.FC<{series: string}> = ({series}) => {
 							{series}
 						</Text>
 					</div>
-				</div>
-			</At>
-			<At x={952 - 190} y={1530 - 70} w={170}>
-				<div style={{display: 'flex', justifyContent: 'flex-end', opacity: 0.85}}>
-					<BrandMark size="chrome" color={INK} />
 				</div>
 			</At>
 		</>

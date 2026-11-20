@@ -28,6 +28,7 @@ Belge ile PNG çelişirse çizim kodu esastır. Çizimlerdeki ad, sayı, tarih v
 | [10-Profil-Hesap-Abonelik.md](10-Profil-Hesap-Abonelik.md) | Profil, hesap, güvenlik, ayarlar, paketler, abonelik, web ödeme |
 | [11-Bildirim-Destek-Durumlar.md](11-Bildirim-Destek-Durumlar.md) | Bildirimler, destek, ortak durum kalıpları (yükleniyor, boş, hata, çevrimdışı, güncelleme) |
 | [13-Istatistik-Raporu-PDF.md](13-Istatistik-Raporu-PDF.md) | İstatistik raporu PDF'i (A4, API QuestPDF): iki sayfa, ölçüler, grafik çizim kuralları, alan eşlemesi, taslakla farklar |
+| [14-Web-Sitesi.md](14-Web-Sitesi.md) | Web sitesi giriş öncesi sayfalar: ürün detay şablonu (7 modül), Hakkımızda, İletişim, SSS, sınav ve deneme sayfası şablonları, Paketler hiyerarşisi; masaüstü ve telefon |
 | [12-iPhone-Duo.md](12-iPhone-Duo.md) | iPhone Duo (katlanabilir): dış ve iç ekran ölçüleri, dikey çubuk şeridi, iki sütun, yarı açık ve dik pozlar, durum sürekliliği, RN notları |
 
 Genel kurallar üst klasördedir; bu klasör onları tekrar etmez, uygular:
@@ -61,6 +62,14 @@ Her ekranın bir kimliği vardır. Kimlik dosya adıdır ve değişmez:
 | Tablet | `acik/tablet/<id>.png` | `koyu/tablet/<id>.png` | `en/...` | 1194 × 834 (dikey 834 × 1194) | 2× |
 
 Yollar `Desktop\Sinavika-UIUX3\` altındadır. Her modülün bütün ekranları tek resimde: `acik/panolar/`.
+
+**Sınav kişisi (20 Kasım 2026).** Çizimdeki öğrenci bir sınava hazırlanır: Türkçe çizimlerde YKS, İngilizcede SAT. Reklamlar yalnız kendi sınavını gösterebildiği için, sınava bağlı veri kişiye göre değişir: sınav ve deneme adları, dersler, puanlar, ders adımının konusu, kart, Akıllı Özet ve SinoAI sorusu, sınav takvimi.
+- **Kişiler:** `yks` ve `kpss` Türkçe, `sat` ve `act` İngilizce. Seçim `UIProvider exam`. Veri tek dosyada: `src/UIUX/ExamPersona.ts` (`usePersona`, `usePick`).
+- **Değişmez:** düzen aynı kalır; değişen yalnız sınava bağlı metin ve sayıdır. Sayılar kendi içinde tutarlıdır: YKS ve KPSS'de 4 yanlış 1 doğruyu götürür; SAT bölümü 200–800, toplam 1600; ACT 1–36, bileşik puan English, Math ve Reading'in ortalaması.
+- **PNG:** `npm run uiux -- --exam kpss --only m-deneme` → `sinav-kisileri/<kişi>/{acik,koyu}/`. Pano üretilmez.
+- **Kapsam:** reklamların kullandığı 23 ekran: Denemeler (`m-deneme-net`, `-sonuc`, `-sonuclar`, `-analiz`, `-ay`, `w-deneme-sonuc`, `w-sinav-takvimi`), Ders Planı Bugün, Dersler adımları (boşluk, doğru-yanlış, sırala, sınav tarzı soru), Testler Yanlışlarım, kart oturumu, Akıllı Özet sonucu, SinoAI sohbet.
+- **Denetim:** `tests/UIUX/ExamPersona.test.ts` her kişide bu ekranlarda başka sınavın adını arar; İngilizce kişide Türkçe harf de arar.
+- **Web ve mobil uygulama için anlamı:** gerçek uygulamada veri öğrencinin kendi hedef sınavından gelir. Bu kural yalnız çizimler ve reklamlar içindir.
 
 **Çizim ile uygulama farkı:**
 - Çizim sabit bir resimdir; listeyi en üste kaydırılmış hâliyle gösterir.
